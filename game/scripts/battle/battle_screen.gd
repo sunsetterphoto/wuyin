@@ -26,6 +26,7 @@ var _call_button: Button
 var _breath: Label
 var _suggestions: HFlowContainer
 var _busy := false
+var _voice: Label
 
 
 func _ready() -> void:
@@ -70,9 +71,11 @@ func _next_prompt() -> void:
 	var open := battle.open_slots(PLAYER)
 	if open.is_empty():
 		ai.fill(battle, ENEMY)
-		for e in battle.resolve_turn():
+		var events := battle.resolve_turn()
+		for e in events:
 			for line in BattleText.describe(battle, e):
 				_append_log(line)
+		_speak_about(events)
 		_rebuild_panels()
 		_next_prompt()
 		return
@@ -120,6 +123,10 @@ func _on_call(text: String) -> void:
 	_call_input.editable = false
 	_call_button.disabled = true
 	_append_log("[i]%s[/i]" % tr("BATTLE_CALL_HEARD").format({"text": text}))
+	# "Glutfasan, ...!" goes to Glutfasan if it still needs a command this turn.
+	var addressed := CallTranslator.addressed_slot(battle, PLAYER, battle.open_slots(PLAYER), text)
+	if addressed >= 0 and battle.unit_at(PLAYER, addressed).accepts_calls():
+		_slot = addressed
 	var ctx := CallTranslator.context(battle, PLAYER, _slot)
 	var res := await CallTranslator.translate(ctx, text)
 	var action: Dictionary = res["action"]
@@ -130,6 +137,53 @@ func _on_call(text: String) -> void:
 		"ms": res.get("ms", 0)}))
 	_busy = false
 	_submit(action)
+
+
+## Lets one of the player's Lingshou comment on the most notable event of the turn.
+func _speak_about(events: Array[Dictionary]) -> void:
+	var pick := {}
+	var priority := {"end": 6, "disobey": 5, "situation_bonus": 4, "obey": 3, "damage_taken": 2, "attack": 1}
+	var best := 0
+	var last_user := ""
+	for e in events:
+		var kind := ""
+		var uid := ""
+		if e["type"] == "uses":
+			last_user = e["user"]
+		match e["type"]:
+			"end":
+				if e["winner"] == PLAYER:
+					kind = "win"
+					uid = battle.active_units(PLAYER)[0].uid
+			"disobey", "situation_bonus", "obey":
+				kind = {"disobey": "disobey", "situation_bonus": "bonus", "obey": "obey"}[e["type"]]
+				uid = e["user"]
+			"damage":
+				var t := battle.find_unit(e["target"])
+				if t and t.side == PLAYER and t.is_alive():
+					kind = "low_hp" if float(t.hp) / t.max_hp < 0.3 else "hit"
+					uid = t.uid
+					e = e.duplicate()
+					e["attacker"] = last_user
+		if kind == "":
+			continue
+		var u := battle.find_unit(uid)
+		if u == null or u.side != PLAYER:
+			continue
+		var prio: int = priority.get(e["type"] if e["type"] != "damage" else "damage_taken", 0)
+		if prio > best:
+			best = prio
+			pick = {"unit": u, "event": kind, "attacker": e.get("attacker", "")}
+	if pick.is_empty():
+		return
+	var u: BattleUnit = pick["unit"]
+	var speaker := tr(u.name_key())
+	_voice.text = "%s: …" % speaker
+	var facts := {"target": BattleText.unit_name(battle, pick["attacker"]) if pick["attacker"] != "" else "", "call": ""}
+	var r := await LingshouVoice.comment(u, pick["event"], facts, "", null,
+		func(partial): _voice.text = "%s: %s" % [speaker, partial])
+	_voice.text = "%s: %s" % [speaker, r["text"]]
+	_append_log("[color=#f2d98c]%s: %s[/color]" % [speaker, r["text"]])
 
 
 func _on_move(mid: String) -> void:
@@ -195,6 +249,11 @@ func _build_ui() -> void:
 	_player_row = HBoxContainer.new()
 	_player_row.add_theme_constant_override("separation", 16)
 	root.add_child(_player_row)
+	_voice = Label.new()
+	_voice.add_theme_font_size_override("font_size", 22)
+	_voice.add_theme_color_override("font_color", Color(0.95, 0.85, 0.55))
+	_voice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	root.add_child(_voice)
 	var bottom := HBoxContainer.new()
 	bottom.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	bottom.add_theme_constant_override("separation", 16)

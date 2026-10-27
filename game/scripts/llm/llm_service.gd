@@ -17,6 +17,8 @@ static var _instance: LlmService
 var enabled := true
 var backends: Array[LlmBackend] = []
 var roles: Dictionary = {}
+## Running jobs; a higher-priority request preempts lower ones (one model, one queue).
+var _active: Array[LlmJob] = []
 
 
 static func instance() -> LlmService:
@@ -74,9 +76,22 @@ func ask(role_name: String, messages: Array, schema := {}, grammar := "") -> Llm
 	if backend == null:
 		_finish_deferred(job, "llm disabled" if not enabled else "no backend available")
 		return job
+	_preempt_below(int(cfg.get("priority", 0)), backend)
+	_active.append(job)
+	job.finished.connect(func(_r): _active.erase(job))
+	job.set_meta("priority", int(cfg.get("priority", 0)))
 	_watchdog(job, backend)
 	backend.run(job)
 	return job
+
+
+## A call must not wait behind a chatty voice: cancel lower-priority jobs
+## (they fall back to their templates).
+func _preempt_below(priority: int, backend: LlmBackend) -> void:
+	for other in _active.duplicate():
+		if int(other.get_meta("priority", 0)) < priority and not other.done:
+			backend.cancel(other)
+			other.finish(false, "preempted")
 
 
 func _finish_deferred(job: LlmJob, reason: String) -> void:

@@ -53,6 +53,11 @@ func finish(ok: bool, reason := "") -> void:
 		"first_token_ms": _first_token_ms, "total_ms": elapsed_ms()}
 	finished.emit(result)
 	keepalive = null
+	# Listeners often capture the job itself; dropping them breaks those reference cycles.
+	for c in token.get_connections():
+		token.disconnect(c["callable"])
+	for c in finished.get_connections():
+		finished.disconnect(c["callable"])
 
 
 ## Awaitable: `var r := await job.wait()`

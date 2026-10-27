@@ -8,7 +8,7 @@
 | M0.2 Kampfkern | fertig | Kampf 1v1/2v2 nur Menü (`scripts/battle/`), Wu-Xing-Vorteil und Teambonus, Klang-Status (verstummt, Echo, Dissonanz, taub, Resonanz), Stufen 1–50 mit EP, 8 Lingshou und 20 Attacken als JSON, Texte en/de/zh-Hans. 36 Tests inkl. jedes Typvorteils und Reproduzierbarkeit per Startwert. Testkampf im Hauptmenü, auf Desktop und Emulator geprüft. |
 | M0.3 LLM-Dienst | teilweise | `LlmService` mit Rollen, Streaming, Grammatik/JSON-Schema, Zeitlimit 3 s und Rückfall auf Vorlagen; läuft ohne Modell. Backend für Desktop: `llama-server` per HTTP. **Offen:** llama.cpp als GDExtension im Spiel (Android), Latenz-Abnahme auf echtem Gerät |
 | M0.4 Ruf | fertig (Desktop) | Ruf als Freitext oder vorgeschlagene Rufe zum Antippen, Übersetzer mit GBNF-Grammatik pro Zug, Validator, Stichwort-Vorlage als Rückfall, Gehorsamsprobe nach Bindung und Temperament, Situationsbonus vom Code geprüft (max. 15 %), Atem (3, +1 alle 3 Züge). 55 Testsätze (25 de, 25 en, 5 zh): 55/55 gültig mit Gemma 4 E2B und mit Vorlage; Absicht getroffen 53/55 (Modell) bzw. 39/55 (Vorlage). Spracheingabe fehlt noch |
-| M0.5 Stimme | offen | |
+| M0.5 Stimme | fertig (Desktop) | Charakterkarten für 8 Lingshou in en/de/zh-Hans (`data/cards/`), Stimme im Kampf gestreamt, Verstummte in Fragmenten. `TextGuard` prüft Länge pro Rolle (140 bzw. 48 Zeichen), Wortfilter, KI-Floskeln und Schrift (Chinesisch vs. Latein); sonst Vorlage nach Temperament und Ereignis (`data/templates/voice.json`). Rollen-Prioritäten: Ruf unterbricht laufende Stimme. Live mit Gemma 4 E2B: 350–600 ms je Satz |
 | M0.6 Kameramodi | offen | |
 
 ## Entscheidungen
@@ -23,3 +23,5 @@
 - 2026-10-28: Ruf-Übersetzer gibt nur Aktion, Ziel, Haltung und `fits_situation` aus, keinen Antwortsatz (wie noch im GDD-Beispiel). Grund: Latenz; der Satz kommt über die Rolle `lingshou_voice` gestreamt. GBNF-Grammatik statt JSON-Schema, weil sie kompakter ist und nur erlaubte Werte zulässt.
 - 2026-10-28: Testmodell für die Entwicklung: Gemma 4 E2B (unsloth, Q4_K_XL, 3,2 GB) aus dem lokalen HF-Cache über `llama-server`. Lizenz (Gemma Terms) vor Auslieferung prüfen; Kandidaten mit Apache 2.0 vergleichen.
 - 2026-10-28: Attacken haben ein `llm_hint` (nur für Prompts, nicht für Spieler), Lingshou eine Tierart als Übersetzungsschlüssel. Das hob die Trefferquote des Modells von 46/55 auf 53/55.
+- 2026-10-28: Rollen haben Prioritäten (`data/llm/roles.json`); ein Ruf bricht eine laufende Stimme ab, die dann ihre Vorlage zeigt. Grund: ein Modell, eine Warteschlange; sonst verdoppelt sich die Ruf-Latenz.
+- 2026-10-28: Ein Ruf, der mit dem Namen eines eigenen Lingshou beginnt, geht an dieses, wenn es in dem Zug noch einen Befehl braucht.

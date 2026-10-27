@@ -66,3 +66,13 @@ func test_live_model_always_valid() -> void:
 	print("    model: valid %d/%d, intent %d/%d, sources %s, median %d ms, max %d ms" % [
 		r["valid"], r["total"], r["intent_ok"], r["total"], r["by_source"], ms[ms.size() / 2], ms[-1]])
 	assert_eq(r["valid"], r["total"])
+
+
+func test_call_goes_to_the_named_lingshou() -> void:
+	var b := CallEval.battle()
+	var open: Array[int] = [0, 1]
+	assert_eq(CallTranslator.addressed_slot(b, 0, open, "Wawalurch, schütz Bambär!"), 1)
+	assert_eq(CallTranslator.addressed_slot(b, 0, open, "Wailamander, protect Bambear!"), 1)
+	assert_eq(CallTranslator.addressed_slot(b, 0, open, "竹熊宝，攻击！"), 0)
+	assert_eq(CallTranslator.addressed_slot(b, 0, open, "Greif an!"), -1)
+	assert_eq(CallTranslator.addressed_slot(b, 0, [0] as Array[int], "Wawalurch, los!"), -1, "already commanded")

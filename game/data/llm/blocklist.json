@@ -1,0 +1,30 @@
+{
+ "note": "Wortfilter für LLM-Ausgaben (Teilwort, Kleinschreibung). Bewusst kurz; vor Release erweitern.",
+ "words": [
+  "fuck",
+  "shit",
+  "bitch",
+  "kill yourself",
+  "nazi",
+  "scheiße",
+  "scheisse",
+  "fick",
+  "hure",
+  "arschloch",
+  "umbringen",
+  "他妈",
+  "傻逼",
+  "去死"
+ ],
+ "meta": [
+  "as an ai",
+  "language model",
+  "i am an ai",
+  "als ki",
+  "sprachmodell",
+  "ich bin eine ki",
+  "作为ai",
+  "语言模型",
+  "作为一个ai"
+ ]
+}

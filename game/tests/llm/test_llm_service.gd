@@ -76,3 +76,32 @@ func test_all_roles_configured() -> void:
 		assert_true(s.roles.has(role), role)
 		assert_true(int(s.roles.get(role, {}).get("max_tokens", 0)) > 0, role + " max_tokens")
 		assert_true(int(s.roles.get(role, {}).get("timeout_ms", 99999)) <= 8000, role + " timeout")
+
+
+func test_call_preempts_running_voice() -> void:
+	var fake := FakeBackend.new()
+	fake.tokens = ["a", "b", "c", "d", "e"] as Array[String]
+	fake.delay_ms = 40
+	var s := _service(fake)
+	for r in s.roles.values():
+		r["timeout_ms"] = 3000
+	var voice := s.ask("lingshou_voice", [])
+	var call := s.ask("call_translator", [])
+	var rv := await voice.wait()
+	var rc := await call.wait()
+	assert_false(rv["ok"], "voice gave way")
+	assert_eq(rv["reason"], "preempted")
+	assert_true(rc["ok"], "call ran")
+
+
+func test_voice_does_not_preempt_call() -> void:
+	var fake := FakeBackend.new()
+	fake.tokens = ["a", "b", "c"] as Array[String]
+	fake.delay_ms = 20
+	var s := _service(fake)
+	for r in s.roles.values():
+		r["timeout_ms"] = 3000
+	var call := s.ask("call_translator", [])
+	var voice := s.ask("lingshou_voice", [])
+	assert_true((await call.wait())["ok"])
+	assert_true((await voice.wait())["ok"])

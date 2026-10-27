@@ -21,5 +21,5 @@
   ],
   "habitat": "rock_garden",
   "can_breed": true,
-  "voice_card": "cards/zirpo.md"
+  "voice_card": "cards/{lang}/zirpo.md"
 }

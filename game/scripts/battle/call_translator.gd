@@ -182,6 +182,19 @@ static func from_keywords(ctx: Dictionary, call_text: String) -> Dictionary:
 		"action": Battle.call_action(move_id, resolved["side"], resolved["slot"], stance, false)}
 
 
+## Slot of the player's Lingshou a call is addressed to by name (any language),
+## among `open_slots`; -1 if the call names none of them.
+static func addressed_slot(battle: Battle, side: int, open_slots: Array[int], call_text: String) -> int:
+	var text := call_text.to_lower()
+	for slot in open_slots:
+		var u := battle.unit_at(side, slot)
+		for loc in LOCALES:
+			var n := _name_in(u.name_key(), loc).to_lower()
+			if n != "" and text.begins_with(n):
+				return slot
+	return -1
+
+
 ## Up to three tap-to-send calls for the current situation (templates, no model).
 static func suggestions(ctx: Dictionary) -> Array[String]:
 	var out: Array[String] = []

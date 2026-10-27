@@ -1,12 +1,37 @@
 {
-  "call_translator": {"max_tokens": 40, "temperature": 0.2, "timeout_ms": 3000,
-    "note": "Freitext-Ruf -> JSON Aktion/Ziel/Haltung. Kein Antwortsatz, damit es unter 1 s bleibt."},
-  "lingshou_voice": {"max_tokens": 40, "temperature": 0.8, "timeout_ms": 3000,
-    "note": "1-2 Sätze Kommentar eines Lingshou, gestreamt."},
-  "silenced_voice": {"max_tokens": 15, "temperature": 0.9, "timeout_ms": 2000,
-    "note": "Satzfragmente eines Verstummten."},
-  "npc_dialog": {"max_tokens": 80, "temperature": 0.7, "timeout_ms": 3000,
-    "note": "Antwort plus Kategorie der Spieleraussage."},
-  "rumor": {"max_tokens": 60, "temperature": 0.8, "timeout_ms": 8000,
-    "note": "Wird beim Laden vorab erzeugt, daher längeres Zeitlimit."}
+  "call_translator": {
+    "max_tokens": 40,
+    "temperature": 0.2,
+    "timeout_ms": 3000,
+    "note": "Freitext-Ruf -> JSON Aktion/Ziel/Haltung. Kein Antwortsatz, damit es unter 1 s bleibt.",
+    "priority": 3
+  },
+  "lingshou_voice": {
+    "max_tokens": 40,
+    "temperature": 0.8,
+    "timeout_ms": 3000,
+    "note": "1-2 Sätze Kommentar eines Lingshou, gestreamt.",
+    "priority": 1
+  },
+  "silenced_voice": {
+    "max_tokens": 15,
+    "temperature": 0.9,
+    "timeout_ms": 2000,
+    "note": "Satzfragmente eines Verstummten.",
+    "priority": 1
+  },
+  "npc_dialog": {
+    "max_tokens": 80,
+    "temperature": 0.7,
+    "timeout_ms": 3000,
+    "note": "Antwort plus Kategorie der Spieleraussage.",
+    "priority": 2
+  },
+  "rumor": {
+    "max_tokens": 60,
+    "temperature": 0.8,
+    "timeout_ms": 8000,
+    "note": "Wird beim Laden vorab erzeugt, daher längeres Zeitlimit.",
+    "priority": 0
+  }
 }

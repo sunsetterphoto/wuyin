@@ -21,5 +21,5 @@
   ],
   "habitat": "bamboo_grove",
   "can_breed": true,
-  "voice_card": "cards/bambaer.md"
+  "voice_card": "cards/{lang}/bambaer.md"
 }
