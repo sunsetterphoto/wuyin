@@ -76,3 +76,20 @@ func test_call_goes_to_the_named_lingshou() -> void:
 	assert_eq(CallTranslator.addressed_slot(b, 0, open, "竹熊宝，攻击！"), 0)
 	assert_eq(CallTranslator.addressed_slot(b, 0, open, "Greif an!"), -1)
 	assert_eq(CallTranslator.addressed_slot(b, 0, [0] as Array[int], "Wawalurch, los!"), -1, "already commanded")
+
+
+func test_constraints_lock_what_is_explicit() -> void:
+	var ctx := CallTranslator.context(CallEval.battle(), 0, 1)  # wawalurch
+	var c := CallTranslator.constraints(ctx, "Strömungsruf gegen das Feuer!")
+	assert_eq(c.get("actions"), ["move:stroemungsruf"] as Array[String], "named move")
+	c = CallTranslator.constraints(ctx, "Schütz Bambär!")
+	assert_eq(c.get("actions"), ["move:schlammwand"] as Array[String], "protect -> guard")
+	assert_eq(c.get("targets"), ["partner"], "named partner")
+	c = CallTranslator.constraints(ctx, "Cry as loud as you can to confuse the pangolin!")
+	assert_eq(c.get("targets"), ["enemy:1"], "animal name")
+	c = CallTranslator.constraints(ctx, "Keine Angst, du schaffst das!")
+	assert_false(c.has("actions"), "nothing explicit, model decides")
+	var bctx := CallTranslator.context(CallEval.battle(), 0, 0)  # bambaer
+	c = CallTranslator.constraints(bctx, "Heil dich, Bambär!")
+	assert_eq(c.get("actions"), ["move:bambushain"] as Array[String])
+	assert_eq(c.get("targets"), ["self"])

@@ -50,13 +50,13 @@ static func schema(ctx: Dictionary) -> Dictionary:
 
 ## GBNF grammar: compact one-line JSON with exactly the allowed values. Keeps
 ## the output short (about 30 tokens) and makes invalid actions impossible.
-static func grammar(ctx: Dictionary) -> String:
+static func grammar(ctx: Dictionary, limits := {}) -> String:
 	var alt := func(values: Array) -> String:
 		return " | ".join(values.map(func(v): return "\"\\\"%s\\\"\"" % v))
 	return "\n".join([
 		'root ::= "{\\"action\\":" action ",\\"target\\":" target ",\\"stance\\":" stance ",\\"fits_situation\\":" bool "}"',
-		"action ::= " + alt.call(ctx["actions"]),
-		"target ::= " + alt.call(ctx["targets"].keys()),
+		"action ::= " + alt.call(limits.get("actions", ctx["actions"])),
+		"target ::= " + alt.call(limits.get("targets", ctx["targets"].keys())),
 		"stance ::= " + alt.call(STANCES),
 		'bool ::= "true" | "false"',
 	])
@@ -70,7 +70,13 @@ Protect, cover, shield or stand in front of the partner: guard with target partn
 Spirits may be named by name or animal (e.g. pangolin, fire bird). No name given: attack the enemy the player most likely means.
 stance: offensive (attack), defensive (hold back), protective (shield someone).
 fits_situation: true only if the call is clever for the battle facts (type advantage, protecting a hurt ally).
-Phases: wood beats earth, earth beats water, water beats fire, fire beats metal, metal beats wood."""
+Phases: wood beats earth, earth beats water, water beats fire, fire beats metal, metal beats wood.
+Examples (action names differ per battle):
+"Heal yourself!" -> the heal action, target self, protective.
+"Stand in front of <partner> and hold on!" -> the guard action, target partner, protective.
+"<move name> on <enemy>!" -> exactly that move, that enemy, offensive.
+"Hit the <animal>!" -> the strongest fitting attack on the enemy with that animal, offensive.
+"Make them confused!" -> the status action, an enemy."""
 
 
 ## Prompt layout for cache reuse: [static rules][this spirit, its actions and
@@ -110,7 +116,7 @@ static func _status_text(u: BattleUnit) -> String:
 ## {"action": Dictionary, "source": "model"|"template", "reason": String, "raw": String, "ms": int}
 static func translate(ctx: Dictionary, call_text: String, service: LlmService = null) -> Dictionary:
 	service = service if service else LlmService.instance()
-	var job := service.ask("call_translator", messages(ctx, call_text), schema(ctx), grammar(ctx))
+	var job := service.ask("call_translator", messages(ctx, call_text), schema(ctx), grammar(ctx, constraints(ctx, call_text)))
 	var r := await job.wait()
 	if r["ok"]:
 		var parsed := validate(ctx, r["text"])
@@ -147,6 +153,77 @@ static func validate(ctx: Dictionary, text: String) -> Dictionary:
 		return {"valid": false, "reason": "no valid target"}
 	return {"valid": true, "reason": resolved.get("note", ""), "target_id": resolved["id"], "stance": stance,
 		"action": Battle.call_action(mid, resolved["side"], resolved["slot"], stance, data.get("fits_situation", false) == true)}
+
+
+## What the code can already tell from the call, enforced through the grammar
+## so small models can't contradict it: an explicitly named move, a named or
+## described target, and clear heal/protect wording. Ambiguity stays with the model.
+## Returns {"actions": [...], "targets": [...]} with only the restricted keys.
+static func constraints(ctx: Dictionary, call_text: String) -> Dictionary:
+	var text := call_text.to_lower()
+	var kw := _kw()
+	var wants := func(group: String) -> bool:
+		return kw.get(group, []).any(func(w): return w in text)
+	var out := {}
+
+	var named: Array[String] = []
+	for a in ctx["actions"]:
+		for loc in LOCALES:
+			var n := _name_in(GameData.move(a.substr(5))["name"], loc).to_lower()
+			if n != "" and n in text and a not in named:
+				named.append(a)
+	var kinds := func(kind: String) -> Array[String]:
+		var r: Array[String] = []
+		for a in ctx["actions"]:
+			if GameData.move(a.substr(5))["kind"] == kind:
+				r.append(a)
+		return r
+	if not named.is_empty():
+		out["actions"] = named
+	elif wants.call("heal") and not kinds.call("heal").is_empty():
+		out["actions"] = kinds.call("heal")
+	elif (wants.call("protect") or wants.call("defend")) and not kinds.call("guard").is_empty():
+		out["actions"] = kinds.call("guard")
+	elif wants.call("attack") and not wants.call("status") and not kinds.call("attack").is_empty():
+		out["actions"] = kinds.call("attack")
+
+	var targets: Array[String] = []
+	for tid in ctx["targets"]:
+		if tid == "self":
+			continue
+		if _mentions_unit(text, ctx["targets"][tid]["unit"]):
+			targets.append(tid)
+	var allowed_kinds := {}
+	for a in out.get("actions", ctx["actions"]):
+		allowed_kinds[GameData.move(a.substr(5))["target"]] = true
+	var only_enemy_moves := allowed_kinds.keys() == ["enemy"]
+	var only_support := not allowed_kinds.has("enemy")
+	if not targets.is_empty():
+		var fitting := targets.filter(func(t): return t.begins_with("enemy:") == (not only_support) or not (only_enemy_moves or only_support))
+		if not fitting.is_empty():
+			out["targets"] = fitting
+	elif only_enemy_moves:
+		out["targets"] = ctx["targets"].keys().filter(func(t): return t.begins_with("enemy:"))
+	elif only_support and wants.call("self"):
+		out["targets"] = ["self"]
+	return out
+
+
+## Name or animal of a unit appears in the call (any language).
+static func _mentions_unit(text: String, u: BattleUnit) -> bool:
+	for loc in LOCALES:
+		var n := _name_in(u.name_key(), loc).to_lower()
+		if n != "" and n in text:
+			return true
+		var animal := _name_in(u.species["animal"], loc).to_lower()
+		for part in animal.replace("(", ",").replace(")", ",").split(","):
+			part = part.strip_edges()
+			if part.length() >= 4 and part in text:
+				return true
+			for w in part.split(" "):
+				if w.length() >= 6 and w in text:
+					return true
+	return false
 
 
 ## Template fallback: keyword matching in all three languages.

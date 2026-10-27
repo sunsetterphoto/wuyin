@@ -30,7 +30,7 @@ func _init(path := "") -> void:
 
 
 func name() -> String:
-	return "nobodywho (%s)" % model_path.get_file()
+	return "nobodywho (%s%s)" % [model_path.get_file(), " + mtp" if draft_path() != "" else ""]
 
 
 static func extension_loaded() -> bool:
@@ -51,13 +51,19 @@ func warm_up() -> bool:
 		return not _chats.is_empty()
 	_loading = true
 	var abs_path := ProjectSettings.globalize_path(model_path)
-	_model = await _resolve(ClassDB.class_call_static("NobodyWhoModel", "create", abs_path, {"use_gpu": _use_gpu()}))
+	var model_cfg := {"use_gpu": _use_gpu()}
+	var chat_cfg := {"n_ctx": 2048, "use_gpu": _use_gpu(), "template_variables": {"enable_thinking": false}}
+	# Optional multi-token-prediction drafter next to the model (e.g. wuyin.mtp.gguf): faster decoding.
+	var draft := draft_path()
+	if draft != "":
+		model_cfg["draft_path"] = ProjectSettings.globalize_path(draft)
+		chat_cfg["mtp"] = true
+	_model = await _resolve(ClassDB.class_call_static("NobodyWhoModel", "create", abs_path, model_cfg))
 	if _model == null:
 		_load_failed = "model failed to load: " + abs_path
 	else:
 		for lane in ["calls", "talk"]:
-			var chat = await _resolve(ClassDB.class_call_static("NobodyWhoChat", "create", _model,
-				{"n_ctx": 2048, "use_gpu": _use_gpu(), "template_variables": {"enable_thinking": false}}))
+			var chat = await _resolve(ClassDB.class_call_static("NobodyWhoChat", "create", _model, chat_cfg))
 			if chat == null:
 				_load_failed = "chat failed to start"
 				break
@@ -83,6 +89,11 @@ func _prefill_calls() -> void:
 ## GPU (Vulkan) only where it is measured to help; ggml-vulkan on Adreno was not faster than the CPU.
 static func _use_gpu() -> bool:
 	return ProjectSettings.get_setting("wuyin/llm/use_gpu_android", false) if OS.get_name() == "Android" else true
+
+
+func draft_path() -> String:
+	var p := model_path.get_basename() + ".mtp.gguf"
+	return p if FileAccess.file_exists(p) else ""
 
 
 static func lane_for(role: String) -> String:
