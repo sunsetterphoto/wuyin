@@ -1,0 +1,15 @@
+# Godot
+.godot/
+*.import
+export_presets.cfg.local
+/build/
+*.apk
+*.aab
+# Python
+__pycache__/
+.venv/
+# macOS
+.DS_Store
+# Keystores bleiben lokal
+*.keystore
+*.jks

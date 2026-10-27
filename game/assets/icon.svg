@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <!-- placeholder icon until Phase 1 art: five tones (Wu Yin) around a red sun -->
+  <rect width="256" height="256" rx="48" fill="#17121f"/>
+  <circle cx="128" cy="128" r="46" fill="#d8432f"/>
+  <g fill="#f2c14e">
+    <circle cx="128" cy="40" r="14"/>
+    <circle cx="211.7" cy="100.8" r="14"/>
+    <circle cx="179.7" cy="199.2" r="14"/>
+    <circle cx="76.3" cy="199.2" r="14"/>
+    <circle cx="44.3" cy="100.8" r="14"/>
+  </g>
+</svg>
