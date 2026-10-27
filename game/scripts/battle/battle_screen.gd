@@ -27,9 +27,12 @@ var _breath: Label
 var _suggestions: HFlowContainer
 var _busy := false
 var _voice: Label
+var _babble: Babble
 
 
 func _ready() -> void:
+	_babble = Babble.new()
+	add_child(_babble)
 	if setup.is_empty():
 		setup = default_setup(1)
 	_build_ui()
