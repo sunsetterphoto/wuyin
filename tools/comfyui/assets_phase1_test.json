@@ -1,0 +1,19 @@
+{
+  "note": "Phase-1-Experiment: Konzepte und Rohtexturen mit Z-Image Turbo. Feste Seeds, damit Ergebnisse reproduzierbar sind.",
+  "sprite_style": "pixel art game sprite, 16-bit SNES RPG style, clean dark outline, flat cel colors, simple shading, full body, facing the viewer, centered, plain pure white background, no shadow, no ground",
+  "tile_style": "seamless tileable top-down texture, pixel art, 16-bit SNES RPG tileset, flat colors, fills the whole image, no border, no objects, no text",
+  "sprites": [
+    {"id": "bambaer", "seed": 101, "prompt": "a chubby giant panda spirit animal with small bamboo sprouts growing on its back, gentle smile"},
+    {"id": "wawalurch", "seed": 102, "prompt": "a shy chinese giant salamander spirit animal with big teary eyes and water droplets, brown and teal"},
+    {"id": "glutfasan", "seed": 103, "prompt": "a proud golden pheasant spirit bird with glowing ember tail feathers, red and gold plumage"},
+    {"id": "rollschupp", "seed": 104, "prompt": "a grumpy pangolin spirit animal with shiny iron grey metal scales"}
+  ],
+  "tiles": [
+    {"id": "grass", "seed": 201, "prompt": "lush green grass with small tufts"},
+    {"id": "path", "seed": 202, "prompt": "sandy dirt path with small pebbles"},
+    {"id": "water", "seed": 203, "prompt": "calm blue river water with light ripples"},
+    {"id": "stone", "seed": 204, "prompt": "grey stone brick wall"},
+    {"id": "bamboo", "seed": 205, "prompt": "dense green bamboo leaves seen from above"},
+    {"id": "roof", "seed": 206, "prompt": "red chinese clay roof tiles"}
+  ]
+}
