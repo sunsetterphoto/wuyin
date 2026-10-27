@@ -21,7 +21,7 @@
 - 2026-10-27: Englische und chinesische Lingshou-Namen sind vorläufig (z. B. Wailamander, Bambear, Cinderfowl); Chinesisch muss von Muttersprachlern geprüft werden.
 - 2026-10-27: Lingshou-JSON nutzt für `name` einen Übersetzungsschlüssel (`LS_*`) statt Klartext wie im GDD-Beispiel (Grundregel 4).
 - 2026-10-28: Ruf-Übersetzer gibt nur Aktion, Ziel, Haltung und `fits_situation` aus, keinen Antwortsatz (wie noch im GDD-Beispiel). Grund: Latenz; der Satz kommt über die Rolle `lingshou_voice` gestreamt. GBNF-Grammatik statt JSON-Schema, weil sie kompakter ist und nur erlaubte Werte zulässt.
-- 2026-10-28: Testmodell für die Entwicklung: Gemma 4 E2B (unsloth, Q4_K_XL, 3,2 GB) aus dem lokalen HF-Cache über `llama-server`. Lizenz (Gemma Terms) vor Auslieferung prüfen; Kandidaten mit Apache 2.0 vergleichen.
+- 2026-10-28: Testmodell für die Entwicklung: Gemma 4 E2B (unsloth, Q4_K_XL, 3,2 GB) aus dem lokalen HF-Cache über `llama-server`. Lizenz laut Model-Card Apache 2.0 (korrigiert am 28.10.).
 - 2026-10-28: Attacken haben ein `llm_hint` (nur für Prompts, nicht für Spieler), Lingshou eine Tierart als Übersetzungsschlüssel. Das hob die Trefferquote des Modells von 46/55 auf 53/55.
 - 2026-10-28: Rollen haben Prioritäten (`data/llm/roles.json`); ein Ruf bricht eine laufende Stimme ab, die dann ihre Vorlage zeigt. Grund: ein Modell, eine Warteschlange; sonst verdoppelt sich die Ruf-Latenz.
 - 2026-10-28: Ein Ruf, der mit dem Namen eines eigenen Lingshou beginnt, geht an dieses, wenn es in dem Zug noch einen Befehl braucht.
