@@ -90,3 +90,10 @@ CALL_SUGGEST_HEAL_SELF,Heal yourself!,Heil dich!,治疗自己！
 CALL_SUGGEST_STATUS,{move} on {target}!,{move} auf {target}!,对{target}使用{move}！
 CALL_SOURCE_MODEL,model,Modell,模型
 CALL_SOURCE_TEMPLATE,template,Vorlage,模板
+MENU_CAMERA_TEST,Camera test (HD-2D / 2D),Kameratest (HD-2D / 2D),镜头测试（HD-2D / 2D）
+CAM_MODE_HD2D,HD-2D,HD-2D,HD-2D
+CAM_MODE_CLASSIC,Classic 2D,Klassisch 2D,经典2D
+CAM_BLUR,Blur,Unschärfe,景深
+CAM_BLOOM,Bloom,Bloom,泛光
+CAM_PARTICLES,Particles,Partikel,粒子
+CAM_BENCH,Benchmark,Messen,测速

@@ -22,3 +22,11 @@ func test_data_dirs_exist() -> void:
 func test_battle_screen_loads() -> void:
 	var scene: PackedScene = load("res://scenes/battle/battle_screen.tscn")
 	assert_true(scene != null, "battle scene loads")
+
+
+func test_test_map_loads() -> void:
+	assert_true(load("res://scenes/world/test_map.tscn") != null, "test map scene loads")
+	for kind in ["grass", "path", "water", "stone", "bamboo", "wood", "roof", "lantern"]:
+		assert_eq(PixelArt.tile(kind).get_size(), Vector2(32, 32), kind)
+	for kind in ["hero", "jinli", "panda"]:
+		assert_eq(PixelArt.character(kind).get_size(), Vector2(32, 48), kind)

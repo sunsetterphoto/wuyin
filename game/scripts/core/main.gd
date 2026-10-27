@@ -7,6 +7,7 @@ const BOOT_MARKER := "WUYIN_BOOT_OK"
 @onready var _info: Label = %Info
 @onready var _battle_1v1: Button = %Battle1v1
 @onready var _battle_2v2: Button = %Battle2v2
+@onready var _camera_test: Button = %CameraTest
 
 
 func _ready() -> void:
@@ -16,6 +17,9 @@ func _ready() -> void:
 		BOOT_MARKER, version, OS.get_name(), RenderingServer.get_current_rendering_method()])
 	_battle_1v1.pressed.connect(_open_battle.bind(1))
 	_battle_2v2.pressed.connect(_open_battle.bind(2))
+	_camera_test.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/world/test_map.tscn"))
+	if "--camera-bench" in OS.get_cmdline_user_args():
+		get_tree().change_scene_to_file.call_deferred("res://scenes/world/test_map.tscn")
 	if "--quit-after-boot" in OS.get_cmdline_user_args():
 		get_tree().quit.call_deferred()
 
