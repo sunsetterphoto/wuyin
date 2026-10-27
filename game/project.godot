@@ -17,6 +17,10 @@ run/main_scene="res://scenes/main.tscn"
 config/icon="res://assets/icon.svg"
 config/features=PackedStringArray("4.7", "Mobile")
 
+[autoload]
+
+DevStandby="*res://scripts/core/dev_standby.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -45,3 +49,5 @@ textures/vram_compression/import_etc2_astc=true
 [wuyin]
 
 llm/enabled=true
+llm/model_path="user://models/wuyin.gguf"
+llm/use_gpu_android=false

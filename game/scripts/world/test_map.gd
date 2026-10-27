@@ -344,6 +344,9 @@ func run_bench() -> void:
 	if _benching:
 		return
 	_benching = true
+	var standby := get_node_or_null("/root/DevStandby")
+	if standby:
+		standby.hold(true)
 	var results := {}
 	for mode in [CameraRig.HD2D, CameraRig.CLASSIC]:
 		_rig.set_mode(mode, false)
@@ -365,5 +368,7 @@ func run_bench() -> void:
 		print("WUYIN_BENCH mode=%s fps=%.1f worst_frame_ms=%.1f view=%dx%d renderer=%s" % [
 			mode, fps, worst, _view.size.x, _view.size.y, RenderingServer.get_current_rendering_method()])
 	_benching = false
+	if standby:
+		standby.hold(false)
 	if "--camera-bench" in OS.get_cmdline_user_args():
 		get_tree().quit()

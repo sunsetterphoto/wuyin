@@ -2,7 +2,7 @@ extends SceneTree
 ## Prints every call sentence with the translation, for prompt tuning.
 ##   godot --headless --path game -s res://tests/tools/eval_calls.gd -- [model|template]
 
-const CallEval := preload("res://tests/llm/call_eval.gd")
+const CallEval := preload("res://scripts/dev/call_eval.gd")
 
 
 func _initialize() -> void:

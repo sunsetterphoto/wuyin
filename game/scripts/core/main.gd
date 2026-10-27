@@ -20,6 +20,14 @@ func _ready() -> void:
 	_camera_test.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/world/test_map.tscn"))
 	if "--camera-bench" in OS.get_cmdline_user_args():
 		get_tree().change_scene_to_file.call_deferred("res://scenes/world/test_map.tscn")
+	LlmService.instance().warm_up()
+	# Dev automation: `adb shell run-as com.wuyin.game sh -c 'echo res://scenes/dev/llm_bench.tscn > files/dev_autorun.txt'`
+	if OS.is_debug_build() and FileAccess.file_exists("user://dev_autorun.txt"):
+		var scene := FileAccess.get_file_as_string("user://dev_autorun.txt").strip_edges()
+		DirAccess.remove_absolute("user://dev_autorun.txt")
+		if ResourceLoader.exists(scene):
+			get_tree().change_scene_to_file.call_deferred(scene)
+			return
 	if "--quit-after-boot" in OS.get_cmdline_user_args():
 		get_tree().quit.call_deferred()
 

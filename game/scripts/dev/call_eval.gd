@@ -2,7 +2,7 @@ extends RefCounted
 ## Shared by tests and the eval tool: runs the call sentences through a
 ## translator and scores validity (must be 100 %) and intent match (quality).
 
-const SENTENCES := "res://tests/llm/call_sentences.json"
+const SENTENCES := "res://data/llm/eval/call_sentences.json"
 
 
 static func battle() -> Battle:
@@ -23,7 +23,10 @@ static func sentences() -> Array:
 ## Returns {"total", "valid", "intent_ok", "by_source", "ms": Array, "rows": Array}
 static func run(mode: String, service: LlmService = null) -> Dictionary:
 	var out := {"total": 0, "valid": 0, "intent_ok": 0, "by_source": {}, "ms": [], "rows": []}
+	var previous_locale := TranslationServer.get_locale()
 	for s in sentences():
+		# A player calls in their game language.
+		TranslationServer.set_locale({"de": "de", "en": "en", "zh": "zh_Hans"}.get(s["lang"], "en"))
 		var b := battle()
 		var ctx := CallTranslator.context(b, 0, int(s["slot"]))
 		var res: Dictionary
@@ -52,4 +55,5 @@ static func run(mode: String, service: LlmService = null) -> Dictionary:
 		out["rows"].append({"text": s["text"], "move": action["move"], "target": res.get("target_id", ""),
 			"stance": res.get("stance", ""), "intent": intent, "valid": ok, "error": err, "source": src,
 			"reason": res.get("reason", "")})
+	TranslationServer.set_locale(previous_locale)
 	return out

@@ -1,7 +1,7 @@
 extends "res://tests/test_case.gd"
 ## M0.4: the call (Ruf). Validity must be 100 % with and without the model.
 
-const CallEval := preload("res://tests/llm/call_eval.gd")
+const CallEval := preload("res://scripts/dev/call_eval.gd")
 
 
 func test_sentence_set_size() -> void:

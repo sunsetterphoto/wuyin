@@ -25,6 +25,9 @@ static func instance() -> LlmService:
 	if _instance == null:
 		_instance = LlmService.new()
 		_instance.enabled = ProjectSettings.get_setting(SETTING_ENABLED, true)
+		# In-process model first (shipping path), llama-server second (desktop development).
+		if NobodyWhoBackend.extension_loaded():
+			_instance.backends.append(NobodyWhoBackend.new())
 		_instance.backends.append(HttpLlamaBackend.new(
 			OS.get_environment("WUYIN_LLM_HOST") if OS.has_environment("WUYIN_LLM_HOST") else "127.0.0.1",
 			int(OS.get_environment("WUYIN_LLM_PORT")) if OS.has_environment("WUYIN_LLM_PORT") else 8090))
@@ -40,6 +43,14 @@ func _init() -> void:
 	var text := FileAccess.get_file_as_string(ROLES_PATH)
 	var parsed = JSON.parse_string(text)
 	roles = parsed if parsed is Dictionary else {}
+
+
+## Loads the in-process model in the background so the first call is fast.
+func warm_up() -> void:
+	for b in backends:
+		if b.has_method("warm_up") and b.is_available():
+			b.warm_up()
+			return
 
 
 func role(name: String) -> Dictionary:

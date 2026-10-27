@@ -62,34 +62,48 @@ static func grammar(ctx: Dictionary) -> String:
 	])
 
 
+## Fixed part of every translator prompt. Kept identical across calls so the
+## runtime's prompt cache can skip it (big win on phones).
+const STATIC_RULES := """You turn a player's battle call for their spirit animal into JSON. Calls may be German, English or Chinese.
+Pick the action that matches the call. Attacks target an enemy; heal and guard target self or partner.
+Protect, cover, shield or stand in front of the partner: guard with target partner. Heal or help the partner: heal with target partner.
+Spirits may be named by name or animal (e.g. pangolin, fire bird). No name given: attack the enemy the player most likely means.
+stance: offensive (attack), defensive (hold back), protective (shield someone).
+fits_situation: true only if the call is clever for the battle facts (type advantage, protecting a hurt ally).
+Phases: wood beats earth, earth beats water, water beats fire, fire beats metal, metal beats wood."""
+
+
+## Prompt layout for cache reuse: [static rules][this spirit, its actions and
+## the spirits on the field] in the system message (stable over several turns),
+## [HP, statuses, the call] in the user message (changes every request).
 static func messages(ctx: Dictionary, call_text: String) -> Array:
 	var u: BattleUnit = ctx["unit"]
-	var lines: Array[String] = []
-	# Static rules first so the runtime can reuse its prompt cache across calls.
-	lines.append("You translate a player's battle call for their spirit animal into JSON. The call may be German, English or Chinese.")
-	lines.append("Pick the action that best matches the call. Attacks target an enemy. Heal and guard target self or partner.")
-	lines.append("If the call asks to protect, cover, shield or stand in front of the partner, use a guard action with target partner. If it asks to heal or help the partner, heal with target partner.")
-	lines.append("Players may name a spirit by its name or by its animal (e.g. pangolin, fire bird). If the call names nobody, attacks go to the enemy the player most likely means.")
-	lines.append("stance: offensive (attack), defensive (hold back, endure), protective (shield someone).")
-	lines.append("fits_situation: true only if the call is clever for the current battle facts (e.g. uses a type advantage, protects a hurt ally).")
-	lines.append("Phases: wood beats earth, earth beats water, water beats fire, fire beats metal, metal beats wood.")
-	lines.append("")
-	lines.append("Your spirit: %s (%s), %s, temperament %s, HP %d/%d." % [_names(u.name_key()), _names(u.species["animal"]), u.element(),
-		", ".join(u.species.get("temperaments", [])), u.hp, u.max_hp])
+	var lines: Array[String] = [STATIC_RULES, ""]
+	lines.append("Your spirit: %s (%s), %s, %s." % [_names(u.name_key()), _names(u.species["animal"]), u.element(),
+		", ".join(u.species.get("temperaments", []))])
 	for tid in ctx["targets"]:
 		if tid == "self":
 			continue
 		var t: BattleUnit = ctx["targets"][tid]["unit"]
-		lines.append("%s = %s (%s), %s, HP %d/%d%s" % [tid, _names(t.name_key()), _names(t.species["animal"]), t.element(), t.hp, t.max_hp,
-			(", " + ", ".join(t.statuses.keys())) if not t.statuses.is_empty() else ""])
+		lines.append("%s = %s (%s), %s" % [tid, _names(t.name_key()), _names(t.species["animal"]), t.element()])
 	lines.append("Actions:")
 	for a in ctx["actions"]:
 		var mv := GameData.move(a.substr(5))
 		lines.append("- %s = %s: %s %s; %s" % [a, _names(mv["name"]), mv["element"], mv["kind"], mv.get("llm_hint", "")])
+	var facts: Array[String] = ["you HP %d/%d%s" % [u.hp, u.max_hp, _status_text(u)]]
+	for tid in ctx["targets"]:
+		if tid == "self":
+			continue
+		var t: BattleUnit = ctx["targets"][tid]["unit"]
+		facts.append("%s HP %d/%d%s" % [tid, t.hp, t.max_hp, _status_text(t)])
 	return [
 		{"role": "system", "content": "\n".join(lines)},
-		{"role": "user", "content": call_text},
+		{"role": "user", "content": "Now: %s.\nCall: %s" % ["; ".join(facts), call_text]},
 	]
+
+
+static func _status_text(u: BattleUnit) -> String:
+	return (" (" + ", ".join(u.statuses.keys()) + ")") if not u.statuses.is_empty() else ""
 
 
 ## Full pipeline: model if available, else keywords. Always returns a valid action.
@@ -308,9 +322,15 @@ static func _best_attack(ctx: Dictionary) -> String:
 	return best
 
 
+## Names in the game language and English (the call is usually in one of them).
 static func _names(key: String) -> String:
 	var parts: Array[String] = []
+	var game_locale := TranslationServer.get_locale()
+	var locales: Array[String] = ["en"]
 	for loc in LOCALES:
+		if game_locale.begins_with(loc.left(2)) and loc != "en":
+			locales.push_front(loc)
+	for loc in locales:
 		var n := _name_in(key, loc)
 		if n != "" and n not in parts:
 			parts.append(n)
