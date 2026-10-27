@@ -13,3 +13,6 @@ __pycache__/
 # Keystores bleiben lokal
 *.keystore
 *.jks
+
+# Generated from data/i18n/*.csv on import
+*.translation

@@ -1,0 +1,9 @@
+{
+  "id": "tauchen",
+  "name": "MOVE_TAUCHEN",
+  "element": "water",
+  "kind": "attack",
+  "accuracy": 90,
+  "target": "enemy",
+  "power": 65
+}

@@ -1,0 +1,67 @@
+keys,en,de,zh_Hans
+MOVE_GRUNDANGRIFF,Strike,Grundangriff,普通攻击
+MOVE_STROEMUNGSRUF,Current Call,Strömungsruf,唤流
+MOVE_TAUCHEN,Deep Dive,Tauchen,深潜
+MOVE_KINDERWEINEN,Infant Wail,Kinderweinen,婴啼
+MOVE_SCHLAMMWAND,Mud Wall,Schlammwand,泥墙
+MOVE_BAMBUSSCHLAG,Bamboo Swipe,Bambusschlag,竹击
+MOVE_RANKENPEITSCHE,Vine Lash,Rankenpeitsche,藤鞭
+MOVE_BAMBUSHAIN,Bamboo Grove,Bambushain,竹林
+MOVE_NEBELSCHLEIER,Mist Veil,Nebelschleier,雾纱
+MOVE_GLUTFEDER,Ember Plume,Glutfeder,炭羽
+MOVE_GLUTKREISCHEN,Ember Screech,Glutkreischen,炎啸
+MOVE_FLAMMENSPRUNG,Flame Leap,Flammensprung,焰跃
+MOVE_EISENROLLE,Iron Roll,Eisenrolle,铁滚
+MOVE_RAUREIFKRALLE,Rime Claw,Raureifkralle,霜爪
+MOVE_EISENSTILLE,Iron Hush,Eisenstille,铁寂
+MOVE_ECHORUF,Echo Call,Echoruf,回声
+MOVE_KRANICHLIED,Crane Song,Kranichlied,鹤歌
+MOVE_ZIRPGESANG,Chirp Chorus,Zirpgesang,鸣唱
+MOVE_ERDSTOSS,Earth Jolt,Erdstoß,地震击
+MOVE_SANDWIRBEL,Sand Swirl,Sandwirbel,沙旋
+LS_WAWALURCH,Wailamander,Wawalurch,娃娃鲵
+LS_BAMBAER,Bambear,Bambär,竹熊宝
+LS_GLUTFASAN,Cinderfowl,Glutfasan,炭雉
+LS_ROLLSCHUPP,Rollscale,Rollschupp,滚鳞
+LS_ZIRPO,Chirpo,Zirpo,唧唧
+LS_NEBELAFFE,Mistape,Nebelaffe,雾猴
+LS_FIRNLEOPARD,Frostpard,Firnleopard,霜豹
+LS_SILBERKRANICH,Silvercrane,Silberkranich,银鹤
+BATTLE_USES,{user} uses {move}!,{user} setzt {move} ein!,{user}使用了{move}！
+BATTLE_MISS,{user} misses.,{user} verfehlt.,{user}没有命中。
+BATTLE_DAMAGE,{target} takes {amount} damage.,{target} erleidet {amount} Schaden.,{target}受到{amount}点伤害。
+BATTLE_STRONG,It's strong against {element}!,Stark gegen {element}!,克制{element}！
+BATTLE_WEAK,It's weak against {element}...,Schwach gegen {element} ...,被{element}所克……
+BATTLE_ECHO,The echo strikes again!,Das Echo schlägt noch einmal zu!,回声再次袭来！
+BATTLE_HEAL,{target} recovers {amount} HP.,{target} erholt sich um {amount} LP.,{target}恢复了{amount}点体力。
+BATTLE_GUARD,{target} hides behind a wall.,{target} geht hinter einer Wand in Deckung.,{target}躲到了墙后。
+BATTLE_STATUS,{target} is now {status}.,{target} ist jetzt {status}.,{target}陷入了{status}状态。
+BATTLE_STATUS_END,{target} is no longer {status}.,{target} ist nicht mehr {status}.,{target}的{status}状态解除了。
+BATTLE_SILENCED_FALLBACK,{user} cannot use {move} while silenced.,{user} kann verstummt kein {move} einsetzen.,{user}被禁声，无法使用{move}。
+BATTLE_DISSONANCE,Dissonance! {user} does something else.,Dissonanz! {user} macht etwas anderes.,不谐！{user}做了别的事。
+BATTLE_FAINT,{target} is exhausted.,{target} ist erschöpft.,{target}精疲力尽了。
+BATTLE_SEND_IN,{target} steps forward.,{target} tritt vor.,{target}上前了。
+BATTLE_SWITCH,{user} swaps with {target}.,{user} tauscht mit {target}.,{user}与{target}交换。
+BATTLE_TEAM_BONUS,{a} and {b} nourish each other.,{a} und {b} nähren einander.,{a}与{b}相生。
+BATTLE_WIN,You win!,Gewonnen!,你赢了！
+BATTLE_LOSE,Your Lingshou are exhausted.,Deine Lingshou sind erschöpft.,你的灵兽精疲力尽了。
+BATTLE_LEVEL_UP,{target} reaches level {level}!,{target} erreicht Stufe {level}!,{target}升到了{level}级！
+BATTLE_NO_EFFECT,Nothing happens.,Nichts passiert.,什么也没发生。
+BATTLE_CHOOSE_MOVE,What should {user} do?,Was soll {user} tun?,{user}要做什么？
+BATTLE_CHOOSE_TARGET,Target?,Ziel?,目标？
+BATTLE_LEVEL,Lv. {level},St. {level},{level}级
+BATTLE_RESTART,New battle,Neuer Kampf,重新战斗
+MENU_BATTLE_1V1,Test battle 1 vs 1,Testkampf 1 gegen 1,测试战斗 1对1
+MENU_BATTLE_2V2,Test battle 2 vs 2,Testkampf 2 gegen 2,测试战斗 2对2
+MENU_BACK,Back,Zurück,返回
+STATUS_SILENCED,silenced,verstummt,禁声
+STATUS_ECHO,echoing,im Echo,回声
+STATUS_DISSONANCE,dissonant,in Dissonanz,不谐
+STATUS_DEAF,deaf,taub,失聪
+STATUS_RESONANCE,resonant,in Resonanz,共鸣
+ELEMENT_WOOD,Wood,Holz,木
+ELEMENT_FIRE,Fire,Feuer,火
+ELEMENT_EARTH,Earth,Erde,土
+ELEMENT_METAL,Metal,Metall,金
+ELEMENT_WATER,Water,Wasser,水
+ELEMENT_NEUTRAL,Neutral,Neutral,无

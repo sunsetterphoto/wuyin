@@ -1,0 +1,9 @@
+{
+  "id": "kranichlied",
+  "name": "MOVE_KRANICHLIED",
+  "element": "metal",
+  "kind": "heal",
+  "accuracy": 100,
+  "target": "ally",
+  "heal_pct": 25
+}

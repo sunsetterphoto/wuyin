@@ -1,0 +1,9 @@
+{
+  "id": "bambusschlag",
+  "name": "MOVE_BAMBUSSCHLAG",
+  "element": "wood",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "power": 55
+}

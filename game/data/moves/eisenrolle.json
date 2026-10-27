@@ -1,0 +1,9 @@
+{
+  "id": "eisenrolle",
+  "name": "MOVE_EISENROLLE",
+  "element": "metal",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "power": 55
+}

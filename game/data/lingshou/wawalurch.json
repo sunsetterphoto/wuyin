@@ -1,0 +1,25 @@
+{
+  "id": "wawalurch",
+  "name": "LS_WAWALURCH",
+  "animal": "Chinesischer Riesensalamander",
+  "element": "water",
+  "temperaments": [
+    "anxious"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 45,
+    "atk": 30,
+    "def": 50,
+    "spd": 25
+  },
+  "moves": [
+    "stroemungsruf",
+    "kinderweinen",
+    "schlammwand",
+    "tauchen"
+  ],
+  "habitat": "pond",
+  "can_breed": true,
+  "voice_card": "cards/wawalurch.md"
+}

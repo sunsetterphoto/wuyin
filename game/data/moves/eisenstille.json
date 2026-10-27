@@ -1,0 +1,13 @@
+{
+  "id": "eisenstille",
+  "name": "MOVE_EISENSTILLE",
+  "element": "metal",
+  "kind": "status",
+  "accuracy": 80,
+  "target": "enemy",
+  "effect": {
+    "status": "silenced",
+    "turns": 2,
+    "chance": 100
+  }
+}

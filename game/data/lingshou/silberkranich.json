@@ -1,0 +1,25 @@
+{
+  "id": "silberkranich",
+  "name": "LS_SILBERKRANICH",
+  "animal": "Mandschurenkranich",
+  "element": "metal",
+  "temperaments": [
+    "gentle"
+  ],
+  "alignment": "free",
+  "base_stats": {
+    "hp": 55,
+    "atk": 40,
+    "def": 45,
+    "spd": 50
+  },
+  "moves": [
+    "kranichlied",
+    "echoruf",
+    "raureifkralle",
+    "stroemungsruf"
+  ],
+  "habitat": "pond",
+  "can_breed": false,
+  "voice_card": "cards/silberkranich.md"
+}

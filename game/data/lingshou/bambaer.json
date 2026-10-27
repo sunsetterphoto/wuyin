@@ -1,0 +1,25 @@
+{
+  "id": "bambaer",
+  "name": "LS_BAMBAER",
+  "animal": "Großer Panda",
+  "element": "wood",
+  "temperaments": [
+    "gentle"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 60,
+    "atk": 40,
+    "def": 45,
+    "spd": 20
+  },
+  "moves": [
+    "bambusschlag",
+    "bambushain",
+    "rankenpeitsche",
+    "erdstoss"
+  ],
+  "habitat": "bamboo_grove",
+  "can_breed": true,
+  "voice_card": "cards/bambaer.md"
+}

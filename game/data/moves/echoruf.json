@@ -1,0 +1,13 @@
+{
+  "id": "echoruf",
+  "name": "MOVE_ECHORUF",
+  "element": "metal",
+  "kind": "status",
+  "accuracy": 100,
+  "target": "ally",
+  "effect": {
+    "status": "echo",
+    "turns": 3,
+    "chance": 100
+  }
+}

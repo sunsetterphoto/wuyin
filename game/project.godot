@@ -31,7 +31,7 @@ pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
-locale/translations=PackedStringArray()
+locale/translations=PackedStringArray("res://data/i18n/strings.en.translation", "res://data/i18n/strings.de.translation", "res://data/i18n/strings.zh_Hans.translation")
 locale/fallback="en"
 
 [rendering]

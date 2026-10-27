@@ -1,0 +1,9 @@
+{
+  "id": "schlammwand",
+  "name": "MOVE_SCHLAMMWAND",
+  "element": "water",
+  "kind": "guard",
+  "accuracy": 100,
+  "target": "ally",
+  "priority": 2
+}

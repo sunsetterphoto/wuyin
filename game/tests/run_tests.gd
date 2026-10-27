@@ -8,6 +8,22 @@ extends SceneTree
 const TestCase := preload("res://tests/test_case.gd")
 
 
+## Collects engine/script errors so a test that aborts on a runtime error
+## (GDScript just returns from the function) still counts as failed.
+class ErrorCollector extends Logger:
+	var errors: Array[String] = []
+	var _mutex := Mutex.new()
+
+	func _log_error(function: String, file: String, line: int, code: String, rationale: String,
+			_editor_notify: bool, _error_type: int, _script_backtraces: Array[ScriptBacktrace]) -> void:
+		_mutex.lock()
+		errors.append("%s (%s:%d %s)" % [rationale if rationale else code, file.get_file(), line, function])
+		_mutex.unlock()
+
+	func _log_message(_message: String, _error: bool) -> void:
+		pass
+
+
 func _init() -> void:
 	var filter := ""
 	var user_args := OS.get_cmdline_user_args()
@@ -17,8 +33,13 @@ func _init() -> void:
 	files.sort()
 	var passed := 0
 	var failed: Array[String] = []
+	var collector := ErrorCollector.new()
+	OS.add_logger(collector)
 	for path in files:
 		var script: GDScript = load(path)
+		if script == null or not script.can_instantiate():
+			failed.append("%s\n    does not compile" % path.get_file())
+			continue
 		for method in script.get_script_method_list():
 			var name: String = method["name"]
 			if not name.begins_with("test_"):
@@ -26,7 +47,10 @@ func _init() -> void:
 			if filter != "" and not (filter in path or filter in name):
 				continue
 			var case: TestCase = script.new()
+			var errors_before := collector.errors.size()
 			case.call(name)
+			for i in range(errors_before, collector.errors.size()):
+				case.failures.append("runtime error: " + collector.errors[i])
 			if case.failures.is_empty():
 				passed += 1
 			else:

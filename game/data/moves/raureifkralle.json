@@ -1,0 +1,9 @@
+{
+  "id": "raureifkralle",
+  "name": "MOVE_RAUREIFKRALLE",
+  "element": "metal",
+  "kind": "attack",
+  "accuracy": 90,
+  "target": "enemy",
+  "power": 65
+}

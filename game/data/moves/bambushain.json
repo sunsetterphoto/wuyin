@@ -1,0 +1,9 @@
+{
+  "id": "bambushain",
+  "name": "MOVE_BAMBUSHAIN",
+  "element": "wood",
+  "kind": "heal",
+  "accuracy": 100,
+  "target": "ally",
+  "heal_pct": 30
+}

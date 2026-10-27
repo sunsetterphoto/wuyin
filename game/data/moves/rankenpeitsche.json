@@ -1,0 +1,9 @@
+{
+  "id": "rankenpeitsche",
+  "name": "MOVE_RANKENPEITSCHE",
+  "element": "wood",
+  "kind": "attack",
+  "accuracy": 100,
+  "target": "enemy",
+  "power": 45
+}

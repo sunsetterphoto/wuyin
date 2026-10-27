@@ -1,0 +1,25 @@
+{
+  "id": "nebelaffe",
+  "name": "LS_NEBELAFFE",
+  "animal": "Goldstumpfnase",
+  "element": "wood",
+  "temperaments": [
+    "playful"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 40,
+    "atk": 45,
+    "def": 35,
+    "spd": 60
+  },
+  "moves": [
+    "rankenpeitsche",
+    "nebelschleier",
+    "bambusschlag",
+    "sandwirbel"
+  ],
+  "habitat": "bamboo_grove",
+  "can_breed": true,
+  "voice_card": "cards/nebelaffe.md"
+}

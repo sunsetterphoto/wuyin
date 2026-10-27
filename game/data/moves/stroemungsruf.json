@@ -1,0 +1,9 @@
+{
+  "id": "stroemungsruf",
+  "name": "MOVE_STROEMUNGSRUF",
+  "element": "water",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "power": 50
+}

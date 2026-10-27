@@ -17,3 +17,8 @@ func test_main_scene_loads() -> void:
 func test_data_dirs_exist() -> void:
 	for dir in ["res://data/lingshou", "res://data/moves", "res://data/cards", "res://data/templates", "res://data/maps"]:
 		assert_true(DirAccess.dir_exists_absolute(dir), dir)
+
+
+func test_battle_screen_loads() -> void:
+	var scene: PackedScene = load("res://scenes/battle/battle_screen.tscn")
+	assert_true(scene != null, "battle scene loads")

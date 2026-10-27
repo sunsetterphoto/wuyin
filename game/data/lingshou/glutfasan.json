@@ -1,0 +1,25 @@
+{
+  "id": "glutfasan",
+  "name": "LS_GLUTFASAN",
+  "animal": "Goldfasan",
+  "element": "fire",
+  "temperaments": [
+    "brave"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 40,
+    "atk": 55,
+    "def": 30,
+    "spd": 50
+  },
+  "moves": [
+    "glutfeder",
+    "glutkreischen",
+    "flammensprung",
+    "sandwirbel"
+  ],
+  "habitat": "ember_pit",
+  "can_breed": true,
+  "voice_card": "cards/glutfasan.md"
+}

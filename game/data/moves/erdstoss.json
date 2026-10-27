@@ -1,0 +1,9 @@
+{
+  "id": "erdstoss",
+  "name": "MOVE_ERDSTOSS",
+  "element": "earth",
+  "kind": "attack",
+  "accuracy": 90,
+  "target": "enemy",
+  "power": 60
+}

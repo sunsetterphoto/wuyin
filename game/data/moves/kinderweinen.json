@@ -1,0 +1,13 @@
+{
+  "id": "kinderweinen",
+  "name": "MOVE_KINDERWEINEN",
+  "element": "water",
+  "kind": "status",
+  "accuracy": 85,
+  "target": "enemy",
+  "effect": {
+    "status": "dissonance",
+    "turns": 3,
+    "chance": 100
+  }
+}

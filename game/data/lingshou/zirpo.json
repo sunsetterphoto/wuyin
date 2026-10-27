@@ -1,0 +1,25 @@
+{
+  "id": "zirpo",
+  "name": "LS_ZIRPO",
+  "animal": "Singgrille",
+  "element": "earth",
+  "temperaments": [
+    "moody"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 35,
+    "atk": 35,
+    "def": 35,
+    "spd": 55
+  },
+  "moves": [
+    "zirpgesang",
+    "erdstoss",
+    "sandwirbel",
+    "echoruf"
+  ],
+  "habitat": "rock_garden",
+  "can_breed": true,
+  "voice_card": "cards/zirpo.md"
+}

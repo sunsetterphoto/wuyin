@@ -1,0 +1,14 @@
+{
+  "id": "glutkreischen",
+  "name": "MOVE_GLUTKREISCHEN",
+  "element": "fire",
+  "kind": "attack",
+  "accuracy": 100,
+  "target": "enemy",
+  "power": 40,
+  "effect": {
+    "status": "deaf",
+    "turns": 2,
+    "chance": 30
+  }
+}

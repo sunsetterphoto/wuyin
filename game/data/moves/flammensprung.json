@@ -1,0 +1,9 @@
+{
+  "id": "flammensprung",
+  "name": "MOVE_FLAMMENSPRUNG",
+  "element": "fire",
+  "kind": "attack",
+  "accuracy": 80,
+  "target": "enemy",
+  "power": 75
+}

@@ -1,0 +1,13 @@
+{
+  "id": "zirpgesang",
+  "name": "MOVE_ZIRPGESANG",
+  "element": "earth",
+  "kind": "status",
+  "accuracy": 100,
+  "target": "ally_side",
+  "effect": {
+    "status": "resonance",
+    "turns": 3,
+    "chance": 100
+  }
+}

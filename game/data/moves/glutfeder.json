@@ -1,0 +1,9 @@
+{
+  "id": "glutfeder",
+  "name": "MOVE_GLUTFEDER",
+  "element": "fire",
+  "kind": "attack",
+  "accuracy": 90,
+  "target": "enemy",
+  "power": 60
+}

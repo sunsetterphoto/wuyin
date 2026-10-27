@@ -1,0 +1,9 @@
+{
+  "id": "grundangriff",
+  "name": "MOVE_GRUNDANGRIFF",
+  "element": "neutral",
+  "kind": "attack",
+  "accuracy": 100,
+  "target": "enemy",
+  "power": 35
+}

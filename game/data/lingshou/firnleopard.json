@@ -1,0 +1,25 @@
+{
+  "id": "firnleopard",
+  "name": "LS_FIRNLEOPARD",
+  "animal": "Schneeleopard",
+  "element": "metal",
+  "temperaments": [
+    "brave"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 50,
+    "atk": 60,
+    "def": 40,
+    "spd": 55
+  },
+  "moves": [
+    "raureifkralle",
+    "eisenrolle",
+    "eisenstille",
+    "glutfeder"
+  ],
+  "habitat": "ore_grotto",
+  "can_breed": true,
+  "voice_card": "cards/firnleopard.md"
+}
