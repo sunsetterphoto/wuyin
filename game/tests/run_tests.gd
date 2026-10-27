@@ -4,6 +4,8 @@ extends SceneTree
 ## method named test_* is a test. Exit code 0 = all passed.
 ##
 ##   godot --headless --path game -s res://tests/run_tests.gd [-- filter]
+## Tests may be coroutines (await); they may call skip("reason") when a
+## prerequisite such as a running llama-server is missing.
 
 const TestCase := preload("res://tests/test_case.gd")
 
@@ -24,7 +26,18 @@ class ErrorCollector extends Logger:
 		pass
 
 
-func _init() -> void:
+const SUITE_TIMEOUT_S := 120.0
+
+
+func _initialize() -> void:
+	# Guard against a coroutine test that never resumes.
+	create_timer(SUITE_TIMEOUT_S, true, false, true).timeout.connect(func():
+		printerr("FAIL suite timeout after %d s" % SUITE_TIMEOUT_S)
+		quit(1))
+	_run()
+
+
+func _run() -> void:
 	var filter := ""
 	var user_args := OS.get_cmdline_user_args()
 	if not user_args.is_empty():
@@ -32,6 +45,7 @@ func _init() -> void:
 	var files := _find_tests("res://tests")
 	files.sort()
 	var passed := 0
+	var skipped: Array[String] = []
 	var failed: Array[String] = []
 	var collector := ErrorCollector.new()
 	OS.add_logger(collector)
@@ -47,17 +61,23 @@ func _init() -> void:
 			if filter != "" and not (filter in path or filter in name):
 				continue
 			var case: TestCase = script.new()
+			if OS.has_environment("WUYIN_TEST_VERBOSE"):
+				print("RUN ", path.get_file(), "::", name)
 			var errors_before := collector.errors.size()
-			case.call(name)
+			await case.call(name)
 			for i in range(errors_before, collector.errors.size()):
 				case.failures.append("runtime error: " + collector.errors[i])
-			if case.failures.is_empty():
+			if case.skip_reason != "" and case.failures.is_empty():
+				skipped.append("%s::%s (%s)" % [path.get_file(), name, case.skip_reason])
+			elif case.failures.is_empty():
 				passed += 1
 			else:
 				failed.append("%s::%s\n    %s" % [path.get_file(), name, "\n    ".join(case.failures)])
 	for f in failed:
 		printerr("FAIL ", f)
-	print("TESTS passed=%d failed=%d" % [passed, failed.size()])
+	for s in skipped:
+		print("SKIP ", s)
+	print("TESTS passed=%d failed=%d skipped=%d" % [passed, failed.size(), skipped.size()])
 	quit(0 if failed.is_empty() and passed > 0 else 1)
 
 

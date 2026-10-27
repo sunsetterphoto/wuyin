@@ -3,6 +3,11 @@ extends RefCounted
 ## instead of aborting, so one test reports every broken expectation.
 
 var failures: Array[String] = []
+var skip_reason := ""
+
+
+func skip(reason: String) -> void:
+	skip_reason = reason
 
 
 func assert_true(value: bool, msg := "expected true") -> void:
