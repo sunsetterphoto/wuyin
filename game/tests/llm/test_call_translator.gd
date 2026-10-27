@@ -25,6 +25,8 @@ func test_validator_rejects_garbage() -> void:
 	assert_false(CallTranslator.validate(ctx, "not json")["valid"])
 	assert_false(CallTranslator.validate(ctx, "{\"action\":\"move:flammensprung\",\"target\":\"enemy:0\"}")["valid"], "move it doesn't know")
 	assert_false(CallTranslator.validate(ctx, "[1,2]")["valid"])
+	assert_false(CallTranslator.validate(ctx, "action=flammensprung target=enemy:0 stance=offensive fits=yes")["valid"], "compact, unknown move")
+	assert_true(CallTranslator.validate(ctx, "action=schlammwand target=partner stance=protective fits=yes")["valid"], "compact answer")
 
 
 func test_validator_repairs_target() -> void:

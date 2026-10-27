@@ -1,6 +1,6 @@
 {
   "call_translator": {
-    "max_tokens": 40,
+    "max_tokens": 20,
     "temperature": 0.2,
     "timeout_ms": 3000,
     "note": "Freitext-Ruf -> JSON Aktion/Ziel/Haltung. Kein Antwortsatz, damit es unter 1 s bleibt.",
@@ -33,5 +33,12 @@
     "timeout_ms": 8000,
     "note": "Wird beim Laden vorab erzeugt, daher längeres Zeitlimit.",
     "priority": 0
+  },
+  "prefill": {
+    "max_tokens": 1,
+    "temperature": 0.0,
+    "timeout_ms": 120000,
+    "priority": 0,
+    "note": "Prompt-Anfang vorberechnen (Cache), z. B. zu Kampfbeginn."
   }
 }

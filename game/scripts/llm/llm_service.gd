@@ -45,6 +45,12 @@ func _init() -> void:
 	roles = parsed if parsed is Dictionary else {}
 
 
+## Precomputes a prompt prefix in a lane (low priority; a real call preempts it).
+## The system message is what gets cached; the user message is a throwaway.
+func prefill(lane: String, system_text: String) -> LlmJob:
+	return ask("prefill", [{"role": "system", "content": system_text}, {"role": "user", "content": "ok"}], {}, "", lane)
+
+
 ## Loads the in-process model in the background so the first call is fast.
 func warm_up() -> void:
 	for b in backends:
@@ -71,13 +77,14 @@ func is_model_available() -> bool:
 	return active_backend() != null
 
 
-func ask(role_name: String, messages: Array, schema := {}, grammar := "") -> LlmJob:
+func ask(role_name: String, messages: Array, schema := {}, grammar := "", lane := "") -> LlmJob:
 	var cfg := role(role_name)
 	var job := LlmJob.new()
 	job.role = role_name
 	job.messages = messages
 	job.schema = schema
 	job.grammar = grammar
+	job.lane = lane
 	job.max_tokens = int(cfg.get("max_tokens", 40))
 	job.temperature = float(cfg.get("temperature", 0.5))
 	job.timeout_ms = int(cfg.get("timeout_ms", 3000))

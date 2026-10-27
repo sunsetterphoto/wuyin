@@ -17,7 +17,9 @@ class ErrorCollector extends Logger:
 	var _mutex := Mutex.new()
 
 	func _log_error(function: String, file: String, line: int, code: String, rationale: String,
-			_editor_notify: bool, _error_type: int, _script_backtraces: Array[ScriptBacktrace]) -> void:
+			_editor_notify: bool, error_type: int, _script_backtraces: Array[ScriptBacktrace]) -> void:
+		if error_type == ERROR_TYPE_WARNING:
+			return  # warnings (e.g. from native plugins) don't fail tests
 		_mutex.lock()
 		errors.append("%s (%s:%d %s)" % [rationale if rationale else code, file.get_file(), line, function])
 		_mutex.unlock()

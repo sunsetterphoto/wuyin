@@ -13,8 +13,12 @@ const DEFAULT_MODEL := "user://models/wuyin.gguf"
 
 var model_path := ""
 var _model: Object
-## Separate contexts ("lanes") so calls and chatter don't evict each other's prompt cache.
+## Separate contexts ("lanes") so calls and chatter don't evict each other's prompt
+## cache. "talk" for voices and dialog; one "calls:<uid>" lane per active Lingshou.
 var _chats := {}
+var _chat_cfg := {}
+var _lane_use: Array[String] = []  # least recently used first
+const MAX_CALL_LANES := 3
 var _loading := false
 var _load_failed := ""
 var _busy_job: LlmJob
@@ -53,6 +57,9 @@ func warm_up() -> bool:
 	var abs_path := ProjectSettings.globalize_path(model_path)
 	var model_cfg := {"use_gpu": _use_gpu()}
 	var chat_cfg := {"n_ctx": 2048, "use_gpu": _use_gpu(), "template_variables": {"enable_thinking": false}}
+	if OS.get_name() == "Android":
+		# Measured on a Snapdragon 8 Gen 3: 6 threads beat 8 (efficiency cores stall the rest) and the default.
+		chat_cfg["n_threads"] = int(ProjectSettings.get_setting("wuyin/llm/threads_android", 6))
 	# Optional multi-token-prediction drafter next to the model (e.g. wuyin.mtp.gguf): faster decoding.
 	var draft := draft_path()
 	if draft != "":
@@ -62,28 +69,29 @@ func warm_up() -> bool:
 	if _model == null:
 		_load_failed = "model failed to load: " + abs_path
 	else:
-		for lane in ["calls", "talk"]:
-			var chat = await _resolve(ClassDB.class_call_static("NobodyWhoChat", "create", _model, chat_cfg))
-			if chat == null:
-				_load_failed = "chat failed to start"
-				break
-			_chats[lane] = chat
-		if _load_failed == "":
-			await _prefill_calls()
+		_chat_cfg = chat_cfg
+		if await _lane_chat("talk") == null:
+			_load_failed = "chat failed to start"
 	_loading = false
 	return _load_failed == "" and not _chats.is_empty()
 
 
-## Processes the fixed translator rules once so the first real call only pays
-## for its own suffix (and GPU shaders get compiled before play starts).
-func _prefill_calls() -> void:
-	var chat = _chats["calls"]
-	var stream = chat.complete([{"role": "system", "content": CallTranslator.STATIC_RULES}, {"role": "user", "content": "ok"}],
-		{"sampler": ClassDB.class_call_static("NobodyWhoSamplerPresets", "greedy"), "template_variables": {"enable_thinking": false}})
-	var tok = await _resolve(stream.next_token())
-	chat.stop_generation()
-	while tok != null:
-		tok = await _resolve(stream.next_token())
+## Context for a lane, created on first use; the least recently used call lane
+## is dropped when more than MAX_CALL_LANES exist.
+func _lane_chat(lane: String):
+	if _chats.has(lane):
+		_lane_use.erase(lane)
+		_lane_use.append(lane)
+		return _chats[lane]
+	var call_lanes := _lane_use.filter(func(l): return l.begins_with("calls"))
+	if lane.begins_with("calls") and call_lanes.size() >= MAX_CALL_LANES:
+		_chats.erase(call_lanes[0])
+		_lane_use.erase(call_lanes[0])
+	var chat = await _resolve(ClassDB.class_call_static("NobodyWhoChat", "create", _model, _chat_cfg))
+	if chat != null:
+		_chats[lane] = chat
+		_lane_use.append(lane)
+	return chat
 
 
 ## GPU (Vulkan) only where it is measured to help; ggml-vulkan on Adreno was not faster than the CPU.
@@ -96,8 +104,10 @@ func draft_path() -> String:
 	return p if FileAccess.file_exists(p) else ""
 
 
-static func lane_for(role: String) -> String:
-	return "calls" if role == "call_translator" else "talk"
+static func lane_for(job: LlmJob) -> String:
+	if job.lane != "":
+		return job.lane
+	return "calls" if job.role == "call_translator" else "talk"
 
 
 func run(job: LlmJob) -> void:
@@ -105,8 +115,8 @@ func run(job: LlmJob) -> void:
 
 
 func cancel(job: LlmJob) -> void:
-	if _busy_job == job and _chats.has(lane_for(job.role)):
-		_chats[lane_for(job.role)].stop_generation()
+	if _busy_job == job and _chats.has(lane_for(job)):
+		_chats[lane_for(job)].stop_generation()
 
 
 func _generate(job: LlmJob) -> void:
@@ -119,7 +129,11 @@ func _generate(job: LlmJob) -> void:
 	if job.done:
 		return
 	_busy_job = job
-	var chat = _chats[lane_for(job.role)]
+	var chat = await _lane_chat(lane_for(job))
+	if chat == null:
+		_busy_job = null
+		job.finish(false, "lane failed to start")
+		return
 	var config := {"sampler": _sampler(job), "template_variables": {"enable_thinking": false}}
 	var stream = chat.complete(job.messages, config)
 	var count := 0

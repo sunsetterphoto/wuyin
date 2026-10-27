@@ -14,6 +14,8 @@ var messages: Array
 var schema: Dictionary
 ## Optional GBNF grammar; takes precedence over `schema` (compact, enumerated output).
 var grammar := ""
+## Optional context lane (e.g. "calls:s0p1"); empty = the role's default lane.
+var lane := ""
 var max_tokens: int
 var temperature: float
 var timeout_ms: int

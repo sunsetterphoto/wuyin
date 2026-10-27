@@ -48,35 +48,48 @@ static func schema(ctx: Dictionary) -> Dictionary:
 	}
 
 
-## GBNF grammar: compact one-line JSON with exactly the allowed values. Keeps
-## the output short (about 30 tokens) and makes invalid actions impossible.
+## GBNF grammar for the answer line "<kind> <move> <target> <stance> <yes|no>",
+## e.g. "guard schlammwand partner protective yes". The model first picks the
+## kind of action (easy), then a move of that kind; about 11 tokens instead of
+## ~30 for JSON (decoding is the slow part on phones). Only allowed values fit.
 static func grammar(ctx: Dictionary, limits := {}) -> String:
 	var alt := func(values: Array) -> String:
-		return " | ".join(values.map(func(v): return "\"\\\"%s\\\"\"" % v))
-	return "\n".join([
-		'root ::= "{\\"action\\":" action ",\\"target\\":" target ",\\"stance\\":" stance ",\\"fits_situation\\":" bool "}"',
-		"action ::= " + alt.call(limits.get("actions", ctx["actions"])),
-		"target ::= " + alt.call(limits.get("targets", ctx["targets"].keys())),
-		"stance ::= " + alt.call(STANCES),
-		'bool ::= "true" | "false"',
-	])
+		return " | ".join(values.map(func(v): return "\"%s\"" % v))
+	var by_kind := {}
+	for a in limits.get("actions", ctx["actions"]):
+		var kind: String = GameData.move(a.substr(5))["kind"]
+		if not by_kind.has(kind):
+			by_kind[kind] = []
+		by_kind[kind].append(a.substr(5))
+	var lines: Array[String] = []
+	var choices: Array[String] = []
+	var all_moves: Array = []
+	for kind in by_kind:
+		all_moves.append_array(by_kind[kind])
+	lines.push_front("move ::= " + alt.call(all_moves))
+	lines.push_front('root ::= "action=" move " target=" target " stance=" stance " fits=" fit')
+	lines.append("target ::= " + alt.call(limits.get("targets", ctx["targets"].keys())))
+	lines.append("stance ::= " + alt.call(STANCES))
+	lines.append('fit ::= "yes" | "no"')
+	return "\n".join(lines)
 
 
 ## Fixed part of every translator prompt. Kept identical across calls so the
 ## runtime's prompt cache can skip it (big win on phones).
-const STATIC_RULES := """You turn a player's battle call for their spirit animal into JSON. Calls may be German, English or Chinese.
+const STATIC_RULES := """You turn a player's battle call for their spirit animal into an action. Calls may be German, English or Chinese.
 Pick the action that matches the call. Attacks target an enemy; heal and guard target self or partner.
 Protect, cover, shield or stand in front of the partner: guard with target partner. Heal or help the partner: heal with target partner.
 Spirits may be named by name or animal (e.g. pangolin, fire bird). No name given: attack the enemy the player most likely means.
 stance: offensive (attack), defensive (hold back), protective (shield someone).
 fits_situation: true only if the call is clever for the battle facts (type advantage, protecting a hurt ally).
 Phases: wood beats earth, earth beats water, water beats fire, fire beats metal, metal beats wood.
+Answer with one line: action=<action> target=<target> stance=<stance> fits=<yes/no>.
 Examples (action names differ per battle):
-"Heal yourself!" -> the heal action, target self, protective.
-"Stand in front of <partner> and hold on!" -> the guard action, target partner, protective.
-"<move name> on <enemy>!" -> exactly that move, that enemy, offensive.
-"Hit the <animal>!" -> the strongest fitting attack on the enemy with that animal, offensive.
-"Make them confused!" -> the status action, an enemy."""
+"Heal yourself!" -> action=<a heal action> target=self stance=protective fits=no
+"Stand in front of <partner> and hold on!" -> action=<a guard action> target=partner stance=protective fits=yes
+"<move name> on <enemy>!" -> action=<that move> target=<that enemy> stance=offensive fits=no
+"Hit the <animal>!" -> action=<strongest fitting attack> target=<enemy with that animal> stance=offensive fits=yes
+"Make them confused!" -> action=<the status action> target=<an enemy> stance=offensive fits=no"""
 
 
 ## Prompt layout for cache reuse: [static rules][this spirit, its actions and
@@ -95,7 +108,7 @@ static func messages(ctx: Dictionary, call_text: String) -> Array:
 	lines.append("Actions:")
 	for a in ctx["actions"]:
 		var mv := GameData.move(a.substr(5))
-		lines.append("- %s = %s: %s %s; %s" % [a, _names(mv["name"]), mv["element"], mv["kind"], mv.get("llm_hint", "")])
+		lines.append("- %s = %s: %s %s; %s" % [a.substr(5), _names(mv["name"]), mv["element"], mv["kind"], mv.get("llm_hint", "")])
 	var facts: Array[String] = ["you HP %d/%d%s" % [u.hp, u.max_hp, _status_text(u)]]
 	for tid in ctx["targets"]:
 		if tid == "self":
@@ -112,11 +125,29 @@ static func _status_text(u: BattleUnit) -> String:
 	return (" (" + ", ".join(u.statuses.keys()) + ")") if not u.statuses.is_empty() else ""
 
 
+static func lane_for(ctx: Dictionary) -> String:
+	return "calls:" + (ctx["unit"] as BattleUnit).uid
+
+
+## At battle start (and after switches): precompute each active Lingshou's
+## prompt so its first call only processes the short user part.
+static func prepare(battle: Battle, side: int, service: LlmService = null) -> void:
+	service = service if service else LlmService.instance()
+	if not service.is_model_available():
+		return
+	for slot in battle.sides[side]["active"].size():
+		var u := battle.unit_at(side, slot)
+		if u.is_alive():
+			var ctx := context(battle, side, slot)
+			service.prefill(lane_for(ctx), messages(ctx, "")[0]["content"])
+
+
 ## Full pipeline: model if available, else keywords. Always returns a valid action.
 ## {"action": Dictionary, "source": "model"|"template", "reason": String, "raw": String, "ms": int}
 static func translate(ctx: Dictionary, call_text: String, service: LlmService = null) -> Dictionary:
 	service = service if service else LlmService.instance()
-	var job := service.ask("call_translator", messages(ctx, call_text), schema(ctx), grammar(ctx, constraints(ctx, call_text)))
+	var job := service.ask("call_translator", messages(ctx, call_text), schema(ctx), grammar(ctx, constraints(ctx, call_text)),
+		lane_for(ctx))
 	var r := await job.wait()
 	if r["ok"]:
 		var parsed := validate(ctx, r["text"])
@@ -136,10 +167,9 @@ static func translate(ctx: Dictionary, call_text: String, service: LlmService = 
 ## Checks model output against what the unit can do now; repairs mismatched
 ## targets (attack on an ally -> first enemy). Never returns an invalid action.
 static func validate(ctx: Dictionary, text: String) -> Dictionary:
-	var json := JSON.new()  # instance parse: no engine error log for garbage input
-	if json.parse(text) != OK or not json.data is Dictionary:
-		return {"valid": false, "reason": "not a JSON object"}
-	var data: Dictionary = json.data
+	var data := parse_answer(text)
+	if data.is_empty():
+		return {"valid": false, "reason": "unreadable answer"}
 	var action: String = str(data.get("action", ""))
 	if action not in ctx["actions"]:
 		return {"valid": false, "reason": "action not allowed: " + action}
@@ -224,6 +254,23 @@ static func _mentions_unit(text: String, u: BattleUnit) -> bool:
 				if w.length() >= 6 and w in text:
 					return true
 	return false
+
+
+## Reads the compact answer line (or JSON, e.g. from older tools) into
+## {"action": "move:<id>", "target", "stance", "fits_situation"}; {} if unreadable.
+static func parse_answer(text: String) -> Dictionary:
+	var t := text.strip_edges()
+	if t.begins_with("{"):
+		var json := JSON.new()  # instance parse: no engine error log for garbage input
+		return json.data if json.parse(t) == OK and json.data is Dictionary else {}
+	var parts := t.split(" ", false)
+	if parts.size() == 4 and parts[0].begins_with("action="):
+		parts = PackedStringArray(Array(parts).map(func(p): return p.get_slice("=", 1)))
+	if parts.size() == 5:
+		parts.remove_at(0)  # leading kind
+	if parts.size() != 4:
+		return {}
+	return {"action": "move:" + parts[0], "target": parts[1], "stance": parts[2], "fits_situation": parts[3] == "yes"}
 
 
 ## Template fallback: keyword matching in all three languages.

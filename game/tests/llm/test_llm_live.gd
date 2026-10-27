@@ -12,9 +12,9 @@ func test_live_schema_constrained_answer() -> void:
 	var s := LlmService.new()
 	s.backends.clear()
 	s.backends.append(backend)
-	s.roles["call_translator"]["timeout_ms"] = 15000  # first request may load the model
+	s.roles["npc_dialog"]["timeout_ms"] = 15000  # first request may load the model
 	var schema := {"type": "object", "properties": {"stance": {"enum": ["offensive", "defensive"]}}, "required": ["stance"]}
-	var job := s.ask("call_translator", [{"role": "user", "content": "Attack! Answer as JSON."}], schema)
+	var job := s.ask("npc_dialog", [{"role": "user", "content": "Attack! Answer as JSON."}], schema)
 	var tokens := [0]
 	job.token.connect(func(_t): tokens[0] += 1)
 	var r := await job.wait()

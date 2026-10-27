@@ -59,6 +59,7 @@ func _start() -> void:
 	_append_log("Seed %d" % seed_value)
 	PlaytestLog.record("battle_start", {"seed": seed_value, "active": setup["active"], "llm": LlmService.instance().is_model_available()})
 	_rebuild_panels()
+	CallTranslator.prepare(battle, PLAYER)
 	_next_prompt()
 
 

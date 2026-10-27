@@ -23,6 +23,12 @@ static func sentences() -> Array:
 ## Returns {"total", "valid", "intent_ok", "by_source", "ms": Array, "rows": Array}
 static func run(mode: String, service: LlmService = null) -> Dictionary:
 	var out := {"total": 0, "valid": 0, "intent_ok": 0, "by_source": {}, "ms": [], "rows": []}
+	if mode == "model" and service and service.is_model_available():
+		# Like the battle screen does at battle start.
+		var warm := battle()
+		for slot in 2:
+			var c := CallTranslator.context(warm, 0, slot)
+			await service.prefill(CallTranslator.lane_for(c), CallTranslator.messages(c, "")[0]["content"]).wait()
 	var previous_locale := TranslationServer.get_locale()
 	for s in sentences():
 		# A player calls in their game language.
