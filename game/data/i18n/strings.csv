@@ -65,3 +65,28 @@ ELEMENT_EARTH,Earth,Erde,土
 ELEMENT_METAL,Metal,Metall,金
 ELEMENT_WATER,Water,Wasser,水
 ELEMENT_NEUTRAL,Neutral,Neutral,无
+LS_WAWALURCH_ANIMAL,Chinese giant salamander,Chinesischer Riesensalamander,中国大鲵
+LS_BAMBAER_ANIMAL,giant panda,Großer Panda,大熊猫
+LS_GLUTFASAN_ANIMAL,golden pheasant (fire bird),Goldfasan (Feuervogel),红腹锦鸡
+LS_ROLLSCHUPP_ANIMAL,pangolin,Schuppentier,穿山甲
+LS_ZIRPO_ANIMAL,singing cricket,Singgrille,蟋蟀
+LS_NEBELAFFE_ANIMAL,golden snub-nosed monkey,Goldstumpfnase,金丝猴
+LS_FIRNLEOPARD_ANIMAL,snow leopard,Schneeleopard,雪豹
+LS_SILBERKRANICH_ANIMAL,red-crowned crane,Mandschurenkranich,丹顶鹤
+BATTLE_CALL_PLACEHOLDER,Call a command…,Ruf eingeben …,输入呼唤……
+BATTLE_CALL_BUTTON,Call!,Rufen!,呼唤！
+BATTLE_BREATH,Breath {n}/{max},Atem {n}/{max},气息 {n}/{max}
+BATTLE_CALL_HEARD,“{text}”,„{text}“,「{text}」
+BATTLE_CALL_RESULT,"→ {move} on {target} ({source}, {ms} ms)","→ {move} auf {target} ({source}, {ms} ms)",→ 对{target}使用{move}（{source}，{ms}毫秒）
+BATTLE_CALL_THINKING,…,…,……
+BATTLE_DISOBEY,{user} ignores you and does its own thing.,{user} hört nicht auf dich und macht sein eigenes Ding.,{user}没有听你的，自顾自行动。
+BATTLE_SITUATION_BONUS,Clever call! +{pct}%,Kluger Ruf! +{pct} %,妙呼！+{pct}%
+BATTLE_NO_BREATH,Out of breath.,Kein Atem mehr.,气息耗尽。
+BATTLE_DEAF,{user} can't hear calls right now.,{user} hört gerade keine Rufe.,{user}现在听不见呼唤。
+CALL_SUGGEST_ATTACK,{move} on {target}!,{move} auf {target}!,对{target}使用{move}！
+CALL_SUGGEST_PROTECT,Protect {target}!,Schütz {target}!,保护{target}！
+CALL_SUGGEST_HEAL,Heal {target}!,Heil {target}!,治疗{target}！
+CALL_SUGGEST_HEAL_SELF,Heal yourself!,Heil dich!,治疗自己！
+CALL_SUGGEST_STATUS,{move} on {target}!,{move} auf {target}!,对{target}使用{move}！
+CALL_SOURCE_MODEL,model,Modell,模型
+CALL_SOURCE_TEMPLATE,template,Vorlage,模板

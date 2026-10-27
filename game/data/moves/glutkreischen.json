@@ -10,5 +10,6 @@
     "status": "deaf",
     "turns": 2,
     "chance": 30
-  }
+  },
+  "llm_hint": "ember screech at one enemy, may deafen"
 }

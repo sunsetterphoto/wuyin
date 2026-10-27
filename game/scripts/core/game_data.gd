@@ -95,6 +95,8 @@ static func _validate_move(m: Dictionary, errors: Array[String]) -> void:
 		errors.append("move %s: bad target %s" % [id, m.get("target")])
 	if m.get("kind") == "attack" and int(m.get("power", 0)) <= 0:
 		errors.append("move %s: attack without power" % id)
+	if str(m.get("llm_hint", "")).length() < 10:
+		errors.append("move %s: needs an llm_hint (prompt-only description)" % id)
 	var acc := int(m.get("accuracy", 0))
 	if acc < 1 or acc > 100:
 		errors.append("move %s: accuracy must be 1..100" % id)
@@ -112,6 +114,8 @@ static func _validate_lingshou(l: Dictionary, errors: Array[String]) -> void:
 		errors.append("lingshou %s: file name differs from id" % id)
 	if not l.get("name", "").begins_with("LS_"):
 		errors.append("lingshou %s: name must be a translation key LS_*" % id)
+	if not l.get("animal", "").begins_with("LS_"):
+		errors.append("lingshou %s: animal must be a translation key LS_*_ANIMAL" % id)
 	if not WuXing.is_element(l.get("element", "")):
 		errors.append("lingshou %s: bad element" % id)
 	for t in l.get("temperaments", []):

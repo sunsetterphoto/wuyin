@@ -9,5 +9,6 @@
     "status": "dissonance",
     "turns": 3,
     "chance": 100
-  }
+  },
+  "llm_hint": "wails like a crying child; confuses one enemy (dissonance)"
 }

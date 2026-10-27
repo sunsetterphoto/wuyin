@@ -1,7 +1,7 @@
 {
   "id": "glutfasan",
   "name": "LS_GLUTFASAN",
-  "animal": "Goldfasan",
+  "animal": "LS_GLUTFASAN_ANIMAL",
   "element": "fire",
   "temperaments": [
     "brave"

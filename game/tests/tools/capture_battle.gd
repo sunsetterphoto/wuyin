@@ -1,7 +1,7 @@
 extends SceneTree
 ## Renders the battle screen, plays a few menu turns and saves a screenshot.
 ## Needs a window (not --headless):
-##   godot --path game -s res://tests/tools/capture_battle.gd -- <active 1|2> <turns> <out.png> [locale]
+##   godot --path game -s res://tests/tools/capture_battle.gd -- <active 1|2> <turns> <out.png> [locale] [call text]
 
 const BattleScreen := preload("res://scripts/battle/battle_screen.gd")
 
@@ -27,6 +27,8 @@ func _init() -> void:
 			if screen._prompt.text == tr("BATTLE_CHOOSE_TARGET"):
 				screen._submit(Battle.move_action(u.usable_moves()[0], 1, 0))
 		await process_frame
+	if args.size() > 4:
+		await screen._on_call(args[4])
 	for i in 10:
 		await process_frame
 	var img := root.get_viewport().get_texture().get_image()

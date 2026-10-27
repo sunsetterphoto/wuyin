@@ -5,5 +5,6 @@
   "kind": "attack",
   "accuracy": 90,
   "target": "enemy",
-  "power": 65
+  "power": 65,
+  "llm_hint": "dives and strikes one enemy from below with water"
 }

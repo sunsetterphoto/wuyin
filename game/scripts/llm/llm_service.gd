@@ -58,12 +58,13 @@ func is_model_available() -> bool:
 	return active_backend() != null
 
 
-func ask(role_name: String, messages: Array, schema := {}) -> LlmJob:
+func ask(role_name: String, messages: Array, schema := {}, grammar := "") -> LlmJob:
 	var cfg := role(role_name)
 	var job := LlmJob.new()
 	job.role = role_name
 	job.messages = messages
 	job.schema = schema
+	job.grammar = grammar
 	job.max_tokens = int(cfg.get("max_tokens", 40))
 	job.temperature = float(cfg.get("temperature", 0.5))
 	job.timeout_ms = int(cfg.get("timeout_ms", 3000))

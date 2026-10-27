@@ -9,5 +9,6 @@
     "status": "resonance",
     "turns": 3,
     "chance": 100
-  }
+  },
+  "llm_hint": "chirping chorus; own team becomes resonant (team bonus doubled)"
 }

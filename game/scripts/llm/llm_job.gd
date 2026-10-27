@@ -12,6 +12,8 @@ signal finished(result: Dictionary)
 var role: String
 var messages: Array
 var schema: Dictionary
+## Optional GBNF grammar; takes precedence over `schema` (compact, enumerated output).
+var grammar := ""
 var max_tokens: int
 var temperature: float
 var timeout_ms: int

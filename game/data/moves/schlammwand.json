@@ -5,5 +5,6 @@
   "kind": "guard",
   "accuracy": 100,
   "target": "ally",
-  "priority": 2
+  "priority": 2,
+  "llm_hint": "raises a mud wall in front of self or partner; halves damage this turn"
 }

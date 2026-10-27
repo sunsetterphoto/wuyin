@@ -1,7 +1,7 @@
 {
   "id": "nebelaffe",
   "name": "LS_NEBELAFFE",
-  "animal": "Goldstumpfnase",
+  "animal": "LS_NEBELAFFE_ANIMAL",
   "element": "wood",
   "temperaments": [
     "playful"

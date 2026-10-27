@@ -5,5 +5,6 @@
   "kind": "attack",
   "accuracy": 90,
   "target": "enemy",
-  "power": 60
+  "power": 60,
+  "llm_hint": "jolts one enemy with earth and dirt"
 }

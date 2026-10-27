@@ -1,7 +1,7 @@
 {
   "id": "zirpo",
   "name": "LS_ZIRPO",
-  "animal": "Singgrille",
+  "animal": "LS_ZIRPO_ANIMAL",
   "element": "earth",
   "temperaments": [
     "moody"

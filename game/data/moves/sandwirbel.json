@@ -10,5 +10,6 @@
     "status": "dissonance",
     "turns": 2,
     "chance": 20
-  }
+  },
+  "llm_hint": "whirls sand at one enemy, may confuse"
 }

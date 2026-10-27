@@ -5,5 +5,6 @@
   "kind": "attack",
   "accuracy": 100,
   "target": "enemy",
-  "power": 45
+  "power": 45,
+  "llm_hint": "lashes one enemy with vines"
 }

@@ -53,7 +53,9 @@ func build_body(job: LlmJob) -> Dictionary:
 		# Small reasoning models (Gemma 4, Qwen 3) would otherwise think first and blow the latency budget.
 		"chat_template_kwargs": {"enable_thinking": false},
 	}
-	if not job.schema.is_empty():
+	if job.grammar != "":
+		body["grammar"] = job.grammar
+	elif not job.schema.is_empty():
 		body["response_format"] = {"type": "json_schema", "json_schema": {"schema": job.schema}}
 	return body
 

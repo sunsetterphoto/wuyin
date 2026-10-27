@@ -1,7 +1,7 @@
 {
   "id": "wawalurch",
   "name": "LS_WAWALURCH",
-  "animal": "Chinesischer Riesensalamander",
+  "animal": "LS_WAWALURCH_ANIMAL",
   "element": "water",
   "temperaments": [
     "anxious"

@@ -1,7 +1,7 @@
 {
   "id": "silberkranich",
   "name": "LS_SILBERKRANICH",
-  "animal": "Mandschurenkranich",
+  "animal": "LS_SILBERKRANICH_ANIMAL",
   "element": "metal",
   "temperaments": [
     "gentle"

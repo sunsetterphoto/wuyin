@@ -1,0 +1,416 @@
+[
+ {
+  "slot": 0,
+  "text": "Bambär, greif den Fasan an!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0"
+ },
+ {
+  "slot": 0,
+  "text": "Hau dem Schuppentier eins mit Bambus über!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:1",
+  "move": "bambusschlag"
+ },
+ {
+  "slot": 0,
+  "text": "Bambusschlag auf Rollschupp!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:1",
+  "move": "bambusschlag"
+ },
+ {
+  "slot": 0,
+  "text": "Heil dich, Bambär!",
+  "lang": "de",
+  "kind": "heal",
+  "target": "self",
+  "move": "bambushain"
+ },
+ {
+  "slot": 0,
+  "text": "Bambär, kümmer dich um Wawalurch, er ist verletzt!",
+  "lang": "de",
+  "kind": "heal",
+  "target": "partner",
+  "move": "bambushain"
+ },
+ {
+  "slot": 0,
+  "text": "Erdstoß gegen den Glutfasan!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "erdstoss"
+ },
+ {
+  "slot": 0,
+  "text": "Peitsch den Vogel mit deinen Ranken!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "rankenpeitsche"
+ },
+ {
+  "slot": 0,
+  "text": "Mach den Schwächsten fertig!",
+  "lang": "de",
+  "kind": "attack"
+ },
+ {
+  "slot": 0,
+  "text": "Bambär, lass Bambus wachsen und erhol dich.",
+  "lang": "de",
+  "kind": "heal",
+  "target": "self",
+  "move": "bambushain"
+ },
+ {
+  "slot": 0,
+  "text": "Wirf die Erde gegen das Feuerhuhn!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "erdstoss"
+ },
+ {
+  "slot": 0,
+  "text": "Einfach draufhauen!",
+  "lang": "de",
+  "kind": "attack"
+ },
+ {
+  "slot": 0,
+  "text": "Bambär, schlag mit aller Kraft zu!",
+  "lang": "de",
+  "kind": "attack"
+ },
+ {
+  "slot": 1,
+  "text": "Wawalurch, stell dich vor Bambär und halt durch!",
+  "lang": "de",
+  "kind": "guard",
+  "target": "partner",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Bau eine Schlammwand!",
+  "lang": "de",
+  "kind": "guard",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Spritz den Glutfasan nass!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0"
+ },
+ {
+  "slot": 1,
+  "text": "Tauch ab und greif den Fasan von unten an!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "tauchen"
+ },
+ {
+  "slot": 1,
+  "text": "Wein so laut du kannst, damit Rollschupp durcheinanderkommt!",
+  "lang": "de",
+  "kind": "status",
+  "target": "enemy:1",
+  "move": "kinderweinen"
+ },
+ {
+  "slot": 1,
+  "text": "Strömungsruf gegen das Feuer!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "stroemungsruf"
+ },
+ {
+  "slot": 1,
+  "text": "Schütz Bambär!",
+  "lang": "de",
+  "kind": "guard",
+  "target": "partner",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Versteck dich hinter einer Wand aus Schlamm.",
+  "lang": "de",
+  "kind": "guard",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Wasser löscht Feuer, also los auf den Fasan!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0"
+ },
+ {
+  "slot": 1,
+  "text": "Bring den Fasan mit deinem Weinen durcheinander.",
+  "lang": "de",
+  "kind": "status",
+  "target": "enemy:0",
+  "move": "kinderweinen"
+ },
+ {
+  "slot": 1,
+  "text": "Keine Angst, du schaffst das, greif an!",
+  "lang": "de",
+  "kind": "attack"
+ },
+ {
+  "slot": 1,
+  "text": "Lenk die Strömung auf Rollschupp!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:1",
+  "move": "stroemungsruf"
+ },
+ {
+  "slot": 1,
+  "text": "Deck Bambär, der hat kaum noch Kraft!",
+  "lang": "de",
+  "kind": "guard",
+  "target": "partner",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 0,
+  "text": "Bambear, hit the pheasant!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0"
+ },
+ {
+  "slot": 0,
+  "text": "Smack the pangolin with bamboo!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:1",
+  "move": "bambusschlag"
+ },
+ {
+  "slot": 0,
+  "text": "Heal yourself!",
+  "lang": "en",
+  "kind": "heal",
+  "target": "self",
+  "move": "bambushain"
+ },
+ {
+  "slot": 0,
+  "text": "Patch up Wailamander, he's hurt.",
+  "lang": "en",
+  "kind": "heal",
+  "target": "partner",
+  "move": "bambushain"
+ },
+ {
+  "slot": 0,
+  "text": "Earth Jolt on Cinderfowl!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "erdstoss"
+ },
+ {
+  "slot": 0,
+  "text": "Lash the bird with your vines.",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "rankenpeitsche"
+ },
+ {
+  "slot": 0,
+  "text": "Go for the weakest one!",
+  "lang": "en",
+  "kind": "attack"
+ },
+ {
+  "slot": 0,
+  "text": "Grow some bamboo and rest a bit.",
+  "lang": "en",
+  "kind": "heal",
+  "target": "self",
+  "move": "bambushain"
+ },
+ {
+  "slot": 0,
+  "text": "Throw dirt at the fire bird!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "erdstoss"
+ },
+ {
+  "slot": 0,
+  "text": "Just attack!",
+  "lang": "en",
+  "kind": "attack"
+ },
+ {
+  "slot": 0,
+  "text": "Bamboo Swipe the Rollscale!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:1",
+  "move": "bambusschlag"
+ },
+ {
+  "slot": 0,
+  "text": "Hit the metal one as hard as you can.",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:1"
+ },
+ {
+  "slot": 1,
+  "text": "Wailamander, get in front of Bambear and hold on!",
+  "lang": "en",
+  "kind": "guard",
+  "target": "partner",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Build a mud wall!",
+  "lang": "en",
+  "kind": "guard",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Soak the pheasant!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0"
+ },
+ {
+  "slot": 1,
+  "text": "Dive and strike the bird from below!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "tauchen"
+ },
+ {
+  "slot": 1,
+  "text": "Cry as loud as you can to confuse the pangolin!",
+  "lang": "en",
+  "kind": "status",
+  "target": "enemy:1",
+  "move": "kinderweinen"
+ },
+ {
+  "slot": 1,
+  "text": "Current Call on the fire bird!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "stroemungsruf"
+ },
+ {
+  "slot": 1,
+  "text": "Protect Bambear!",
+  "lang": "en",
+  "kind": "guard",
+  "target": "partner",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Hide behind a wall of mud.",
+  "lang": "en",
+  "kind": "guard",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Water beats fire, go get the pheasant!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0"
+ },
+ {
+  "slot": 1,
+  "text": "Confuse Cinderfowl with your wailing.",
+  "lang": "en",
+  "kind": "status",
+  "target": "enemy:0",
+  "move": "kinderweinen"
+ },
+ {
+  "slot": 1,
+  "text": "Don't be scared, you can do it, attack!",
+  "lang": "en",
+  "kind": "attack"
+ },
+ {
+  "slot": 1,
+  "text": "Cover Bambear, he's almost done!",
+  "lang": "en",
+  "kind": "guard",
+  "target": "partner",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 0,
+  "text": "Use Earth Jolt on the metal pangolin!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:1",
+  "move": "erdstoss"
+ },
+ {
+  "slot": 0,
+  "text": "竹熊宝，攻击炭雉！",
+  "lang": "zh",
+  "kind": "attack",
+  "target": "enemy:0"
+ },
+ {
+  "slot": 0,
+  "text": "治疗自己！",
+  "lang": "zh",
+  "kind": "heal",
+  "target": "self",
+  "move": "bambushain"
+ },
+ {
+  "slot": 1,
+  "text": "保护竹熊宝！",
+  "lang": "zh",
+  "kind": "guard",
+  "target": "partner",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "用唤流攻击炭雉！",
+  "lang": "zh",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "stroemungsruf"
+ },
+ {
+  "slot": 1,
+  "text": "用婴啼让滚鳞混乱！",
+  "lang": "zh",
+  "kind": "status",
+  "target": "enemy:1",
+  "move": "kinderweinen"
+ }
+]

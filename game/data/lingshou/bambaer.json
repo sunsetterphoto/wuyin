@@ -1,7 +1,7 @@
 {
   "id": "bambaer",
   "name": "LS_BAMBAER",
-  "animal": "Großer Panda",
+  "animal": "LS_BAMBAER_ANIMAL",
   "element": "wood",
   "temperaments": [
     "gentle"

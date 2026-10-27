@@ -9,5 +9,6 @@
     "status": "echo",
     "turns": 3,
     "chance": 100
-  }
+  },
+  "llm_hint": "wraps self in mist; next attack echoes"
 }

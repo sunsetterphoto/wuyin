@@ -25,6 +25,10 @@ var sides: Array[Dictionary] = []
 ## Pending actions: "side:slot" -> action Dictionary
 var pending: Dictionary = {}
 var winner := -1
+## Breath per side: each call costs one, regenerates every few turns.
+var breath: Array[int] = []
+## Per-unit mood shift for moody Lingshou (uid -> float), rolled at battle start.
+var moods: Dictionary = {}
 ## Every event of the battle so far (for replays and determinism checks).
 var history: Array[Dictionary] = []
 
@@ -46,11 +50,25 @@ static func create(battle_seed: int, parties: Array, active := 1) -> Battle:
 			if act.size() < active and party[i].is_alive():
 				act.append(i)
 		b.sides.append({"party": party, "active": act})
+		b.breath.append(Obedience.BREATH_MAX)
+	for side in b.sides:
+		for u in side["party"]:
+			if "moody" in u.species.get("temperaments", []):
+				b.moods[u.uid] = Obedience.roll_mood(b.rng)
 	return b
 
 
 static func move_action(move_id: String, target_side: int, target_slot: int) -> Dictionary:
 	return {"type": "move", "move": move_id, "target_side": target_side, "target_slot": target_slot}
+
+
+## A call (free-text command) after translation and validation.
+static func call_action(move_id: String, target_side: int, target_slot: int, stance: String, fits_situation: bool) -> Dictionary:
+	var a := move_action(move_id, target_side, target_slot)
+	a["call"] = true
+	a["stance"] = stance
+	a["fits_situation"] = fits_situation
+	return a
 
 
 static func switch_action(party_index: int) -> Dictionary:
@@ -71,6 +89,11 @@ func active_units(side: int) -> Array[BattleUnit]:
 	for i in sides[side]["active"]:
 		out.append(sides[side]["party"][i])
 	return out
+
+
+## Active slot of `u`, or -1 when it is on the bench.
+func slot_of(u: BattleUnit) -> int:
+	return sides[u.side]["active"].find(sides[u.side]["party"].find(u))
 
 
 func bench(side: int) -> Array[int]:
@@ -120,6 +143,11 @@ func submit(side: int, slot: int, action: Dictionary) -> String:
 	var u := unit_at(side, slot)
 	if u == null or not u.is_alive():
 		return "no active unit in that slot"
+	if action.get("call", false):
+		if not u.accepts_calls():
+			return "unit is deaf to calls"
+		if breath[side] <= 0:
+			return "no breath left"
 	match action.get("type"):
 		"move":
 			var mid: String = action.get("move", "")
@@ -144,6 +172,8 @@ func submit(side: int, slot: int, action: Dictionary) -> String:
 					return "party member already switching in"
 		_:
 			return "unknown action type"
+	if action.get("call", false):
+		breath[side] -= 1
 	pending[_key(side, slot)] = action
 	return ""
 
@@ -214,6 +244,24 @@ func _do_move(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> v
 	var mid: String = action["move"]
 	var tside: int = action.get("target_side", u.side)
 	var tslot: int = action.get("target_slot", 0)
+	var bonus := 0.0
+
+	if action.get("call", false):
+		var stance: String = action.get("stance", "offensive")
+		var p := Obedience.chance(u, stance, GameData.move(mid)["kind"], moods.get(u.uid, 0.0))
+		if rng.randf() >= p:
+			var own := BattleAI.choose_for(self, u)
+			events.append({"type": "disobey", "user": u.uid, "move": mid, "chance": p})
+			mid = own["move"]
+			tside = own["target_side"]
+			tslot = own["target_slot"]
+		else:
+			events.append({"type": "obey", "user": u.uid, "chance": p})
+			var target := unit_at(tside, tslot)
+			bonus = Obedience.situation_bonus(self, u, GameData.move(mid), target, stance,
+				action.get("fits_situation", false))
+			if bonus > 0.0:
+				events.append({"type": "situation_bonus", "user": u.uid, "bonus": bonus})
 
 	if u.has_status("silenced") and GameData.move(mid)["element"] != WuXing.NEUTRAL:
 		events.append({"type": "silenced_fallback", "user": u.uid, "move": mid})
@@ -239,7 +287,7 @@ func _do_move(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> v
 	match mv["kind"]:
 		"attack":
 			for t in targets:
-				_attack(u, t, mv, 1.0, events)
+				_attack(u, t, mv, 1.0 + bonus, events)
 			if u.has_status("echo") and targets[0].is_alive():
 				events.append({"type": "echo", "user": u.uid})
 				_attack(u, targets[0], mv, ECHO_POWER, events)
@@ -247,7 +295,7 @@ func _do_move(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> v
 				events.append({"type": "status_end", "target": u.uid, "status": "echo"})
 		"heal":
 			for t in targets:
-				var amount := mini(t.max_hp - t.hp, ceili(t.max_hp * float(mv.get("heal_pct", 0)) / 100.0))
+				var amount := mini(t.max_hp - t.hp, ceili(t.max_hp * float(mv.get("heal_pct", 0)) / 100.0 * (1.0 + bonus)))
 				t.hp += amount
 				events.append({"type": "heal", "target": t.uid, "amount": amount})
 		"guard":
@@ -341,6 +389,9 @@ func _random_target(u: BattleUnit, mv: Dictionary) -> Vector2i:
 
 
 func _end_of_turn(events: Array[Dictionary]) -> void:
+	if turn % Obedience.BREATH_REGEN_TURNS == 0:
+		for s in breath.size():
+			breath[s] = mini(Obedience.BREATH_MAX, breath[s] + 1)
 	for s in sides.size():
 		for u in sides[s]["party"]:
 			u.shielded = false

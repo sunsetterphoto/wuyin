@@ -9,5 +9,6 @@
     "status": "silenced",
     "turns": 2,
     "chance": 100
-  }
+  },
+  "llm_hint": "iron hush; silences one enemy"
 }

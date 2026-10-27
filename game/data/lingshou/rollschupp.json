@@ -1,7 +1,7 @@
 {
   "id": "rollschupp",
   "name": "LS_ROLLSCHUPP",
-  "animal": "Schuppentier",
+  "animal": "LS_ROLLSCHUPP_ANIMAL",
   "element": "metal",
   "temperaments": [
     "stubborn"

@@ -9,5 +9,6 @@
     "status": "echo",
     "turns": 3,
     "chance": 100
-  }
+  },
+  "llm_hint": "echo call on self or partner; their next attack repeats"
 }

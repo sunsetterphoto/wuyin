@@ -22,6 +22,36 @@ func fill(battle: Battle, side: int) -> void:
 		assert(err == "", "AI produced invalid action: " + err)
 
 
+## What a disobedient Lingshou does on its own: the best-scoring move for its
+## temperament, without the AI's random spread (uses no RNG).
+static func choose_for(battle: Battle, u: BattleUnit) -> Dictionary:
+	var gentle: bool = "gentle" in u.species.get("temperaments", [])
+	var anxious: bool = "anxious" in u.species.get("temperaments", [])
+	var best := Battle.move_action(BattleUnit.BASIC_MOVE, 1 - u.side, 0)
+	var best_score := -1.0
+	for mid in u.usable_moves():
+		var mv := GameData.move(mid)
+		var score := 0.0
+		var action := {}
+		match mv["kind"]:
+			"attack":
+				for s in battle.sides[1 - u.side]["active"].size():
+					var t := battle.unit_at(1 - u.side, s)
+					if t.is_alive():
+						var sc := float(battle.damage(u, t, mv)) * (0.6 if anxious or gentle else 1.0)
+						if sc > score:
+							score = sc
+							action = Battle.move_action(mid, 1 - u.side, s)
+			"heal", "guard":
+				if gentle or anxious:
+					score = 30.0 if float(u.hp) / u.max_hp < 0.6 else 5.0
+					action = Battle.move_action(mid, u.side, battle.slot_of(u))
+		if not action.is_empty() and score > best_score:
+			best_score = score
+			best = action
+	return best
+
+
 func choose(battle: Battle, side: int, slot: int) -> Dictionary:
 	var u := battle.unit_at(side, slot)
 	var usable := u.usable_moves()

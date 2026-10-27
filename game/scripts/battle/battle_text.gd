@@ -62,6 +62,10 @@ static func describe(battle: Battle, e: Dictionary) -> Array[String]:
 			out.append(_t("BATTLE_SWITCH", {"user": user, "target": target}))
 		"team_bonus":
 			out.append(_t("BATTLE_TEAM_BONUS", {"a": unit_name(battle, e["a"]), "b": unit_name(battle, e["b"])}))
+		"disobey":
+			out.append(_t("BATTLE_DISOBEY", {"user": user}))
+		"situation_bonus":
+			out.append(_t("BATTLE_SITUATION_BONUS", {"pct": roundi(e["bonus"] * 100)}))
 		"no_effect":
 			out.append(_t("BATTLE_NO_EFFECT"))
 		"level_up":

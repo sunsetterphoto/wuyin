@@ -1,7 +1,7 @@
 {
   "id": "firnleopard",
   "name": "LS_FIRNLEOPARD",
-  "animal": "Schneeleopard",
+  "animal": "LS_FIRNLEOPARD_ANIMAL",
   "element": "metal",
   "temperaments": [
     "brave"

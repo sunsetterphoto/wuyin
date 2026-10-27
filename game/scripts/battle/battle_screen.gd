@@ -1,7 +1,6 @@
 extends Control
-## Menu-only test battle (M0.2): HP panels, move buttons, target choice, log.
-## Grey boxes on purpose; real art comes in Phase 1. The free-text call (Ruf)
-## replaces/extends this menu in M0.4.
+## Test battle (Phase 0): HP panels, move menu, and the call (Ruf) as free
+## text or tap-to-send suggestions. Grey boxes on purpose; art comes in Phase 1.
 
 const PLAYER := 0
 const ENEMY := 1
@@ -21,6 +20,12 @@ var _player_row: HBoxContainer
 var _log: RichTextLabel
 var _prompt: Label
 var _buttons: GridContainer
+var _call_row: HBoxContainer
+var _call_input: LineEdit
+var _call_button: Button
+var _breath: Label
+var _suggestions: HFlowContainer
+var _busy := false
 
 
 func _ready() -> void:
@@ -55,8 +60,10 @@ func _start() -> void:
 func _next_prompt() -> void:
 	_refresh_panels()
 	_clear_buttons()
+	_clear_suggestions()
 	if battle.is_over():
 		_prompt.text = ""
+		_call_row.visible = false
 		_add_button(tr("BATTLE_RESTART"), _start)
 		_add_button(tr("MENU_BACK"), _back)
 		return
@@ -79,6 +86,50 @@ func _next_prompt() -> void:
 	for idx in battle.bench(PLAYER):
 		var b: BattleUnit = battle.sides[PLAYER]["party"][idx]
 		_add_button("⇄ %s" % tr(b.name_key()), _on_switch.bind(idx))
+	_update_call_row(u)
+
+
+func _update_call_row(u: BattleUnit) -> void:
+	_call_row.visible = true
+	var can_call := battle.breath[PLAYER] > 0 and u.accepts_calls()
+	_breath.text = tr("BATTLE_BREATH").format({"n": battle.breath[PLAYER], "max": Obedience.BREATH_MAX})
+	if not u.accepts_calls():
+		_breath.text += "  " + tr("BATTLE_DEAF").format({"user": tr(u.name_key())})
+	_call_input.editable = can_call
+	_call_button.disabled = not can_call
+	if can_call:
+		for text in CallTranslator.suggestions(CallTranslator.context(battle, PLAYER, _slot)):
+			var b := Button.new()
+			b.text = text
+			b.custom_minimum_size = Vector2(0, 56)
+			b.add_theme_font_size_override("font_size", 18)
+			b.pressed.connect(_on_call.bind(text))
+			_suggestions.add_child(b)
+
+
+func _on_call_submitted(_text := "") -> void:
+	_on_call(_call_input.text)
+
+
+func _on_call(text: String) -> void:
+	text = text.strip_edges()
+	if text == "" or _busy:
+		return
+	_busy = true
+	_call_input.text = ""
+	_call_input.editable = false
+	_call_button.disabled = true
+	_append_log("[i]%s[/i]" % tr("BATTLE_CALL_HEARD").format({"text": text}))
+	var ctx := CallTranslator.context(battle, PLAYER, _slot)
+	var res := await CallTranslator.translate(ctx, text)
+	var action: Dictionary = res["action"]
+	var target := battle.unit_at(action["target_side"], action["target_slot"])
+	_append_log("[color=#9ab]%s[/color]" % tr("BATTLE_CALL_RESULT").format({
+		"move": tr(GameData.move(action["move"])["name"]), "target": tr(target.name_key()),
+		"source": tr("CALL_SOURCE_MODEL") if res["source"] == "model" else tr("CALL_SOURCE_TEMPLATE"),
+		"ms": res.get("ms", 0)}))
+	_busy = false
+	_submit(action)
 
 
 func _on_move(mid: String) -> void:
@@ -160,6 +211,28 @@ func _build_ui() -> void:
 	_prompt = Label.new()
 	_prompt.add_theme_font_size_override("font_size", FONT_SIZE)
 	right.add_child(_prompt)
+	_call_row = HBoxContainer.new()
+	right.add_child(_call_row)
+	_call_input = LineEdit.new()
+	_call_input.placeholder_text = tr("BATTLE_CALL_PLACEHOLDER")
+	_call_input.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_call_input.custom_minimum_size = Vector2(0, 56)
+	_call_input.add_theme_font_size_override("font_size", 20)
+	_call_input.text_submitted.connect(_on_call_submitted)
+	_call_row.add_child(_call_input)
+	_call_button = Button.new()
+	_call_button.text = tr("BATTLE_CALL_BUTTON")
+	_call_button.custom_minimum_size = Vector2(120, 56)
+	_call_button.add_theme_font_size_override("font_size", 20)
+	_call_button.pressed.connect(_on_call_submitted)
+	_call_row.add_child(_call_button)
+	_breath = Label.new()
+	_breath.add_theme_font_size_override("font_size", 18)
+	right.add_child(_breath)
+	_suggestions = HFlowContainer.new()
+	_suggestions.add_theme_constant_override("h_separation", 8)
+	_suggestions.add_theme_constant_override("v_separation", 8)
+	right.add_child(_suggestions)
 	_buttons = GridContainer.new()
 	_buttons.columns = 3
 	_buttons.add_theme_constant_override("h_separation", 8)
@@ -211,6 +284,11 @@ func _refresh_panels() -> void:
 		p["bar"].value = u.hp
 		var st := ", ".join(u.statuses.keys().map(func(s): return BattleText.status_name(s)))
 		p["info"].text = "%d / %d  %s" % [u.hp, u.max_hp, st]
+
+
+func _clear_suggestions() -> void:
+	for c in _suggestions.get_children():
+		c.queue_free()
 
 
 func _clear_buttons() -> void:
