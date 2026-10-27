@@ -26,6 +26,7 @@ var _call_button: Button
 var _breath: Label
 var _suggestions: HFlowContainer
 var _busy := false
+var _logged_end := false
 var _voice: Label
 var _babble: Babble
 
@@ -52,9 +53,11 @@ static func default_setup(active: int) -> Dictionary:
 func _start() -> void:
 	var seed_value: int = setup.get("seed", Time.get_ticks_usec())
 	battle = Battle.create(seed_value, setup["parties"], setup["active"])
+	_logged_end = false
 	ai = BattleAI.new(seed_value)
 	_log.clear()
 	_append_log("Seed %d" % seed_value)
+	PlaytestLog.record("battle_start", {"seed": seed_value, "active": setup["active"], "llm": LlmService.instance().is_model_available()})
 	_rebuild_panels()
 	_next_prompt()
 
@@ -68,6 +71,9 @@ func _next_prompt() -> void:
 	if battle.is_over():
 		_prompt.text = ""
 		_call_row.visible = false
+		if not _logged_end:
+			_logged_end = true
+			PlaytestLog.record("battle_end", {"winner": battle.winner, "turns": battle.turn})
 		_add_button(tr("BATTLE_RESTART"), _start)
 		_add_button(tr("MENU_BACK"), _back)
 		return
@@ -109,7 +115,7 @@ func _update_call_row(u: BattleUnit) -> void:
 			b.text = text
 			b.custom_minimum_size = Vector2(0, 56)
 			b.add_theme_font_size_override("font_size", 18)
-			b.pressed.connect(_on_call.bind(text))
+			b.pressed.connect(_on_call.bind(text, true))
 			_suggestions.add_child(b)
 
 
@@ -117,7 +123,7 @@ func _on_call_submitted(_text := "") -> void:
 	_on_call(_call_input.text)
 
 
-func _on_call(text: String) -> void:
+func _on_call(text: String, suggested := false) -> void:
 	text = text.strip_edges()
 	if text == "" or _busy:
 		return
@@ -138,6 +144,8 @@ func _on_call(text: String) -> void:
 		"move": tr(GameData.move(action["move"])["name"]), "target": tr(target.name_key()),
 		"source": tr("CALL_SOURCE_MODEL") if res["source"] == "model" else tr("CALL_SOURCE_TEMPLATE"),
 		"ms": res.get("ms", 0)}))
+	PlaytestLog.record("command", {"kind": "call_suggested" if suggested else "call_typed", "text": text,
+		"move": action["move"], "source": res["source"], "ms": res.get("ms", 0)})
 	_busy = false
 	_submit(action)
 
@@ -190,6 +198,7 @@ func _speak_about(events: Array[Dictionary]) -> void:
 
 
 func _on_move(mid: String) -> void:
+	PlaytestLog.record("command", {"kind": "menu", "move": mid})
 	var mv := GameData.move(mid)
 	var candidates: Array[Vector2i] = []
 	match mv["target"]:

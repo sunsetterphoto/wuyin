@@ -12,6 +12,7 @@ func _init() -> void:
 	var turns := int(args[1]) if args.size() > 1 else 2
 	var out: String = args[2] if args.size() > 2 else "user://battle.png"
 	TranslationServer.set_locale(args[3] if args.size() > 3 else "de")
+	PlaytestLog.path = "user://playtest_capture.jsonl"
 	var setup := BattleScreen.default_setup(active)
 	setup["seed"] = 1234
 	BattleScreen.setup = setup
