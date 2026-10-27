@@ -36,7 +36,7 @@ func _run() -> void:
 	if paths.is_empty():
 		paths.append(ProjectSettings.globalize_path(ProjectSettings.get_setting("wuyin/llm/model_path", "user://models/wuyin.gguf")))
 	var configs := []
-	for threads in [6, 8]:
+	for threads in [4, 6]:
 		for p in paths:
 			configs.append({"name": "%s_t%d" % [p.get_file().get_basename(), threads], "use_gpu": false, "threads": threads, "path": p})
 	_log("models=%s cores=%d" % [paths.map(func(x): return x.get_file()), OS.get_processor_count()])
@@ -50,9 +50,11 @@ func _run() -> void:
 		var chat = await NobodyWhoBackend._resolve(ClassDB.class_call_static("NobodyWhoChat", "create", model, chat_cfg))
 		_log("[%s] load_ms=%d" % [cfg["name"], Time.get_ticks_msec() - t0])
 		for prompt_kind in ["short", "medium"]:
-			var content := "Name one fruit." if prompt_kind == "short" else LONG_FILLER.repeat(6) + "\nName one fruit."
+			var content := "Name one fruit." if prompt_kind == "short" else LONG_FILLER.repeat(9) + "\nName one fruit."
 			var msgs := [{"role": "system", "content": "Answer in one short sentence."}, {"role": "user", "content": content}]
 			var sampler = ClassDB.class_call_static("NobodyWhoSamplerPresets", "temperature", 0.0)
+			var ntok = await NobodyWhoBackend._resolve(chat.tokenize(content))
+			var prompt_tokens: int = ntok.size() if ntok is Array or ntok is PackedInt32Array else -1
 			var t1 := Time.get_ticks_msec()
 			var stream = chat.complete(msgs, {"sampler": sampler, "template_variables": {"enable_thinking": false}})
 			var first := -1
@@ -68,8 +70,8 @@ func _run() -> void:
 					chat.stop_generation()
 			var total := Time.get_ticks_msec() - t1
 			var decode_s := maxf(0.001, (total - first) / 1000.0)
-			_log("[%s] %s prompt_chars=%d first_token_ms=%d tokens=%d decode_tok_s=%.1f total_ms=%d" % [
-				cfg["name"], prompt_kind, content.length(), first, n, (n - 1) / decode_s, total])
+			_log("[%s] %s prompt_tokens=%d first_token_ms=%d pp_tok_s=%.1f tokens=%d decode_tok_s=%.1f total_ms=%d" % [
+				cfg["name"], prompt_kind, prompt_tokens, first, prompt_tokens / maxf(0.001, first / 1000.0), n, (n - 1) / decode_s, total])
 		chat = null
 		model = null
 		await get_tree().create_timer(1.0).timeout

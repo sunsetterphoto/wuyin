@@ -198,10 +198,8 @@ static func constraints(ctx: Dictionary, call_text: String) -> Dictionary:
 
 	var named: Array[String] = []
 	for a in ctx["actions"]:
-		for loc in LOCALES:
-			var n := _name_in(GameData.move(a.substr(5))["name"], loc).to_lower()
-			if n != "" and n in text and a not in named:
-				named.append(a)
+		if _mentions_move(text, a.substr(5)) and a not in named:
+			named.append(a)
 	var kinds := func(kind: String) -> Array[String]:
 		var r: Array[String] = []
 		for a in ctx["actions"]:
@@ -214,14 +212,16 @@ static func constraints(ctx: Dictionary, call_text: String) -> Dictionary:
 		out["actions"] = kinds.call("heal")
 	elif (wants.call("protect") or wants.call("defend")) and not kinds.call("guard").is_empty():
 		out["actions"] = kinds.call("guard")
-	elif wants.call("attack") and not wants.call("status") and not kinds.call("attack").is_empty():
+	elif wants.call("status") and not kinds.call("status").is_empty():
+		out["actions"] = kinds.call("status")
+	elif wants.call("attack") and not kinds.call("attack").is_empty():
 		out["actions"] = kinds.call("attack")
 
 	var targets: Array[String] = []
 	for tid in ctx["targets"]:
 		if tid == "self":
 			continue
-		if _mentions_unit(text, ctx["targets"][tid]["unit"]):
+		if _mentions_unit(text, ctx["targets"][tid]["unit"]) or (tid == "partner" and wants.call("partner")):
 			targets.append(tid)
 	var allowed_kinds := {}
 	for a in out.get("actions", ctx["actions"]):
@@ -237,6 +237,21 @@ static func constraints(ctx: Dictionary, call_text: String) -> Dictionary:
 	elif only_support and wants.call("self"):
 		out["targets"] = ["self"]
 	return out
+
+
+## A move is named when its full name appears, or every word of the name
+## (4+ letters) appears in any order: "Lash the bird with your vines" = "Vine Lash".
+static func _mentions_move(text: String, mid: String) -> bool:
+	for loc in LOCALES:
+		var n := _name_in(GameData.move(mid)["name"], loc).to_lower()
+		if n == "":
+			continue
+		if n in text:
+			return true
+		var words := Array(n.split(" ", false)).filter(func(w): return w.length() >= 4)
+		if words.size() >= 2 and words.all(func(w): return w in text):
+			return true
+	return false
 
 
 ## Name or animal of a unit appears in the call (any language).

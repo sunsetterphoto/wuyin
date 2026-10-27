@@ -1,0 +1,158 @@
+[
+ {
+  "slot": 0,
+  "text": "Bambär, zeig dem Vogel, wer hier der Stärkere ist!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0"
+ },
+ {
+  "slot": 0,
+  "text": "Du bist ganz schön angeschlagen, ruh dich aus und lass Bambus sprießen.",
+  "lang": "de",
+  "kind": "heal",
+  "target": "self",
+  "move": "bambushain"
+ },
+ {
+  "slot": 0,
+  "text": "Ranken raus, fessel den Gepanzerten!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:1",
+  "move": "rankenpeitsche"
+ },
+ {
+  "slot": 0,
+  "text": "Hilf Wawalurch, bevor er umkippt!",
+  "lang": "de",
+  "kind": "heal",
+  "target": "partner",
+  "move": "bambushain"
+ },
+ {
+  "slot": 0,
+  "text": "Lass die Erde unter dem Feuervogel beben!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "erdstoss"
+ },
+ {
+  "slot": 1,
+  "text": "Wawalurch, geh in Deckung!",
+  "lang": "de",
+  "kind": "guard",
+  "target": "self",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Bau einen Schutzwall für deinen Freund!",
+  "lang": "de",
+  "kind": "guard",
+  "target": "partner",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Mach ihn mit deinem Geheule ganz wirr, den Schuppigen!",
+  "lang": "de",
+  "kind": "status",
+  "target": "enemy:1",
+  "move": "kinderweinen"
+ },
+ {
+  "slot": 1,
+  "text": "Ab ins Wasser und dann von unten auf den Fasan!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "tauchen"
+ },
+ {
+  "slot": 1,
+  "text": "Feuer mag kein Wasser – zeig's ihm!",
+  "lang": "de",
+  "kind": "attack",
+  "target": "enemy:0"
+ },
+ {
+  "slot": 0,
+  "text": "Bambear, teach that bird a lesson!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0"
+ },
+ {
+  "slot": 0,
+  "text": "You look worn out, take a breather and regrow.",
+  "lang": "en",
+  "kind": "heal",
+  "target": "self",
+  "move": "bambushain"
+ },
+ {
+  "slot": 0,
+  "text": "Tie up the armored one with your vines!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:1",
+  "move": "rankenpeitsche"
+ },
+ {
+  "slot": 0,
+  "text": "Help Wailamander before he faints!",
+  "lang": "en",
+  "kind": "heal",
+  "target": "partner",
+  "move": "bambushain"
+ },
+ {
+  "slot": 0,
+  "text": "Make the ground shake under the fire bird!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "erdstoss"
+ },
+ {
+  "slot": 1,
+  "text": "Wailamander, take cover!",
+  "lang": "en",
+  "kind": "guard",
+  "target": "self",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Put up a barrier for your buddy!",
+  "lang": "en",
+  "kind": "guard",
+  "target": "partner",
+  "move": "schlammwand"
+ },
+ {
+  "slot": 1,
+  "text": "Wail until the scaly one gets dizzy!",
+  "lang": "en",
+  "kind": "status",
+  "target": "enemy:1",
+  "move": "kinderweinen"
+ },
+ {
+  "slot": 1,
+  "text": "Into the water and hit the pheasant from underneath!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0",
+  "move": "tauchen"
+ },
+ {
+  "slot": 1,
+  "text": "Fire hates water, show it!",
+  "lang": "en",
+  "kind": "attack",
+  "target": "enemy:0"
+ }
+]

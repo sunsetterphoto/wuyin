@@ -15,8 +15,13 @@ static func battle() -> Battle:
 	return b
 
 
+## Held-out set: never used while tuning prompts or keywords; only for honest scoring.
+const HOLDOUT := "res://data/llm/eval/call_sentences_holdout.json"
+static var sentence_file := SENTENCES
+
+
 static func sentences() -> Array:
-	return JSON.parse_string(FileAccess.get_file_as_string(SENTENCES))
+	return JSON.parse_string(FileAccess.get_file_as_string(sentence_file))
 
 
 ## mode: "template" (keywords only) or "model" (LLM with fallback).
