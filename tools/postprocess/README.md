@@ -15,3 +15,21 @@ $PY tools/postprocess/preview_sheet.py build/assets_px build/assets_px/px_sheet.
 - **Sprites:** weißen Hintergrund entfernen, lose Teile (< 20 % der Hauptfläche) verwerfen, zuschneiden, auf 48 px verkleinern, auf die Palette `palette_wuyin32.hex` reduzieren, harte Alpha-Kante, 1 px Umriss.
 - **Tiles:** Ausschnitt (37,5 % des Bildes = eine Kachel), nahtlos machen (versetzte Kopie, weich überblendet), auf 32 px verkleinern, Palette; wenn weniger als 4 Farben übrig bleiben: Helligkeitsrampe aus der Farbfamilie.
 - Erkenntnisse aus dem ersten Lauf (2026-10-28): Sprites wirken nach der Bearbeitung einheitlich. Weg-Textur wird zu orange (Rohbild zu warm), Steinmauer zeigt das Überblendmuster. Nächste Schritte: Palette pro Region, Prompts für Tiles schärfen, eventuell Pixel-Art-LoRA (Lizenz prüfen).
+
+## Beta-Assets (2026-10-28)
+
+Batch mit allen Prompts und Seeds: `tools/comfyui/beta_assets.json`. Bericht: `tools/comfyui/BETA_ASSETS.md`.
+
+```bash
+PY=~/Documents/ComfyUI/.venv/bin/python
+python3 tools/comfyui/beta_generate.py                    # Rohbilder + Musik nach build/beta_raw/
+$PY tools/postprocess/beta_postprocess.py                 # Sprites, Figuren, Hintergründe, Titel, Icon nach game/assets/
+~/.unsloth/studio/unsloth_studio/bin/python tools/postprocess/beta_music.py   # Musik: trimmen, -16 LUFS, OGG Vorbis
+python3 tools/postprocess/beta_vocal_check.py             # Whisper-Prüfung auf ungewollten Gesang
+$PY tools/postprocess/beta_preview.py sprites             # build/beta_preview_sprites.png
+$PY tools/postprocess/beta_preview.py backgrounds         # build/beta_preview_backgrounds.png
+```
+
+- `pixelize.py sprite ... --size 32 --height 48` erzeugt nicht-quadratische Figuren (Füße unten).
+- Hintergründe: 320x180 mit eigener 64-Farben-Palette (leicht zur Wuyin-Palette gezogen), dann 2x Nearest auf 640x360.
+- Die brew-ffmpeg hier hat kein libvorbis; OGG schreibt libsndfile (soundfile im Unsloth-venv), blockweise (ein großer Schreibaufruf stürzt ab).

@@ -3,7 +3,7 @@
 
 Steps: trim leading/trailing silence (-50 dB), two-pass EBU R128 loudnorm to TARGET LUFS
 (true peak -1.5 dBTP), 44.1 kHz stereo, 10 ms fade at both ends against clicks, Ogg Vorbis
-(libsndfile, quality ~0.35 = about 112-128 kbps). Prints duration, integrated loudness and peak.
+(libsndfile, quality 0.4, about 100-130 kbps). Prints duration, integrated loudness and peak.
 
 Needs ffmpeg and a Python with soundfile + numpy (the brew ffmpeg here has no libvorbis):
   ~/.unsloth/studio/unsloth_studio/bin/python tools/postprocess/beta_music.py [--only id,id]
@@ -55,11 +55,15 @@ def process(item, src):
         data[:n] *= ramp
         data[-n:] *= ramp[::-1]
         peak = float(np.abs(data).max())
-        if peak > 0.89:  # keep below -1 dBFS after the linear gain
-            data *= 0.89 / peak
+        if peak > 0.84:  # keep about -1.5 dBFS headroom (Vorbis adds a little overshoot)
+            data *= 0.84 / peak
         os.makedirs(OUT, exist_ok=True)
         dst = os.path.join(OUT, item["id"] + ".ogg")
-        sf.write(dst, data, sr, format="OGG", subtype="VORBIS", compression_level=0.65)
+        data = np.ascontiguousarray(data)
+        # libsndfile's Vorbis encoder crashes on one huge write; feed it in blocks.
+        with sf.SoundFile(dst, "w", sr, 2, format="OGG", subtype="VORBIS", compression_level=0.6) as f:
+            for i in range(0, len(data), 4096):
+                f.write(data[i:i + 4096])
     i, tp = measure(dst)
     probe = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration,bit_rate", "-of", "csv=p=0", dst],
                            capture_output=True, text=True).stdout.strip()

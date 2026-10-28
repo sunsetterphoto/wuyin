@@ -1,350 +1,65 @@
 {
- "version": 1,
- "note": "Beta-Assets (Kapitel 1). Z-Image Turbo fuer Bilder, ACE-Step 1.5 turbo fuer Musik. Feste Seeds; 'seed' ist der gewaehlte Seed, 'tried' listet verworfene Seeds. Aufruf: python3 tools/comfyui/beta_generate.py [section ...] [--only id,id]",
- "styles": {
-  "lingshou": "pixel art game sprite, 16-bit SNES RPG style, clean dark outline, flat cel colors, simple shading, full body, facing the viewer, centered, plain pure white background, no shadow, no ground",
-  "lingshou_new": "pixel art game sprite, 16-bit SNES RPG style, clean dark outline, flat cel colors, simple shading, full body, three-quarter view facing slightly left, cute creature design for a family friendly game, centered, plain pure white background, no shadow, no ground, no text",
-  "chars": "pixel art game character sprite, 16-bit SNES RPG overworld style, chibi proportions with a big head and a small body, full body standing upright, front view facing the viewer, both feet visible, clean dark outline, flat cel colors, simple shading, single character, centered, plain pure white background, no shadow, no ground, no text",
-  "jinli": "pixel art game sprite, 16-bit SNES RPG style, chibi, full body, sitting, front view facing the viewer, clean dark outline, flat cel colors, simple shading, centered, plain pure white background, no shadow, no ground, no text",
-  "backgrounds": "wide pixel art landscape background for a 16-bit SNES RPG battle scene, detailed painterly pixel art, flat open ground in the lower third, horizon slightly below the middle, no people, no animals, no characters, no text, no frame",
-  "ui": "pixel art, 16-bit SNES RPG style, no text, no letters"
- },
- "lingshou": [
-  {
-   "id": "bambaer",
-   "style": "lingshou",
-   "seed": 101,
-   "prompt": "a chubby giant panda spirit animal with small bamboo sprouts growing on its back, gentle smile"
+  "version": 1,
+  "note": "Beta-Assets (Kapitel 1). Z-Image Turbo fuer Bilder, ACE-Step 1.5 turbo fuer Musik. Feste Seeds; 'seed' ist der gewaehlte Seed, 'tried' listet verworfene Seeds. Aufruf: python3 tools/comfyui/beta_generate.py [section ...] [--only id,id]",
+  "styles": {
+    "lingshou": "pixel art game sprite, 16-bit SNES RPG style, clean dark outline, flat cel colors, simple shading, full body, facing the viewer, centered, plain pure white background, no shadow, no ground",
+    "lingshou_new": "pixel art game sprite, 16-bit SNES RPG style, clean dark outline, flat cel colors, simple shading, full body, three-quarter view facing slightly left, cute creature design for a family friendly game, centered, plain pure white background, no shadow, no ground, no text",
+    "chars": "pixel art game character sprite, 16-bit SNES RPG overworld style, chibi proportions with a big head and a small body, full body standing upright, front view facing the viewer, both feet visible, clean dark outline, flat cel colors, simple shading, single character, centered, plain pure white background, no shadow, no ground, no text",
+    "jinli": "pixel art game sprite, 16-bit SNES RPG style, chibi, full body, sitting, front view facing the viewer, clean dark outline, flat cel colors, simple shading, centered, plain pure white background, no shadow, no ground, no text",
+    "backgrounds": "wide pixel art landscape background for a 16-bit SNES RPG battle scene, detailed painterly pixel art, flat open ground in the lower third, horizon slightly below the middle, no people, no animals, no characters, no text, no frame",
+    "ui": "pixel art, 16-bit SNES RPG style, no text, no letters"
   },
-  {
-   "id": "wawalurch",
-   "style": "lingshou",
-   "seed": 102,
-   "prompt": "a shy chinese giant salamander spirit animal with big teary eyes and water droplets, brown and teal"
-  },
-  {
-   "id": "glutfasan",
-   "style": "lingshou",
-   "seed": 103,
-   "prompt": "a proud golden pheasant spirit bird with glowing ember tail feathers, red and gold plumage"
-  },
-  {
-   "id": "rollschupp",
-   "style": "lingshou",
-   "seed": 104,
-   "prompt": "a grumpy pangolin spirit animal with shiny iron grey metal scales"
-  },
-  {
-   "id": "zirpo",
-   "style": "lingshou_new",
-   "seed": 111,
-   "prompt": "a small round singing cricket spirit creature, sandy brown and amber body, moody half-closed eyes, long antennae, its folded wings carry a pattern of tiny musical note shapes"
-  },
-  {
-   "id": "nebelaffe",
-   "style": "lingshou_new",
-   "seed": 112,
-   "prompt": "a playful golden snub-nosed monkey spirit creature, fluffy golden orange fur, pale blue face, grinning, long curled tail wrapped in soft white wisps of mist, small green leaves in its fur"
-  },
-  {
-   "id": "firnleopard",
-   "style": "lingshou_new",
-   "seed": 113,
-   "prompt": "a brave young snow leopard spirit creature, white and silver grey spotted fur, thick long tail, standing proud, icy silver frost crystals on its paws and claws"
-  },
-  {
-   "id": "silberkranich",
-   "style": "lingshou_new",
-   "seed": 114,
-   "prompt": "an elegant red-crowned crane spirit bird standing on one leg, gentle eyes, small red cap on its head, shining silver metallic feathers, black neck, wings slightly open"
-  },
-  {
-   "id": "reisquak",
-   "style": "lingshou_new",
-   "seed": 115,
-   "prompt": "a playful chubby green rice paddy frog spirit creature, big happy eyes, wearing a single long rice leaf on its head like a hat, water droplets, blue belly"
-  },
-  {
-   "id": "jadelibelle",
-   "style": "lingshou_new",
-   "seed": 116,
-   "prompt": "a brave dragonfly spirit creature, big determined eyes, slim jade green body, four wide opaque wings shaped exactly like green bamboo leaves with dark green leaf veins, hovering",
-   "tried": [
-    {
-     "seed": 116,
-     "prompt": "v1 (blaue Fluegel, verworfen)"
-    },
-    {
-     "seed": 127
-    },
-    {
-     "seed": 137
-    }
-   ]
-  },
-  {
-   "id": "schattenmotte",
-   "style": "lingshou_new",
-   "seed": 157,
-   "prompt": "a sinister shadow moth spirit creature seen from the front, large purple and violet wings covered with hollow concentric circles like ripples on dark water, black wing edges, fuzzy dark purple body, two narrow glowing pale white eyes with an angry look, feathery antennae, menacing but suitable for children",
-   "prompt_v2": "a menacing shadow moth spirit creature seen from the front, large wings in rich purple and violet with black edges and hollow concentric ripple ring patterns in lilac, fuzzy dark purple body, two big glowing pale white eyes, feathery antennae, spooky but not scary for children",
-   "glow_eyes": true,
-   "tried": [
-    {
-     "seed": 117,
-     "prompt": "v1: zu dunkel, nur schwarz nach Palette"
-    },
-    {
-     "seed": 117,
-     "prompt": "prompt_v2"
-    },
-    {
-     "seed": 127,
-     "prompt": "prompt_v2"
-    },
-    {
-     "seed": 137,
-     "prompt": "prompt_v2"
-    },
-    {
-     "seed": 167,
-     "prompt": "aktuell"
-    }
-   ]
-  },
-  {
-   "id": "qinglong",
-   "style": "lingshou_new",
-   "seed": 118,
-   "size": 96,
-   "prompt": "the azure dragon guardian spirit of the east, a long serpentine azure teal body coiled in a loose S-shaped spiral, branching antlers made of green bamboo stalks with bamboo nodes, leaf-shaped green fins along its back and tail, wise calm golden eyes, long whiskers, short legs with claws"
-  }
- ],
- "derived": [
-  {
-   "id": "qinglong_silenced",
-   "from": "qinglong",
-   "size": 96,
-   "op": "silence",
-   "note": "Post-Process aus qinglong: entsaettigt, abgedunkelt, graue Fadenlinien. Augen werden nicht geschlossen (Grenze des Post-Process)."
-  }
- ],
- "chars": [
-  {
-   "id": "hero",
-   "style": "chars",
-   "seed": 301,
-   "prompt": "a young adult hero about 20 years old, short dark hair, simple sleeveless teal tunic over a white shirt, brown belt, dark trousers, brown boots, friendly face, chinese fantasy villager"
-  },
-  {
-   "id": "meister",
-   "style": "chars",
-   "seed": 302,
-   "prompt": "a kind old wind chime maker, bald head, long white beard, simple brown robe, holding a small bronze wind chime, chinese fantasy"
-  },
-  {
-   "id": "yao",
-   "style": "chars",
-   "seed": 303,
-   "prompt": "a young man about 20 years old, spiky black hair, red jacket with black trousers, slightly sad expression, hands in pockets, chinese fantasy rival"
-  },
-  {
-   "id": "wusheng",
-   "style": "chars",
-   "seed": 324,
-   "prompt": "a tall slender grand chancellor, pale face, long grey layered court robes with a high stiff collar, black hair in a top knot, calm cold expression, hands hidden in long sleeves, chinese fantasy court official",
-   "tried": [
-    {
-     "seed": 304,
-     "prompt": "zu schmal, Gesicht bei 32 px unlesbar"
-    },
-    {
-     "seed": 314
-    }
-   ]
-  },
-  {
-   "id": "villager_a",
-   "style": "chars",
-   "seed": 305,
-   "prompt": "a young village woman in a light green chinese dress, hair in a bun, carrying a woven basket of vegetables"
-  },
-  {
-   "id": "villager_b",
-   "style": "chars",
-   "seed": 306,
-   "prompt": "a small happy village child with two hair buns, orange simple chinese clothes, holding a paper pinwheel",
-   "fill": 0.8
-  },
-  {
-   "id": "shopkeeper",
-   "style": "chars",
-   "seed": 307,
-   "prompt": "a round chubby merchant man, small round cap, mustache, blue clothes with a white apron, cheerful smile, chinese fantasy"
-  },
-  {
-   "id": "innkeeper",
-   "style": "chars",
-   "seed": 308,
-   "prompt": "a friendly older woman innkeeper, grey hair in a bun, plum purple chinese dress, holding a ladle, warm smile"
-  },
-  {
-   "id": "teahouse",
-   "style": "chars",
-   "seed": 309,
-   "prompt": "a calm tea master, neat black hair, dark green robe, holding a clay teapot kettle in both hands, chinese fantasy"
-  },
-  {
-   "id": "monk",
-   "style": "chars",
-   "seed": 310,
-   "prompt": "a gentle shaved head shrine keeper monk, simple ochre yellow robe, prayer beads, peaceful face, chinese fantasy"
-  },
-  {
-   "id": "jinli",
-   "style": "jinli",
-   "seed": 311,
-   "size": 32,
-   "prompt": "a small cute tortoiseshell cat with black, red-orange and white patches, big green eyes, a tiny red collar with a small golden bell shaped like a koi fish"
-  }
- ],
- "backgrounds": [
-  {
-   "id": "village_night",
-   "seed": 401,
-   "prompt": "a chinese riverside village at night during a lantern festival, wooden houses with curved tiled roofs along a calm river, many glowing red paper lanterns, starry deep blue night sky, warm lights reflecting in the water, open stone plaza in the foreground"
-  },
-  {
-   "id": "river",
-   "seed": 402,
-   "prompt": "a shallow river bank at dusk, tall reeds and grasses, smooth pebbles, gentle orange and violet sunset sky, distant green hills, sandy flat bank in the foreground"
-  },
-  {
-   "id": "bamboo",
-   "seed": 403,
-   "prompt": "a clearing in a dense green bamboo forest, soft golden light rays falling through the leaves, mossy flat ground in the foreground, peaceful"
-  },
-  {
-   "id": "terraces",
-   "seed": 404,
-   "prompt": "chinese rice terraces filled with water like mirrors reflecting the sky, misty layered mountains in the distance, soft morning light, grassy flat terrace edge in the foreground"
-  },
-  {
-   "id": "shrine",
-   "seed": 415,
-   "prompt": "a wide view of a high cliff top with an ancient jade dragon shrine standing in the background, weathered grey stone pillars, a pale jade dragon statue, overcast grey silent sky, faded desaturated colors, distant misty mountains below, a wide empty flat stone courtyard filling the whole lower third of the image",
-   "tried": [
-    {
-     "seed": 405,
-     "prompt": "an ancient jade dragon shrine on a high cliff, weathered grey stone pillars and a pale jade dragon statue, overcast grey silent sky, faded colors, flat stone platform in the foreground",
-     "why": "Schrein mittig im Vordergrund, verdeckt die Kampfpositionen"
-    }
-   ]
-  }
- ],
- "ui": [
-  {
-   "id": "title",
-   "seed": 511,
-   "width": 1280,
-   "height": 720,
-   "prompt": "a phoenix made of warm golden light rising from a vast sea of clouds at dawn, the phoenix is small and placed in the lower half of the image, tall natural sandstone rock pillars like karst columns rising out of the clouds on the left and right, soft pink and gold sunrise sky, the upper third of the image is empty calm sky, wide landscape",
-   "tried": [
-    {
-     "seed": 501,
-     "prompt": "a majestic phoenix made of warm golden light rising above a vast sea of clouds at dawn, tall weathered sandstone pillars rising out of the clouds, soft pink and gold sky, wide empty calm sky at the top centre, wide landscape",
-     "why": "Phoenix belegt die Mitte oben, Saeulen wirken wie Burgtuerme"
-    }
-   ]
-  },
-  {
-   "id": "icon",
-   "seed": 512,
-   "width": 1024,
-   "height": 1024,
-   "prompt": "app icon, one single large stylized bird feather, long and curved, glowing gold, orange and red gradient, placed diagonally in the center, on a plain deep navy blue background, bold simple flat shapes, thick dark outline, no bird, no sword, readable at small size",
-   "tried": [
-    {
-     "seed": 502,
-     "prompt": "app icon, a single large stylized phoenix feather glowing in gold, orange and red, diagonal, centered on a deep blue background, bold simple shapes, thick outline, readable at small size",
-     "why": "Vogel mit Schwert statt Feder"
-    }
-   ]
-  }
- ],
- "music_style": "instrumental, chinese traditional folk, pentatonic melody, guzheng, erhu, dizi bamboo flute, soft chiptune bass, gentle 8-bit percussion, retro video game soundtrack, seamless loop, no vocals",
- "music": [
-  {
-   "id": "title",
-   "seed": 601,
-   "seconds": 80,
-   "bpm": 72,
-   "key": "D major",
-   "tags": "calm, majestic, slow, wide, hopeful, guzheng arpeggios, long dizi melody, soft pads"
-  },
-  {
-   "id": "village",
-   "seed": 602,
-   "seconds": 75,
-   "bpm": 100,
-   "key": "G major",
-   "tags": "warm festival evening in a lantern village, cheerful, cosy, plucked guzheng, bright dizi, small hand drums, wood blocks"
-  },
-  {
-   "id": "silence",
-   "seed": 603,
-   "seconds": 60,
-   "bpm": 60,
-   "key": "A minor",
-   "tags": "sparse, muted, eerie ambient, very quiet, empty, distant single guzheng notes, low drone, slow, mysterious, no drums"
-  },
-  {
-   "id": "route",
-   "seed": 604,
-   "seconds": 75,
-   "bpm": 112,
-   "key": "E minor",
-   "tags": "adventurous walk through a bamboo forest, lively, dizi lead, guzheng rhythm, steady chiptune bass, light drums"
-  },
-  {
-   "id": "town",
-   "seed": 605,
-   "seconds": 75,
-   "bpm": 90,
-   "key": "F major",
-   "tags": "cosy tea terrace town, relaxed, friendly, erhu melody, guzheng, soft chiptune bass, gentle percussion"
-  },
-  {
-   "id": "battle",
-   "seed": 606,
-   "seconds": 60,
-   "bpm": 150,
-   "key": "A minor",
-   "tags": "energetic battle theme, fast, driving chiptune bass, fast erhu and dizi melody, punchy taiko drums, exciting"
-  },
-  {
-   "id": "boss",
-   "seed": 607,
-   "seconds": 80,
-   "bpm": 132,
-   "key": "D minor",
-   "tags": "dramatic boss battle against a majestic dragon, epic, powerful taiko drums, intense erhu, heroic dizi, deep chiptune bass, gong"
-  },
-  {
-   "id": "victory",
-   "seed": 608,
-   "seconds": 9,
-   "bpm": 120,
-   "key": "C major",
-   "tags": "short victory fanfare, triumphant, bright, dizi and guzheng fanfare, chiptune, ending on a held chord"
-  },
-  {
-   "id": "tone_returns",
-   "seed": 609,
-   "seconds": 26,
-   "bpm": 70,
-   "key": "E major",
-   "tags": "emotional swell, a lost sound returns, tender then rising, erhu solo growing into full guzheng and dizi, warm, cathartic"
-  }
- ]
+  "lingshou": [
+    {"id": "bambaer", "style": "lingshou", "seed": 101, "prompt": "a chubby giant panda spirit animal with small bamboo sprouts growing on its back, gentle smile"},
+    {"id": "wawalurch", "style": "lingshou", "seed": 102, "prompt": "a shy chinese giant salamander spirit animal with big teary eyes and water droplets, brown and teal"},
+    {"id": "glutfasan", "style": "lingshou", "seed": 103, "prompt": "a proud golden pheasant spirit bird with glowing ember tail feathers, red and gold plumage"},
+    {"id": "rollschupp", "style": "lingshou", "seed": 104, "prompt": "a grumpy pangolin spirit animal with shiny iron grey metal scales"},
+    {"id": "zirpo", "style": "lingshou_new", "seed": 111, "prompt": "a small round singing cricket spirit creature, sandy brown and amber body, moody half-closed eyes, long antennae, its folded wings carry a pattern of tiny musical note shapes"},
+    {"id": "nebelaffe", "style": "lingshou_new", "seed": 112, "prompt": "a playful golden snub-nosed monkey spirit creature, fluffy golden orange fur, pale blue face, grinning, long curled tail wrapped in soft white wisps of mist, small green leaves in its fur"},
+    {"id": "firnleopard", "style": "lingshou_new", "seed": 113, "prompt": "a brave young snow leopard spirit creature, white and silver grey spotted fur, thick long tail, standing proud, icy silver frost crystals on its paws and claws"},
+    {"id": "silberkranich", "style": "lingshou_new", "seed": 114, "prompt": "an elegant red-crowned crane spirit bird standing on one leg, gentle eyes, small red cap on its head, shining silver metallic feathers, black neck, wings slightly open"},
+    {"id": "reisquak", "style": "lingshou_new", "seed": 115, "prompt": "a playful chubby green rice paddy frog spirit creature, big happy eyes, wearing a single long rice leaf on its head like a hat, water droplets, blue belly"},
+    {"id": "jadelibelle", "style": "lingshou_new", "seed": 116, "prompt": "a brave dragonfly spirit creature, big determined eyes, slim jade green body, four wide opaque wings shaped exactly like green bamboo leaves with dark green leaf veins, hovering", "tried": [{"seed": 116, "prompt": "v1 (blaue Fluegel, verworfen)"}, {"seed": 127}, {"seed": 137}]},
+    {"id": "schattenmotte", "style": "lingshou_new", "seed": 157, "prompt": "a sinister shadow moth spirit creature seen from the front, large purple and violet wings covered with hollow concentric circles like ripples on dark water, black wing edges, fuzzy dark purple body, two narrow glowing pale white eyes with an angry look, feathery antennae, menacing but suitable for children", "prompt_v2": "a menacing shadow moth spirit creature seen from the front, large wings in rich purple and violet with black edges and hollow concentric ripple ring patterns in lilac, fuzzy dark purple body, two big glowing pale white eyes, feathery antennae, spooky but not scary for children", "glow_eyes": true, "tried": [{"seed": 117, "prompt": "v1: zu dunkel, nur schwarz nach Palette"}, {"seed": 117, "prompt": "prompt_v2"}, {"seed": 127, "prompt": "prompt_v2"}, {"seed": 137, "prompt": "prompt_v2"}, {"seed": 167, "prompt": "aktuell"}]},
+    {"id": "qinglong", "style": "lingshou_new", "seed": 118, "size": 96, "prompt": "the azure dragon guardian spirit of the east, a long serpentine azure teal body coiled in a loose S-shaped spiral, branching antlers made of green bamboo stalks with bamboo nodes, leaf-shaped green fins along its back and tail, wise calm golden eyes, long whiskers, short legs with claws"}
+  ],
+  "derived": [
+    {"id": "qinglong_silenced", "from": "qinglong", "size": 96, "op": "silence", "note": "Post-Process aus qinglong: entsaettigt, abgedunkelt, graue Fadenlinien. Augen werden nicht geschlossen (Grenze des Post-Process)."}
+  ],
+  "chars": [
+    {"id": "hero", "style": "chars", "seed": 301, "prompt": "a young adult hero about 20 years old, short dark hair, simple sleeveless teal tunic over a white shirt, brown belt, dark trousers, brown boots, friendly face, chinese fantasy villager"},
+    {"id": "meister", "style": "chars", "seed": 302, "prompt": "a kind old wind chime maker, bald head, long white beard, simple brown robe, holding a small bronze wind chime, chinese fantasy"},
+    {"id": "yao", "style": "chars", "seed": 303, "prompt": "a young man about 20 years old, spiky black hair, red jacket with black trousers, slightly sad expression, hands in pockets, chinese fantasy rival"},
+    {"id": "wusheng", "style": "chars", "seed": 324, "prompt": "a tall slender grand chancellor, pale face, long grey layered court robes with a high stiff collar, black hair in a top knot, calm cold expression, hands hidden in long sleeves, chinese fantasy court official", "tried": [{"seed": 304, "prompt": "zu schmal, Gesicht bei 32 px unlesbar"}, {"seed": 314}]},
+    {"id": "villager_a", "style": "chars", "seed": 305, "prompt": "a young village woman in a light green chinese dress, hair in a bun, carrying a woven basket of vegetables"},
+    {"id": "villager_b", "style": "chars", "seed": 306, "prompt": "a small happy village child with two hair buns, orange simple chinese clothes, holding a paper pinwheel", "fill": 0.8},
+    {"id": "shopkeeper", "style": "chars", "seed": 307, "prompt": "a round chubby merchant man, small round cap, mustache, blue clothes with a white apron, cheerful smile, chinese fantasy"},
+    {"id": "innkeeper", "style": "chars", "seed": 308, "prompt": "a friendly older woman innkeeper, grey hair in a bun, plum purple chinese dress, holding a ladle, warm smile"},
+    {"id": "teahouse", "style": "chars", "seed": 309, "prompt": "a calm tea master, neat black hair, dark green robe, holding a clay teapot kettle in both hands, chinese fantasy"},
+    {"id": "monk", "style": "chars", "seed": 310, "prompt": "a gentle shaved head shrine keeper monk, simple ochre yellow robe, prayer beads, peaceful face, chinese fantasy"},
+    {"id": "jinli", "style": "jinli", "seed": 311, "size": 32, "prompt": "a small cute tortoiseshell cat with black, red-orange and white patches, big green eyes, a tiny red collar with a small golden bell shaped like a koi fish"}
+  ],
+  "backgrounds": [
+    {"id": "village_night", "seed": 401, "prompt": "a chinese riverside village at night during a lantern festival, wooden houses with curved tiled roofs along a calm river, many glowing red paper lanterns, starry deep blue night sky, warm lights reflecting in the water, open stone plaza in the foreground"},
+    {"id": "river", "seed": 402, "prompt": "a shallow river bank at dusk, tall reeds and grasses, smooth pebbles, gentle orange and violet sunset sky, distant green hills, sandy flat bank in the foreground"},
+    {"id": "bamboo", "seed": 403, "prompt": "a clearing in a dense green bamboo forest, soft golden light rays falling through the leaves, mossy flat ground in the foreground, peaceful"},
+    {"id": "terraces", "seed": 404, "prompt": "chinese rice terraces filled with water like mirrors reflecting the sky, misty layered mountains in the distance, soft morning light, grassy flat terrace edge in the foreground"},
+    {"id": "shrine", "seed": 415, "prompt": "a wide view of a high cliff top with an ancient jade dragon shrine standing in the background, weathered grey stone pillars, a pale jade dragon statue, overcast grey silent sky, faded desaturated colors, distant misty mountains below, a wide empty flat stone courtyard filling the whole lower third of the image", "tried": [{"seed": 405, "prompt": "an ancient jade dragon shrine on a high cliff, weathered grey stone pillars and a pale jade dragon statue, overcast grey silent sky, faded colors, flat stone platform in the foreground", "why": "Schrein mittig im Vordergrund, verdeckt die Kampfpositionen"}, {"seed": 425}, {"seed": 435}]}
+  ],
+  "ui": [
+    {"id": "title", "seed": 521, "width": 1280, "height": 720, "prompt": "a phoenix made of warm golden light rising from a vast sea of clouds at dawn, the phoenix is small and placed in the lower half of the image, tall natural sandstone rock pillars like karst columns rising out of the clouds on the left and right, soft pink and gold sunrise sky, the upper third of the image is empty calm sky, wide landscape", "tried": [{"seed": 501, "prompt": "a majestic phoenix made of warm golden light rising above a vast sea of clouds at dawn, tall weathered sandstone pillars rising out of the clouds, soft pink and gold sky, wide empty calm sky at the top centre, wide landscape", "why": "Phoenix belegt die Mitte oben, Saeulen wirken wie Burgtuerme"}, {"seed": 511}, {"seed": 531}, {"seed": 511}]},
+    {"id": "icon", "seed": 522, "width": 1024, "height": 1024, "prompt": "app icon, one single large stylized bird feather, long and curved, glowing gold, orange and red gradient, placed diagonally in the center, on a plain deep navy blue background, bold simple flat shapes, thick dark outline, no bird, no sword, readable at small size", "tried": [{"seed": 502, "prompt": "app icon, a single large stylized phoenix feather glowing in gold, orange and red, diagonal, centered on a deep blue background, bold simple shapes, thick outline, readable at small size", "why": "Vogel mit Schwert statt Feder"}, {"seed": 512}, {"seed": 532}, {"seed": 512}]}
+  ],
+  "music_style": "instrumental, chinese traditional folk, pentatonic melody, guzheng, erhu, dizi bamboo flute, soft chiptune bass, gentle 8-bit percussion, retro video game soundtrack, seamless loop, no vocals",
+  "music": [
+    {"id": "title", "seed": 601, "seconds": 80, "bpm": 72, "key": "D major", "tags": "calm, majestic, slow, wide, hopeful, guzheng arpeggios, long dizi melody, soft pads"},
+    {"id": "village", "seed": 602, "seconds": 75, "bpm": 100, "key": "G major", "tags": "warm festival evening in a lantern village, cheerful, cosy, plucked guzheng, bright dizi, small hand drums, wood blocks"},
+    {"id": "silence", "seed": 603, "seconds": 60, "bpm": 60, "key": "A minor", "tags": "sparse, muted, eerie ambient, very quiet, empty, distant single guzheng notes, low drone, slow, mysterious, no drums"},
+    {"id": "route", "seed": 604, "seconds": 75, "bpm": 112, "key": "E minor", "tags": "adventurous walk through a bamboo forest, lively, dizi lead, guzheng rhythm, steady chiptune bass, light drums"},
+    {"id": "town", "seed": 605, "seconds": 75, "bpm": 90, "key": "F major", "tags": "cosy tea terrace town, relaxed, friendly, erhu melody, guzheng, soft chiptune bass, gentle percussion"},
+    {"id": "battle", "seed": 606, "seconds": 60, "bpm": 150, "key": "A minor", "tags": "energetic battle theme, fast, driving chiptune bass, fast erhu and dizi melody, punchy taiko drums, exciting"},
+    {"id": "boss", "seed": 607, "seconds": 80, "bpm": 132, "key": "D minor", "tags": "dramatic boss battle against a majestic dragon, epic, powerful taiko drums, intense erhu, heroic dizi, deep chiptune bass, gong"},
+    {"id": "victory", "seed": 608, "seconds": 9, "bpm": 120, "key": "C major", "tags": "short victory fanfare, triumphant, bright, dizi and guzheng fanfare, chiptune, ending on a held chord"},
+    {"id": "tone_returns", "seed": 609, "seconds": 26, "bpm": 70, "key": "E major", "tags": "emotional swell, a lost sound returns, tender then rising, erhu solo growing into full guzheng and dizi, warm, cathartic"}
+  ]
 }

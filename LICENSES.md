@@ -9,5 +9,6 @@ Jedes Modell, jede LoRA, Schrift und jedes fremde Asset, das ins Spiel oder in d
 | godot-cpp | C++-Bindings der GDExtension | MIT | ja | github.com/godotengine/godot-cpp | 2026-10-28 |
 | Gemma 4 E2B QAT UD-Q4_K_XL (unsloth) | Sprachmodell im Spiel (Kandidat) | Apache 2.0 | ja | huggingface.co/unsloth/gemma-4-E2B-it-qat-GGUF | 2026-10-28 (Model-Card-Metadaten) |
 | Sprachmodell für Release (GGUF) | Dialoge, Ruf-Übersetzer | offen | offen | offen | offen |
-| Z-Image Turbo | Konzeptbilder, Texturen (ComfyUI) | offen | offen | offen | offen |
-| ACE-Step 1.5 | Musik (ComfyUI) | offen | offen | offen | offen |
+| Z-Image Turbo (Tongyi-MAI), mit Text-Encoder Qwen3 4B und VAE `ae.safetensors` (FLUX.1-schnell-VAE) | Sprites, Hintergründe, Titelbild, Icon (ComfyUI) | Apache 2.0 (Modell); Qwen3: Apache 2.0; FLUX.1-schnell-VAE: Apache 2.0 | ja (Apache 2.0 schränkt Ausgaben nicht ein) | huggingface.co/Tongyi-MAI/Z-Image-Turbo | 2026-10-28 (Model-Card-Metadaten) |
+| ACE-Step 1.5 turbo (mit Qwen-ace15-Text-Encodern, ace_1.5_vae) | Musik (ComfyUI) | MIT | ja; Model Card: generierte Musik darf kommerziell genutzt werden | huggingface.co/ACE-Step/Ace-Step1.5 | 2026-10-28 (Model Card) |
+| Generierte Beta-Assets (`game/assets/sprites/`, `backgrounds/`, `ui/`, `audio/music/`) | Spiel | eigene Erzeugung mit den Modellen oben, Prompts und Seeds in `tools/comfyui/beta_assets.json` | ja (keine fremden Vorlagen, keine Marken- oder Franchise-Namen in Prompts) | lokal erzeugt | 2026-10-28 |
