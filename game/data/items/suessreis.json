@@ -1,0 +1,11 @@
+{
+  "id": "suessreis",
+  "name": "ITEM_SUESSREIS",
+  "desc": "ITEM_SUESSREIS_DESC",
+  "kind": "food",
+  "likes": [
+    "water",
+    "fire"
+  ],
+  "price": 15
+}

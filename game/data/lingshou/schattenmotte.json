@@ -1,0 +1,24 @@
+{
+  "id": "schattenmotte",
+  "name": "LS_SCHATTENMOTTE",
+  "animal": "LS_SCHATTENMOTTE_ANIMAL",
+  "element": "earth",
+  "temperaments": [
+    "moody"
+  ],
+  "alignment": "shadow_moth",
+  "base_stats": {
+    "hp": 40,
+    "atk": 42,
+    "def": 34,
+    "spd": 52
+  },
+  "moves": [
+    "klangfrass",
+    "sandwirbel",
+    "erdstoss"
+  ],
+  "habitat": "night",
+  "can_breed": false,
+  "voice_card": "cards/{lang}/schattenmotte.md"
+}

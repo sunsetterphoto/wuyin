@@ -1,0 +1,25 @@
+{
+  "id": "reisquak",
+  "name": "LS_REISQUAK",
+  "animal": "LS_REISQUAK_ANIMAL",
+  "element": "water",
+  "temperaments": [
+    "playful"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 44,
+    "atk": 38,
+    "def": 40,
+    "spd": 48
+  },
+  "moves": [
+    "stroemungsruf",
+    "reisregen",
+    "kinderweinen",
+    "tauchen"
+  ],
+  "habitat": "pond",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/reisquak.md"
+}

@@ -25,6 +25,8 @@ var sides: Array[Dictionary] = []
 ## Pending actions: "side:slot" -> action Dictionary
 var pending: Dictionary = {}
 var winner := -1
+## How the battle ended: "win", "lose", "tamed", "freed", "fled" ("" while running).
+var outcome := ""
 ## Breath per side: each call costs one, regenerates every few turns.
 var breath: Array[int] = []
 ## Per-unit mood shift for moody Lingshou (uid -> float), rolled at battle start.
@@ -42,8 +44,12 @@ static func create(battle_seed: int, parties: Array, active := 1) -> Battle:
 		var party: Array[BattleUnit] = []
 		for i in parties[s].size():
 			var spec: Dictionary = parties[s][i]
-			var u := BattleUnit.create(spec["id"], int(spec.get("level", 5)), spec.get("uid", "s%dp%d" % [s, i]))
+			var u := BattleUnit.from_record({"species": spec["id"], "level": int(spec.get("level", 5)),
+				"uid": spec.get("uid", "s%dp%d" % [s, i])}.merged(spec))
 			u.side = s
+			u.role = spec.get("role", "")
+			if u.role == "wild":
+				u.trust = int(spec.get("trust", Taming.START_TRUST))
 			party.append(u)
 		var act: Array[int] = []
 		for i in party.size():
@@ -73,6 +79,25 @@ static func call_action(move_id: String, target_side: int, target_slot: int, sta
 
 static func switch_action(party_index: int) -> Dictionary:
 	return {"type": "switch", "party_index": party_index}
+
+
+## Befriending a wild or silenced opponent instead of attacking (act: calm | feed | talk).
+static func tame_action(act: String, target_slot: int, item := "", tone := "neutral") -> Dictionary:
+	return {"type": "tame", "act": act, "target_side": 1, "target_slot": target_slot, "item": item, "tone": tone}
+
+
+## Using an item from the bag on a party member (heal, revive).
+static func item_action(item: String, party_index: int) -> Dictionary:
+	return {"type": "item", "item": item, "party_index": party_index}
+
+
+static func flee_action() -> Dictionary:
+	return {"type": "flee"}
+
+
+## A wild Lingshou that trusts the player just watches.
+static func watch_action() -> Dictionary:
+	return {"type": "watch"}
 
 
 # --- queries -----------------------------------------------------------------
@@ -106,7 +131,12 @@ func bench(side: int) -> Array[int]:
 
 
 func is_over() -> bool:
-	return winner >= 0
+	return outcome != ""
+
+
+## Only wild battles can be left (not rivals, silenced or guardians).
+func can_flee(side := 0) -> bool:
+	return active_units(1 - side).all(func(u): return u.role == "wild") and sides[1 - side]["party"].size() == 1
 
 
 ## Damage fraction both allies of `side` gain from the generating cycle.
@@ -170,6 +200,30 @@ func submit(side: int, slot: int, action: Dictionary) -> String:
 				if k.begins_with("%d:" % side) and other.get("type") == "switch" \
 						and other["party_index"] == action["party_index"]:
 					return "party member already switching in"
+		"tame":
+			var t := unit_at(int(action.get("target_side", 1)), int(action.get("target_slot", 0)))
+			if t == null or t.side == side or not (Taming.is_tameable(t) or Taming.is_silenced(t)):
+				return "nothing to befriend there"
+			var act: String = action.get("act", "")
+			if act not in ["calm", "feed", "talk"]:
+				return "unknown befriending act"
+			if act == "feed" and (not Taming.is_tameable(t) or GameData.item(action.get("item", "")).get("kind") != "food"):
+				return "can only feed wild Lingshou with food"
+		"item":
+			var it := GameData.item(action.get("item", ""))
+			var idx := int(action.get("party_index", -1))
+			if it.is_empty() or it.get("kind") not in ["heal", "revive"] or idx < 0 or idx >= sides[side]["party"].size():
+				return "item cannot be used like that"
+			var target: BattleUnit = sides[side]["party"][idx]
+			if it["kind"] == "heal" and (not target.is_alive() or target.hp >= target.max_hp):
+				return "item would have no effect"
+			if it["kind"] == "revive" and target.is_alive():
+				return "item would have no effect"
+		"flee":
+			if not can_flee(side):
+				return "cannot flee from this battle"
+		"watch":
+			pass
 		_:
 			return "unknown action type"
 	if action.get("call", false):
@@ -195,11 +249,21 @@ func resolve_turn() -> Array[Dictionary]:
 		if not u.is_alive() or not _is_active(u):
 			continue
 		var action: Dictionary = entry["action"]
-		if action["type"] == "switch":
-			_do_switch(u, action, events)
-		else:
-			_do_move(u, action, events)
-		if _check_end(events):
+		match action["type"]:
+			"switch":
+				_do_switch(u, action, events)
+			"move":
+				_do_move(u, action, events)
+			"tame":
+				_do_tame(u, action, events)
+			"item":
+				_do_item(u, action, events)
+			"flee":
+				outcome = "fled"
+				events.append({"type": "fled", "user": u.uid})
+			"watch":
+				events.append({"type": "watch", "user": u.uid})
+		if is_over() or _check_end(events):
 			break
 
 	_end_of_turn(events)
@@ -214,7 +278,16 @@ func _turn_order() -> Array:
 		var parts: PackedStringArray = key.split(":")
 		var u := unit_at(int(parts[0]), int(parts[1]))
 		var action: Dictionary = pending[key]
-		var prio := 10 if action["type"] == "switch" else int(GameData.move(action["move"]).get("priority", 0))
+		var prio := 0
+		match action["type"]:
+			"flee":
+				prio = 20
+			"switch", "item":
+				prio = 10
+			"tame":
+				prio = 5
+			"move":
+				prio = int(GameData.move(action["move"]).get("priority", 0))
 		entries.append({"unit": u, "action": action, "prio": prio, "spd": u.spd, "tie": rng.randf(), "key": key})
 	# Sort by key first so the tie-break rolls never depend on dictionary order.
 	entries.sort_custom(func(a, b): return a["key"] < b["key"])
@@ -225,6 +298,64 @@ func _turn_order() -> Array:
 			return a["spd"] > b["spd"]
 		return a["tie"] > b["tie"])
 	return entries
+
+
+func _do_tame(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> void:
+	var t := unit_at(int(action["target_side"]), int(action["target_slot"]))
+	if t == null or not t.is_alive():
+		events.append({"type": "no_effect"})
+		return
+	var act: String = action["act"]
+	var amount := Taming.gain(t, act, action.get("item", ""), action.get("tone", "neutral"), moods.get(t.uid, 0.0))
+	events.append({"type": "tame_" + act, "user": u.uid, "target": t.uid, "item": action.get("item", ""),
+		"tone": action.get("tone", "")})
+	if Taming.is_silenced(t):
+		_add_heart(t, amount, events)
+	else:
+		t.trust = clampi(t.trust + amount, 0, Taming.TRUST_FULL)
+		events.append({"type": "trust", "target": t.uid, "amount": amount, "total": t.trust})
+		if t.trust >= Taming.TRUST_FULL:
+			outcome = "tamed"
+			winner = u.side
+			events.append({"type": "tamed", "target": t.uid})
+			_award_xp(u.side, events)
+
+
+func _add_heart(t: BattleUnit, amount: int, events: Array[Dictionary]) -> void:
+	if amount <= 0:
+		return
+	t.heart = clampi(t.heart + amount, 0, Taming.HEART_FULL)
+	events.append({"type": "heart", "target": t.uid, "amount": amount, "total": t.heart})
+	if t.heart >= Taming.HEART_FULL and outcome == "":
+		# Freed: the silenced Lingshou stops fighting; with two opponents the battle
+		# ends once every silenced one is freed and the rest are exhausted.
+		events.append({"type": "freed", "target": t.uid})
+		t.freed = true
+		var others: Array = sides[t.side]["party"].filter(func(o): return o != t and o.is_alive())
+		if others.is_empty():
+			outcome = "freed"
+			winner = 1 - t.side
+			_award_xp(winner, events)
+
+
+func _do_item(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> void:
+	var it := GameData.item(action["item"])
+	var t: BattleUnit = sides[u.side]["party"][int(action["party_index"])]
+	events.append({"type": "item", "user": u.uid, "item": action["item"], "target": t.uid})
+	match it["kind"]:
+		"heal":
+			if not t.is_alive():
+				events.append({"type": "no_effect"})
+				return
+			var amount := mini(t.max_hp - t.hp, ceili(t.max_hp * float(it.get("heal_pct", 0)) / 100.0))
+			t.hp += amount
+			events.append({"type": "heal", "target": t.uid, "amount": amount})
+		"revive":
+			if t.is_alive():
+				events.append({"type": "no_effect"})
+				return
+			t.hp = maxi(1, ceili(t.max_hp * float(it.get("heal_pct", 50)) / 100.0))
+			events.append({"type": "revive", "target": t.uid, "amount": t.hp})
 
 
 func _do_switch(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> void:
@@ -319,6 +450,10 @@ func _attack(u: BattleUnit, t: BattleUnit, mv: Dictionary, power_mult: float, ev
 	t.hp = maxi(0, t.hp - amount)
 	events.append({"type": "damage", "target": t.uid, "amount": amount, "effectiveness": eff,
 		"target_element": t.element()})
+	if Taming.is_tameable(t) and t.side != u.side:
+		t.trust = maxi(0, t.trust - Taming.HIT_PENALTY)
+	if Taming.is_silenced(t) and t.side != u.side and t.is_alive():
+		_add_heart(t, Taming.heart_from_damage(t, amount), events)
 	if t.is_alive():
 		_apply_effect(mv, t, events, false)
 	else:
@@ -427,6 +562,7 @@ func _check_end(events: Array[Dictionary]) -> bool:
 		var alive: bool = sides[s]["party"].any(func(u): return u.is_alive())
 		if not alive:
 			winner = 1 - s
+			outcome = "win" if winner == 0 else "lose"
 			events.append({"type": "end", "winner": winner})
 			_award_xp(winner, events)
 			return true

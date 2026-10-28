@@ -97,3 +97,27 @@ CAM_BLUR,Blur,Unschärfe,景深
 CAM_BLOOM,Bloom,Bloom,泛光
 CAM_PARTICLES,Particles,Partikel,粒子
 CAM_BENCH,Benchmark,Messen,测速
+MOVE_FRUEHLINGSSTURM,Spring Gale,Frühlingssturm,春岚
+MOVE_KLANGFRASS,Sound Feast,Klangfraß,噬音
+MOVE_REISREGEN,Paddy Rain,Reisregen,稻雨
+MOVE_BLATTFLUG,Leaf Dart,Blattflug,叶翔
+LS_QINGLONG,Azure Dragon,Azurdrache,青龙
+LS_QINGLONG_ANIMAL,azure dragon (sky guardian),Azurdrache (Himmelswächter),青龙（天守）
+LS_SCHATTENMOTTE,Shadow Moth,Schattenmotte,影蛾
+LS_SCHATTENMOTTE_ANIMAL,moth,Motte,蛾
+LS_REISQUAK,Paddyhop,Reisquak,稻蛙仔
+LS_REISQUAK_ANIMAL,rice paddy frog,Reisfrosch,稻田蛙
+LS_JADELIBELLE,Jadewing,Jadelibelle,玉蜓
+LS_JADELIBELLE_ANIMAL,dragonfly,Libelle,蜻蜓
+ITEM_REISBAELLCHEN,Rice Ball,Reisbällchen,饭团
+ITEM_REISBAELLCHEN_DESC,Restores 40% of a Lingshou's strength.,Gibt einem Lingshou 40 % Kraft zurück.,恢复灵兽40%的体力。
+ITEM_KRAEUTERTEE,Herbal Tea,Kräutertee,草药茶
+ITEM_KRAEUTERTEE_DESC,Fully restores a Lingshou's strength.,Gibt einem Lingshou alle Kraft zurück.,完全恢复灵兽的体力。
+ITEM_GLOCKENBLUETE,Bellflower,Glockenblüte,铃兰花
+ITEM_GLOCKENBLUETE_DESC,Wakes an exhausted Lingshou with half its strength.,Weckt ein erschöpftes Lingshou mit halber Kraft.,唤醒力竭的灵兽，恢复一半体力。
+ITEM_BAMBUSSPROSSEN,Bamboo Shoots,Bambussprossen,竹笋
+ITEM_BAMBUSSPROSSEN_DESC,"Food for wild Lingshou. Wood and earth spirits love it.","Futter für wilde Lingshou. Holz- und Erdgeister lieben es.",喂给野生灵兽的食物。木灵和土灵最爱。
+ITEM_SUESSREIS,Sweet Rice,Süßreis,甜糯米
+ITEM_SUESSREIS_DESC,"Food for wild Lingshou. Water and fire spirits love it.","Futter für wilde Lingshou. Wasser- und Feuergeister lieben es.",喂给野生灵兽的食物。水灵和火灵最爱。
+ITEM_SILBERTAU,Silver Dew,Silbertau,银露
+ITEM_SILBERTAU_DESC,"Food for wild Lingshou. Metal and water spirits love it.","Futter für wilde Lingshou. Metall- und Wassergeister lieben es.",喂给野生灵兽的食物。金灵和水灵最爱。

@@ -1,0 +1,14 @@
+{
+  "id": "klangfrass",
+  "name": "MOVE_KLANGFRASS",
+  "element": "earth",
+  "kind": "status",
+  "accuracy": 80,
+  "target": "enemy",
+  "effect": {
+    "status": "silenced",
+    "turns": 2,
+    "chance": 100
+  },
+  "llm_hint": "eats the sound around one enemy and silences it"
+}

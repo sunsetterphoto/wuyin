@@ -1,0 +1,11 @@
+{
+  "id": "silbertau",
+  "name": "ITEM_SILBERTAU",
+  "desc": "ITEM_SILBERTAU_DESC",
+  "kind": "food",
+  "likes": [
+    "metal",
+    "water"
+  ],
+  "price": 25
+}

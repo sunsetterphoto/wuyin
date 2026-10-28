@@ -1,0 +1,10 @@
+{
+  "id": "reisregen",
+  "name": "MOVE_REISREGEN",
+  "element": "water",
+  "kind": "heal",
+  "accuracy": 100,
+  "target": "ally",
+  "heal_pct": 30,
+  "llm_hint": "a gentle rain over the rice that heals self or partner"
+}

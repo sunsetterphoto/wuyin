@@ -1,0 +1,10 @@
+{
+  "id": "fruehlingssturm",
+  "name": "MOVE_FRUEHLINGSSTURM",
+  "element": "wood",
+  "kind": "attack",
+  "accuracy": 90,
+  "target": "enemy",
+  "power": 80,
+  "llm_hint": "a storm of spring leaves; strongest wood attack"
+}

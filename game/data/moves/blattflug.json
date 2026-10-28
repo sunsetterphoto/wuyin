@@ -1,0 +1,11 @@
+{
+  "id": "blattflug",
+  "name": "MOVE_BLATTFLUG",
+  "element": "wood",
+  "kind": "attack",
+  "accuracy": 100,
+  "target": "enemy",
+  "power": 45,
+  "priority": 1,
+  "llm_hint": "darts in on leaf wings and always strikes first"
+}

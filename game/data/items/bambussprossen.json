@@ -1,0 +1,11 @@
+{
+  "id": "bambussprossen",
+  "name": "ITEM_BAMBUSSPROSSEN",
+  "desc": "ITEM_BAMBUSSPROSSEN_DESC",
+  "kind": "food",
+  "likes": [
+    "wood",
+    "earth"
+  ],
+  "price": 15
+}

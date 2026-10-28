@@ -1,0 +1,8 @@
+{
+  "id": "glockenbluete",
+  "name": "ITEM_GLOCKENBLUETE",
+  "desc": "ITEM_GLOCKENBLUETE_DESC",
+  "kind": "revive",
+  "heal_pct": 50,
+  "price": 90
+}

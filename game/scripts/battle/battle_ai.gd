@@ -55,6 +55,8 @@ static func choose_for(battle: Battle, u: BattleUnit) -> Dictionary:
 func choose(battle: Battle, side: int, slot: int) -> Dictionary:
 	var u := battle.unit_at(side, slot)
 	var usable := u.usable_moves()
+	if Taming.is_tameable(u) and u.trust >= Taming.CALM_TRUST:
+		return Battle.watch_action()
 
 	# Heal a badly hurt ally first.
 	for mid in usable:

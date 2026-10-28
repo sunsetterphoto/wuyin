@@ -1,0 +1,27 @@
+{
+  "id": "qinglong",
+  "name": "LS_QINGLONG",
+  "animal": "LS_QINGLONG_ANIMAL",
+  "element": "wood",
+  "temperaments": [
+    "gentle"
+  ],
+  "alignment": "silenced",
+  "base_stats": {
+    "hp": 80,
+    "atk": 58,
+    "def": 55,
+    "spd": 45
+  },
+  "moves": [
+    "fruehlingssturm",
+    "rankenpeitsche",
+    "bambushain",
+    "eisenstille"
+  ],
+  "habitat": "shrine",
+  "can_breed": false,
+  "guardian": true,
+  "sprite_size": 96,
+  "voice_card": "cards/{lang}/qinglong.md"
+}

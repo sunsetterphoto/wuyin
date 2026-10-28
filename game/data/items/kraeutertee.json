@@ -1,0 +1,8 @@
+{
+  "id": "kraeutertee",
+  "name": "ITEM_KRAEUTERTEE",
+  "desc": "ITEM_KRAEUTERTEE_DESC",
+  "kind": "heal",
+  "heal_pct": 100,
+  "price": 60
+}

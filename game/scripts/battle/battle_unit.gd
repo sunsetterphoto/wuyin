@@ -21,6 +21,13 @@ var moves: Array[String] = []
 var statuses: Dictionary = {}
 var shielded := false
 var side := 0
+## "" = regular opponent or own Lingshou, "wild" = can be tamed, "silenced" = can be freed.
+var role := ""
+## Wild: trust towards the player (0-100). Silenced: heart-sound bar (0-100).
+var trust := 0
+var heart := 0
+## A freed silenced Lingshou leaves the fight (counts as out, but not exhausted).
+var freed := false
 
 
 static func create(species_id: String, lvl: int, unit_uid := "") -> BattleUnit:
@@ -33,6 +40,24 @@ static func create(species_id: String, lvl: int, unit_uid := "") -> BattleUnit:
 	u.recalc_stats()
 	u.hp = u.max_hp
 	return u
+
+
+## Rebuilds a unit from a saved party record (see GameState).
+static func from_record(rec: Dictionary) -> BattleUnit:
+	var u := create(rec["species"], int(rec.get("level", 1)), rec.get("uid", ""))
+	u.xp = int(rec.get("xp", 0))
+	u.bond = int(rec.get("bond", 0))
+	if rec.has("moves"):
+		u.moves.clear()
+		for m in rec["moves"]:
+			u.moves.append(m)
+	u.hp = clampi(int(rec.get("hp", u.max_hp)), 0, u.max_hp)
+	return u
+
+
+func to_record() -> Dictionary:
+	return {"uid": uid, "species": species["id"], "level": level, "xp": xp, "hp": hp, "bond": bond,
+		"moves": moves.duplicate()}
 
 
 static func stat_for(base: int, lvl: int) -> int:
@@ -86,7 +111,7 @@ func name_key() -> String:
 
 
 func is_alive() -> bool:
-	return hp > 0
+	return hp > 0 and not freed
 
 
 func has_status(s: String) -> bool:

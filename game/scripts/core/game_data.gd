@@ -5,6 +5,8 @@ extends RefCounted
 
 const LINGSHOU_DIR := "res://data/lingshou"
 const MOVES_DIR := "res://data/moves"
+const ITEMS_DIR := "res://data/items"
+const ITEM_KINDS: Array[String] = ["heal", "revive", "food"]
 
 const TEMPERAMENTS: Array[String] = ["brave", "anxious", "stubborn", "playful", "gentle", "moody"]
 const ALIGNMENTS: Array[String] = ["free", "wild", "silenced", "shadow_moth"]
@@ -16,6 +18,7 @@ const MAX_MOVES := 4
 
 static var _lingshou: Dictionary = {}
 static var _moves: Dictionary = {}
+static var _items: Dictionary = {}
 static var _loaded := false
 
 
@@ -29,6 +32,17 @@ static func move(id: String) -> Dictionary:
 	_ensure_loaded()
 	assert(_moves.has(id), "unknown move: " + id)
 	return _moves[id]
+
+
+## Empty dictionary for unknown ids (callers validate player input with it).
+static func item(id: String) -> Dictionary:
+	_ensure_loaded()
+	return _items.get(id, {})
+
+
+static func item_ids() -> Array:
+	_ensure_loaded()
+	return _items.keys()
 
 
 static func lingshou_ids() -> Array:
@@ -54,7 +68,25 @@ static func validate() -> Array[String]:
 		_validate_move(_moves[id], errors)
 	for id in _lingshou:
 		_validate_lingshou(_lingshou[id], errors)
+	for id in _items:
+		_validate_item(_items[id], errors)
 	return errors
+
+
+static func _validate_item(it: Dictionary, errors: Array[String]) -> void:
+	var id: String = it.get("id", "?")
+	if it.get("_file") != id:
+		errors.append("item %s: file name differs from id" % id)
+	for key in ["name", "desc"]:
+		if not String(it.get(key, "")).begins_with("ITEM_"):
+			errors.append("item %s: %s must be a translation key ITEM_*" % [id, key])
+	if it.get("kind") not in ITEM_KINDS:
+		errors.append("item %s: bad kind %s" % [id, it.get("kind")])
+	if int(it.get("price", 0)) <= 0:
+		errors.append("item %s: needs a price" % id)
+	for e in it.get("likes", []):
+		if not WuXing.is_element(e):
+			errors.append("item %s: bad element in likes: %s" % [id, e])
 
 
 static func _ensure_loaded() -> void:
@@ -62,6 +94,7 @@ static func _ensure_loaded() -> void:
 		return
 	_moves = _load_dir(MOVES_DIR)
 	_lingshou = _load_dir(LINGSHOU_DIR)
+	_items = _load_dir(ITEMS_DIR)
 	_loaded = true
 
 
