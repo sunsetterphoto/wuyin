@@ -52,6 +52,11 @@ func clear_body() -> void:
 		c.queue_free()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST and is_visible_in_tree():
+		close()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu") or event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()

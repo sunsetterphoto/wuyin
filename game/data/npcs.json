@@ -126,5 +126,13 @@
    "style": "gentle",
    "octave": -1
   }
+ },
+ "jinli": {
+  "name": "NPC_JINLI",
+  "voice": {
+   "tone": "yu",
+   "style": "playful",
+   "octave": 1
+  }
  }
 }

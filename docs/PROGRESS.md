@@ -11,6 +11,10 @@
 | M0.5 Stimme | fertig (Desktop) | Charakterkarten für 8 Lingshou in en/de/zh-Hans (`data/cards/`), Stimme im Kampf gestreamt, Verstummte in Fragmenten. `TextGuard` prüft Länge pro Rolle (140 bzw. 48 Zeichen), Wortfilter, KI-Floskeln und Schrift (Chinesisch vs. Latein); sonst Vorlage nach Temperament und Ereignis (`data/templates/voice.json`). Rollen-Prioritäten: Ruf unterbricht laufende Stimme. Live mit Gemma 4 E2B: 350–600 ms je Satz |
 | M0.6 Kameramodi | fertig (Desktop, Emulator) | Testkarte mit Blöcken und Billboard-Sprites (`scenes/world/test_map.tscn`), Umschaltung zur Laufzeit mit Kamerafahrt (Dolly-Zoom). HD-2D: Perspektive 38°, Tilt-Shift, Bloom, Schatten, Laternen, Glühwürmchen. Klassisch: orthografisch 60°, 640×360 ganzzahlig skaliert, Kamera auf Texel gerastert. Desktop (Mobile-Renderer) und Emulator (GLES3, ohne Tiefenunschärfe) je 60 FPS in beiden Modi. **Offen:** Messung auf echtem Gerät mit Vulkan |
 
+## Beta „Kapitel 1“ (v0.1.0-beta, 2026-10-28)
+
+Auf Samuels Wunsch („komplett spielbare Beta zum Testen und Bewerten auf dem S24“) vorgezogen; Umfang, Messungen und Bedienung in [BETA.md](BETA.md). Prolog in Weidendorf, Bambusmeer bis zum Azurdrachen, Zähmen, Befreien (Herzklang), Ruf, Stimmen, Shop, Unterkunft, Speichern, Optionen, Bewertungsbogen. Grafik (Lingshou, Figuren, Kampfhintergründe, Titelbild) und Musik mit ComfyUI erzeugt, siehe `tools/comfyui/BETA_ASSETS.md`.
+
 ## Entscheidungen
 
 - 2026-10-27: Erst Emulator, echtes Testgerät später (Samuel). Latenz-Abnahme von M0.3 bleibt bis dahin offen.
@@ -26,6 +30,10 @@
 - 2026-10-28: Rollen haben Prioritäten (`data/llm/roles.json`); ein Ruf bricht eine laufende Stimme ab, die dann ihre Vorlage zeigt. Grund: ein Modell, eine Warteschlange; sonst verdoppelt sich die Ruf-Latenz.
 - 2026-10-28: Ein Ruf, der mit dem Namen eines eigenen Lingshou beginnt, geht an dieses, wenn es in dem Zug noch einen Befehl braucht.
 - 2026-10-28: Klassischer Modus nutzt 60° Neigung; Kachel-Oberseiten werden dadurch vertikal um ca. 13 % gestaucht. Für echte 1:1-Texel wäre eine oblique Projektion nötig; Entscheidung in Phase 1 mit echten Tiles.
+- 2026-10-28: Beta: Erfahrung bekommt das ganze Gefolge, Erschöpfte die Hälfte (sonst bleibt das erste, schwache Lingshou zurück). Belohnung 20 × Stufe + 40, Bedarf 8 × Stufe².
+- 2026-10-28: Beta: Verstummte zögern mit wachsendem Herzklang öfter (Chance = Herzklang × 0,6), Zureden füllt 15–30 Punkte; Himmelswächter zählen halb.
+- 2026-10-28: Beta: Erstes Zähmen im Prolog ohne Kampf (die Hauptfigur hat noch kein Lingshou), danach Zähmen als Teil wilder Kämpfe.
+- 2026-10-28: Beta: Ohne freies Glöckchen gehen gezähmte Lingshou auf den Hof; Tausch am Windspiel-Schrein jeder Unterkunft.
 - 2026-10-28: Platzhalter-Pixelgrafik wird im Code erzeugt (`scripts/world/pixel_art.gd`); die Asset-Pipeline mit ComfyUI folgt in Phase 1.
 
 ## Messungen M0.3 auf dem Samsung Galaxy S24 Ultra (28.10. nachts)

@@ -231,24 +231,45 @@
   },
   {
    "id": "shrine",
-   "seed": 405,
-   "prompt": "an ancient jade dragon shrine on a high cliff, weathered grey stone pillars and a pale jade dragon statue, overcast grey silent sky, faded colors, flat stone platform in the foreground"
+   "seed": 415,
+   "prompt": "a wide view of a high cliff top with an ancient jade dragon shrine standing in the background, weathered grey stone pillars, a pale jade dragon statue, overcast grey silent sky, faded desaturated colors, distant misty mountains below, a wide empty flat stone courtyard filling the whole lower third of the image",
+   "tried": [
+    {
+     "seed": 405,
+     "prompt": "an ancient jade dragon shrine on a high cliff, weathered grey stone pillars and a pale jade dragon statue, overcast grey silent sky, faded colors, flat stone platform in the foreground",
+     "why": "Schrein mittig im Vordergrund, verdeckt die Kampfpositionen"
+    }
+   ]
   }
  ],
  "ui": [
   {
    "id": "title",
-   "seed": 501,
+   "seed": 511,
    "width": 1280,
    "height": 720,
-   "prompt": "a majestic phoenix made of warm golden light rising above a vast sea of clouds at dawn, tall weathered sandstone pillars rising out of the clouds, soft pink and gold sky, wide empty calm sky at the top centre, wide landscape"
+   "prompt": "a phoenix made of warm golden light rising from a vast sea of clouds at dawn, the phoenix is small and placed in the lower half of the image, tall natural sandstone rock pillars like karst columns rising out of the clouds on the left and right, soft pink and gold sunrise sky, the upper third of the image is empty calm sky, wide landscape",
+   "tried": [
+    {
+     "seed": 501,
+     "prompt": "a majestic phoenix made of warm golden light rising above a vast sea of clouds at dawn, tall weathered sandstone pillars rising out of the clouds, soft pink and gold sky, wide empty calm sky at the top centre, wide landscape",
+     "why": "Phoenix belegt die Mitte oben, Saeulen wirken wie Burgtuerme"
+    }
+   ]
   },
   {
    "id": "icon",
-   "seed": 502,
+   "seed": 512,
    "width": 1024,
    "height": 1024,
-   "prompt": "app icon, a single large stylized phoenix feather glowing in gold, orange and red, diagonal, centered on a deep blue background, bold simple shapes, thick outline, readable at small size"
+   "prompt": "app icon, one single large stylized bird feather, long and curved, glowing gold, orange and red gradient, placed diagonally in the center, on a plain deep navy blue background, bold simple flat shapes, thick dark outline, no bird, no sword, readable at small size",
+   "tried": [
+    {
+     "seed": 502,
+     "prompt": "app icon, a single large stylized phoenix feather glowing in gold, orange and red, diagonal, centered on a deep blue background, bold simple shapes, thick outline, readable at small size",
+     "why": "Vogel mit Schwert statt Feder"
+    }
+   ]
   }
  ],
  "music_style": "instrumental, chinese traditional folk, pentatonic melody, guzheng, erhu, dizi bamboo flute, soft chiptune bass, gentle 8-bit percussion, retro video game soundtrack, seamless loop, no vocals",

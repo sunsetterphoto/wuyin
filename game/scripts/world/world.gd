@@ -51,6 +51,7 @@ var _overlay_layer: CanvasLayer
 var _rng := RandomNumberGenerator.new()
 var _wander_t := {}
 var _silent := false
+var _fps_log_t := 0.0
 
 
 static func instance() -> World:
@@ -73,6 +74,17 @@ func _ready() -> void:
 		await enter_map(start_map, "start", Vector2(-1, -1), false)
 	else:
 		await enter_map(start_map, "", state.pos, false)
+
+
+func _notification(what: int) -> void:
+	# Phones kill paused apps without warning: save whenever the game leaves the foreground.
+	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_WM_CLOSE_REQUEST, NOTIFICATION_APPLICATION_FOCUS_OUT]:
+		if state and map:
+			state.save_game(AUTOSAVE_SLOT)
+	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		# Android back button: open the menu (menus close themselves on "menu"/ui_cancel).
+		if not busy and not dialog.is_open():
+			open_menu()
 
 
 func _exit_tree() -> void:
@@ -178,6 +190,7 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 	var p3 := Vector3(start.x, 0, start.y)
 	_player = Actor.make(Sprites.hero(int(state.player["hair"]), int(state.player["outfit"])), p3, "player")
 	_map_root.add_child(_player)
+	_player.add_silhouette()
 	_jinli = Actor.make(Sprites.character("jinli"), p3 + Vector3(-0.6, 0, 0.3), "jinli")
 	_jinli.event = "jinli_talk"
 	_map_root.add_child(_jinli)
@@ -199,6 +212,10 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 	await fade(false)
 	busy = false
 	state.save_game(AUTOSAVE_SLOT)
+	if state.flags.has("_dev_event"):
+		var ev: String = state.flags["_dev_event"]
+		state.flags.erase("_dev_event")
+		await events.run(ev)
 	if map.def.has("on_enter"):
 		var ev: Dictionary = map.def["on_enter"]
 		if MapData.condition_ok(ev, state):
@@ -300,7 +317,7 @@ func _apply_ambience() -> void:
 	var ambience: Array = {
 		"day": [Color("9fc3d8"), Color("c9d6e8"), Color("fff1d6"), 1.3, 0.5, 0.0],
 		"dusk": [Color("d89a7a"), Color("b8a0b0"), Color("ffc890"), 0.9, 0.45, 1.0],
-		"night": [Color("1a2238"), Color("4a5a88"), Color("9fb0e0"), 0.35, 0.35, 1.6],
+		"night": [Color("1a2238"), Color("5a6a98"), Color("9fb0e0"), 0.5, 0.5, 1.6],
 	}.get(time, [Color("9fc3d8"), Color("c9d6e8"), Color("fff1d6"), 1.3, 0.5, 0.0])
 	_env.background_color = ambience[0]
 	_env.ambient_light_color = ambience[1]
@@ -325,6 +342,11 @@ func _process(delta: float) -> void:
 	if map == null or _player == null:
 		return
 	state.play_seconds += delta
+	if OS.is_debug_build():
+		_fps_log_t += delta
+		if _fps_log_t > 10.0:
+			_fps_log_t = 0.0
+			print("WUYIN_FPS map=%s fps=%d view=%dx%d mode=%s" % [map.id, Engine.get_frames_per_second(), _view.size.x, _view.size.y, _rig.mode])
 	var t := _rig.blend()
 	_env.glow_enabled = t < 0.999
 	_env.glow_intensity = 0.9 * (1.0 - t)
@@ -683,6 +705,8 @@ func _on_interact() -> void:
 		if d > TALK_RANGE:
 			continue
 		var score := d - (0.5 if to.normalized().dot(_facing) > 0.3 else 0.0)
+		if a == _jinli:
+			score += 1.5  # people and objects first; Jinli only when nothing else is near
 		if score < best_score:
 			best_score = score
 			best = a

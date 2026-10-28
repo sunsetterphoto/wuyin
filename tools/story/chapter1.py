@@ -53,6 +53,7 @@ NPCS = {
     "pilger": ("Pilger Wen", "Pilgrim Wen", "文香客", "jue", "gentle", 0),
     "moench": ("Mönch Huan", "Monk Huan", "幻和尚", "shang", "gentle", -1),
     "qinglong_free": ("Azurdrache", "Azure Dragon", "青龙", "jue", "gentle", -1),
+    "jinli": ("Jinli", "Jinli", "锦鲤", "yu", "playful", 1),
 }
 npcs = {}
 for nid, (de, en, zh, tone, style, octave) in NPCS.items():

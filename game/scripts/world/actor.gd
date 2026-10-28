@@ -36,6 +36,22 @@ static func make(tex: Texture2D, pos: Vector3, id := "") -> Actor:
 	return a
 
 
+## Faint silhouette drawn over everything, so the actor stays visible behind trees and roofs.
+func add_silhouette() -> void:
+	var s := Sprite3D.new()
+	s.texture = texture
+	s.pixel_size = pixel_size
+	s.texture_filter = texture_filter
+	s.billboard = billboard
+	s.offset = offset
+	s.no_depth_test = true
+	s.shaded = false
+	s.modulate = Color(0.75, 0.85, 1.0, 0.35)
+	s.render_priority = -1
+	s.name = "Silhouette"
+	add_child(s)
+
+
 func set_texture_keep_feet(tex: Texture2D) -> void:
 	texture = tex
 	_base_offset = Vector2(0, tex.get_height() / 2.0)
@@ -71,6 +87,11 @@ func animate(delta: float, walking: bool, dir_x := 0.0) -> void:
 	else:
 		_walk_t = 0.0
 		offset = _base_offset
+	var sil := get_node_or_null("Silhouette") as Sprite3D
+	if sil:
+		sil.offset = offset
+		sil.flip_h = flip_h
+		sil.billboard = billboard
 
 
 func _process(delta: float) -> void:

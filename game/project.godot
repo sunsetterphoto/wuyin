@@ -12,10 +12,11 @@ config_version=5
 
 config/name="Wuyin"
 config/description="Wuyin: Das Lied des Phönix"
-config/version="0.0.1"
+config/version="0.1.0-beta"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://assets/icon.svg"
 config/features=PackedStringArray("4.7", "Mobile")
+config/quit_on_go_back=false
 
 [autoload]
 

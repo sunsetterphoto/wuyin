@@ -49,6 +49,7 @@ func _build(version: String) -> void:
 		add_child(art)
 	var col := VBoxContainer.new()
 	col.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	col.offset_top = 150
 	col.alignment = BoxContainer.ALIGNMENT_CENTER
 	col.add_theme_constant_override("separation", 10)
 	add_child(col)
@@ -76,7 +77,7 @@ func _build(version: String) -> void:
 	_add(tr("MENU_OPTIONS"), _options)
 	_add(tr("MENU_FEEDBACK"), _feedback)
 	(cont if cont else new_b).grab_focus.call_deferred()
-	if OS.is_debug_build():
+	if OS.is_debug_build() and FileAccess.file_exists("user://dev_mode"):
 		var dev := HBoxContainer.new()
 		dev.set_anchor(SIDE_TOP, 1.0, true)
 		dev.set_anchor(SIDE_BOTTOM, 1.0, true)
