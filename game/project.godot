@@ -20,6 +20,7 @@ config/features=PackedStringArray("4.7", "Mobile")
 [autoload]
 
 DevStandby="*res://scripts/core/dev_standby.gd"
+Music="*res://scripts/audio/music.gd"
 
 [display]
 
@@ -35,7 +36,7 @@ pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://data/i18n/strings.en.translation", "res://data/i18n/strings.de.translation", "res://data/i18n/strings.zh_Hans.translation")
+locale/translations=PackedStringArray("res://data/i18n/strings.en.translation", "res://data/i18n/strings.de.translation", "res://data/i18n/strings.zh_Hans.translation", "res://data/i18n/story.en.translation", "res://data/i18n/story.de.translation", "res://data/i18n/story.zh_Hans.translation")
 locale/fallback="en"
 
 [rendering]

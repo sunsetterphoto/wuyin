@@ -40,5 +40,19 @@
     "timeout_ms": 120000,
     "priority": 0,
     "note": "Prompt-Anfang vorberechnen (Cache), z. B. zu Kampfbeginn."
+  },
+  "tame_judge": {
+    "max_tokens": 6,
+    "temperature": 0.0,
+    "timeout_ms": 3000,
+    "priority": 3,
+    "note": "Zureden: nennt nur die Tonart des Satzes; das Vertrauen rechnet der Code."
+  },
+  "jinli_hint": {
+    "max_tokens": 40,
+    "temperature": 0.7,
+    "timeout_ms": 4000,
+    "priority": 2,
+    "note": "Untertitel für Jinlis Hinweis zur aktuellen Aufgabe, Vorlage pro Aufgabe und Deutlichkeitsstufe."
   }
 }

@@ -1,0 +1,130 @@
+{
+ "meister": {
+  "name": "NPC_MEISTER",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "meister_plaza": {
+  "name": "NPC_MEISTER_PLAZA",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "meister_mute": {
+  "name": "NPC_MEISTER_MUTE",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "yao": {
+  "name": "NPC_YAO",
+  "voice": {
+   "tone": "zhi",
+   "style": "brave",
+   "octave": 0
+  }
+ },
+ "wusheng": {
+  "name": "NPC_WUSHENG",
+  "voice": {
+   "tone": "shang",
+   "style": "stubborn",
+   "octave": -1
+  }
+ },
+ "dorf_frau": {
+  "name": "NPC_DORF_FRAU",
+  "voice": {
+   "tone": "yu",
+   "style": "gentle",
+   "octave": 1
+  }
+ },
+ "dorf_kind": {
+  "name": "NPC_DORF_KIND",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 1
+  }
+ },
+ "dorf_oma": {
+  "name": "NPC_DORF_OMA",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "wirtin": {
+  "name": "NPC_WIRTIN",
+  "voice": {
+   "tone": "yu",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "haendler": {
+  "name": "NPC_HAENDLER",
+  "voice": {
+   "tone": "zhi",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "teemeister": {
+  "name": "NPC_TEEMEISTER",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "stille_frau": {
+  "name": "NPC_STILLE_FRAU",
+  "voice": {
+   "tone": "yu",
+   "style": "moody",
+   "octave": 0
+  }
+ },
+ "teeufer_kind": {
+  "name": "NPC_TEEUFER_KIND",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 1
+  }
+ },
+ "pilger": {
+  "name": "NPC_PILGER",
+  "voice": {
+   "tone": "jue",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "moench": {
+  "name": "NPC_MOENCH",
+  "voice": {
+   "tone": "shang",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "qinglong_free": {
+  "name": "NPC_QINGLONG_FREE",
+  "voice": {
+   "tone": "jue",
+   "style": "gentle",
+   "octave": -1
+  }
+ }
+}

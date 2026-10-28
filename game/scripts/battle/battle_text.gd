@@ -72,4 +72,27 @@ static func describe(battle: Battle, e: Dictionary) -> Array[String]:
 			out.append(_t("BATTLE_LEVEL_UP", {"target": target, "level": e["level"]}))
 		"end":
 			out.append(_t("BATTLE_WIN") if e["winner"] == 0 else _t("BATTLE_LOSE"))
+		"tame_calm":
+			out.append(_t("BATTLE_CALMS", {"target": target}))
+		"tame_feed":
+			out.append(_t("BATTLE_FEEDS", {"target": target, "item": TranslationServer.translate(GameData.item(e["item"])["name"])}))
+		"tame_talk":
+			out.append(_t("BATTLE_TALKS", {"target": target}))
+		"trust":
+			var key := "BATTLE_TRUST_UP" if e["amount"] > 0 else ("BATTLE_TRUST_DOWN" if e["amount"] < 0 else "BATTLE_TRUST_SAME")
+			out.append(_t(key, {"target": target}))
+		"heart":
+			out.append(_t("BATTLE_HEART_UP", {"target": target}))
+		"tamed":
+			out.append(_t("BATTLE_TAMED", {"target": target}))
+		"freed":
+			out.append(_t("BATTLE_FREED", {"target": target}))
+		"item":
+			out.append(_t("BATTLE_ITEM", {"item": TranslationServer.translate(GameData.item(e["item"])["name"]), "target": target}))
+		"revive":
+			out.append(_t("BATTLE_REVIVE", {"target": target}))
+		"watch":
+			out.append(_t("BATTLE_WATCHES", {"user": user}))
+		"fled":
+			pass
 	return out

@@ -1,0 +1,1216 @@
+{
+ "note": "Generiert von tools/story/chapter1.py – dort bearbeiten.",
+ "events": {
+  "intro": [
+   {
+    "music": "village"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_INTRO_1"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_INTRO_2"
+   },
+   {
+    "set": "jinli_follows"
+   },
+   {
+    "sfx": "meow"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_INTRO_3"
+   },
+   {
+    "say": "meister",
+    "text": "EV_INTRO_4"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_INTRO_TUT"
+   },
+   {
+    "set": "intro_done"
+   },
+   {
+    "quest": "QUEST_MEISTER"
+   },
+   {
+    "goal": [
+     "weidendorf",
+     15,
+     5
+    ]
+   },
+   {
+    "set_inn": [
+     "weidendorf",
+     "home"
+    ]
+   },
+   {
+    "save": true
+   }
+  ],
+  "meister_gift": [
+   {
+    "say": "meister",
+    "text": "EV_GIFT_1"
+   },
+   {
+    "sfx": "bell"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_GIFT_2"
+   },
+   {
+    "say": "meister",
+    "text": "EV_GIFT_3"
+   },
+   {
+    "say": "meister",
+    "text": "EV_GIFT_4"
+   },
+   {
+    "set": "has_fengling"
+   },
+   {
+    "quest": "QUEST_FESTIVAL"
+   },
+   {
+    "goal": [
+     "weidendorf",
+     16,
+     9
+    ]
+   }
+  ],
+  "work_door": [
+   {
+    "if": "voice_taken",
+    "then": [
+     {
+      "say": "narrator",
+      "text": "EV_WORK_MUTE"
+     }
+    ],
+    "else": [
+     {
+      "say": "narrator",
+      "text": "EV_WORK"
+     }
+    ]
+   }
+  ],
+  "home_door": [
+   {
+    "say": "narrator",
+    "text": "EV_HOME"
+   },
+   {
+    "set_inn": [
+     "weidendorf",
+     "home"
+    ]
+   },
+   {
+    "inn": true
+   }
+  ],
+  "meister_plaza": [
+   {
+    "say": "meister_plaza",
+    "text": "EV_MEISTER_PLAZA"
+   }
+  ],
+  "festival_chime": [
+   {
+    "if": "silence_fell",
+    "then": [
+     {
+      "say": "narrator",
+      "text": "EV_CHIME_SILENT"
+     }
+    ],
+    "else": [
+     {
+      "say": "narrator",
+      "text": "EV_CHIME"
+     }
+    ]
+   }
+  ],
+  "yao_festival": [
+   {
+    "say": "yao",
+    "text": "EV_YAO_FEST_1"
+   },
+   {
+    "say": "yao",
+    "text": "EV_YAO_FEST_2"
+   }
+  ],
+  "dorf_frau": [
+   {
+    "if": "voice_taken",
+    "then": [
+     {
+      "say": "dorf_frau",
+      "text": "EV_FRAU_3"
+     }
+    ],
+    "else": [
+     {
+      "if": "silence_fell",
+      "then": [
+       {
+        "say": "dorf_frau",
+        "text": "EV_FRAU_2"
+       }
+      ],
+      "else": [
+       {
+        "say": "dorf_frau",
+        "text": "EV_FRAU_1"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "dorf_kind": [
+   {
+    "if": "silence_fell",
+    "then": [
+     {
+      "say": "dorf_kind",
+      "text": "EV_KIND_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "dorf_kind",
+      "text": "EV_KIND_1"
+     }
+    ]
+   }
+  ],
+  "dorf_oma": [
+   {
+    "if": "prologue_done",
+    "then": [
+     {
+      "say": "dorf_oma",
+      "text": "EV_OMA_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "dorf_oma",
+      "text": "EV_OMA_1"
+     }
+    ]
+   }
+  ],
+  "sign_north": [
+   {
+    "say": "narrator",
+    "text": "EV_SIGN_NORTH"
+   }
+  ],
+  "blocked_north": [
+   {
+    "say": "jinli",
+    "text": "EV_BLOCK_NORTH"
+   }
+  ],
+  "blocked_river": [
+   {
+    "say": "jinli",
+    "text": "EV_BLOCK_RIVER"
+   }
+  ],
+  "silence_falls": [
+   {
+    "music": "village"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_SILENCE_1"
+   },
+   {
+    "wait": 1.5
+   },
+   {
+    "music": ""
+   },
+   {
+    "silence": true
+   },
+   {
+    "set": "silence_fell"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_SILENCE_2"
+   },
+   {
+    "say": "dorf_frau",
+    "text": "EV_SILENCE_3"
+   },
+   {
+    "say": "meister_plaza",
+    "text": "EV_SILENCE_4"
+   },
+   {
+    "sfx": "bell"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_SILENCE_5"
+   },
+   {
+    "say": "meister_plaza",
+    "text": "EV_SILENCE_6"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_SILENCE_TUT"
+   },
+   {
+    "music": "silence"
+   },
+   {
+    "quest": "QUEST_RIVER"
+   },
+   {
+    "goal": [
+     "flussufer",
+     15,
+     9
+    ]
+   },
+   {
+    "save": true
+   }
+  ],
+  "river_arrive": [
+   {
+    "set": "river_arrived"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_RIVER_1"
+   },
+   {
+    "say": "yao",
+    "text": "EV_RIVER_2"
+   },
+   {
+    "say": "yao",
+    "text": "EV_RIVER_3"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_RIVER_TUT"
+   },
+   {
+    "quest": "QUEST_TAME"
+   },
+   {
+    "goal": [
+     "flussufer",
+     6,
+     12
+    ]
+   }
+  ],
+  "prolog_wawalurch": [
+   {
+    "say": "narrator",
+    "text": "EV_SHY_WAWALURCH"
+   },
+   {
+    "befriend": "wawalurch",
+    "level": 4,
+    "tamed": [
+     {
+      "set": "gone_shy_wawalurch"
+     },
+     {
+      "refresh": true
+     },
+     {
+      "run": "prolog_after_tame"
+     }
+    ],
+    "fled": [
+     {
+      "say": "narrator",
+      "text": "EV_SHY_FLED"
+     }
+    ]
+   }
+  ],
+  "prolog_bambaer": [
+   {
+    "say": "narrator",
+    "text": "EV_SHY_BAMBAER"
+   },
+   {
+    "befriend": "bambaer",
+    "level": 4,
+    "tamed": [
+     {
+      "set": "gone_shy_bambaer"
+     },
+     {
+      "refresh": true
+     },
+     {
+      "run": "prolog_after_tame"
+     }
+    ],
+    "fled": [
+     {
+      "say": "narrator",
+      "text": "EV_SHY_FLED"
+     }
+    ]
+   }
+  ],
+  "prolog_zirpo": [
+   {
+    "say": "narrator",
+    "text": "EV_SHY_ZIRPO"
+   },
+   {
+    "befriend": "zirpo",
+    "level": 4,
+    "tamed": [
+     {
+      "set": "gone_shy_zirpo"
+     },
+     {
+      "refresh": true
+     },
+     {
+      "run": "prolog_after_tame"
+     }
+    ],
+    "fled": [
+     {
+      "say": "narrator",
+      "text": "EV_SHY_FLED"
+     }
+    ]
+   }
+  ],
+  "prolog_nebelaffe": [
+   {
+    "say": "narrator",
+    "text": "EV_SHY_NEBELAFFE"
+   },
+   {
+    "befriend": "nebelaffe",
+    "level": 4,
+    "tamed": [
+     {
+      "set": "gone_shy_nebelaffe"
+     },
+     {
+      "refresh": true
+     },
+     {
+      "run": "prolog_after_tame"
+     }
+    ],
+    "fled": [
+     {
+      "say": "narrator",
+      "text": "EV_SHY_FLED"
+     }
+    ]
+   }
+  ],
+  "prolog_after_tame": [
+   {
+    "if_party_min": 2,
+    "then": [
+     {
+      "run": "prolog_two_tamed"
+     }
+    ],
+    "else": [
+     {
+      "run": "prolog_first_tamed"
+     }
+    ]
+   }
+  ],
+  "prolog_first_tamed": [
+   {
+    "sfx": "meow"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_FIRST_1"
+   },
+   {
+    "move": "yao",
+    "to": [
+     10,
+     9
+    ],
+    "speed": 3.0
+   },
+   {
+    "say": "yao",
+    "text": "EV_FIRST_2"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_FIRST_TUT"
+   },
+   {
+    "battle": {
+     "enemies": [
+      {
+       "id": "glutfasan",
+       "level": 3
+      }
+     ],
+     "active": 1,
+     "foe": "yao",
+     "allow_lose": true,
+     "coins": 20
+    },
+    "win": [
+     {
+      "say": "yao",
+      "text": "EV_FIRST_WIN"
+     }
+    ],
+    "lose": [
+     {
+      "say": "yao",
+      "text": "EV_FIRST_LOSE"
+     }
+    ]
+   },
+   {
+    "heal": true
+   },
+   {
+    "set": "yao_battle1"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_FIRST_3"
+   },
+   {
+    "quest": "QUEST_SECOND"
+   }
+  ],
+  "prolog_two_tamed": [
+   {
+    "set": "prologue_tamed"
+   },
+   {
+    "say": "yao",
+    "text": "EV_TWO_1"
+   },
+   {
+    "say": "yao",
+    "text": "EV_TWO_2"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "sfx": "bell"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_TWO_3"
+   },
+   {
+    "quest": "QUEST_BACK"
+   },
+   {
+    "goal": [
+     "weidendorf",
+     28,
+     14
+    ]
+   },
+   {
+    "save": true
+   }
+  ],
+  "yao_river": [
+   {
+    "if": "yao_battle1",
+    "then": [
+     {
+      "say": "yao",
+      "text": "EV_YAO_RIVER_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "yao",
+      "text": "EV_YAO_RIVER_1"
+     }
+    ]
+   }
+  ],
+  "wusheng_scene": [
+   {
+    "music": ""
+   },
+   {
+    "set": "wusheng_here"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "teleport": [
+     21,
+     10
+    ]
+   },
+   {
+    "say": "narrator",
+    "text": "EV_WU_1"
+   },
+   {
+    "say": "wusheng",
+    "text": "EV_WU_2"
+   },
+   {
+    "say": "meister_plaza",
+    "text": "EV_WU_3"
+   },
+   {
+    "say": "wusheng",
+    "text": "EV_WU_4"
+   },
+   {
+    "say": "meister_plaza",
+    "text": "EV_WU_5"
+   },
+   {
+    "say": "wusheng",
+    "text": "EV_WU_6"
+   },
+   {
+    "sfx": "fail"
+   },
+   {
+    "fade": "out",
+    "seconds": 0.15
+   },
+   {
+    "fade": "in",
+    "seconds": 0.6
+   },
+   {
+    "say": "narrator",
+    "text": "EV_WU_7"
+   },
+   {
+    "say": "wusheng",
+    "text": "EV_WU_8"
+   },
+   {
+    "move": "wusheng",
+    "to": [
+     28,
+     2
+    ],
+    "speed": 2.2
+   },
+   {
+    "clear": "wusheng_here"
+   },
+   {
+    "set": "voice_taken"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "sfx": "bell"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_WU_9"
+   },
+   {
+    "bells": 3
+   },
+   {
+    "say": "meister_mute",
+    "text": "EV_WU_10"
+   },
+   {
+    "give_item": "kraeutertee",
+    "n": 2
+   },
+   {
+    "coins": 100
+   },
+   {
+    "set": "prologue_done"
+   },
+   {
+    "music": "silence"
+   },
+   {
+    "quest": "QUEST_TEEUFER"
+   },
+   {
+    "goal": [
+     "teeufer",
+     10,
+     9
+    ]
+   },
+   {
+    "say": "narrator",
+    "text": "EV_WU_TUT"
+   },
+   {
+    "save": true
+   }
+  ],
+  "meister_mute": [
+   {
+    "say": "meister_mute",
+    "text": "EV_MUTE"
+   }
+  ],
+  "wusheng_idle": [
+   {
+    "say": "wusheng",
+    "text": "EV_WU_IDLE"
+   }
+  ],
+  "sign_bamboo": [
+   {
+    "say": "narrator",
+    "text": "EV_SIGN_BAMBOO"
+   }
+  ],
+  "chest_bamboo": [
+   {
+    "say": "narrator",
+    "text": "EV_CHEST"
+   },
+   {
+    "give_item": "glockenbluete",
+    "n": 1
+   },
+   {
+    "give_item": "silbertau",
+    "n": 2
+   },
+   {
+    "set": "chest_bamboo"
+   },
+   {
+    "refresh": true
+   }
+  ],
+  "yao_bamboo": [
+   {
+    "set": "yao_bamboo_waiting"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "say": "yao",
+    "text": "EV_YAO_B_1"
+   },
+   {
+    "say": "yao",
+    "text": "EV_YAO_B_2"
+   },
+   {
+    "choice": [
+     "CH_YAO_A",
+     "CH_YAO_B"
+    ],
+    "then": [
+     [
+      {
+       "set": "yao_understood"
+      },
+      {
+       "say": "yao",
+       "text": "EV_YAO_B_3"
+      }
+     ],
+     [
+      {
+       "say": "yao",
+       "text": "EV_YAO_B_4"
+      }
+     ]
+    ]
+   },
+   {
+    "battle": {
+     "enemies": [
+      {
+       "id": "glutfasan",
+       "level": 7
+      },
+      {
+       "id": "rollschupp",
+       "level": 6
+      }
+     ],
+     "active": 1,
+     "foe": "yao",
+     "allow_lose": true,
+     "coins": 60,
+     "bg": "bamboo"
+    },
+    "win": [
+     {
+      "say": "yao",
+      "text": "EV_YAO_B_WIN"
+     }
+    ],
+    "lose": [
+     {
+      "say": "yao",
+      "text": "EV_YAO_B_LOSE"
+     }
+    ]
+   },
+   {
+    "set": "yao_battle2"
+   },
+   {
+    "clear": "yao_bamboo_waiting"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "heal": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_YAO_B_5"
+   }
+  ],
+  "yao_bamboo_idle": [
+   {
+    "say": "yao",
+    "text": "EV_YAO_B_IDLE"
+   }
+  ],
+  "teeufer_arrive": [
+   {
+    "set": "teeufer_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_TOWN_1"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_TOWN_2"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_TOWN_TUT"
+   },
+   {
+    "quest": "QUEST_TERRACES"
+   },
+   {
+    "goal": [
+     "drachenschrein",
+     13,
+     8
+    ]
+   },
+   {
+    "set_inn": [
+     "teeufer",
+     "inn"
+    ]
+   }
+  ],
+  "inn_door": [
+   {
+    "say": "wirtin",
+    "text": "EV_INN"
+   },
+   {
+    "set_inn": [
+     "teeufer",
+     "inn"
+    ]
+   },
+   {
+    "inn": true
+   }
+  ],
+  "shop_door": [
+   {
+    "say": "haendler",
+    "text": "EV_SHOP"
+   },
+   {
+    "shop": [
+     "reisbaellchen",
+     "kraeutertee",
+     "glockenbluete",
+     "bambussprossen",
+     "suessreis",
+     "silbertau"
+    ]
+   }
+  ],
+  "teahouse": [
+   {
+    "say": "teemeister",
+    "text": "EV_TEA_1"
+   },
+   {
+    "rumor": true,
+    "speaker": "teemeister"
+   }
+  ],
+  "stille_frau": [
+   {
+    "if": "tone_jue",
+    "then": [
+     {
+      "say": "stille_frau",
+      "text": "EV_NING_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "stille_frau",
+      "text": "EV_NING_1"
+     }
+    ]
+   }
+  ],
+  "teeufer_kind": [
+   {
+    "say": "teeufer_kind",
+    "text": "EV_TAO"
+   }
+  ],
+  "pilger": [
+   {
+    "if": "tone_jue",
+    "then": [
+     {
+      "say": "pilger",
+      "text": "EV_WEN_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "pilger",
+      "text": "EV_WEN_1"
+     }
+    ]
+   }
+  ],
+  "terraces_arrive": [
+   {
+    "set": "terraces_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_TER_1"
+   }
+  ],
+  "moth_a": [
+   {
+    "battle": {
+     "enemies": [
+      {
+       "id": "schattenmotte",
+       "level": 8
+      }
+     ],
+     "active": 1,
+     "bg": "terraces"
+    },
+    "win": [
+     {
+      "set": "gone_moth_a"
+     },
+     {
+      "refresh": true
+     }
+    ]
+   }
+  ],
+  "moth_b": [
+   {
+    "battle": {
+     "enemies": [
+      {
+       "id": "schattenmotte",
+       "level": 9
+      }
+     ],
+     "active": 1,
+     "bg": "terraces"
+    },
+    "win": [
+     {
+      "set": "gone_moth_b"
+     },
+     {
+      "refresh": true
+     }
+    ]
+   }
+  ],
+  "silent_leopard": [
+   {
+    "say": "narrator",
+    "text": "EV_LEO_1"
+   },
+   {
+    "if_not": "leo_tutorial",
+    "then": [
+     {
+      "say": "narrator",
+      "text": "EV_LEO_TUT"
+     },
+     {
+      "set": "leo_tutorial"
+     }
+    ]
+   },
+   {
+    "battle": {
+     "enemies": [
+      {
+       "id": "firnleopard",
+       "level": 9,
+       "role": "silenced"
+      }
+     ],
+     "active": 1,
+     "bg": "terraces"
+    },
+    "win": [
+     {
+      "set": "gone_silent_leopard"
+     },
+     {
+      "refresh": true
+     },
+     {
+      "say": "narrator",
+      "text": "EV_LEO_WIN"
+     }
+    ],
+    "freed": [
+     {
+      "set": "gone_silent_leopard"
+     },
+     {
+      "refresh": true
+     }
+    ]
+   }
+  ],
+  "shrine_arrive": [
+   {
+    "set": "shrine_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_SHR_1"
+   },
+   {
+    "say": "moench",
+    "text": "EV_SHR_2"
+   },
+   {
+    "set_inn": [
+     "drachenschrein",
+     "from_terraces"
+    ]
+   }
+  ],
+  "moench": [
+   {
+    "say": "moench",
+    "text": "EV_MONK"
+   },
+   {
+    "heal": true
+   },
+   {
+    "save": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_MONK_2"
+   }
+  ],
+  "boss_qinglong": [
+   {
+    "if": "boss_seen",
+    "else": [
+     {
+      "set": "boss_seen"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_BOSS_1"
+     },
+     {
+      "say": "qinglong",
+      "text": "EV_BOSS_2"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_BOSS_TUT"
+     }
+    ]
+   },
+   {
+    "if_party_min": 2,
+    "then": [
+     {
+      "battle": {
+       "enemies": [
+        {
+         "id": "qinglong",
+         "level": 12,
+         "role": "silenced"
+        },
+        {
+         "id": "schattenmotte",
+         "level": 10
+        }
+       ],
+       "active": 2,
+       "music": "boss",
+       "bg": "shrine",
+       "no_join": true
+      },
+      "win": [
+       {
+        "run": "tone_returns"
+       }
+      ],
+      "lose": [
+       {
+        "say": "moench",
+        "text": "EV_BOSS_LOSE"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "say": "moench",
+      "text": "EV_BOSS_ALONE"
+     }
+    ]
+   }
+  ],
+  "tone_returns": [
+   {
+    "music": "tone_returns"
+   },
+   {
+    "set": "tone_jue"
+   },
+   {
+    "silence": false
+   },
+   {
+    "refresh": true
+   },
+   {
+    "if": "freed_qinglong",
+    "then": [
+     {
+      "say": "narrator",
+      "text": "EV_TONE_1"
+     }
+    ],
+    "else": [
+     {
+      "set": "qinglong_defeated"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_TONE_1B"
+     }
+    ]
+   },
+   {
+    "say": "narrator",
+    "text": "EV_TONE_2"
+   },
+   {
+    "voice": "qinglong",
+    "event": "freed"
+   },
+   {
+    "say": "qinglong",
+    "text": "EV_TONE_3"
+   },
+   {
+    "sfx": "bell"
+   },
+   {
+    "bells": 4
+   },
+   {
+    "say": "jinli",
+    "text": "EV_TONE_4"
+   },
+   {
+    "quest": "QUEST_FREE"
+   },
+   {
+    "save": true
+   },
+   {
+    "end_beta": true
+   }
+  ],
+  "qinglong_free": [
+   {
+    "say": "qinglong_free",
+    "text": "EV_QL_FREE"
+   }
+  ],
+  "jinli_talk": [
+   {
+    "hint": true
+   }
+  ]
+ }
+}

@@ -1,0 +1,223 @@
+{
+ "name": "MAP_WEIDENDORF",
+ "time": "night",
+ "music": "village",
+ "music_when_silent": "silence",
+ "battle_bg": "village_night",
+ "inn_spawn": "home",
+ "spawns": {
+  "start": [
+   6,
+   5
+  ],
+  "home": [
+   6,
+   5
+  ],
+  "from_river": [
+   29,
+   14
+  ],
+  "from_north": [
+   28,
+   2
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    31,
+    14,
+    1,
+    2
+   ],
+   "to": "flussufer",
+   "spawn": "from_village",
+   "when": "silence_fell",
+   "blocked_event": "blocked_river"
+  },
+  {
+   "rect": [
+    28,
+    0,
+    2,
+    1
+   ],
+   "to": "bambuspfad",
+   "spawn": "from_village",
+   "when": "prologue_done",
+   "blocked_event": "blocked_north"
+  }
+ ],
+ "on_enter": {
+  "event": "intro",
+  "unless": "intro_done"
+ },
+ "npcs": [
+  {
+   "id": "meister",
+   "at": [
+    15,
+    5
+   ],
+   "event": "meister_gift",
+   "unless": "has_fengling"
+  },
+  {
+   "id": "meister_plaza",
+   "sprite": "meister",
+   "at": [
+    13,
+    9
+   ],
+   "event": "meister_plaza",
+   "when": "has_fengling",
+   "unless": "voice_taken"
+  },
+  {
+   "id": "meister_mute",
+   "sprite": "meister",
+   "at": [
+    15,
+    5
+   ],
+   "event": "meister_mute",
+   "when": "voice_taken"
+  },
+  {
+   "id": "yao",
+   "at": [
+    20,
+    9
+   ],
+   "event": "yao_festival",
+   "unless": "silence_fell"
+  },
+  {
+   "id": "wusheng",
+   "at": [
+    17,
+    9
+   ],
+   "event": "wusheng_idle",
+   "when": "wusheng_here"
+  },
+  {
+   "id": "dorf_frau",
+   "sprite": "villager_a",
+   "at": [
+    12,
+    11
+   ],
+   "event": "dorf_frau"
+  },
+  {
+   "id": "dorf_kind",
+   "sprite": "villager_b",
+   "at": [
+    20,
+    12
+   ],
+   "event": "dorf_kind",
+   "wander": 2
+  },
+  {
+   "id": "dorf_oma",
+   "sprite": "innkeeper",
+   "at": [
+    27,
+    12
+   ],
+   "event": "dorf_oma"
+  }
+ ],
+ "objects": [
+  {
+   "id": "home_door",
+   "kind": "invisible",
+   "at": [
+    6,
+    4
+   ],
+   "event": "home_door"
+  },
+  {
+   "id": "work_door",
+   "kind": "invisible",
+   "at": [
+    15,
+    4
+   ],
+   "event": "work_door"
+  },
+  {
+   "id": "sign_north",
+   "kind": "sign",
+   "at": [
+    27,
+    3
+   ],
+   "event": "sign_north",
+   "solid": false
+  },
+  {
+   "id": "festival_chime",
+   "kind": "chime",
+   "at": [
+    16,
+    9
+   ],
+   "event": "festival_chime"
+  }
+ ],
+ "triggers": [
+  {
+   "rect": [
+    13,
+    9,
+    7,
+    3
+   ],
+   "event": "silence_falls",
+   "when": "has_fengling",
+   "unless": "silence_fell"
+  },
+  {
+   "rect": [
+    25,
+    13,
+    6,
+    4
+   ],
+   "event": "wusheng_scene",
+   "when": "prologue_tamed",
+   "unless": "voice_taken"
+  }
+ ],
+ "silent": true,
+ "id": "weidendorf",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSS==SS",
+  "SBBB.T......BBB.........,,..==.S",
+  "SBBBHHHH.....RRRRR......,,..==.S",
+  "S...HHHH...f.RRRRR..T.......==.S",
+  "S...HHDH..L..RRDRR....L.....==.S",
+  "S.....=........=............==.S",
+  "S.f...========================.S",
+  "S.........=...............=....S",
+  "S..T....L_=_____________L.=....S",
+  "S........t______________t.=HHH.S",
+  "S........_______W________.=HHH.S",
+  "S........t______________t.=HDH.S",
+  "S.......L_=_______=_____L.=....S",
+  "S.f.......=.......=.......=....S",
+  "S..HHH....=.......=.......======",
+  "S..HD======......f=.......======",
+  "S.................=........T...S",
+  "S..T........,,,...=.......f....S",
+  "S...........,,,...=............S",
+  "S~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~S",
+  "S~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~S",
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+ ]
+}

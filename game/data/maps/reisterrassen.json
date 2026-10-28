@@ -1,0 +1,142 @@
+{
+ "name": "MAP_REISTERRASSEN",
+ "time": "day",
+ "music": "route",
+ "music_when_silent": "silence",
+ "battle_bg": "terraces",
+ "spawns": {
+  "from_town": [
+   26,
+   22
+  ],
+  "from_shrine": [
+   14,
+   2
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    26,
+    23,
+    1,
+    1
+   ],
+   "to": "teeufer",
+   "spawn": "from_terraces"
+  },
+  {
+   "rect": [
+    14,
+    0,
+    1,
+    1
+   ],
+   "to": "drachenschrein",
+   "spawn": "from_terraces"
+  }
+ ],
+ "on_enter": {
+  "event": "terraces_arrive",
+  "unless": "terraces_arrived"
+ },
+ "lingshou": [
+  {
+   "id": "silent_leopard",
+   "species": "firnleopard",
+   "role": "silenced",
+   "at": [
+    14,
+    2
+   ],
+   "event": "silent_leopard",
+   "unless": "gone_silent_leopard",
+   "scale": 1.0,
+   "static": true
+  },
+  {
+   "id": "moth_a",
+   "species": "schattenmotte",
+   "at": [
+    10,
+    11
+   ],
+   "event": "moth_a",
+   "unless": "gone_moth_a"
+  },
+  {
+   "id": "moth_b",
+   "species": "schattenmotte",
+   "at": [
+    20,
+    16
+   ],
+   "event": "moth_b",
+   "unless": "gone_moth_b"
+  }
+ ],
+ "encounters": {
+  "rate": 0.11,
+  "table": [
+   {
+    "species": "reisquak",
+    "levels": [
+     6,
+     8
+    ],
+    "weight": 4
+   },
+   {
+    "species": "wawalurch",
+    "levels": [
+     6,
+     8
+    ],
+    "weight": 2
+   },
+   {
+    "species": "jadelibelle",
+    "levels": [
+     6,
+     8
+    ],
+    "weight": 2
+   },
+   {
+    "species": "glutfasan",
+    "levels": [
+     7,
+     9
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ "id": "reisterrassen",
+ "rows": [
+  "SSSSSSSSSSSSSS=SSSSSSSSSSSSSSSSSSS",
+  "STT........^^^=^^^............TTTS",
+  "STT........^^^=^^^............TTTS",
+  "S.rrrrrrrrrrrr=rrrrrrrrrrrrrrrrr.S",
+  "S.rrrrrrrrrrrr=rrrrrrrrrrrrrrrrr.S",
+  "S.rrrrrrrrrrrr=rrrrrrrrrrrrrrrrr.S",
+  "S.............=========..........S",
+  "S...T.................=........f.S",
+  "S.rrrrrrrrrrrrrrrrrrrr=rrrrrrrrr.S",
+  "S.rrrrrrrrrrrrrrrrrrrr=rrrrrrrrr.S",
+  "S.rrrrrrrrrrrrrrrrrrrr=rrrrrrrrr.S",
+  "S......================..........S",
+  "S......=.....................T...S",
+  "S.rrrrr=rrrrrrrrrrrrrrrrrrrrrrrr.S",
+  "S.rrrrr=rrrrrrrrrrrrrrrrrrrrrrrr.S",
+  "S.rrrrr=rrrrrrrrrrrrrrrrrrrrrrrr.S",
+  "S......==========................S",
+  "S..T............=................S",
+  "S.rrrrrrrrrrrrrr=rrrrrrrrrrrrrrr.S",
+  "S.rrrrrrrrrrrrrr===========rrrrr.S",
+  "S.rrrrrrrrrrrrrrrrrrrrrrrr=rrrrr.S",
+  "S.........................=......S",
+  "S....f...T..........f.....=...T..S",
+  "SSSSSSSSSSSSSSSSSSSSSSSSSS=SSSSSSS"
+ ]
+}

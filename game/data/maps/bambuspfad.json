@@ -1,0 +1,196 @@
+{
+ "name": "MAP_BAMBUSPFAD",
+ "border": "bamboo",
+ "time": "day",
+ "music": "route",
+ "music_when_silent": "silence",
+ "battle_bg": "bamboo",
+ "spawns": {
+  "from_village": [
+   6,
+   18
+  ],
+  "from_town": [
+   34,
+   6
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    6,
+    19,
+    1,
+    1
+   ],
+   "to": "weidendorf",
+   "spawn": "from_north"
+  },
+  {
+   "rect": [
+    35,
+    5,
+    1,
+    2
+   ],
+   "to": "teeufer",
+   "spawn": "from_bamboo"
+  }
+ ],
+ "npcs": [
+  {
+   "id": "yao",
+   "at": [
+    31,
+    5
+   ],
+   "event": "yao_bamboo_idle",
+   "when": "yao_bamboo_waiting",
+   "unless": "yao_battle2"
+  }
+ ],
+ "objects": [
+  {
+   "id": "sign_bamboo",
+   "kind": "sign",
+   "at": [
+    7,
+    16
+   ],
+   "event": "sign_bamboo",
+   "solid": false
+  },
+  {
+   "id": "chest_bamboo",
+   "kind": "chest",
+   "at": [
+    17,
+    8
+   ],
+   "event": "chest_bamboo",
+   "unless": "chest_bamboo"
+  }
+ ],
+ "lingshou": [
+  {
+   "id": "w_libelle",
+   "species": "jadelibelle",
+   "at": [
+    24,
+    3
+   ],
+   "levels": [
+    5,
+    6
+   ],
+   "unless": "gone_w_libelle"
+  },
+  {
+   "id": "w_affe",
+   "species": "nebelaffe",
+   "at": [
+    4,
+    10
+   ],
+   "levels": [
+    4,
+    6
+   ],
+   "unless": "gone_w_affe"
+  },
+  {
+   "id": "w_baer",
+   "species": "bambaer",
+   "at": [
+    16,
+    14
+   ],
+   "levels": [
+    5,
+    6
+   ],
+   "unless": "gone_w_baer"
+  }
+ ],
+ "triggers": [
+  {
+   "rect": [
+    28,
+    4,
+    3,
+    3
+   ],
+   "event": "yao_bamboo",
+   "when": "prologue_done",
+   "unless": "yao_battle2"
+  }
+ ],
+ "encounters": {
+  "rate": 0.12,
+  "table": [
+   {
+    "species": "nebelaffe",
+    "levels": [
+     4,
+     6
+    ],
+    "weight": 3
+   },
+   {
+    "species": "jadelibelle",
+    "levels": [
+     4,
+     6
+    ],
+    "weight": 3
+   },
+   {
+    "species": "bambaer",
+    "levels": [
+     4,
+     6
+    ],
+    "weight": 2
+   },
+   {
+    "species": "zirpo",
+    "levels": [
+     4,
+     6
+    ],
+    "weight": 2
+   },
+   {
+    "species": "rollschupp",
+    "levels": [
+     6,
+     7
+    ],
+    "weight": 1
+   }
+  ]
+ },
+ "id": "bambuspfad",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+  "SBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBS",
+  "SBBBBBBBBBBBBBBBBBBB..........BBBBBS",
+  "SBB......,,,,,,..BBB..,,,,,...BBBBBS",
+  "SBB...f..,,,,,,.......,,,,,........S",
+  "SBB...================..,,,........=",
+  "SBB...=..............===============",
+  "SBB...=................BBBBBBBBBBBBS",
+  "SB....=...BBBBBB.......BBBBBBBBBBBBS",
+  "SB.,,,=,,.BBBBBB.......BBBBBBBBBBBBS",
+  "SB.,,,=,,.BBBBBB.......BBBBBBBBBBBBS",
+  "SB.,,,=,,.BBBBBB....f..BBBBBBBBBBBBS",
+  "SB....=...............BBBBBBBBBBBBBS",
+  "SB....=....,,,,,......BBBBBBBBBBBBBS",
+  "SB....=....,,,,,...T..BBBBBBBBBBBBBS",
+  "SB....=....,,,,,......BBBBBBBBBBBBBS",
+  "SB....=..T.........f..BBBBBBBBBBBBBS",
+  "SB....=...............BBBBBBBBBBBBBS",
+  "SBBBBB=BBBBBBBBBBBBBBBBBBBBBBBBBBBBS",
+  "SSSSSS=SSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+ ]
+}

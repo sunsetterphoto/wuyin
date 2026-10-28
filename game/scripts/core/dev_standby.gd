@@ -15,7 +15,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_black = ColorRect.new()
 	_black.color = Color.BLACK
-	_black.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_black.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_black.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_black.visible = false
 	add_child(_black)

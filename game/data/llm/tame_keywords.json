@@ -1,0 +1,9 @@
+{
+  "note": "Stichworte für das Zureden ohne Modell (Vorlagen-Rückfall). Kleinschreibung, Teilwort-Treffer.",
+  "soothing": ["keine angst", "ruhig", "alles gut", "hab keine", "ich tu dir nichts", "sanft", "leise", "schon gut", "nicht weh", "don't be afraid", "it's okay", "its okay", "calm", "easy", "safe", "gently", "won't hurt", "shh", "别怕", "没事", "安心", "不会伤害", "放心"],
+  "encouraging": ["du schaffst", "zeig", "los", "mutig", "stark sein", "komm schon", "trau dich", "kämpf", "you can", "show me", "come on", "be brave", "let's go", "dare", "together", "zusammen", "加油", "勇敢", "一起", "来吧"],
+  "playful": ["spiel", "fang", "lustig", "witz", "kitzel", "wettrennen", "hüpf", "quak", "play", "catch", "tag", "game", "fun", "silly", "race", "tickle", "玩", "游戏", "捉", "比赛"],
+  "respectful": ["darf ich", "bitte", "ich warte", "nimm dir zeit", "entschuldig", "respekt", "verzeih", "wenn du willst", "may i", "please", "i'll wait", "take your time", "sorry", "if you want", "respect", "请", "等你", "对不起", "如果你愿意"],
+  "praising": ["schön", "hübsch", "toll", "stark", "wunderbar", "großartig", "prächtig", "beautiful", "pretty", "great", "amazing", "strong", "wonderful", "cute", "süß", "glänz", "漂亮", "厉害", "好看", "可爱", "真棒"],
+  "rude": ["dumm", "blöd", "hässlich", "sofort", "gehorch", "verschwinde", "idiot", "halt die klappe", "stupid", "ugly", "obey", "shut up", "now!", "get lost", "dumb", "笨", "丑", "滚", "闭嘴", "服从"]
+}

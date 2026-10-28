@@ -1,0 +1,168 @@
+{
+ "name": "MAP_TEEUFER",
+ "time": "day",
+ "music": "town",
+ "music_when_silent": "silence",
+ "battle_bg": "terraces",
+ "inn_spawn": "inn",
+ "spawns": {
+  "from_bamboo": [
+   1,
+   9
+  ],
+  "inn": [
+   6,
+   5
+  ],
+  "from_terraces": [
+   26,
+   1
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    0,
+    9,
+    1,
+    2
+   ],
+   "to": "bambuspfad",
+   "spawn": "from_town"
+  },
+  {
+   "rect": [
+    26,
+    0,
+    2,
+    1
+   ],
+   "to": "reisterrassen",
+   "spawn": "from_town"
+  }
+ ],
+ "on_enter": {
+  "event": "teeufer_arrive",
+  "unless": "teeufer_arrived"
+ },
+ "npcs": [
+  {
+   "id": "wirtin",
+   "sprite": "innkeeper",
+   "at": [
+    8,
+    5
+   ],
+   "event": "inn_door"
+  },
+  {
+   "id": "haendler",
+   "sprite": "shopkeeper",
+   "at": [
+    19,
+    5
+   ],
+   "event": "shop_door"
+  },
+  {
+   "id": "teemeister",
+   "sprite": "teahouse",
+   "at": [
+    23,
+    11
+   ],
+   "event": "teahouse"
+  },
+  {
+   "id": "stille_frau",
+   "sprite": "villager_a",
+   "at": [
+    12,
+    10
+   ],
+   "event": "stille_frau"
+  },
+  {
+   "id": "teeufer_kind",
+   "sprite": "villager_b",
+   "at": [
+    18,
+    10
+   ],
+   "event": "teeufer_kind",
+   "wander": 2
+  },
+  {
+   "id": "pilger",
+   "sprite": "monk",
+   "at": [
+    25,
+    3
+   ],
+   "event": "pilger"
+  }
+ ],
+ "objects": [
+  {
+   "id": "inn_door_obj",
+   "kind": "invisible",
+   "at": [
+    6,
+    4
+   ],
+   "event": "inn_door"
+  },
+  {
+   "id": "shop_door_obj",
+   "kind": "invisible",
+   "at": [
+    17,
+    4
+   ],
+   "event": "shop_door"
+  },
+  {
+   "id": "tea_door_obj",
+   "kind": "invisible",
+   "at": [
+    26,
+    11
+   ],
+   "event": "teahouse"
+  },
+  {
+   "id": "shrine_chime",
+   "kind": "chime",
+   "at": [
+    9,
+    5
+   ],
+   "event": "inn_door"
+  }
+ ],
+ "id": "teeufer",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSSSSSSSSS==SSSSSS",
+  "S^^^.fff..................==..^^^S",
+  "S^^^RRRRR......HHHH.......==..^^^S",
+  "S...RRRRR..L...HHHH...L...==.....S",
+  "S...RRDRR......HHDH.......==.....S",
+  "S.....=..........=........==...T.S",
+  "S.T...======================..f..S",
+  "S.........L_________L=...........S",
+  "S.........___t___t___=...........S",
+  "===========____W_____=..RRRRR....S",
+  "===========__________=..RRRRR....S",
+  "S.........L_________L=..RRDRR....S",
+  "S.f.....T.....=......======......S",
+  "S.............=......=.......~~~~S",
+  "S..HHHH.......=..BBBBB.......~~~~S",
+  "S..HHHH.....HHHH.BBBBB.T.....~~~~S",
+  "S..HDHH..f..HHHH.BBBBB.......~~~~S",
+  "S...=.......HHDH.............~~~~S",
+  "S...===========..........~~~~~~~~S",
+  "S..................T.....~~~~~~~~S",
+  "S................................S",
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+ ]
+}

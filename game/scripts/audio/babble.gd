@@ -47,6 +47,14 @@ func set_speaker(unit: BattleUnit) -> void:
 	_counter = 0
 
 
+## For people and Jinli: a tone of the scale plus a temperament-like style.
+func set_voice(tone: String, style: String, octave := 0) -> void:
+	_tone = tone
+	_style = STYLE.get(style, STYLE["gentle"]).duplicate()
+	_style["octave"] = int(_style.get("octave", 0)) + octave
+	_counter = 0
+
+
 ## Plays blips for the characters in `chunk` (letters and Han characters only).
 func feed(chunk: String) -> void:
 	for i in chunk.length():

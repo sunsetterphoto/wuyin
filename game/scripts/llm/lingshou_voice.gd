@@ -8,7 +8,7 @@ extends RefCounted
 ##   # line = {"text": String, "source": "model"|"template", "ms": int}
 
 const TEMPLATES_PATH := "res://data/templates/voice.json"
-const EVENTS: Array[String] = ["attack", "hit", "low_hp", "win", "obey", "disobey", "bonus"]
+const EVENTS: Array[String] = ["attack", "hit", "low_hp", "win", "obey", "disobey", "bonus", "freed"]
 ## Hard limits per role (characters); token limits live in data/llm/roles.json.
 const MAX_CHARS := {"lingshou_voice": 140, "silenced_voice": 48}
 const LANGUAGE_NAMES := {"en": "English", "de": "German", "zh_Hans": "Simplified Chinese"}
@@ -24,6 +24,7 @@ const EVENT_FACTS := {
 	"obey": "Your partner (the player) called: \"{call}\". You do it.",
 	"disobey": "Your partner (the player) called: \"{call}\". You refuse and do your own thing.",
 	"bonus": "Your partner's call was clever and gave you an advantage.",
+	"freed": "Your stolen voice has just come back. For the first time in a long while you can speak freely. Thank the player who freed you.",
 }
 
 static var _templates: Dictionary = {}
@@ -37,7 +38,7 @@ static func card(unit: BattleUnit, locale: String) -> String:
 
 
 static func messages(unit: BattleUnit, event: String, facts: Dictionary, locale: String) -> Array:
-	var silenced: bool = unit.species.get("alignment") == "silenced" or unit.has_status("silenced")
+	var silenced: bool = (unit.role == "silenced" and not unit.freed) or unit.has_status("silenced")
 	var lang: String = LANGUAGE_NAMES.get(locale, "English")
 	var system := ""
 	if silenced:
@@ -55,7 +56,7 @@ static func comment(unit: BattleUnit, event: String, facts := {}, locale := "", 
 		on_token := Callable()) -> Dictionary:
 	locale = locale if locale != "" else TranslationServer.get_locale()
 	service = service if service else LlmService.instance()
-	var silenced: bool = unit.species.get("alignment") == "silenced" or unit.has_status("silenced")
+	var silenced: bool = (unit.role == "silenced" and not unit.freed) or unit.has_status("silenced")
 	var role := "silenced_voice" if silenced else "lingshou_voice"
 	var job := service.ask(role, messages(unit, event, facts, locale))
 	if on_token.is_valid():
@@ -83,8 +84,8 @@ static func template(unit: BattleUnit, event: String, locale: String, silenced :
 
 
 static func _name_in(key: String, locale: String) -> String:
-	var tr_obj := TranslationServer.get_translation_object(locale)
-	return String(tr_obj.get_message(key)) if tr_obj else key
+	var text := Texts.get_text(key, locale)
+	return text if text != "" else key
 
 
 static func _data() -> Dictionary:

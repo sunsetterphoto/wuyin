@@ -11,10 +11,10 @@ var _out: RichTextLabel
 func _ready() -> void:
 	var bg := ColorRect.new()
 	bg.color = Color(0.05, 0.04, 0.07)
-	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(bg)
 	_out = RichTextLabel.new()
-	_out.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_out.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_out.offset_left = 24
 	_out.offset_top = 24
 	_out.scroll_following = true

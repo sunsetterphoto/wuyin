@@ -1,195 +1,213 @@
 {
- "voice": {
-  "en": {
-   "anxious": {
-    "attack": "I-I'll try!",
-    "hit": "Ow... that hurt.",
-    "low_hp": "I can't... I'm scared.",
-    "win": "We did it? We really did it?",
-    "obey": "O-okay, I'll do it!",
-    "disobey": "I-I can't, sorry!",
-    "bonus": "That worked? It worked!"
-   },
-   "gentle": {
-    "attack": "Sorry, but I have to.",
-    "hit": "I'm fine, don't worry.",
-    "low_hp": "Just a little rest...",
-    "win": "Everyone okay? Good.",
-    "obey": "Of course.",
-    "disobey": "Not like that... let me help another way.",
-    "bonus": "Good thinking, friend."
-   },
-   "brave": {
-    "attack": "Here I come!",
-    "hit": "Ha! Barely felt it!",
-    "low_hp": "Not done yet!",
-    "win": "Too easy!",
-    "obey": "Finally!",
-    "disobey": "Retreat? Never!",
-    "bonus": "Now that's a plan!"
-   },
-   "stubborn": {
-    "attack": "Hmph.",
-    "hit": "Tch.",
-    "low_hp": "...Still standing.",
-    "win": "Told you.",
-    "obey": "Fine. This once.",
-    "disobey": "No. My way.",
-    "bonus": "...Not bad."
-   },
-   "playful": {
-    "attack": "Tag, you're it!",
-    "hit": "Hey, no fair!",
-    "low_hp": "Game over? Not yet!",
-    "win": "Again, again!",
-    "obey": "Ooh, fun!",
-    "disobey": "Nah, I've got a better game!",
-    "bonus": "Hehe, sneaky!"
-   },
-   "moody": {
-    "attack": "Chirr! Take that!",
-    "hit": "Ugh, today is the worst.",
-    "low_hp": "Why does everything happen to me?",
-    "win": "Best day ever! I think.",
-    "obey": "Fine, I'm in the mood.",
-    "disobey": "Not in the mood.",
-    "bonus": "Did you hear that? Perfect!"
-   }
+  "voice": {
+    "en": {
+      "anxious": {
+        "attack": "I-I'll try!",
+        "hit": "Ow... that hurt.",
+        "low_hp": "I can't... I'm scared.",
+        "win": "We did it? We really did it?",
+        "obey": "O-okay, I'll do it!",
+        "disobey": "I-I can't, sorry!",
+        "bonus": "That worked? It worked!",
+        "freed": "I... I can hear myself again. Thank you."
+      },
+      "gentle": {
+        "attack": "Sorry, but I have to.",
+        "hit": "I'm fine, don't worry.",
+        "low_hp": "Just a little rest...",
+        "win": "Everyone okay? Good.",
+        "obey": "Of course.",
+        "disobey": "Not like that... let me help another way.",
+        "bonus": "Good thinking, friend.",
+        "freed": "My voice... it's back. Thank you, friend."
+      },
+      "brave": {
+        "attack": "Here I come!",
+        "hit": "Ha! Barely felt it!",
+        "low_hp": "Not done yet!",
+        "win": "Too easy!",
+        "obey": "Finally!",
+        "disobey": "Retreat? Never!",
+        "bonus": "Now that's a plan!",
+        "freed": "Ha! My voice is mine again!"
+      },
+      "stubborn": {
+        "attack": "Hmph.",
+        "hit": "Tch.",
+        "low_hp": "...Still standing.",
+        "win": "Told you.",
+        "obey": "Fine. This once.",
+        "disobey": "No. My way.",
+        "bonus": "...Not bad.",
+        "freed": "...Hmph. Thanks. I mean it."
+      },
+      "playful": {
+        "attack": "Tag, you're it!",
+        "hit": "Hey, no fair!",
+        "low_hp": "Game over? Not yet!",
+        "win": "Again, again!",
+        "obey": "Ooh, fun!",
+        "disobey": "Nah, I've got a better game!",
+        "bonus": "Hehe, sneaky!",
+        "freed": "La-la-la! I can sing again, yay!"
+      },
+      "moody": {
+        "attack": "Chirr! Take that!",
+        "hit": "Ugh, today is the worst.",
+        "low_hp": "Why does everything happen to me?",
+        "win": "Best day ever! I think.",
+        "obey": "Fine, I'm in the mood.",
+        "disobey": "Not in the mood.",
+        "bonus": "Did you hear that? Perfect!",
+        "freed": "I'm free! Wait - I'm actually free?!"
+      }
+    },
+    "de": {
+      "anxious": {
+        "attack": "I-ich versuch's!",
+        "hit": "Au … das tat weh.",
+        "low_hp": "Ich kann nicht mehr … ich hab Angst.",
+        "win": "Wir haben's geschafft? Wirklich?",
+        "obey": "O-okay, ich mach's!",
+        "disobey": "I-ich kann nicht, tut mir leid!",
+        "bonus": "Das hat geklappt? Es hat geklappt!",
+        "freed": "Ich... ich höre mich wieder. Danke."
+      },
+      "gentle": {
+        "attack": "Tut mir leid, aber es muss sein.",
+        "hit": "Mir geht's gut, keine Sorge.",
+        "low_hp": "Nur kurz ausruhen …",
+        "win": "Alle in Ordnung? Gut.",
+        "obey": "Natürlich.",
+        "disobey": "Nicht so … ich helfe lieber anders.",
+        "bonus": "Gut überlegt, Freund.",
+        "freed": "Meine Stimme... sie ist zurück. Danke, Freund."
+      },
+      "brave": {
+        "attack": "Jetzt komm ich!",
+        "hit": "Ha! Kaum gespürt!",
+        "low_hp": "Noch nicht fertig!",
+        "win": "Viel zu leicht!",
+        "obey": "Endlich!",
+        "disobey": "Rückzug? Niemals!",
+        "bonus": "Das ist ein Plan!",
+        "freed": "Ha! Meine Stimme gehört wieder mir!"
+      },
+      "stubborn": {
+        "attack": "Hmpf.",
+        "hit": "Tss.",
+        "low_hp": "… Steh noch.",
+        "win": "Hab ich doch gesagt.",
+        "obey": "Na gut. Dieses Mal.",
+        "disobey": "Nein. Auf meine Art.",
+        "bonus": "… Nicht schlecht.",
+        "freed": "...Hmpf. Danke. Ehrlich."
+      },
+      "playful": {
+        "attack": "Fang mich doch!",
+        "hit": "Hey, unfair!",
+        "low_hp": "Spiel vorbei? Noch nicht!",
+        "win": "Nochmal, nochmal!",
+        "obey": "Oh, lustig!",
+        "disobey": "Nö, ich hab ein besseres Spiel!",
+        "bonus": "Hihi, gerissen!",
+        "freed": "La-la-la! Ich kann wieder singen, juhu!"
+      },
+      "moody": {
+        "attack": "Zirr! Da hast du's!",
+        "hit": "Ach, heute ist der schlimmste Tag.",
+        "low_hp": "Warum passiert immer mir alles?",
+        "win": "Bester Tag aller Zeiten! Glaub ich.",
+        "obey": "Na gut, ich hab Lust.",
+        "disobey": "Keine Lust.",
+        "bonus": "Hast du das gehört? Perfekt!",
+        "freed": "Ich bin frei! Moment – wirklich frei?!"
+      }
+    },
+    "zh_Hans": {
+      "anxious": {
+        "attack": "我、我试试！",
+        "hit": "好痛……",
+        "low_hp": "我不行了……我好怕。",
+        "win": "我们赢了？真的吗？",
+        "obey": "好、好的，我来！",
+        "disobey": "我、我做不到，对不起！",
+        "bonus": "成功了？真的成功了！",
+        "freed": "我……我又听见自己的声音了。谢谢你。"
+      },
+      "gentle": {
+        "attack": "对不起，可是必须这样。",
+        "hit": "我没事，别担心。",
+        "low_hp": "让我歇一会儿……",
+        "win": "大家都还好吗？那就好。",
+        "obey": "当然。",
+        "disobey": "不要这样……我换个方式帮忙。",
+        "bonus": "想得真好，朋友。",
+        "freed": "我的声音……回来了。谢谢你，朋友。"
+      },
+      "brave": {
+        "attack": "我来了！",
+        "hit": "哈！不痛不痒！",
+        "low_hp": "还没完呢！",
+        "win": "太简单了！",
+        "obey": "终于！",
+        "disobey": "后退？绝不！",
+        "bonus": "这才叫计划！",
+        "freed": "哈！我的声音又是我的了！"
+      },
+      "stubborn": {
+        "attack": "哼。",
+        "hit": "啧。",
+        "low_hp": "……还站着。",
+        "win": "早跟你说了。",
+        "obey": "行吧。就这一次。",
+        "disobey": "不。按我的来。",
+        "bonus": "……还不错。",
+        "freed": "……哼。谢了。说真的。"
+      },
+      "playful": {
+        "attack": "抓到你啦！",
+        "hit": "喂，不公平！",
+        "low_hp": "游戏结束？还早呢！",
+        "win": "再来再来！",
+        "obey": "哦，好玩！",
+        "disobey": "不要，我有更好玩的！",
+        "bonus": "嘻嘻，真狡猾！",
+        "freed": "啦啦啦！我又能唱歌啦！"
+      },
+      "moody": {
+        "attack": "唧唧！看招！",
+        "hit": "唉，今天真倒霉。",
+        "low_hp": "为什么倒霉的总是我？",
+        "win": "史上最棒的一天！大概吧。",
+        "obey": "好吧，我有心情。",
+        "disobey": "没心情。",
+        "bonus": "听到了吗？完美！",
+        "freed": "我自由了！等等——真的自由了？！"
+      }
+    }
   },
-  "de": {
-   "anxious": {
-    "attack": "I-ich versuch's!",
-    "hit": "Au … das tat weh.",
-    "low_hp": "Ich kann nicht mehr … ich hab Angst.",
-    "win": "Wir haben's geschafft? Wirklich?",
-    "obey": "O-okay, ich mach's!",
-    "disobey": "I-ich kann nicht, tut mir leid!",
-    "bonus": "Das hat geklappt? Es hat geklappt!"
-   },
-   "gentle": {
-    "attack": "Tut mir leid, aber es muss sein.",
-    "hit": "Mir geht's gut, keine Sorge.",
-    "low_hp": "Nur kurz ausruhen …",
-    "win": "Alle in Ordnung? Gut.",
-    "obey": "Natürlich.",
-    "disobey": "Nicht so … ich helfe lieber anders.",
-    "bonus": "Gut überlegt, Freund."
-   },
-   "brave": {
-    "attack": "Jetzt komm ich!",
-    "hit": "Ha! Kaum gespürt!",
-    "low_hp": "Noch nicht fertig!",
-    "win": "Viel zu leicht!",
-    "obey": "Endlich!",
-    "disobey": "Rückzug? Niemals!",
-    "bonus": "Das ist ein Plan!"
-   },
-   "stubborn": {
-    "attack": "Hmpf.",
-    "hit": "Tss.",
-    "low_hp": "… Steh noch.",
-    "win": "Hab ich doch gesagt.",
-    "obey": "Na gut. Dieses Mal.",
-    "disobey": "Nein. Auf meine Art.",
-    "bonus": "… Nicht schlecht."
-   },
-   "playful": {
-    "attack": "Fang mich doch!",
-    "hit": "Hey, unfair!",
-    "low_hp": "Spiel vorbei? Noch nicht!",
-    "win": "Nochmal, nochmal!",
-    "obey": "Oh, lustig!",
-    "disobey": "Nö, ich hab ein besseres Spiel!",
-    "bonus": "Hihi, gerissen!"
-   },
-   "moody": {
-    "attack": "Zirr! Da hast du's!",
-    "hit": "Ach, heute ist der schlimmste Tag.",
-    "low_hp": "Warum passiert immer mir alles?",
-    "win": "Bester Tag aller Zeiten! Glaub ich.",
-    "obey": "Na gut, ich hab Lust.",
-    "disobey": "Keine Lust.",
-    "bonus": "Hast du das gehört? Perfekt!"
-   }
-  },
-  "zh_Hans": {
-   "anxious": {
-    "attack": "我、我试试！",
-    "hit": "好痛……",
-    "low_hp": "我不行了……我好怕。",
-    "win": "我们赢了？真的吗？",
-    "obey": "好、好的，我来！",
-    "disobey": "我、我做不到，对不起！",
-    "bonus": "成功了？真的成功了！"
-   },
-   "gentle": {
-    "attack": "对不起，可是必须这样。",
-    "hit": "我没事，别担心。",
-    "low_hp": "让我歇一会儿……",
-    "win": "大家都还好吗？那就好。",
-    "obey": "当然。",
-    "disobey": "不要这样……我换个方式帮忙。",
-    "bonus": "想得真好，朋友。"
-   },
-   "brave": {
-    "attack": "我来了！",
-    "hit": "哈！不痛不痒！",
-    "low_hp": "还没完呢！",
-    "win": "太简单了！",
-    "obey": "终于！",
-    "disobey": "后退？绝不！",
-    "bonus": "这才叫计划！"
-   },
-   "stubborn": {
-    "attack": "哼。",
-    "hit": "啧。",
-    "low_hp": "……还站着。",
-    "win": "早跟你说了。",
-    "obey": "行吧。就这一次。",
-    "disobey": "不。按我的来。",
-    "bonus": "……还不错。"
-   },
-   "playful": {
-    "attack": "抓到你啦！",
-    "hit": "喂，不公平！",
-    "low_hp": "游戏结束？还早呢！",
-    "win": "再来再来！",
-    "obey": "哦，好玩！",
-    "disobey": "不要，我有更好玩的！",
-    "bonus": "嘻嘻，真狡猾！"
-   },
-   "moody": {
-    "attack": "唧唧！看招！",
-    "hit": "唉，今天真倒霉。",
-    "low_hp": "为什么倒霉的总是我？",
-    "win": "史上最棒的一天！大概吧。",
-    "obey": "好吧，我有心情。",
-    "disobey": "没心情。",
-    "bonus": "听到了吗？完美！"
-   }
+  "silenced": {
+    "en": [
+      "...quiet... must be quiet...",
+      "...no song... no...",
+      "...he said... stillness...",
+      "...can't... remember the tune...",
+      "...silence... keeps us..."
+    ],
+    "de": [
+      "… still … muss still sein …",
+      "… kein Lied … nein …",
+      "… er sagte … Stille …",
+      "… kann mich nicht … an die Melodie …",
+      "… die Stille … hält uns …"
+    ],
+    "zh_Hans": [
+      "……安静……必须安静……",
+      "……没有歌……不……",
+      "……他说……寂静……",
+      "……想不起……那首曲子……",
+      "……寂静……留住我们……"
+    ]
   }
- },
- "silenced": {
-  "en": [
-   "...quiet... must be quiet...",
-   "...no song... no...",
-   "...he said... stillness...",
-   "...can't... remember the tune...",
-   "...silence... keeps us..."
-  ],
-  "de": [
-   "… still … muss still sein …",
-   "… kein Lied … nein …",
-   "… er sagte … Stille …",
-   "… kann mich nicht … an die Melodie …",
-   "… die Stille … hält uns …"
-  ],
-  "zh_Hans": [
-   "……安静……必须安静……",
-   "……没有歌……不……",
-   "……他说……寂静……",
-   "……想不起……那首曲子……",
-   "……寂静……留住我们……"
-  ]
- }
 }

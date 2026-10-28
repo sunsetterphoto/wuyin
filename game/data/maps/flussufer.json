@@ -1,0 +1,145 @@
+{
+ "name": "MAP_FLUSSUFER",
+ "time": "night",
+ "music": "silence",
+ "battle_bg": "river",
+ "spawns": {
+  "from_village": [
+   1,
+   8
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    0,
+    7,
+    1,
+    2
+   ],
+   "to": "weidendorf",
+   "spawn": "from_river"
+  }
+ ],
+ "on_enter": {
+  "event": "river_arrive",
+  "unless": "river_arrived"
+ },
+ "npcs": [
+  {
+   "id": "yao",
+   "at": [
+    15,
+    9
+   ],
+   "event": "yao_river",
+   "when": "river_arrived",
+   "unless": "prologue_tamed"
+  }
+ ],
+ "lingshou": [
+  {
+   "id": "shy_bambaer",
+   "species": "bambaer",
+   "at": [
+    3,
+    4
+   ],
+   "event": "prolog_bambaer",
+   "unless": [
+    "gone_shy_bambaer",
+    "prologue_tamed"
+   ]
+  },
+  {
+   "id": "shy_wawalurch",
+   "species": "wawalurch",
+   "at": [
+    6,
+    13
+   ],
+   "event": "prolog_wawalurch",
+   "unless": [
+    "gone_shy_wawalurch",
+    "prologue_tamed"
+   ]
+  },
+  {
+   "id": "shy_zirpo",
+   "species": "zirpo",
+   "at": [
+    21,
+    3
+   ],
+   "event": "prolog_zirpo",
+   "unless": [
+    "gone_shy_zirpo",
+    "prologue_tamed"
+   ]
+  },
+  {
+   "id": "shy_nebelaffe",
+   "species": "nebelaffe",
+   "at": [
+    24,
+    7
+   ],
+   "event": "prolog_nebelaffe",
+   "unless": [
+    "gone_shy_nebelaffe",
+    "prologue_tamed"
+   ]
+  }
+ ],
+ "encounters": {
+  "when": "prologue_done",
+  "rate": 0.12,
+  "table": [
+   {
+    "species": "wawalurch",
+    "levels": [
+     3,
+     5
+    ],
+    "weight": 3
+   },
+   {
+    "species": "reisquak",
+    "levels": [
+     3,
+     5
+    ],
+    "weight": 2
+   },
+   {
+    "species": "zirpo",
+    "levels": [
+     3,
+     5
+    ],
+    "weight": 2
+   }
+  ]
+ },
+ "id": "flussufer",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+  "SBBBB.....T.......^^^...T..S",
+  "SBBBB....,,,.......^..f....S",
+  "SB......,,,,,.............fS",
+  "S........,,,......T......,,S",
+  "S.....f..............,,,,,,S",
+  "S..T.....................,,S",
+  "=========..........f.......S",
+  "=================..........S",
+  "S.......f.......====.......S",
+  "S..........................S",
+  "S.....,,,..........T.......S",
+  "S....,,,,,.................S",
+  "S..............f.......^^..S",
+  "S~~~~.................~~~~~S",
+  "S~~~~~~~~~..........~~~~~~~S",
+  "S~~~~~~~~~~~~~~~~~~~~~~~~~~S",
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+ ]
+}

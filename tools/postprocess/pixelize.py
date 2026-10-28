@@ -87,7 +87,10 @@ def keep_main_blob(rgba, min_share=0.2):
     return Image.fromarray(a, "RGBA")
 
 
-def sprite(img, size, cols, outline=True):
+def sprite(img, size, cols, outline=True, height=None):
+    """size = width; height defaults to size (square). Non-square sprites (32x48 overworld
+    characters) are scaled to fit the canvas, centred horizontally, feet at the bottom."""
+    width, height = size, height or size
     rgba = remove_white_background(img)
     small_work = rgba.resize((rgba.width // 4, rgba.height // 4), Image.NEAREST)  # blob analysis on a quarter
     cleaned_small = keep_main_blob(small_work)
@@ -97,19 +100,21 @@ def sprite(img, size, cols, outline=True):
     rgba = Image.fromarray(a, "RGBA")
     bbox = rgba.getbbox()
     rgba = rgba.crop(bbox)
-    # Pad to a square canvas, feet at the bottom, leaving room for the outline.
-    side = max(rgba.size)
-    canvas = Image.new("RGBA", (side, side), (0, 0, 0, 0))
-    canvas.paste(rgba, ((side - rgba.width) // 2, side - rgba.height))
-    inner = size - 2 if outline else size
-    small = canvas.resize((inner, inner), Image.BOX)
+    pad = 2 if outline else 0
+    iw, ih = width - pad, height - pad
+    # Pad to the target aspect ratio, feet at the bottom, leaving room for the outline.
+    scale = max(rgba.width / iw, rgba.height / ih)
+    cw, ch = round(iw * scale), round(ih * scale)
+    canvas = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+    canvas.paste(rgba, ((cw - rgba.width) // 2, ch - rgba.height))
+    small = canvas.resize((iw, ih), Image.BOX)
     arr = np.array(small)
     alpha = arr[:, :, 3] >= 128
     rgb = quantize(Image.fromarray(arr[:, :, :3], "RGB"), cols)
-    out = np.zeros((size, size, 4), dtype=np.uint8)
-    off = (size - inner) // 2
-    out[off:off + inner, off:off + inner, :3] = np.array(rgb)
-    out[off:off + inner, off:off + inner, 3] = alpha * 255
+    out = np.zeros((height, width, 4), dtype=np.uint8)
+    off = pad // 2
+    out[off:off + ih, off:off + iw, :3] = np.array(rgb)
+    out[off:off + ih, off:off + iw, 3] = alpha * 255
     if outline:
         darkest = min(cols, key=lambda c: sum(c))
         a2 = out[:, :, 3] > 0
@@ -191,14 +196,15 @@ def main():
     ap.add_argument("mode", choices=["sprite", "tile"])
     ap.add_argument("src")
     ap.add_argument("dst")
-    ap.add_argument("--size", type=int, default=32)
+    ap.add_argument("--size", type=int, default=32, help="width (and height unless --height)")
+    ap.add_argument("--height", type=int, help="sprite: height for non-square sprites, e.g. --size 32 --height 48")
     ap.add_argument("--palette", default=PALETTE_FILE)
     ap.add_argument("--no-outline", action="store_true")
     ap.add_argument("--crop", type=float, default=0.375, help="tile: share of the image used for one tile")
     args = ap.parse_args()
     cols = load_palette(args.palette)
     img = Image.open(args.src)
-    out = sprite(img, args.size, cols, not args.no_outline) if args.mode == "sprite" else tile(img, args.size, cols, args.crop)
+    out = sprite(img, args.size, cols, not args.no_outline, args.height) if args.mode == "sprite" else tile(img, args.size, cols, args.crop)
     out.save(args.dst)
     print(args.dst, out.size, len(np.unique(np.array(out.convert("RGB")).reshape(-1, 3), axis=0)), "colors")
 

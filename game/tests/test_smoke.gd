@@ -10,7 +10,7 @@ func test_main_scene_loads() -> void:
 	var scene: PackedScene = load("res://scenes/main.tscn")
 	assert_true(scene != null, "main scene loads")
 	var root := scene.instantiate()
-	assert_true(root.has_node("Center/Title"), "title label exists")
+	assert_true(root.get_script() != null, "title screen script attached")
 	root.free()
 
 

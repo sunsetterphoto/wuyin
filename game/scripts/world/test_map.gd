@@ -63,7 +63,7 @@ func _ready() -> void:
 func _build_viewport() -> void:
 	var bg := ColorRect.new()
 	bg.color = Color.BLACK
-	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(bg)
 	_view = SubViewport.new()
 	_view.size = Vector2i(1280, 720)

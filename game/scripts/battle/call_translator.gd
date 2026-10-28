@@ -478,10 +478,7 @@ static func _names(key: String) -> String:
 
 
 static func _name_in(key: String, locale: String) -> String:
-	var tr_obj := TranslationServer.get_translation_object(locale)
-	if tr_obj == null:
-		return ""
-	return String(tr_obj.get_message(key))
+	return Texts.get_text(key, locale)
 
 
 static func _kw() -> Dictionary:

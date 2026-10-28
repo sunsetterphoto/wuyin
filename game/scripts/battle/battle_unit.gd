@@ -70,12 +70,12 @@ static func hp_for(base: int, lvl: int) -> int:
 
 ## Experience needed to go from `lvl` to `lvl + 1`.
 static func xp_to_next(lvl: int) -> int:
-	return 10 * lvl * lvl
+	return 8 * lvl * lvl
 
 
 ## Experience gained for exhausting an opponent of level `lvl`.
 static func xp_reward(lvl: int) -> int:
-	return 10 * lvl + 20
+	return 15 * lvl + 30
 
 
 func recalc_stats() -> void:
