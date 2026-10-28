@@ -11,7 +11,7 @@ var _text: TextEdit
 
 func _ready() -> void:
 	title_label.text = tr("FB_TITLE")
-	body.add_child(UiTheme.label(tr("FB_INTRO"), 19, UiTheme.MUTED))
+	body.add_child(UiTheme.para(tr("FB_INTRO"), 19, UiTheme.MUTED))
 	for area in Feedback.AREAS:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 6)

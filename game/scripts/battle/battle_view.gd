@@ -396,6 +396,8 @@ func _open_tab(tab: String, rebuild := true) -> void:
 					_suggest_button(text)
 		"tame":
 			var t := _befriendable()
+			_prompt.text = tr("TEMPERAMENT_HINT_" + Taming.temperament(t).to_upper()) if t.role == "wild" else tr("TAME_HINT_SILENCED")
+			_prompt.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			_cmd_button(tr("BATTLE_CALM"), func(): _submit(Battle.tame_action("calm", battle.slot_of(t))))
 			_cmd_button(tr("BATTLE_TALK"), _open_talk)
 			if t.role == "wild":

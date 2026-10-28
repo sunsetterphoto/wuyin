@@ -6,8 +6,8 @@ extends MenuScreen
 func _ready() -> void:
 	title_label.text = tr("END_TITLE")
 	var s := GameState.current
-	body.add_child(UiTheme.label(tr("END_TEXT"), 22))
-	body.add_child(UiTheme.label(tr("END_STATS").format({"time": GameMenu._time(s.play_seconds),
+	body.add_child(UiTheme.para(tr("END_TEXT"), 22))
+	body.add_child(UiTheme.para(tr("END_STATS").format({"time": GameMenu._time(s.play_seconds),
 		"battles": s.stats["battles"], "tamed": s.stats["tamed"], "freed": s.stats["freed"],
 		"calls": s.stats["calls"], "party": s.party.size() + s.farm.size()}), 20, UiTheme.MUTED))
 	var b := UiTheme.button(tr("END_RATE"), _rate)

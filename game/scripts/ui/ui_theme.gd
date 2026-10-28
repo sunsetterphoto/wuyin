@@ -96,6 +96,15 @@ static func label(text: String, size := 0, color := TEXT) -> Label:
 	return l
 
 
+## A wrapping paragraph for longer texts in menus.
+static func para(text: String, size := 0, color := TEXT) -> Label:
+	var l := label(text, size, color)
+	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	l.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	l.custom_minimum_size = Vector2(200, 0)
+	return l
+
+
 static func bar(color: Color, height := 14) -> ProgressBar:
 	var p := ProgressBar.new()
 	p.show_percentage = false

@@ -294,9 +294,16 @@ TALK_RESPECTFUL_0,I'll wait here. Take your time.,Ich warte hier. Nimm dir Zeit.
 TALK_RESPECTFUL_1,"May I come closer, {name}?","Darf ich näherkommen, {name}?",我可以靠近一点吗，{name}？
 TALK_SOOTHING_0,"Don't be afraid, {name}. I won't hurt you.","Keine Angst, {name}. Ich tu dir nichts.",别怕，{name}。我不会伤害你。
 TALK_SOOTHING_1,Easy now. Everything is okay.,Ganz ruhig. Alles ist gut.,放松，没事的。
+TAME_HINT_SILENCED,Silenced ones respond best to soothing and respectful words. Hits loosen the silence too.,Verstummte hören am ehesten auf beruhigende und respektvolle Worte. Auch Treffer lockern die Stille.,失声的灵兽最容易听进安慰和尊重的话，攻击也能松动寂静。
 TEMPERAMENT_ANXIOUS,anxious,ängstlich,胆小
 TEMPERAMENT_BRAVE,brave,mutig,勇敢
 TEMPERAMENT_GENTLE,gentle,sanft,温和
+TEMPERAMENT_HINT_ANXIOUS,"Anxious ones like quiet, soothing words.","Ängstliche mögen leise, beruhigende Worte.",胆小的喜欢轻声安慰。
+TEMPERAMENT_HINT_BRAVE,Brave ones like encouragement and praise.,Mutige mögen Ermutigung und Lob.,勇敢的喜欢鼓励和称赞。
+TEMPERAMENT_HINT_GENTLE,Gentle ones like calm and respect.,Sanfte mögen Ruhe und Respekt.,温和的喜欢安静和尊重。
+TEMPERAMENT_HINT_MOODY,"Moody ones like praise - or a game, depending on their mood.","Launische mögen Lob – oder ein Spiel, je nach Laune.",多变的喜欢称赞——或者游戏，看心情。
+TEMPERAMENT_HINT_PLAYFUL,Playful ones like games and fun.,Verspielte mögen Spiele und Spaß.,顽皮的喜欢游戏和玩乐。
+TEMPERAMENT_HINT_STUBBORN,Stubborn ones want respect and patience.,Sture wollen Respekt und Geduld.,倔强的需要尊重和耐心。
 TEMPERAMENT_MOODY,moody,launisch,多变
 TEMPERAMENT_PLAYFUL,playful,verspielt,顽皮
 TEMPERAMENT_STUBBORN,stubborn,stur,倔强

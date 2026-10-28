@@ -17,7 +17,7 @@ func _build(note := "") -> void:
 	var s := GameState.current
 	if not s.farm.is_empty() or s.party.size() > 1:
 		body.add_child(UiTheme.label(tr("INN_SHRINE"), 24, UiTheme.GOLD))
-		body.add_child(UiTheme.label(tr("INN_SHRINE_NOTE").format({"bells": s.bells}), 17, UiTheme.MUTED))
+		body.add_child(UiTheme.para(tr("INN_SHRINE_NOTE").format({"bells": s.bells}), 17, UiTheme.MUTED))
 		for i in s.party.size():
 			var extra: Array[Control] = []
 			if s.party.size() > 1:

@@ -57,8 +57,19 @@ func _run() -> void:
 	for i in 90:
 		await process_frame
 	await _shot("beta_battle_boss")
+	boss.queue_free()
 	var menu := GameMenu.new()
 	world._overlay_layer.add_child(menu)
 	await _shot("beta_menu")
+	menu.queue_free()
+	for entry in [["beta_shop", ShopMenu.make(["reisbaellchen", "kraeutertee", "glockenbluete", "bambussprossen", "suessreis", "silbertau"])],
+			["beta_inn", InnMenu.new()], ["beta_feedback", FeedbackForm.new()], ["beta_end", EndScreen.new()]]:
+		world._overlay_layer.add_child(entry[1])
+		await _shot(entry[0])
+		entry[1].queue_free()
+	var bf := BefriendView.new()
+	world._overlay_layer.add_child(bf)
+	bf.run("zirpo", 4, s)
+	await _shot("beta_befriend")
 	GameState.delete_save(0)
 	quit()

@@ -16,7 +16,7 @@ func _main() -> void:
 		tr("UI_BELLS"), "🔔".repeat(s.bells), _time(s.play_seconds)], 20, UiTheme.MUTED))
 	var q: String = s.flag("quest", "")
 	if q != "":
-		body.add_child(UiTheme.label("◆ " + tr(q), 22))
+		body.add_child(UiTheme.para("◆ " + tr(q), 22))
 	var grid := GridContainer.new()
 	grid.columns = 2
 	grid.add_theme_constant_override("h_separation", 10)
@@ -45,7 +45,7 @@ func _party() -> void:
 			extra.append(UiTheme.button("▲", func(): _move_up(i), 72))
 		body.add_child(MenuScreen.lingshou_row(s.party[i], extra))
 	if not s.farm.is_empty():
-		body.add_child(UiTheme.label(tr("MENU_FARM_NOTE").format({"n": s.farm.size()}), 18, UiTheme.MUTED))
+		body.add_child(UiTheme.para(tr("MENU_FARM_NOTE").format({"n": s.farm.size()}), 18, UiTheme.MUTED))
 	body.add_child(UiTheme.button(tr("MENU_BACK"), _main))
 
 
@@ -69,7 +69,7 @@ func _bag() -> void:
 		var v := VBoxContainer.new()
 		v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		v.add_child(UiTheme.label("%s ×%d" % [tr(it["name"]), s.item_count(id)], 22))
-		v.add_child(UiTheme.label(tr(it["desc"]), 17, UiTheme.MUTED))
+		v.add_child(UiTheme.para(tr(it["desc"]), 17, UiTheme.MUTED))
 		row.add_child(v)
 		if it["kind"] in ["heal", "revive"]:
 			row.add_child(UiTheme.button(tr("UI_USE"), func(): _use(id), 140))

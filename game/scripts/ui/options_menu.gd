@@ -15,7 +15,7 @@ func _build() -> void:
 	title_label.text = tr("MENU_OPTIONS")
 	_choice("OPT_LANGUAGE", LOCALES.map(func(l): return l[0]), LOCALES.map(func(l): return l[1]), "locale")
 	_choice("OPT_LLM", [true, false], ["OPT_ON", "OPT_OFF"], "llm_enabled")
-	body.add_child(UiTheme.label(tr("OPT_LLM_NOTE") if LlmService.instance().backends.any(func(b): return b.is_available()) \
+	body.add_child(UiTheme.para(tr("OPT_LLM_NOTE") if LlmService.instance().backends.any(func(b): return b.is_available()) \
 		else tr("OPT_LLM_MISSING"), 17, UiTheme.MUTED))
 	_choice("OPT_CAMERA", ["hd2d", "classic"], ["CAM_MODE_HD2D", "CAM_MODE_CLASSIC"], "camera")
 	_choice("OPT_TEXT_SPEED", [1, 2, 3], ["OPT_SLOW", "OPT_NORMAL", "OPT_INSTANT"], "text_speed")

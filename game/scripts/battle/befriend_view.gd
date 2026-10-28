@@ -41,6 +41,7 @@ func run(species: String, level: int, game_state: GameState) -> Dictionary:
 	_build()
 	TameJudge.prepare()
 	_say(tr("BEFRIEND_INTRO").format({"name": tr(unit.name_key()), "temperament": tr("TEMPERAMENT_" + Taming.temperament(unit).to_upper())}))
+	_say("[color=#e0b04a]%s[/color]" % tr("TEMPERAMENT_HINT_" + Taming.temperament(unit).to_upper()))
 	_show_actions()
 	if autopilot:
 		_auto.call_deferred()

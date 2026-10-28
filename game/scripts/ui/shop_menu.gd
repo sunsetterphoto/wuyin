@@ -28,7 +28,7 @@ func _build(note := "") -> void:
 		var v := VBoxContainer.new()
 		v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		v.add_child(UiTheme.label("%s   (%s %d)" % [tr(it["name"]), tr("UI_OWNED"), s.item_count(id)], 22))
-		v.add_child(UiTheme.label(tr(it["desc"]), 17, UiTheme.MUTED))
+		v.add_child(UiTheme.para(tr(it["desc"]), 17, UiTheme.MUTED))
 		row.add_child(v)
 		var b := UiTheme.button("%d %s" % [it["price"], tr("UI_COINS")], func():
 			if s.buy(id):
