@@ -29,11 +29,11 @@ static func get_theme() -> Theme:
 	t.set_color("font_disabled_color", "Button", MUTED.darkened(0.3))
 	t.set_stylebox("panel", "PanelContainer", panel())
 	t.set_stylebox("panel", "Panel", panel())
-	t.set_stylebox("normal", "Button", _button(Color(0.17, 0.14, 0.21, 0.95), Color(0.5, 0.42, 0.25)))
-	t.set_stylebox("hover", "Button", _button(Color(0.22, 0.18, 0.27, 0.95), GOLD))
-	t.set_stylebox("pressed", "Button", _button(Color(0.28, 0.22, 0.15, 0.95), GOLD))
-	t.set_stylebox("focus", "Button", _button(Color(0, 0, 0, 0), GOLD))
-	t.set_stylebox("disabled", "Button", _button(Color(0.12, 0.1, 0.14, 0.8), Color(0.3, 0.27, 0.25)))
+	t.set_stylebox("normal", "Button", skin("button"))
+	t.set_stylebox("hover", "Button", skin("button_hover"))
+	t.set_stylebox("pressed", "Button", skin("button_pressed"))
+	t.set_stylebox("focus", "Button", skin("focus"))
+	t.set_stylebox("disabled", "Button", skin("button_disabled"))
 	t.set_stylebox("normal", "LineEdit", _button(Color(0.07, 0.06, 0.09, 0.95), Color(0.5, 0.42, 0.25)))
 	t.set_stylebox("focus", "LineEdit", _button(Color(0.07, 0.06, 0.09, 0.95), GOLD))
 	t.set_color("font_color", "LineEdit", TEXT)
@@ -48,14 +48,102 @@ static func reset() -> void:
 	_theme = null
 
 
-static func panel(alpha := 0.92) -> StyleBoxFlat:
-	var s := StyleBoxFlat.new()
-	s.bg_color = Color(PANEL, alpha)
-	s.border_color = GOLD.darkened(0.25)
-	s.set_border_width_all(2)
-	s.set_corner_radius_all(6)
-	s.set_content_margin_all(14)
-	return s
+static func panel(alpha := 0.92) -> StyleBox:
+	var sb := skin("panel")
+	sb.modulate_color = Color(1, 1, 1, alpha / 0.92)
+	return sb
+
+
+# --- pixel frames (procedural 9-slice skins) -------------------------------------
+
+const PX := 3  # screen pixels per skin pixel
+static var _skins := {}
+
+
+## Pixel-art frames for panels and buttons: dark indigo with a soft starry
+## pattern, a bevelled gold frame and little knot ornaments in the corners.
+static func skin(kind: String) -> StyleBoxTexture:
+	if _skins.has(kind):
+		return _skins[kind].duplicate()
+	var size := 24
+	var img := Image.create(size, size, false, Image.FORMAT_RGBA8)
+	img.fill(Color(0, 0, 0, 0))
+	var fill := Color("221b30")
+	var fill2 := Color("2a2240")
+	var gold := Color("e0b04a")
+	var gold_hi := Color("f8dc8a")
+	var gold_lo := Color("a8782a")
+	var dark := Color("120e18")
+	match kind:
+		"button":
+			fill = Color("2e2540")
+			fill2 = Color("372d4c")
+			gold = Color("b8913f")
+			gold_hi = Color("d8b465")
+			gold_lo = Color("7a5a2a")
+		"button_hover":
+			fill = Color("3a2f52")
+			fill2 = Color("44385e")
+		"button_pressed":
+			fill = Color("4a3420")
+			fill2 = Color("5a4228")
+		"button_disabled":
+			fill = Color("1c1724")
+			fill2 = Color("1f1a28")
+			gold = Color("4a4250")
+			gold_hi = Color("5a5260")
+			gold_lo = Color("3a3240")
+		"focus":
+			fill = Color(0, 0, 0, 0)
+			fill2 = Color(0, 0, 0, 0)
+		"nameplate":
+			fill = Color("8e2e23")
+			fill2 = Color("a8382b")
+	for y in size:
+		for x in size:
+			var edge := mini(mini(x, y), mini(size - 1 - x, size - 1 - y))
+			var c := fill
+			if (x * 7 + y * 13) % 29 == 0 and kind in ["panel", "nameplate"]:
+				c = fill2
+			if y < size / 2 and kind.begins_with("button"):
+				c = fill2
+			match edge:
+				0:
+					c = dark
+				1:
+					c = gold_hi if (x < size / 2 and y < size / 2) else (gold_lo if (x >= size / 2 and y >= size / 2) else gold)
+				2:
+					c = gold if kind != "focus" else Color(0, 0, 0, 0)
+				3:
+					c = dark.lerp(fill, 0.4) if kind != "focus" else Color(0, 0, 0, 0)
+			img.set_pixel(x, y, c)
+	# Rounded corners: cut the outermost corner pixels.
+	for p in [Vector2i(0, 0), Vector2i(size - 1, 0), Vector2i(0, size - 1), Vector2i(size - 1, size - 1)]:
+		img.set_pixelv(p, Color(0, 0, 0, 0))
+	# Corner knots (panels only).
+	if kind in ["panel", "nameplate"]:
+		for cx in [5, size - 6]:
+			for cy in [5, size - 6]:
+				img.set_pixel(cx, cy, gold)
+				img.set_pixel(cx + (1 if cx < size / 2 else -1), cy, gold_lo)
+				img.set_pixel(cx, cy + (1 if cy < size / 2 else -1), gold_lo)
+	img.resize(size * PX, size * PX, Image.INTERPOLATE_NEAREST)
+	var sb := StyleBoxTexture.new()
+	sb.texture = ImageTexture.create_from_image(img)
+	var m := 7 * PX
+	sb.texture_margin_left = m
+	sb.texture_margin_right = m
+	sb.texture_margin_top = m
+	sb.texture_margin_bottom = m
+	sb.axis_stretch_horizontal = StyleBoxTexture.AXIS_STRETCH_MODE_TILE_FIT
+	sb.axis_stretch_vertical = StyleBoxTexture.AXIS_STRETCH_MODE_TILE_FIT
+	var content := 14 if kind in ["panel", "nameplate"] else 10
+	sb.content_margin_left = content + 4
+	sb.content_margin_right = content + 4
+	sb.content_margin_top = content
+	sb.content_margin_bottom = content
+	_skins[kind] = sb
+	return sb.duplicate()
 
 
 static func _button(bg: Color, border: Color) -> StyleBoxFlat:

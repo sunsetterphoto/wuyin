@@ -210,6 +210,66 @@
   ]
  },
  "id": "kreuzweg",
+ "decor": [
+  {
+   "prop": "cart",
+   "at": [
+    26.6,
+    10.6
+   ]
+  },
+  {
+   "prop": "barrel",
+   "at": [
+    20.3,
+    10.4
+   ]
+  },
+  {
+   "prop": "jar",
+   "at": [
+    25.7,
+    10.4
+   ]
+  },
+  {
+   "prop": "lantern_stone",
+   "at": [
+    15.6,
+    12.4
+   ],
+   "scale": 0.9
+  },
+  {
+   "prop": "lantern_stone",
+   "at": [
+    19.4,
+    12.4
+   ],
+   "scale": 0.9
+  },
+  {
+   "prop": "stone_lion",
+   "at": [
+    16.2,
+    4.5
+   ]
+  },
+  {
+   "prop": "stone_lion",
+   "at": [
+    19.8,
+    4.5
+   ]
+  },
+  {
+   "prop": "incense_burner",
+   "at": [
+    22.6,
+    10.6
+   ]
+  }
+ ],
  "rows": [
   "SSSSS==SSSSSSSSSS==SSSSSSSSSSSSSSSSS",
   "SQQQ.==.QQQQQQQQc==cQQQQQQQQQQQQQQQS",

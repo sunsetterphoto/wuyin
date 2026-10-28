@@ -351,13 +351,23 @@ func speaker_info(speaker: String) -> Dictionary:
 		"narrator", "":
 			return {"name": "", "voice": {}}
 		"player":
-			return {"name": world.player_name(), "voice": {"tone": "jue", "style": "brave"}}
+			return {"name": world.player_name(), "voice": {"tone": "jue", "style": "brave",
+				"portrait": Sprites.portrait("hero", int(world.state.player["hair"]), int(world.state.player["outfit"]))}}
 	if speaker in GameData.lingshou_ids():
 		var sp := GameData.lingshou(speaker)
 		return {"name": tr(sp["name"]), "voice": {"tone": Babble.ELEMENT_TONE.get(sp["element"], "gong"),
-			"style": sp["temperaments"][0]}}
+			"style": sp["temperaments"][0], "portrait": Sprites.lingshou(speaker)}}
 	var n := npc(speaker)
-	return {"name": tr(n.get("name", speaker)), "voice": n.get("voice", {"tone": "gong", "style": "gentle"})}
+	var voice: Dictionary = n.get("voice", {"tone": "gong", "style": "gentle"}).duplicate()
+	# The portrait follows the look of the person on the map (their sprite), or the speaker id.
+	var look := speaker
+	var a := world.actor(speaker) if world else null
+	if a and not a.entry.is_empty():
+		look = a.entry.get("sprite", a.entry.get("lingshou", speaker))
+	elif speaker.begins_with("meister"):
+		look = "meister"
+	voice["portrait"] = Sprites.portrait(look)
+	return {"name": tr(n.get("name", speaker)), "voice": voice}
 
 
 func _fmt(text: String, args := {}) -> String:

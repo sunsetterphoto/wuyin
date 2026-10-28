@@ -98,6 +98,36 @@
   }
  ],
  "id": "qilin_plateau",
+ "decor": [
+  {
+   "prop": "incense_burner",
+   "at": [
+    14.0,
+    10.5
+   ]
+  },
+  {
+   "prop": "lantern_stone",
+   "at": [
+    9.6,
+    10.6
+   ]
+  },
+  {
+   "prop": "lantern_stone",
+   "at": [
+    18.4,
+    10.6
+   ]
+  },
+  {
+   "prop": "tree_cloudpine",
+   "at": [
+    4.0,
+    16.0
+   ]
+  }
+ ],
  "rows": [
   "SSSSSSSSSSSSSSSSSSSSSSSSSSSS",
   "SuuuuuuuuuuuuuuuuuuuuuuuuuuS",

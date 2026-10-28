@@ -13,6 +13,7 @@ BATTLE_HEART_UP,A faint sound stirs inside {target}.,In {target} regt sich ein l
 BATTLE_INTRO_FOE,{foe} challenges you!,{foe} fordert dich heraus!,{foe}向你发起挑战！
 BATTLE_INTRO_GUARDIAN,The {name} rises - mute and grey.,Der {name} erhebt sich – stumm und grau.,{name}缓缓升起——无声而灰暗。
 BATTLE_INTRO_MOTH,"A {name} flutters close, eating the last sounds!",Eine {name} flattert heran und frisst die letzten Klänge!,{name}扑了过来，吞食着最后的声音！
+BATTLE_INTRO_NIAN,The Nian rears up before you! Hold up noise and red against it!,Der Nian baut sich vor dir auf! Halte ihm Lärm und Rot entgegen!,年兽在你面前立起身来！用响声和红色对付它！
 BATTLE_INTRO_SILENCED,A silenced {name} blocks the way. Fill its heartsong!,Ein verstummtes {name} versperrt den Weg. Fülle seinen Herzklang!,失声的{name}挡住了去路。唤醒它的心音！
 BATTLE_INTRO_WILD,A wild {name} appears!,Ein wildes {name} taucht auf!,野生的{name}出现了！
 BATTLE_ITEM,{item} for {target}.,{item} für {target}.,给{target}使用了{item}。
@@ -475,7 +476,7 @@ FB_COMMENT,"What was good, what bothered you?","Was war gut, was hat gestört?",
 FB_COMMENT_PLACEHOLDER,Your comment...,Dein Kommentar …,你的意见……
 FB_CONTROLS,Controls,Steuerung,操作
 FB_GRAPHICS,Graphics,Grafik,画面
-FB_INTRO,"How do you like the beta so far? 1 star = not at all, 5 = a lot. Leaving rows empty is fine. Everything stays on the device.","Wie gefällt dir die Beta bisher? 1 Stern = gar nicht, 5 = sehr. Leer lassen ist okay. Alles bleibt auf dem Gerät.",你觉得测试版怎么样？1星=很不喜欢，5星=非常喜欢。可以留空。所有内容只保存在设备上。
+FB_INTRO,"How do you like Wuyin so far? 1 star = not at all, 5 = a lot. Leaving rows empty is fine. Everything stays on the device.","Wie gefällt dir Wuyin bisher? 1 Stern = gar nicht, 5 = sehr. Leer lassen ist okay. Alles bleibt auf dem Gerät.",你觉得《五音》怎么样？1星=很不喜欢，5星=非常喜欢。可以留空。所有内容只保存在设备上。
 FB_MUSIC,Music and sound,Musik und Klang,音乐与音效
 FB_OVERALL,Overall,Gesamteindruck,总体
 FB_SEND,Save,Speichern,保存
@@ -483,7 +484,7 @@ FB_SPEED,Pace and waiting times,Tempo und Wartezeiten,节奏与等待时间
 FB_STORY,Story and characters,Geschichte und Figuren,故事与角色
 FB_TAMING,Taming and freeing,Zähmen und Befreien,驯服与解放
 FB_THANKS,Thank you! Your rating is saved.,Danke! Deine Bewertung ist gespeichert.,谢谢！你的评价已保存。
-FB_TITLE,Rate the beta,Beta bewerten,评价测试版
+FB_TITLE,Rate the game,Spiel bewerten,评价游戏
 FOOD_ACTIVE,You already ate {dish} today. A new dish replaces its effect.,Du hast heute schon {dish} gegessen. Ein neues Gericht ersetzt die Wirkung.,你今天已经吃过{dish}了。点新菜会替换效果。
 FOOD_EATEN,Mmm! {dish} works until you sleep.,Mmh! {dish} wirkt bis zum Schlafen.,嗯！{dish}的效果持续到睡觉。
 FOOD_TITLE,Restaurant,Restaurant,饭馆
@@ -766,7 +767,7 @@ MAP_TEEUFER,Teabank,Teeufer,茶岸镇
 MAP_WEIDENDORF,Willowdale,Weidendorf,柳村
 MENU_BAG,Bag,Beutel,背包
 MENU_FARM_NOTE,{n} more Lingshou live on your farm in Willowdale. Swap them at the wind chime shrine of any inn.,Auf deinem Hof in Weidendorf leben {n} weitere Lingshou. Tauschen kannst du am Windspiel-Schrein jeder Unterkunft.,还有{n}只灵兽住在柳村的农庄里。可以在任何客栈的风铃神龛交换。
-MENU_FEEDBACK,Rate the beta,Beta bewerten,评价测试版
+MENU_FEEDBACK,Rate the game,Spiel bewerten,评价游戏
 MENU_LEXICON,Bestiary,Lexikon,图鉴
 MENU_OPTIONS,Options,Optionen,设置
 MENU_PARTY,Companions,Gefolge,同伴

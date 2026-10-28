@@ -193,3 +193,4 @@ for sp, de, en, zh in [
     ("FENGHUANG", "Ich singe wieder – mit allen fünf Tönen. Das verdanke ich dir.", "I sing again - with all five tones. I owe that to you.", "我又能唱歌了——五音齐全。这都要感谢你。"),
 ]:
     t(f"VOICE_{sp}_FREED", de, en, zh)
+t("BATTLE_INTRO_NIAN", "Der Nian baut sich vor dir auf! Halte ihm Lärm und Rot entgegen!", "The Nian rears up before you! Hold up noise and red against it!", "年兽在你面前立起身来！用响声和红色对付它！")

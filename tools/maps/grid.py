@@ -41,8 +41,11 @@ class Grid:
 
 
 def save(mid, grid, data):
+    from decor import DECOR
     data = dict(data)
     data["id"] = mid
+    if mid in DECOR:
+        data["decor"] = DECOR[mid]
     data["rows"] = grid.rows()
     with open(os.path.join(OUT, mid + ".json"), "w") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)

@@ -87,6 +87,8 @@ func _intro_text() -> String:
 		return tr("BATTLE_INTRO_GUARDIAN").format({"name": tr(e.name_key())})
 	if e.role == "silenced":
 		return tr("BATTLE_INTRO_SILENCED").format({"name": tr(e.name_key())})
+	if e.species.get("alignment") == "nian":
+		return tr("BATTLE_INTRO_NIAN").format({"name": tr(e.name_key())})
 	if e.species.get("alignment") == "shadow_moth":
 		return tr("BATTLE_INTRO_MOTH").format({"name": tr(e.name_key())})
 	return tr("BATTLE_INTRO_WILD").format({"name": tr(e.name_key())})
@@ -105,6 +107,11 @@ func _build() -> void:
 	_bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	_bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	var path := BG_DIR + String(setup.get("bg", "river")) + ".png"
+	if not ResourceLoader.exists(path):
+		# Region art still missing: the closest existing background.
+		var near: String = {"karst": "river", "danxia": "terraces", "dunes": "terraces", "pillars": "shrine", "phoenix_temple": "shrine",
+			"farm": "bamboo", "village_day": "bamboo", "order_hall": "shrine"}.get(String(setup.get("bg", "")), "river")
+		path = BG_DIR + near + ".png"
 	if ResourceLoader.exists(path):
 		_bg.texture = load(path)
 	else:
@@ -120,6 +127,7 @@ func _build() -> void:
 	shade.color = Color(0, 0, 0, 0.15)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(shade)
+	add_child(_air_particles(String(setup.get("bg", "river"))))
 	_stage = Control.new()
 	_stage.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_stage.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -248,10 +256,50 @@ func _add_sprite(u: BattleUnit, feet: Vector2, own: bool) -> void:
 	_stage.add_child(shadow)
 	_stage.add_child(s)
 	_sprites[u.uid] = s
+	if battle.turn == 0 and not autopilot:
+		# Entrance: everyone slides in from their side of the screen.
+		var from := s.position + Vector2(-500.0 if own else 500.0, 0)
+		var home: Vector2 = s.position
+		s.position = from
+		shadow.modulate.a = 0.0
+		var tw_in := s.create_tween()
+		tw_in.tween_property(s, "position", home, 0.45).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		shadow.create_tween().tween_property(shadow, "modulate:a", 1.0, 0.45)
 	# Idle breathing.
 	var tw := s.create_tween().set_loops()
 	tw.tween_property(s, "scale", Vector2(1.0, 0.97), 0.9 + randf() * 0.3).set_trans(Tween.TRANS_SINE)
 	tw.tween_property(s, "scale", Vector2(1.0, 1.0), 0.9).set_trans(Tween.TRANS_SINE)
+
+
+## Floating petals, embers, sand or motes over the battle background.
+func _air_particles(bg: String) -> CPUParticles2D:
+	var p := CPUParticles2D.new()
+	var look: Array = {"bamboo": [Color("8acc5c"), 0.6], "river": [Color("e0f0ff"), 0.3], "terraces": [Color("c8f09a"), 0.5],
+		"village_night": [Color("ffd070"), -0.4], "shrine": [Color("f4a0c0"), 0.5], "karst": [Color("e8f4ff"), 0.25],
+		"danxia": [Color("ffb060"), -0.5], "dunes": [Color("f0d090"), 0.9], "pillars": [Color("ffffff"), 0.2],
+		"phoenix_temple": [Color("ffd890"), -0.5], "farm": [Color("f4a0c0"), 0.4], "order_hall": [Color("c8c8d0"), 0.1],
+		"village_day": [Color("f4a0c0"), 0.5]}.get(bg, [Color("ffffff"), 0.3])
+	p.amount = 26
+	p.lifetime = 7.0
+	p.preprocess = 7.0
+	p.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	p.emission_rect_extents = Vector2(900, 400)
+	p.position = Vector2(780, 300)
+	p.direction = Vector2(1, float(look[1]))
+	p.spread = 25.0
+	p.initial_velocity_min = 15.0
+	p.initial_velocity_max = 45.0
+	p.gravity = Vector2(0, 12.0 * signf(float(look[1])))
+	p.scale_amount_min = 3.0
+	p.scale_amount_max = 6.0
+	p.color = look[0]
+	var g := Gradient.new()
+	g.set_color(0, Color(1, 1, 1, 0))
+	g.add_point(0.2, Color(1, 1, 1, 0.8))
+	g.add_point(0.8, Color(1, 1, 1, 0.8))
+	g.set_color(g.get_point_count() - 1, Color(1, 1, 1, 0))
+	p.color_ramp = g
+	return p
 
 
 func _make_panel(u: BattleUnit) -> Control:
@@ -276,8 +324,13 @@ func _make_panel(u: BattleUnit) -> Control:
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 4)
 	box.add_child(v)
+	var top := HBoxContainer.new()
+	top.add_theme_constant_override("separation", 8)
+	v.add_child(top)
 	var name_label := UiTheme.label("", 22)
-	v.add_child(name_label)
+	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	top.add_child(name_label)
+	top.add_child(element_chip(u.element()))
 	var bar := UiTheme.bar(UiTheme.JADE, 16)
 	v.add_child(bar)
 	var hp := UiTheme.label("", 16, UiTheme.MUTED)
@@ -292,6 +345,28 @@ func _make_panel(u: BattleUnit) -> Control:
 	return box
 
 
+## Small coloured badge with the element's character (木 火 土 金 水) and name.
+static func element_chip(element: String) -> Control:
+	var chip := PanelContainer.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Sprites.element_color(element).darkened(0.25)
+	sb.border_color = Sprites.element_color(element).lightened(0.3)
+	sb.set_border_width_all(2)
+	sb.set_corner_radius_all(10)
+	sb.content_margin_left = 8
+	sb.content_margin_right = 10
+	sb.content_margin_top = 1
+	sb.content_margin_bottom = 1
+	chip.add_theme_stylebox_override("panel", sb)
+	var glyph: String = {"wood": "木", "fire": "火", "earth": "土", "metal": "金", "water": "水"}.get(element, "·")
+	var l := UiTheme.label("%s %s" % [glyph, BattleText.element_name(element)], 16, Color.WHITE)
+	l.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.6))
+	l.add_theme_constant_override("outline_size", 4)
+	chip.add_child(l)
+	chip.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	return chip
+
+
 func _refresh() -> void:
 	for uid in _panels:
 		var p: Dictionary = _panels[uid]
@@ -300,8 +375,7 @@ func _refresh() -> void:
 		if u.side == PLAYER:
 			p["name"].text = "%s  %s %s" % [tr(u.name_key()), tr("BATTLE_LEVEL").format({"level": u.level}), st]
 		else:
-			p["name"].text = "%s  %s  %s %s" % [tr(u.name_key()), tr("BATTLE_LEVEL").format({"level": u.level}),
-				BattleText.element_name(u.element()), st]
+			p["name"].text = "%s  %s %s" % [tr(u.name_key()), tr("BATTLE_LEVEL").format({"level": u.level}), st]
 		p["bar"].max_value = u.max_hp
 		create_tween().tween_property(p["bar"], "value", float(u.hp), 0.3)
 		var fill: StyleBoxFlat = p["bar"].get_theme_stylebox("fill").duplicate()

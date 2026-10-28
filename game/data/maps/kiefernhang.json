@@ -177,6 +177,74 @@
   }
  ],
  "id": "kiefernhang",
+ "decor": [
+  {
+   "prop": "prayer_flags",
+   "at": [
+    14.0,
+    8.3
+   ],
+   "y": 1.4
+  },
+  {
+   "prop": "prayer_flags",
+   "at": [
+    19.0,
+    8.3
+   ],
+   "y": 1.4
+  },
+  {
+   "prop": "lantern_stone",
+   "at": [
+    12.6,
+    8.4
+   ]
+  },
+  {
+   "prop": "lantern_stone",
+   "at": [
+    21.4,
+    8.4
+   ]
+  },
+  {
+   "prop": "tree_cloudpine",
+   "at": [
+    3.4,
+    9.2
+   ]
+  },
+  {
+   "prop": "tree_cloudpine",
+   "at": [
+    29.6,
+    14.2
+   ]
+  },
+  {
+   "prop": "incense_burner",
+   "at": [
+    17.0,
+    3.5
+   ]
+  },
+  {
+   "prop": "tea_table",
+   "at": [
+    23.6,
+    7.6
+   ]
+  },
+  {
+   "prop": "wind_chime",
+   "at": [
+    6.0,
+    4.8
+   ],
+   "y": 0.95
+  }
+ ],
  "rows": [
   "SSSSSSSSSSSSSSSccccSSSSSSSSSSSSSSS",
   "SuuuuuuuuuuuuuQccccQuuuuuuuuuuuuuS",

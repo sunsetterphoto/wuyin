@@ -98,6 +98,37 @@
   }
  ],
  "id": "feuergipfel",
+ "decor": [
+  {
+   "prop": "brazier",
+   "at": [
+    9.0,
+    4.5
+   ]
+  },
+  {
+   "prop": "brazier",
+   "at": [
+    16.0,
+    4.5
+   ]
+  },
+  {
+   "prop": "incense_burner",
+   "at": [
+    12.5,
+    9.4
+   ]
+  },
+  {
+   "prop": "tree_maple",
+   "at": [
+    6.0,
+    18.2
+   ],
+   "scale": 0.9
+  }
+ ],
  "rows": [
   "SSSSSSSSSSSSSSSSSSSSSSSSSS",
   "SyyyyyyyyyyyyyyyyyyyyyyyyS",

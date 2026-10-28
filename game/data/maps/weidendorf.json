@@ -300,6 +300,142 @@
  ],
  "silent": true,
  "id": "weidendorf",
+ "decor": [
+  {
+   "prop": "laundry_line",
+   "at": [
+    9.5,
+    2.7
+   ]
+  },
+  {
+   "prop": "jars_group",
+   "at": [
+    8.4,
+    4.6
+   ]
+  },
+  {
+   "prop": "firewood",
+   "at": [
+    3.4,
+    4.7
+   ]
+  },
+  {
+   "prop": "wind_chime",
+   "at": [
+    14.0,
+    4.8
+   ],
+   "y": 0.95
+  },
+  {
+   "prop": "wind_chime",
+   "at": [
+    16.9,
+    4.8
+   ],
+   "y": 0.95
+  },
+  {
+   "prop": "banner_red",
+   "at": [
+    11.0,
+    7.4
+   ]
+  },
+  {
+   "prop": "banner_red",
+   "at": [
+    21.0,
+    7.4
+   ]
+  },
+  {
+   "prop": "lantern_string",
+   "at": [
+    12.0,
+    8.05
+   ],
+   "y": 1.25
+  },
+  {
+   "prop": "lantern_string",
+   "at": [
+    20.0,
+    8.05
+   ],
+   "y": 1.25
+  },
+  {
+   "prop": "drum",
+   "at": [
+    23.2,
+    13.5
+   ]
+  },
+  {
+   "prop": "haystack",
+   "at": [
+    2.6,
+    11.7
+   ]
+  },
+  {
+   "prop": "tea_table",
+   "at": [
+    6.6,
+    16.0
+   ]
+  },
+  {
+   "prop": "boat_small",
+   "at": [
+    10.0,
+    19.5
+   ],
+   "y": -0.3
+  },
+  {
+   "prop": "duck",
+   "at": [
+    6.0,
+    19.4
+   ],
+   "y": -0.25
+  },
+  {
+   "prop": "duck",
+   "at": [
+    7.0,
+    19.8
+   ],
+   "y": -0.25
+  },
+  {
+   "prop": "basket_veg",
+   "at": [
+    25.5,
+    12.6
+   ]
+  },
+  {
+   "prop": "tree_plum",
+   "at": [
+    11.2,
+    15.4
+   ]
+  },
+  {
+   "prop": "stone_lion",
+   "at": [
+    26.3,
+    11.6
+   ],
+   "scale": 0.9
+  }
+ ],
  "rows": [
   "SSSSSSSSSSSSSSSSSSSSSSSSSSSS==SS",
   "SBBB.T......BBB.........,,..==.S",

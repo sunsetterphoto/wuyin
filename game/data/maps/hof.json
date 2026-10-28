@@ -268,6 +268,100 @@
   }
  ],
  "id": "hof",
+ "decor": [
+  {
+   "prop": "haystack",
+   "at": [
+    10.5,
+    4.2
+   ]
+  },
+  {
+   "prop": "firewood",
+   "at": [
+    8.6,
+    5.6
+   ]
+  },
+  {
+   "prop": "laundry_line",
+   "at": [
+    11.6,
+    3.3
+   ]
+  },
+  {
+   "prop": "cart",
+   "at": [
+    13.6,
+    5.5
+   ]
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    14.0,
+    6.6
+   ]
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    15.3,
+    6.2
+   ]
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    24.6,
+    6.4
+   ]
+  },
+  {
+   "prop": "basket_veg",
+   "at": [
+    9.6,
+    6.6
+   ]
+  },
+  {
+   "prop": "rice_sheaf",
+   "at": [
+    24.6,
+    4.0
+   ]
+  },
+  {
+   "prop": "rice_sheaf",
+   "at": [
+    25.2,
+    5.0
+   ]
+  },
+  {
+   "prop": "well_bucket",
+   "at": [
+    3.4,
+    7.0
+   ]
+  },
+  {
+   "prop": "wind_chime",
+   "at": [
+    6.0,
+    6.8
+   ],
+   "y": 0.95
+  },
+  {
+   "prop": "tree_plum",
+   "at": [
+    31.0,
+    3.6
+   ]
+  }
+ ],
  "rows": [
   "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
   "SBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBS",

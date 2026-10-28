@@ -125,6 +125,78 @@
   }
  ],
  "id": "phoenixtempel",
+ "decor": [
+  {
+   "prop": "banner_green",
+   "at": [
+    6.6,
+    6.6
+   ]
+  },
+  {
+   "prop": "banner_red",
+   "at": [
+    23.4,
+    6.6
+   ]
+  },
+  {
+   "prop": "banner_yellow",
+   "at": [
+    6.6,
+    13.6
+   ]
+  },
+  {
+   "prop": "banner_white",
+   "at": [
+    23.4,
+    13.6
+   ]
+  },
+  {
+   "prop": "banner_black",
+   "at": [
+    17.6,
+    15.6
+   ]
+  },
+  {
+   "prop": "brazier",
+   "at": [
+    11.4,
+    3.5
+   ]
+  },
+  {
+   "prop": "brazier",
+   "at": [
+    18.6,
+    3.5
+   ]
+  },
+  {
+   "prop": "brazier",
+   "at": [
+    12.0,
+    10.6
+   ]
+  },
+  {
+   "prop": "brazier",
+   "at": [
+    17.0,
+    10.6
+   ]
+  },
+  {
+   "prop": "incense_burner",
+   "at": [
+    15.0,
+    11.0
+   ]
+  }
+ ],
  "rows": [
   "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
   "SuuuuuuuuuuuuuuuuuuuuuuuuuuuuS",

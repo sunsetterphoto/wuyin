@@ -185,6 +185,78 @@
   }
  ],
  "id": "mondquell",
+ "decor": [
+  {
+   "prop": "tree_datepalm",
+   "at": [
+    10.0,
+    6.0
+   ]
+  },
+  {
+   "prop": "tree_datepalm",
+   "at": [
+    13.2,
+    12.2
+   ]
+  },
+  {
+   "prop": "tree_datepalm",
+   "at": [
+    17.2,
+    7.0
+   ]
+  },
+  {
+   "prop": "tree_datepalm",
+   "at": [
+    10.2,
+    10.4
+   ]
+  },
+  {
+   "prop": "tent_yurt",
+   "at": [
+    28.5,
+    9.6
+   ]
+  },
+  {
+   "prop": "camel_saddle_pile",
+   "at": [
+    26.0,
+    10.7
+   ]
+  },
+  {
+   "prop": "banner_white",
+   "at": [
+    17.4,
+    17.7
+   ]
+  },
+  {
+   "prop": "banner_white",
+   "at": [
+    24.6,
+    17.7
+   ]
+  },
+  {
+   "prop": "jars_group",
+   "at": [
+    8.4,
+    7.0
+   ]
+  },
+  {
+   "prop": "stall",
+   "at": [
+    9.5,
+    16.8
+   ]
+  }
+ ],
  "rows": [
   "SSSSSSSSSSSSSSSSS==SSSSSSSSSSSSSSS",
   "Smmmmmmmmmmmmmmmm==mmmmmmmmmmmmmmS",

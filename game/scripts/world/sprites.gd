@@ -46,6 +46,30 @@ static func lingshou_rec(rec: Dictionary) -> Texture2D:
 	return _cache[key]
 
 
+const PORTRAIT_DIR := "res://assets/portraits/"
+
+
+## Dialog portrait: generated bust if it exists, otherwise the character (or Lingshou) sprite.
+static func portrait(id: String, hair := -1, outfit := -1) -> Texture2D:
+	if id in GameData.lingshou_ids() or ResourceLoader.exists(LINGSHOU_DIR + id + ".png"):
+		return lingshou(id)
+	var key := "pt:%s:%d:%d" % [id, hair, outfit]
+	if _cache.has(key):
+		return _cache[key]
+	var tex: Texture2D
+	var path := PORTRAIT_DIR + id + ".png"
+	if ResourceLoader.exists(path):
+		tex = load(path)
+		if hair >= 0:
+			tex = _recolor(tex, hair, outfit)
+	elif id == "hero" and hair >= 0:
+		tex = hero(hair, outfit)
+	else:
+		tex = character(id)
+	_cache[key] = tex
+	return tex
+
+
 ## Back or side view of a character if the art has one (<id>_back.png), else null.
 static func character_view(id: String, view: String) -> Texture2D:
 	var path := CHARS_DIR + id + "_" + view + ".png"
@@ -68,6 +92,13 @@ static func hero(hair: int, outfit: int, view := "") -> Texture2D:
 	var base := character("hero") if view == "" else character_view("hero", view)
 	if base == null:
 		return null
+	var tex := _recolor(base, hair, outfit)
+	_cache[key] = tex
+	return tex
+
+
+## Hair and outfit colours of the character editor on any hero image (sprite or portrait).
+static func _recolor(base: Texture2D, hair: int, outfit: int) -> Texture2D:
 	var img := base.get_image()
 	img.decompress()
 	var hair_c := HAIR_COLORS[hair % HAIR_COLORS.size()]
@@ -82,9 +113,7 @@ static func hero(hair: int, outfit: int, view := "") -> Texture2D:
 				img.set_pixel(x, y, Color.from_hsv(outfit_c.h, outfit_c.s * (0.6 + c.s * 0.5), c.v * (0.6 + outfit_c.v * 0.6), c.a))
 			elif y < img.get_height() / 3 and c.v < 0.35:
 				img.set_pixel(x, y, Color.from_hsv(hair_c.h, hair_c.s, clampf(hair_c.v * (0.5 + c.v * 1.6), 0.0, 1.0), c.a))
-	var tex := ImageTexture.create_from_image(img)
-	_cache[key] = tex
-	return tex
+	return ImageTexture.create_from_image(img)
 
 
 static func element_color(element: String) -> Color:

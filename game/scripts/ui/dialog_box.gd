@@ -15,6 +15,9 @@ static var transcript: Array[String] = []
 
 var _panel: PanelContainer
 var _name: Label
+var _plate: PanelContainer
+var _portrait: TextureRect
+var _portrait_frame: PanelContainer
 var _text: RichTextLabel
 var _choices: VBoxContainer
 var _report: Button
@@ -43,13 +46,43 @@ func _ready() -> void:
 	_panel.mouse_filter = Control.MOUSE_FILTER_STOP
 	_panel.gui_input.connect(_on_panel_input)
 	add_child(_panel)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 16)
+	_panel.add_child(row)
+	# Portrait of the speaker in its own little frame.
+	_portrait_frame = PanelContainer.new()
+	_portrait_frame.add_theme_stylebox_override("panel", UiTheme.skin("button"))
+	_portrait_frame.custom_minimum_size = Vector2(150, 150)
+	_portrait_frame.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	row.add_child(_portrait_frame)
+	_portrait = TextureRect.new()
+	_portrait.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_portrait_frame.add_child(_portrait)
 	var v := VBoxContainer.new()
-	_panel.add_child(v)
+	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	row.add_child(v)
 	var top := HBoxContainer.new()
 	v.add_child(top)
-	_name = UiTheme.label("", 24, UiTheme.GOLD)
-	_name.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	top.add_child(_name)
+	var spacer := Control.new()
+	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	top.add_child(spacer)
+	# Name on a red plate that sits on the box's top edge.
+	_plate = PanelContainer.new()
+	_plate.add_theme_stylebox_override("panel", UiTheme.skin("nameplate"))
+	_plate.set_anchor(SIDE_LEFT, 0.08, true)
+	_plate.set_anchor(SIDE_TOP, 1.0, true)
+	_plate.set_anchor(SIDE_BOTTOM, 1.0, true)
+	_plate.offset_left = 24
+	_plate.offset_top = -268
+	_plate.offset_bottom = -212
+	_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_plate)
+	_name = UiTheme.label("", 24, Color("fff4dc"))
+	_name.add_theme_color_override("font_outline_color", Color("3a1410"))
+	_name.add_theme_constant_override("outline_size", 6)
+	_plate.add_child(_name)
 	_report = Button.new()
 	_report.text = "⚑ " + tr("UI_REPORT")
 	_report.flat = true
@@ -83,6 +116,7 @@ func _ready() -> void:
 
 func hide_box() -> void:
 	_panel.visible = false
+	_plate.visible = false
 	_choices.visible = false
 
 
@@ -97,11 +131,16 @@ func say(speaker: String, text: String, voice := {}, report := {}) -> void:
 	_choices.visible = false
 	_name.text = speaker
 	_name.visible = speaker != ""
+	_plate.visible = speaker != ""
+	var pic: Texture2D = voice.get("portrait", null)
+	_portrait.texture = pic
+	_portrait_frame.visible = pic != null
+	_portrait.flip_h = voice.get("portrait_flip", false)
 	_text.text = text
 	_report_data = report
 	_report.visible = not report.is_empty()
 	_report.disabled = false
-	if voice.is_empty():
+	if not voice.has("tone"):
 		_babble.set_voice("gong", "gentle", 0)
 		_babble.process_mode = Node.PROCESS_MODE_DISABLED
 	else:

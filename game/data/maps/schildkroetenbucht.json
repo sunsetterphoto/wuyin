@@ -98,6 +98,44 @@
   }
  ],
  "id": "schildkroetenbucht",
+ "decor": [
+  {
+   "prop": "boat_small",
+   "at": [
+    12.6,
+    17.5
+   ],
+   "y": -0.3
+  },
+  {
+   "prop": "fishing_net",
+   "at": [
+    17.6,
+    15.6
+   ]
+  },
+  {
+   "prop": "incense_burner",
+   "at": [
+    14.5,
+    9.2
+   ]
+  },
+  {
+   "prop": "lantern_stone",
+   "at": [
+    9.4,
+    8.6
+   ]
+  },
+  {
+   "prop": "lantern_stone",
+   "at": [
+    19.6,
+    8.6
+   ]
+  }
+ ],
  "rows": [
   "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
   "S~~~~~~~~~~~~~~~~~~~~~~~~~~~~S",

@@ -110,6 +110,10 @@ static func build(m: MapData, silent := false) -> Dictionary:
 	for z in m.height:
 		for x in m.width:
 			_tile(c, x, z)
+	# Hand-placed decoration of the map (towns, farm, temple): {"prop", "at": [x, z], "scale", "y"}.
+	for d in m.def.get("decor", []):
+		var at: Array = d["at"]
+		c.prop(d["prop"], Vector3(float(at[0]), float(d.get("y", 0.0)), float(at[1])), float(d.get("scale", 1.0)), float(d.get("shadow", 0.5)))
 	_outside(c)
 	_flush(c, silent)
 	return {"root": c.root, "lights": c.lights}

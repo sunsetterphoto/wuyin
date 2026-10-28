@@ -151,10 +151,17 @@ func _build_ui() -> void:
 	_ui_layer = CanvasLayer.new()
 	_ui_layer.layer = 5
 	add_child(_ui_layer)
+	var hud_box := PanelContainer.new()
+	var hud_skin := UiTheme.skin("panel")
+	hud_skin.modulate_color = Color(1, 1, 1, 0.82)
+	hud_box.add_theme_stylebox_override("panel", hud_skin)
+	hud_box.position = Vector2(14, 12)
+	hud_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_ui_layer.add_child(hud_box)
 	var hud := VBoxContainer.new()
-	hud.position = Vector2(20, 16)
 	hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_ui_layer.add_child(hud)
+	hud.add_theme_constant_override("separation", 0)
+	hud_box.add_child(hud)
 	_hud_name = UiTheme.label("", 24, UiTheme.GOLD)
 	_hud_name.add_theme_color_override("font_outline_color", Color.BLACK)
 	_hud_name.add_theme_constant_override("outline_size", 8)
@@ -167,7 +174,7 @@ func _build_ui() -> void:
 	_hud_quest.add_theme_color_override("font_outline_color", Color.BLACK)
 	_hud_quest.add_theme_constant_override("outline_size", 6)
 	_hud_quest.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_hud_quest.custom_minimum_size = Vector2(560, 0)
+	_hud_quest.custom_minimum_size = Vector2(460, 0)
 	hud.add_child(_hud_quest)
 	_weather_fx = WeatherFx.new()
 	var fx_layer := CanvasLayer.new()
@@ -451,6 +458,7 @@ func _apply_ambience() -> void:
 
 
 func _update_time_label() -> void:
+	_hud_time.visible = state.flag("prologue_done")
 	if not state.flag("prologue_done"):
 		_hud_time.text = ""
 		return
@@ -1043,6 +1051,7 @@ func show_ui(control: Control) -> void:
 func update_quest() -> void:
 	var q: String = current_quest()
 	_hud_quest.text = ("◆ " + tr(q)) if q != "" else ""
+	_hud_quest.visible = q != ""
 
 
 # --- helpers for events ------------------------------------------------------
