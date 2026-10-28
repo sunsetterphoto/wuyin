@@ -13,6 +13,8 @@ signal _done
 static var autopilot := false
 ## Autopilot fights wild Lingshou instead of befriending them (grinding).
 static var autopilot_fight := false
+## Autopilot never talks to silenced Lingshou (playthrough towards the bitter ending).
+static var autopilot_no_free := false
 
 const PLAYER := 0
 const ENEMY := 1
@@ -606,7 +608,7 @@ func _auto_choose() -> void:
 				state.take_item(item)
 				return
 	var talk_turn := battle.turn % 2 == 0 if battle.active_count == 1 else _slot == 0
-	if t and t.role == "silenced" and talk_turn:
+	if t and t.role == "silenced" and talk_turn and not autopilot_no_free:
 		_submit(Battle.tame_action("talk", battle.slot_of(t), "", "soothing"))
 		return
 	var own := BattleAI.choose_for(battle, u)

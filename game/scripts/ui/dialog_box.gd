@@ -9,6 +9,8 @@ signal chosen(index: int)
 
 ## Automated playthroughs (tests/tools/autoplay_beta.gd): lines pass at once, choices pick the first option.
 static var autopilot := false
+## Automated playthroughs: pick the last option instead of the first (other endings).
+static var autopilot_last_choice := false
 static var transcript: Array[String] = []
 
 var _panel: PanelContainer
@@ -128,7 +130,8 @@ func update_text(text: String) -> void:
 func ask(options: Array[String]) -> int:
 	if autopilot:
 		await get_tree().process_frame
-		return 0
+		transcript.append("  [choice] " + (options[options.size() - 1] if autopilot_last_choice else options[0]))
+		return options.size() - 1 if autopilot_last_choice else 0
 	_choices.visible = true
 	for c in _choices.get_children():
 		c.queue_free()

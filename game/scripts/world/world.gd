@@ -65,6 +65,8 @@ var _fps_log_t := 0.0
 var _clock_acc := 0.0
 var _ambience_t := 0.0
 var _weather_fx: WeatherFx
+var _ambient: AmbientFx
+var _bubble: Sprite3D
 var _hud_time: Label
 static var _graph := {}  # map id -> [{"to", "rect", "warp"}] (Jinli's route finding)
 
@@ -212,13 +214,14 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 		_apply_pens()
 	_map_root = Node3D.new()
 	_view.add_child(_map_root)
-	var built := MapBuilder.build(map)
+	var built := MapBuilder.build(map, state.region_silent(map.def.get("region", "bamboo")))
 	_map_root.add_child(built["root"])
 	_lights = built["lights"]
 	var start := pos if pos.x >= 0 else map.spawn(spawn)
 	state.pos = start
 	var p3 := Vector3(start.x, 0, start.y)
 	_player = Actor.make(Sprites.hero(int(state.player["hair"]), int(state.player["outfit"])), p3, "player")
+	_player.breathe = false
 	_player.set_directions(Sprites.hero(int(state.player["hair"]), int(state.player["outfit"]), "back"),
 		Sprites.hero(int(state.player["hair"]), int(state.player["outfit"]), "side"))
 	_map_root.add_child(_player)
@@ -232,6 +235,10 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 	_update_follower()
 	_rig.target = _player
 	_rig.bounds = Rect2(-0.5, -0.5, map.width, map.height)
+	_ambient = AmbientFx.new()
+	_map_root.add_child(_ambient)
+	_bubble = _make_bubble()
+	_map_root.add_child(_bubble)
 	_spawn_people()
 	_spawn_wild()
 	_spawn_farm()
@@ -437,6 +444,9 @@ func _apply_ambience() -> void:
 	_env.fog_density = {"fog": 0.05, "sandstorm": 0.06, "snow": 0.025}.get(w, 0.0)
 	_weather_fx.set_kind(w)
 	set_silent(state.region_silent(region()) and map.def.get("silent", true))
+	if _ambient:
+		var h: float = state.minute / 60.0 if uses_clock() else {"night": 23.0, "dusk": 19.5}.get(map.def.get("time", "day"), 12.0)
+		_ambient.configure(region(), h >= 20.0 or h < 5.0, _silent, w)
 	_update_time_label()
 
 
@@ -496,6 +506,9 @@ func _process(delta: float) -> void:
 		_player.animate(delta, _player.moving)
 	_follow(delta)
 	_wander(delta)
+	if _ambient:
+		_ambient.position = _player.position
+	_update_bubble()
 
 
 func _layout_screen() -> void:
@@ -907,6 +920,64 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_interact()
 	elif event.is_action_pressed("menu"):
 		open_menu()
+
+
+## Speech bubble over the person or thing the A button would talk to.
+func _make_bubble() -> Sprite3D:
+	var img := Image.create(14, 12, false, Image.FORMAT_RGBA8)
+	img.fill(Color(0, 0, 0, 0))
+	img.fill_rect(Rect2i(1, 0, 12, 8), Color("2a2230"))
+	img.fill_rect(Rect2i(0, 1, 14, 6), Color("2a2230"))
+	img.fill_rect(Rect2i(2, 1, 10, 6), Color("fff8e8"))
+	img.fill_rect(Rect2i(1, 2, 12, 4), Color("fff8e8"))
+	img.fill_rect(Rect2i(4, 8, 3, 2), Color("2a2230"))
+	img.fill_rect(Rect2i(4, 8, 2, 1), Color("fff8e8"))
+	img.fill_rect(Rect2i(4, 10, 1, 1), Color("2a2230"))
+	for x in [4, 7, 10]:
+		img.fill_rect(Rect2i(x - 1, 3, 2, 2), Color("8e2e23"))
+	var b := Sprite3D.new()
+	b.texture = ImageTexture.create_from_image(img)
+	b.pixel_size = 1.0 / CameraRig.PIXELS_PER_UNIT
+	b.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	b.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	b.no_depth_test = true
+	b.shaded = false
+	b.render_priority = 2
+	b.visible = false
+	return b
+
+
+func _talk_target() -> Actor:
+	var best: Actor = null
+	var best_score := INF
+	var p := Vector2(_player.position.x, _player.position.z)
+	for id in _actors:
+		var a: Actor = _actors[id]
+		if a.event == "" or not (a.visible or a.entry.get("kind") == "invisible"):
+			continue
+		if a != _jinli and not a.get_meta("active", false):
+			continue
+		var to := Vector2(a.position.x, a.position.z) - p
+		var d := to.length()
+		if d > TALK_RANGE:
+			continue
+		var score := d - (0.5 if to.normalized().dot(_facing) > 0.3 else 0.0)
+		if a == _jinli:
+			score += 1.5  # people and objects first; Jinli only when nothing else is near
+		if score < best_score:
+			best_score = score
+			best = a
+	return best
+
+
+func _update_bubble() -> void:
+	if _bubble == null:
+		return
+	var t: Actor = null if busy or dialog.is_open() else _talk_target()
+	_bubble.visible = t != null and t != _jinli
+	if _bubble.visible:
+		var h := 1.0 if t.entry.get("kind") == "invisible" else t.texture.get_height() / CameraRig.PIXELS_PER_UNIT * t.scale.y
+		_bubble.position = t.position + Vector3(0, h + 0.25 + absf(sin(Time.get_ticks_msec() / 220.0)) * 0.08, 0)
 
 
 func _on_interact() -> void:

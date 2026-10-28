@@ -19,6 +19,11 @@ var _target := Vector3.ZERO
 var _speed := 3.0
 var _path: Array[Vector3] = []
 ## Optional views for walking up (back) and sideways (side, drawn facing left).
+## Gentle breathing while standing (scale at the feet); off for the player.
+var breathe := true
+var _base_scale := Vector3.ONE
+var _breath_phase := 0.0
+var _shadow: MeshInstance3D
 var _front: Texture2D
 var _back: Texture2D
 var _side: Texture2D
@@ -37,7 +42,25 @@ static func make(tex: Texture2D, pos: Vector3, id := "") -> Actor:
 	a._base_offset = Vector2(0, tex.get_height() / 2.0)  # feet on the ground
 	a.offset = a._base_offset
 	a.position = pos
+	a._breath_phase = randf() * TAU
+	a._add_shadow(tex.get_width() / CameraRig.PIXELS_PER_UNIT)
 	return a
+
+
+## Soft contact shadow on the ground under the sprite.
+func _add_shadow(width: float) -> void:
+	_shadow = MeshInstance3D.new()
+	var plane := PlaneMesh.new()
+	plane.size = Vector2(clampf(width * 0.8, 0.5, 2.6), clampf(width * 0.45, 0.3, 1.4))
+	plane.material = Materials.blob_shadow()
+	_shadow.mesh = plane
+	_shadow.position = Vector3(0, 0.015, 0.02)
+	_shadow.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(_shadow)
+
+
+func _ready() -> void:
+	_base_scale = scale
 
 
 ## Faint silhouette drawn over everything, so the actor stays visible behind trees and roofs.
@@ -127,6 +150,9 @@ func animate(delta: float, walking: bool, dir_x := 0.0, dir_z := 0.0) -> void:
 
 func _process(delta: float) -> void:
 	if not moving:
+		if breathe and visible:
+			var b := sin(Time.get_ticks_msec() / 1000.0 * 2.2 + _breath_phase)
+			scale = Vector3(_base_scale.x * (1.0 - b * 0.012), _base_scale.y * (1.0 + b * 0.018), _base_scale.z)
 		return
 	if _path.is_empty():
 		moving = false

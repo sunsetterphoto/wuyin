@@ -25,6 +25,18 @@ func _ready() -> void:
 		event = parts[1] if parts.size() > 1 else ""
 		DirAccess.remove_absolute("user://dev_jump.txt")
 	var cfg: Dictionary = STAGES.get(stage, STAGES["river"])
+	if stage.begins_with("map="):
+		# Any map later in the game: the journey so far is done, arrival scenes are skipped.
+		var flags: Array = STAGES["shrine"]["flags"].duplicate()
+		flags.append_array(["tone_jue", "lesson_bamboo", "nian_driven", "three_tones", "meister_spoke", "order_left", "has_boat"])
+		for id in MapData.all_ids():
+			flags.append(id + "_arrived")
+		for f in ["kreuzweg", "karstufer", "nebelhafen", "bucht", "danxiapfad", "rotfels", "gipfel", "duenenweg", "mondquell", "kamm",
+				"saeulenpfad", "kiefernhang", "plateau", "temple", "hof"]:
+			flags.append(f + "_arrived")
+		var target := stage.trim_prefix("map=")
+		cfg = {"map": target, "spawn": MapData.load_map(target).def.get("spawns", {}).keys()[0], "flags": flags,
+			"party": [["wawalurch", 20], ["glutpanda", 20], ["firnleopard", 20], ["perlkormoran", 20]], "bells": 6}
 	var s := GameState.new_game("Test")
 	for f in cfg["flags"]:
 		s.set_flag(f)
