@@ -294,9 +294,11 @@ func _spawn_wild() -> void:
 	for e in map.def.get("lingshou", []):
 		if not MapData.condition_ok(e, state):
 			continue
-		var a := Actor.make(Sprites.lingshou(e["species"]), _v3(e["at"]), e.get("id", e["species"]))
+		var a := Actor.make(Sprites.lingshou(e["species"], e.get("role") == "silenced"), _v3(e["at"]), e.get("id", e["species"]))
 		a.entry = e
 		a.scale = Vector3.ONE * float(e.get("scale", 0.85))
+		if e.get("role") == "silenced" and a.texture == Sprites.lingshou(e["species"]):
+			a.modulate = Color(0.6, 0.6, 0.68)
 		_map_root.add_child(a)
 		_wild.append(a)
 

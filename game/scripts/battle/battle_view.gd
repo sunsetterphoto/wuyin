@@ -221,7 +221,8 @@ func _rebuild_stage() -> void:
 func _add_sprite(u: BattleUnit, feet: Vector2, own: bool) -> void:
 	if not u.is_alive():
 		return
-	var tex := Sprites.lingshou(u.species["id"])
+	var grey := u.role == "silenced" and not u.freed
+	var tex := Sprites.lingshou(u.species["id"], grey)
 	var s := TextureRect.new()
 	s.texture = tex
 	s.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -232,7 +233,7 @@ func _add_sprite(u: BattleUnit, feet: Vector2, own: bool) -> void:
 	s.position = feet - Vector2(s.size.x / 2.0, s.size.y)
 	s.pivot_offset = Vector2(s.size.x / 2.0, s.size.y)
 	s.set_meta("home", s.position)
-	if u.role == "silenced" and not u.freed:
+	if grey and tex == Sprites.lingshou(u.species["id"]):
 		s.modulate = Color(0.62, 0.62, 0.7)
 	var shadow := Panel.new()
 	var sb := StyleBoxFlat.new()
@@ -635,9 +636,13 @@ func _play_events(events: Array[Dictionary]) -> void:
 				_hop(e["target"])
 			"freed":
 				Audio.sfx("bell")
-				var s: Control = _sprites.get(e["target"])
+				var s: TextureRect = _sprites.get(e["target"])
 				if s:
-					create_tween().tween_property(s, "modulate", Color.WHITE, 1.2)
+					var fu := battle.find_unit(e["target"])
+					s.texture = Sprites.lingshou(fu.species["id"])
+					s.modulate = Color(0.6, 0.6, 0.7)
+					create_tween().tween_property(s, "modulate", Color(1.6, 1.6, 1.6), 0.5)
+					create_tween().tween_property(s, "modulate", Color.WHITE, 1.0).set_delay(0.5)
 			"switch", "send_in":
 				_rebuild_stage()
 			"level_up":

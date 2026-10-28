@@ -14,7 +14,10 @@ const ELEMENT_COLORS := {"wood": Color("4f9a4a"), "fire": Color("d8562c"), "eart
 static var _cache := {}
 
 
-static func lingshou(id: String) -> Texture2D:
+## silenced: the grey variant (<id>_silenced.png) if the art has one.
+static func lingshou(id: String, silenced := false) -> Texture2D:
+	if silenced and ResourceLoader.exists(LINGSHOU_DIR + id + "_silenced.png"):
+		id += "_silenced"
 	var key := "ls:" + id
 	if not _cache.has(key):
 		var path := LINGSHOU_DIR + id + ".png"
