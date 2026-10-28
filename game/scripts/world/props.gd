@@ -15,7 +15,7 @@ const THEMES := {
 	"hub": {"trees": ["tree_round", "tree_pine", "tree_plum"], "bushes": ["bush_round", "fern", "bush_flowering"],
 		"flowers": ["flowers_yellow", "flowers_white", "flowers_purple"], "rocks": ["rock_small", "rock_big", "rock_moss"],
 		"border": ["tree_pine", "tree_round", "tree_cloudpine"], "water": ["reeds"]},
-	"river": {"trees": ["tree_willow", "tree_round", "bamboo_clump"], "bushes": ["fern", "bush_round", "fern", "bush_round", "mushrooms"],
+	"river": {"trees": ["tree_willow", "tree_round", "bamboo_clump"], "bushes": ["fern", "bush_round", "fern", "bush_round", "bush_flowering", "fern", "bush_round", "mushrooms"],
 		"flowers": ["flowers_white", "flowers_purple"], "rocks": ["rock_karst", "rock_moss", "rock_small"],
 		"border": ["tree_willow", "rock_karst", "tree_round", "bamboo_clump"], "water": ["reeds", "lotus_pads", "lotus_flower", "reeds"]},
 	"ridge": {"trees": ["tree_maple", "tree_pine"], "bushes": ["shrub_desert", "bush_round"],

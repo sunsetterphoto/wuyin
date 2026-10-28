@@ -38,6 +38,7 @@ class Ctx:
 	var region := "bamboo"
 	var theme: Dictionary
 	var occupied := {}  # tiles where people, objects, spawns and warps are
+	var foam: Array = []  # [Vector3 pos, float yrot] strips where water meets land
 	var mounds := {}  # surface kind -> [[Transform3D, Color]] (rounded sphere mounds: dunes, boulders)
 	var noise := FastNoiseLite.new()
 
@@ -49,6 +50,13 @@ class Ctx:
 		if not mounds.has(kind):
 			mounds[kind] = []
 		mounds[kind].append([Transform3D(Basis(Vector3.UP, yrot).scaled(size), pos), Color(shade, shade, shade)])
+
+	var cones := {}  # kind -> [[Transform3D, Color]] (unit cone: base radius 1, top 0.3, height 1)
+
+	func cone(kind: String, center: Vector3, h: float, r: float, top: float) -> void:
+		if not cones.has(kind):
+			cones[kind] = []
+		cones[kind].append([Transform3D(Basis(Vector3.UP, rng.randf() * TAU).scaled(Vector3(r, h, r)), center), Color.WHITE * rng.randf_range(0.92, 1.05)])
 
 	## A dune crest: long, low, a little turned, sand ripples on it.
 	func dune(pos: Vector3, h: float) -> void:
@@ -163,6 +171,10 @@ static func _tile(c: Ctx, x: int, z: int) -> void:
 	match ground:
 		"water", "pond":
 			c.water.append(Transform3D(Basis.from_scale(Vector3(1, 0.3, 1)), p + Vector3(0, -0.4, 0)))
+			for d in [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]:
+				var n: Array = MapData.LEGEND.get(c.m.tile(x + d.x, z + d.y), MapData.LEGEND["X"])
+				if n[0] not in ["water", "pond", "cloud"] and n[1] != "bridge":
+					c.foam.append([p + Vector3(d.x * 0.42, -0.245, d.y * 0.42), 0.0 if d.x == 0 else PI / 2.0])
 			c.box("path" if c.region != "dunes" else "sand", p + Vector3(0, -0.62, 0), Vector3(1, 0.1, 1), 0.7)
 		"paddy":
 			c.box("paddy", p + Vector3(0, -0.3, 0), Vector3(1, 0.4, 1), shade)
@@ -257,12 +269,14 @@ static func _tile(c: Ctx, x: int, z: int) -> void:
 		"danxia":
 			_danxia(c, x, z, 1.2, 2.2)
 		"karst":
-			var h := c.rng.randf_range(2.0, 3.4)
-			c.box("karst", p + Vector3(0, h * 0.3, 0), Vector3(1, h * 0.6, 1), shade)
-			c.box("karst", p + Vector3(0, h * 0.75, 0), Vector3(0.7, h * 0.3, 0.7), shade)
-			c.box("leaves", p + Vector3(0, h * 0.95, 0), Vector3(0.55, h * 0.15, 0.55), 0.9)
-			if c.rng.randf() < 0.35:
-				c.prop("tree_round", p + Vector3(0, h * 0.6, 0.3), 0.45)
+			# Karst cone (Li river style): steep rock, rounded green crown, a tree clinging to it.
+			var h := 2.2 + c.height01(x, z) * 2.2
+			c.cone("karst", p + Vector3(c.rng.randf_range(-0.1, 0.1), h / 2.0, 0), h, c.rng.randf_range(0.78, 0.92), 0.3)
+			c.mound("leaves", p + Vector3(0, h - 0.1, 0), Vector3(0.95, 0.8, 0.95), 0.9)
+			for k in 2:
+				var yy := h * c.rng.randf_range(0.3, 0.75)
+				var rr := 0.85 * (1.0 - 0.7 * yy / h) + 0.05
+				c.prop(c.pick(["bush_round", "fern", "bush_round"]), p + Vector3(c.rng.randf_range(-0.3, 0.3), yy, rr), 0.7)
 		"stonepillar":
 			var h := 2.6 + c.height01(x, z) * 2.6
 			var y := -2.2
@@ -378,6 +392,10 @@ static func _outside(c: Ctx) -> void:
 				c.dune(p, h)
 			elif c.region == "ridge":
 				_danxia(c, x, z, 1.6, 3.2)
+			elif c.region == "river" and z < 0 and c.rng.randf() < 0.3:
+				var h := 3.0 + c.rng.randf() * 3.0
+				c.cone("karst", p + Vector3(0, h / 2.0, 0), h, c.rng.randf_range(1.0, 1.3), 0.3)
+				c.mound("leaves", p + Vector3(0, h - 0.1, 0), Vector3(1.2, 0.9, 1.2), 0.85)
 			elif c.rng.randf() < (0.75 if near_edge else 0.45):
 				c.prop(c.pick(c.theme["border"]), p + c.jitter(), c.rng.randf_range(1.0, 1.4))
 
@@ -458,6 +476,15 @@ static func _flush(c: Ctx, silent: bool) -> void:
 			mat.roughness = 0.35
 			mesh.material = mat
 		c.root.add_child(_multimesh(mesh, c.boxes[kind], true))
+	for kind in c.cones:
+		var cm := CylinderMesh.new()
+		cm.bottom_radius = 1.0
+		cm.top_radius = 0.3
+		cm.height = 1.0
+		cm.radial_segments = 9
+		cm.rings = 2
+		cm.material = Materials.surface(kind, Color(0.66, 0.78, 0.62) if kind == "karst" else Color.WHITE)
+		c.root.add_child(_multimesh(cm, c.cones[kind], true))
 	for kind in c.mounds:
 		var sm := SphereMesh.new()
 		sm.radius = 0.5
@@ -475,6 +502,18 @@ static func _flush(c: Ctx, silent: bool) -> void:
 		var mmi := _multimesh(wm, list, false)
 		mmi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		c.root.add_child(mmi)
+	if not c.foam.is_empty():
+		var fm := PlaneMesh.new()
+		fm.size = Vector2(1.0, 0.16)
+		var mat := ShaderMaterial.new()
+		mat.shader = load("res://shaders/foam.gdshader")
+		fm.material = mat
+		var list := []
+		for f in c.foam:
+			list.append([Transform3D(Basis(Vector3.UP, f[1]), f[0]), Color.WHITE])
+		var fmi := _multimesh(fm, list, false)
+		fmi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		c.root.add_child(fmi)
 	for kind in c.tufts:
 		c.root.add_child(_tufts(kind, c.tufts[kind]))
 	for id in c.props:

@@ -66,6 +66,7 @@ var _clock_acc := 0.0
 var _ambience_t := 0.0
 var _weather_fx: WeatherFx
 var _ambient: AmbientFx
+var _cloud_shadows: Decal
 var _bubble: Sprite3D
 var _hud_time: Label
 static var _graph := {}  # map id -> [{"to", "rect", "warp"}] (Jinli's route finding)
@@ -244,6 +245,8 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 	_rig.bounds = Rect2(-0.5, -0.5, map.width, map.height)
 	_ambient = AmbientFx.new()
 	_map_root.add_child(_ambient)
+	_cloud_shadows = _make_cloud_shadows()
+	_map_root.add_child(_cloud_shadows)
 	_bubble = _make_bubble()
 	_map_root.add_child(_bubble)
 	_spawn_people()
@@ -516,6 +519,13 @@ func _process(delta: float) -> void:
 	_wander(delta)
 	if _ambient:
 		_ambient.position = _player.position
+	if _cloud_shadows:
+		# Cloud shadows drift over the land on fine days (HD-2D diorama feel).
+		var ct := Time.get_ticks_msec() / 1000.0
+		_cloud_shadows.position = Vector3(_player.position.x - fmod(ct * 0.35, 24.0) + 12.0, 2.0, _player.position.z - fmod(ct * 0.12, 24.0) + 12.0)
+		var w := Weather.current(state, map)
+		_cloud_shadows.visible = uses_clock() and not state.is_night() and w in ["sun", "cloudy", ""] and not map.def.get("indoor", false) \
+			and region() not in ["pillars", "temple"]
 	_update_bubble()
 
 
@@ -928,6 +938,27 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_interact()
 	elif event.is_action_pressed("menu"):
 		open_menu()
+
+
+func _make_cloud_shadows() -> Decal:
+	var d := Decal.new()
+	d.size = Vector3(48, 6, 48)
+	var noise := FastNoiseLite.new()
+	noise.frequency = 0.035
+	noise.fractal_octaves = 2
+	var img := Image.create(128, 128, false, Image.FORMAT_RGBA8)
+	for y in 128:
+		for x in 128:
+			var n := noise.get_noise_2d(x, y) * 0.5 + 0.5
+			var a := clampf((n - 0.55) * 4.0, 0.0, 1.0)
+			a = floorf(a * 4.0) / 4.0
+			img.set_pixel(x, y, Color(0.08, 0.1, 0.18, a * 0.28))
+	var tex := ImageTexture.create_from_image(img)
+	d.texture_albedo = tex
+	d.upper_fade = 0.1
+	d.lower_fade = 0.1
+	d.cull_mask = 1
+	return d
 
 
 ## Speech bubble over the person or thing the A button would talk to.

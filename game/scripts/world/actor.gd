@@ -137,8 +137,13 @@ func animate(delta: float, walking: bool, dir_x := 0.0, dir_z := 0.0) -> void:
 		_face(dir_x, dir_z)
 	if walking:
 		_walk_t += delta
-		offset = _base_offset + Vector2(0, absf(sin(_walk_t * BOB_HZ)) * BOB_PX)
+		var bob := absf(sin(_walk_t * BOB_HZ))
+		offset = _base_offset + Vector2(0, bob * BOB_PX)
+		# A little squash and stretch with every step: a happy waddle.
+		scale = Vector3(_base_scale.x * (1.0 + (1.0 - bob) * 0.05), _base_scale.y * (1.0 - (1.0 - bob) * 0.05 + bob * 0.03), _base_scale.z)
 	else:
+		if _walk_t > 0.0:
+			scale = _base_scale
 		_walk_t = 0.0
 		offset = _base_offset
 	var sil := get_node_or_null("Silhouette") as Sprite3D

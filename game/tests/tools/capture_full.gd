@@ -11,6 +11,7 @@ func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
 	if not args.is_empty():
 		out = args[0]
+	create_timer(240.0, true, false, true).timeout.connect(func(): printerr("CAPTURE timeout"); quit(2))
 	_run.call_deferred()
 
 
