@@ -9,6 +9,11 @@ extends Control
 
 signal _done
 
+## Automated playthroughs: the player's side picks sensible actions by itself.
+static var autopilot := false
+## Autopilot fights wild Lingshou instead of befriending them (grinding).
+static var autopilot_fight := false
+
 const PLAYER := 0
 const ENEMY := 1
 const BG_DIR := "res://assets/backgrounds/"
@@ -39,7 +44,9 @@ var _busy := false
 var _tab := "attack"
 var _skip := false
 var _babble: Babble
-var _talk_mode := "call"  # what the text row does: "call" or "talk" (befriending)
+var _talk_mode := "call"
+var _voice_speaker := ""
+var _voice_shown := 0  # what the text row does: "call" or "talk" (befriending)
 
 
 func run(battle_setup: Dictionary, game_state: GameState) -> Dictionary:
@@ -321,6 +328,8 @@ func _next() -> void:
 		return
 	_slot = open[0]
 	_show_commands()
+	if autopilot:
+		_auto_choose.call_deferred()
 
 
 func _hide_commands() -> void:
@@ -566,6 +575,37 @@ func _submit(action: Dictionary) -> bool:
 	return true
 
 
+## Autopilot: befriend wild ones with the tone they like, talk to silenced ones
+## every other turn, otherwise fight like a sensible player.
+func _auto_choose() -> void:
+	var u := battle.unit_at(PLAYER, _slot)
+	var t := _befriendable()
+	if t and t.role == "wild" and not autopilot_fight:
+		var talk: Dictionary = Taming.TALK.get(Taming.temperament(t), Taming.TALK["gentle"])
+		var best := "soothing"
+		for tone in talk:
+			if talk[tone] > talk[best]:
+				best = tone
+		_submit(Battle.tame_action("talk", battle.slot_of(t), "", best))
+		return
+	if float(u.hp) / u.max_hp < 0.35:
+		for item in ["kraeutertee", "reisbaellchen"]:
+			if state.item_count(item) > 0 and _submit(Battle.item_action(item, battle.sides[PLAYER]["party"].find(u))):
+				state.take_item(item)
+				return
+	var talk_turn := battle.turn % 2 == 0 if battle.active_count == 1 else _slot == 0
+	if t and t.role == "silenced" and talk_turn:
+		_submit(Battle.tame_action("talk", battle.slot_of(t), "", "soothing"))
+		return
+	var own := BattleAI.choose_for(battle, u)
+	if own["type"] == "move" and GameData.move(own["move"])["target"] == "enemy" and t and t.role == "silenced":
+		for s in battle.sides[ENEMY]["active"].size():
+			var e := battle.unit_at(ENEMY, s)
+			if e.is_alive() and e.role != "silenced":
+				own["target_slot"] = s
+	_submit(own)
+
+
 # --- playback -----------------------------------------------------------------
 
 func _play_events(events: Array[Dictionary]) -> void:
@@ -609,6 +649,9 @@ func _play_events(events: Array[Dictionary]) -> void:
 
 func _show_line(line: String) -> void:
 	_append(line)
+	if autopilot:
+		DialogBox.transcript.append("  [battle] " + line)
+		return
 	_skip = false
 	var t := 0.0
 	while t < STEP_S and not _skip:
@@ -682,6 +725,12 @@ func _float_text(uid: String, text: String, color: Color) -> void:
 	tw.tween_callback(l.queue_free)
 
 
+func _on_voice_partial(partial: String) -> void:
+	_babble.feed(partial.substr(_voice_shown))
+	_voice_shown = partial.length()
+	_voice.text = "%s: %s" % [_voice_speaker, partial]
+
+
 ## One of the player's Lingshou comments on the most notable event of the turn.
 func _speak_about(events: Array[Dictionary]) -> void:
 	var pick := {}
@@ -724,11 +773,10 @@ func _speak_about(events: Array[Dictionary]) -> void:
 	_voice.text = "%s: …" % speaker
 	_babble.set_speaker(u)
 	var facts := {"target": BattleText.unit_name(battle, pick["attacker"]) if pick["attacker"] != "" else "", "call": ""}
-	var shown := 0
-	var r := await LingshouVoice.comment(u, pick["event"], facts, "", null, func(partial):
-		_babble.feed(partial.substr(shown))
-		shown = partial.length()
-		_voice.text = "%s: %s" % [speaker, partial])
+	_voice_speaker = speaker
+	_voice_shown = 0
+	# A method callable (not a lambda) becomes invalid when this screen is freed mid-stream.
+	var r := await LingshouVoice.comment(u, pick["event"], facts, "", null, _on_voice_partial)
 	if not is_inside_tree():
 		return
 	_voice.text = "%s: %s" % [speaker, r["text"]]
@@ -782,6 +830,8 @@ func _finish() -> void:
 	b.custom_minimum_size = Vector2(0, 72)
 	_content.add_child(b)
 	b.grab_focus.call_deferred()
+	if autopilot:
+		_done.emit.call_deferred()
 
 
 ## A Lingshou speaks with its own voice (model or template), e.g. freed or tamed.
@@ -802,4 +852,5 @@ func _say_as(u: BattleUnit, event: String) -> void:
 	_voice.text = "%s: %s" % [speaker, text]
 	_babble.feed(text)
 	await _show_line("[color=#f2d98c]%s: %s[/color]" % [speaker, text])
-	await get_tree().create_timer(0.8).timeout
+	if not autopilot:
+		await get_tree().create_timer(0.8).timeout

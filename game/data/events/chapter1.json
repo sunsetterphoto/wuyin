@@ -1011,7 +1011,7 @@
      "enemies": [
       {
        "id": "firnleopard",
-       "level": 9,
+       "level": 8,
        "role": "silenced"
       }
      ],
@@ -1104,12 +1104,12 @@
        "enemies": [
         {
          "id": "qinglong",
-         "level": 12,
+         "level": 11,
          "role": "silenced"
         },
         {
          "id": "schattenmotte",
-         "level": 10
+         "level": 9
         }
        ],
        "active": 2,

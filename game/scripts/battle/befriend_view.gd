@@ -9,6 +9,8 @@ extends Control
 
 signal _done
 
+static var autopilot := false
+
 const FLEE_BELOW := 0
 
 var state: GameState
@@ -40,6 +42,8 @@ func run(species: String, level: int, game_state: GameState) -> Dictionary:
 	TameJudge.prepare()
 	_say(tr("BEFRIEND_INTRO").format({"name": tr(unit.name_key()), "temperament": tr("TEMPERAMENT_" + Taming.temperament(unit).to_upper())}))
 	_show_actions()
+	if autopilot:
+		_auto.call_deferred()
 	await _done
 	var outcome := "tamed" if unit.trust >= Taming.TRUST_FULL else "fled"
 	if outcome == "tamed":
@@ -47,6 +51,18 @@ func run(species: String, level: int, game_state: GameState) -> Dictionary:
 		state.add_lingshou(species, level, Taming.starting_bond(unit.trust))
 	PlaytestLog.record("befriend", {"species": species, "outcome": outcome})
 	return {"outcome": outcome, "trust": unit.trust}
+
+
+func _auto() -> void:
+	while unit.trust < Taming.TRUST_FULL and unit.trust >= FLEE_BELOW:
+		var talk: Dictionary = Taming.TALK.get(Taming.temperament(unit), Taming.TALK["gentle"])
+		var best := "soothing"
+		for tone in talk:
+			if talk[tone] > talk[best]:
+				best = tone
+		_act("talk", "", best)
+		await get_tree().process_frame
+	_done.emit()
 
 
 func _build() -> void:

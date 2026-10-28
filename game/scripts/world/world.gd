@@ -185,6 +185,7 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 	_jinli.visible = state.flag("jinli_follows")
 	_update_follower()
 	_rig.target = _player
+	_rig.bounds = Rect2(-0.5, -0.5, map.width, map.height)
 	_spawn_people()
 	_spawn_wild()
 	_apply_ambience()
@@ -711,6 +712,11 @@ func open_menu() -> void:
 ## Opens any UI control on the overlay and waits for its `closed` signal.
 func show_ui(control: Control) -> void:
 	_overlay_layer.add_child(control)
+	if DialogBox.autopilot:
+		await get_tree().process_frame
+		DialogBox.transcript.append("  [ui] " + control.get_class() + " " + str(control.get_script().get_global_name()))
+		control.queue_free()
+		return
 	await control.closed
 	control.queue_free()
 

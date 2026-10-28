@@ -151,8 +151,17 @@
   {
    "id": "wusheng",
    "style": "chars",
-   "seed": 304,
-   "prompt": "a tall slender grand chancellor, pale face, long grey layered court robes with a high stiff collar, black hair in a top knot, calm cold expression, hands hidden in long sleeves, chinese fantasy court official"
+   "seed": 324,
+   "prompt": "a tall slender grand chancellor, pale face, long grey layered court robes with a high stiff collar, black hair in a top knot, calm cold expression, hands hidden in long sleeves, chinese fantasy court official",
+   "tried": [
+    {
+     "seed": 304,
+     "prompt": "zu schmal, Gesicht bei 32 px unlesbar"
+    },
+    {
+     "seed": 314
+    }
+   ]
   },
   {
    "id": "villager_a",

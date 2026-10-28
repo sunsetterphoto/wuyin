@@ -24,6 +24,8 @@ var target: Node3D
 ## Visible height in classic mode (set from the low-res viewport height).
 var classic_view_height := 360.0 / PIXELS_PER_UNIT
 var blur_amount := 0.08
+## Map area the camera should stay inside (tiles); empty = follow freely.
+var bounds := Rect2()
 
 var camera: Camera3D
 var attributes: CameraAttributesPractical
@@ -74,6 +76,14 @@ func _apply(t: float) -> void:
 	if camera == null:
 		return
 	var focus := target.global_position if target else Vector3.ZERO
+	if bounds.size != Vector2.ZERO:
+		var vh := lerpf(HD2D_VIEW_HEIGHT, classic_view_height, t)
+		var aspect := get_viewport().get_visible_rect().size.aspect() if get_viewport() else 16.0 / 9.0
+		var half_w := vh * aspect / 2.0
+		var half_up := vh * 0.45
+		var half_down := vh * 0.35
+		focus.x = bounds.get_center().x if bounds.size.x <= half_w * 2.0 else clampf(focus.x, bounds.position.x + half_w, bounds.end.x - half_w)
+		focus.z = bounds.get_center().y if bounds.size.y <= half_up + half_down else clampf(focus.z, bounds.position.y + half_up, bounds.end.y - half_down)
 	var pitch := deg_to_rad(lerpf(HD2D_PITCH, CLASSIC_PITCH, t))
 	var view_h := lerpf(HD2D_VIEW_HEIGHT, classic_view_height, t)
 	if t >= 0.999:

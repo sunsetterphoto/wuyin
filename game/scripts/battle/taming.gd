@@ -19,6 +19,8 @@ const SPARE_BONUS := 5
 const HEART_PER_DAMAGE := 60.0
 ## Sky guardians resist: everything that fills their heart counts half.
 const GUARDIAN_FACTOR := 0.5
+## Chance per turn that a silenced Lingshou hesitates instead of attacking = heart share × this.
+const HESITATE_FACTOR := 0.6
 
 const TONES: Array[String] = ["soothing", "encouraging", "playful", "respectful", "praising", "rude", "neutral"]
 
@@ -33,7 +35,7 @@ const TALK := {
 }
 const CALM := {"anxious": 20, "brave": 5, "stubborn": 5, "playful": 10, "gentle": 15, "moody": 10}
 ## Heart gained per tone for silenced Lingshou (their temperament is buried).
-const HEART_TALK := {"soothing": 25, "encouraging": 15, "playful": 10, "respectful": 20, "praising": 15, "rude": 0, "neutral": 5}
+const HEART_TALK := {"soothing": 30, "encouraging": 20, "playful": 15, "respectful": 25, "praising": 20, "rude": 0, "neutral": 5}
 const HEART_CALM := 15
 const FEED_LIKED := 25
 const FEED_OTHER := 10

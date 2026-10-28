@@ -572,7 +572,7 @@ E["silent_leopard"] = [
             "Silenced Lingshou aren't tamed - they are freed. Fill their heartsong: talking and calming help most, hits loosen the silence too. If you exhaust it instead, it stays silenced.",
             "失声的灵兽不是被驯服的，而是被解放的。唤醒它的心音：说话和安抚最有用，攻击也能松动寂静。但如果把它打倒，它就会一直失声。"),
         {"set": "leo_tutorial"}]},
-    {"battle": {"enemies": [{"id": "firnleopard", "level": 9, "role": "silenced"}], "active": 1, "bg": "terraces"},
+    {"battle": {"enemies": [{"id": "firnleopard", "level": 8, "role": "silenced"}], "active": 1, "bg": "terraces"},
      "win": [{"set": "gone_silent_leopard"}, {"refresh": True},
              say("narrator", "EV_LEO_WIN", "Der Firnleopard bricht zusammen und schleppt sich davon. Seine Augen bleiben grau.", "The Frostpard collapses and drags itself away. Its eyes stay grey.", "霜豹倒下了，拖着身子离开，眼睛依旧灰暗。")],
      "freed": [{"set": "gone_silent_leopard"}, {"refresh": True}]},
@@ -600,7 +600,7 @@ E["boss_qinglong"] = [
         say("narrator", "EV_BOSS_TUT", "Zwei gegen zwei! Fülle den Herzklang des Azurdrachen, um ihn zu befreien. Die Motte frisst Klänge – halte sie in Schach.", "Two against two! Fill the Azure Dragon's heartsong to free it. The moth eats sounds - keep it in check.", "二对二！唤醒青龙的心音来解放它。影蛾会吞食声音——要压制住它。"),
     ]},
     {"if_party_min": 2, "then": [
-        {"battle": {"enemies": [{"id": "qinglong", "level": 12, "role": "silenced"}, {"id": "schattenmotte", "level": 10}],
+        {"battle": {"enemies": [{"id": "qinglong", "level": 11, "role": "silenced"}, {"id": "schattenmotte", "level": 9}],
                     "active": 2, "music": "boss", "bg": "shrine", "no_join": True},
          "win": [{"run": "tone_returns"}],
          "lose": [say("moench", "EV_BOSS_LOSE", "Ruh dich aus und versuch es noch einmal. Er wartet.", "Rest and try again. He is waiting.", "休息一下再试吧。他会等你的。")]}],

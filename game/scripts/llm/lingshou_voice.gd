@@ -60,7 +60,10 @@ static func comment(unit: BattleUnit, event: String, facts := {}, locale := "", 
 	var role := "silenced_voice" if silenced else "lingshou_voice"
 	var job := service.ask(role, messages(unit, event, facts, locale))
 	if on_token.is_valid():
-		job.token.connect(func(_t): on_token.call(TextGuard.limit(job.text.strip_edges(), MAX_CHARS[role])))
+		# The screen that streams the line may be gone before the model finishes.
+		job.token.connect(func(_t):
+			if on_token.is_valid():
+				on_token.call(TextGuard.limit(job.text.strip_edges(), MAX_CHARS[role])))
 	var r := await job.wait()
 	if r["ok"]:
 		var forbidden: Array = []

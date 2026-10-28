@@ -57,6 +57,9 @@ func choose(battle: Battle, side: int, slot: int) -> Dictionary:
 	var usable := u.usable_moves()
 	if Taming.is_tameable(u) and u.trust >= Taming.CALM_TRUST:
 		return Battle.watch_action()
+	# A silenced Lingshou whose heartsong stirs hesitates more and more often.
+	if Taming.is_silenced(u) and rng.randf() < float(u.heart) / Taming.HEART_FULL * Taming.HESITATE_FACTOR:
+		return Battle.watch_action()
 
 	# Heal a badly hurt ally first.
 	for mid in usable:

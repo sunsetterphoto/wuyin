@@ -7,6 +7,10 @@ extends Control
 signal advanced
 signal chosen(index: int)
 
+## Automated playthroughs (tests/tools/autoplay_beta.gd): lines pass at once, choices pick the first option.
+static var autopilot := false
+static var transcript: Array[String] = []
+
 var _panel: PanelContainer
 var _name: Label
 var _text: RichTextLabel
@@ -107,6 +111,11 @@ func say(speaker: String, text: String, voice := {}, report := {}) -> void:
 	_typing = cps > 0.0
 	_hint.modulate.a = 0.0
 	_waiting = true
+	if autopilot:
+		transcript.append("%s: %s" % [speaker, text])
+		await get_tree().process_frame
+		_waiting = false
+		return
 	await advanced
 	_waiting = false
 
@@ -117,6 +126,9 @@ func update_text(text: String) -> void:
 
 
 func ask(options: Array[String]) -> int:
+	if autopilot:
+		await get_tree().process_frame
+		return 0
 	_choices.visible = true
 	for c in _choices.get_children():
 		c.queue_free()

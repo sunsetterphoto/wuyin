@@ -574,10 +574,10 @@ func _award_xp(side: int, events: Array[Dictionary]) -> void:
 	for u in sides[1 - side]["party"]:
 		reward += BattleUnit.xp_reward(u.level)
 	for u in sides[side]["party"]:
-		if not u.is_alive():
-			continue
-		var gained: int = u.gain_xp(reward)
-		events.append({"type": "xp", "target": u.uid, "amount": reward})
+		# Everyone who came along learns something; exhausted ones half as much.
+		var amount: int = reward if u.is_alive() else reward / 2
+		var gained: int = u.gain_xp(amount)
+		events.append({"type": "xp", "target": u.uid, "amount": amount})
 		if gained > 0:
 			events.append({"type": "level_up", "target": u.uid, "level": u.level})
 

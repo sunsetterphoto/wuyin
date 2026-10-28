@@ -75,7 +75,7 @@ static func xp_to_next(lvl: int) -> int:
 
 ## Experience gained for exhausting an opponent of level `lvl`.
 static func xp_reward(lvl: int) -> int:
-	return 15 * lvl + 30
+	return 20 * lvl + 40
 
 
 func recalc_stats() -> void:
