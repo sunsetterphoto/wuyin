@@ -28,8 +28,13 @@ static func build(m: MapData) -> Dictionary:
 			var inf: Array = MapData.LEGEND.get(c, MapData.LEGEND["X"])
 			var p := Vector3(x, 0, z)
 			match inf[0]:
-				"water":
-					add.call("water", p + Vector3(0, -0.4, 0), Vector3(1, 0.3, 1))
+				"water", "pond":
+					add.call(inf[0], p + Vector3(0, -0.4, 0), Vector3(1, 0.3, 1))
+				"cloud":
+					add.call("cloud", p + Vector3(0, -1.1, 0), Vector3(1, 0.4, 1))
+					if rng.randf() < 0.35:
+						var s := rng.randf_range(0.5, 0.9)
+						add.call("cloud", p + Vector3(rng.randf_range(-0.2, 0.2), -0.75, rng.randf_range(-0.2, 0.2)), Vector3(s, 0.3, s))
 				"paddy":
 					add.call("paddy", p + Vector3(0, -0.3, 0), Vector3(1, 0.4, 1))
 				_:
@@ -85,6 +90,38 @@ static func build(m: MapData) -> Dictionary:
 					add.call("water", p + Vector3(0, 0.66, 0), Vector3(0.6, 0.05, 0.6))
 				"bridge":
 					add.call("wood", p + Vector3(0, -0.1, 0), Vector3(1, 0.2, 0.9))
+				"drygrass", "reeds", "sapling":
+					tuft.call(inf[1], p + Vector3(-0.2, 0, -0.18), 0.9)
+					tuft.call(inf[1], p + Vector3(0.2, 0, 0.2), 0.9)
+				"dune":
+					var h := rng.randf_range(0.35, 0.8)
+					add.call("sand", p + Vector3(0, h / 2.0, 0), Vector3(1, h, 1))
+				"danxia":
+					var h := rng.randf_range(1.4, 2.6)
+					add.call("danxia", p + Vector3(0, h / 2.0, 0), Vector3(1, h, 1))
+				"karst":
+					var h := rng.randf_range(2.0, 3.4)
+					add.call("karst", p + Vector3(0, h * 0.3, 0), Vector3(1, h * 0.6, 1))
+					add.call("karst", p + Vector3(0, h * 0.75, 0), Vector3(0.7, h * 0.3, 0.7))
+					add.call("leaves", p + Vector3(0, h * 0.95, 0), Vector3(0.5, h * 0.15, 0.5))
+				"stonepillar":
+					var h := rng.randf_range(3.0, 5.0)
+					add.call("pillarstone", p + Vector3(0, h / 2.0 - 0.6, 0), Vector3(0.95, h + 1.2, 0.95))
+					add.call("pine", p + Vector3(0, h + 0.15, 0), Vector3(0.7, 0.5, 0.7))
+				"pine":
+					add.call("wood", p + Vector3(0, 0.45, 0), Vector3(0.25, 0.9, 0.25))
+					add.call("pine", p + Vector3(0, 1.2, 0), Vector3(1.2, 0.7, 1.2))
+					add.call("pine", p + Vector3(0, 1.8, 0), Vector3(0.8, 0.6, 0.8))
+					add.call("pine", p + Vector3(0, 2.3, 0), Vector3(0.4, 0.5, 0.4))
+				"house_grey":
+					add.call("greywall", p + Vector3(0, 0.8, 0), Vector3(1, 1.6, 1))
+					add.call("greyroof", p + Vector3(0, 1.85, 0), Vector3(1.12, 0.5, 1.12))
+				"altar":
+					add.call("stone", p + Vector3(0, 0.4, 0), Vector3(0.95, 0.8, 0.95))
+					add.call("gold", p + Vector3(0, 0.85, 0), Vector3(0.5, 0.1, 0.5))
+				"nest":
+					add.call("wood", p + Vector3(0, 0.25, 0), Vector3(1, 0.5, 1))
+					add.call("gold", p + Vector3(0, 0.55, 0), Vector3(0.6, 0.12, 0.6))
 	# Land beyond the map edge, so the camera never looks into the void.
 	var border := MeshInstance3D.new()
 	var plane := PlaneMesh.new()
@@ -114,11 +151,15 @@ static func _boxes(kind: String, transforms: Array) -> MultiMeshInstance3D:
 	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 	mat.uv1_triplanar = true
 	mat.uv1_world_triplanar = true
+	if kind == "cloud":
+		mat.emission_enabled = true
+		mat.emission = Color("dfe6ee")
+		mat.emission_energy_multiplier = 0.25
 	if kind == "lantern":
 		mat.emission_enabled = true
 		mat.emission = Color("ffb35a")
 		mat.emission_energy_multiplier = 2.0
-	if kind == "water":
+	if kind == "water" or kind == "pond":
 		mat.metallic_specular = 0.9
 		mat.roughness = 0.15
 	var mesh := BoxMesh.new()

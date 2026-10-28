@@ -1,0 +1,29 @@
+{
+  "id": "steinloewe",
+  "name": "LS_STEINLOEWE",
+  "animal": "LS_STEINLOEWE_ANIMAL",
+  "desc": "LS_STEINLOEWE_DESC",
+  "element": "earth",
+  "temperaments": [
+    "brave"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 62,
+    "atk": 62,
+    "def": 62,
+    "spd": 34
+  },
+  "moves": [
+    "felsramme",
+    "steinhaut",
+    "glockenschlag",
+    "erdstoss"
+  ],
+  "habitat": "rock_garden",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/steinloewe.md",
+  "learn": {
+    "28": "bergbeben"
+  }
+}

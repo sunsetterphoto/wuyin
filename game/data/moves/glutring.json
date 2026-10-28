@@ -1,0 +1,15 @@
+{
+  "id": "glutring",
+  "name": "MOVE_GLUTRING",
+  "element": "fire",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "llm_hint": "a spinning ring of embers",
+  "power": 50,
+  "effect": {
+    "status": "deaf",
+    "turns": 2,
+    "chance": 20
+  }
+}

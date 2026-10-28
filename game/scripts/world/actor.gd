@@ -18,6 +18,10 @@ var _base_offset := Vector2.ZERO
 var _target := Vector3.ZERO
 var _speed := 3.0
 var _path: Array[Vector3] = []
+## Optional views for walking up (back) and sideways (side, drawn facing left).
+var _front: Texture2D
+var _back: Texture2D
+var _side: Texture2D
 
 
 static func make(tex: Texture2D, pos: Vector3, id := "") -> Actor:
@@ -52,6 +56,33 @@ func add_silhouette() -> void:
 	add_child(s)
 
 
+func set_directions(back: Texture2D, side: Texture2D) -> void:
+	_front = texture
+	_back = back
+	_side = side
+
+
+func _face(dir_x: float, dir_z: float) -> void:
+	if _front == null:
+		if dir_x != 0.0:
+			flip_h = dir_x > 0.0
+		return
+	var tex := _front
+	if absf(dir_x) > absf(dir_z) * 1.2 and _side:
+		tex = _side
+		flip_h = dir_x > 0.0
+	elif dir_z < -0.1 and _back:
+		tex = _back
+		flip_h = false
+	else:
+		flip_h = dir_x > 0.0 if absf(dir_x) > 0.1 else flip_h
+	if tex != texture:
+		texture = tex
+		var sil := get_node_or_null("Silhouette") as Sprite3D
+		if sil:
+			sil.texture = tex
+
+
 func set_texture_keep_feet(tex: Texture2D) -> void:
 	texture = tex
 	_base_offset = Vector2(0, tex.get_height() / 2.0)
@@ -78,9 +109,9 @@ func stop() -> void:
 
 
 ## Called by the world each frame with the actor's own movement (player) or none.
-func animate(delta: float, walking: bool, dir_x := 0.0) -> void:
-	if dir_x != 0.0:
-		flip_h = dir_x > 0.0
+func animate(delta: float, walking: bool, dir_x := 0.0, dir_z := 0.0) -> void:
+	if dir_x != 0.0 or dir_z != 0.0:
+		_face(dir_x, dir_z)
 	if walking:
 		_walk_t += delta
 		offset = _base_offset + Vector2(0, absf(sin(_walk_t * BOB_HZ)) * BOB_PX)
@@ -111,4 +142,4 @@ func _process(delta: float) -> void:
 		_path.pop_front()
 	else:
 		position += to.normalized() * step
-	animate(delta, true, to.x)
+	animate(delta, true, to.x, to.z)

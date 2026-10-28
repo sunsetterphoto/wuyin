@@ -1,0 +1,30 @@
+{
+  "id": "wolkenpfeifer",
+  "name": "LS_WOLKENPFEIFER",
+  "animal": "LS_WOLKENPFEIFER_ANIMAL",
+  "desc": "LS_WOLKENPFEIFER_DESC",
+  "element": "earth",
+  "temperaments": [
+    "anxious"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 42,
+    "atk": 36,
+    "def": 46,
+    "spd": 66
+  },
+  "moves": [
+    "wolkenpfiff",
+    "zirpgesang",
+    "sandwirbel",
+    "echoruf"
+  ],
+  "habitat": "rock_garden",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/wolkenpfeifer.md",
+  "learn": {
+    "16": "felsramme",
+    "28": "bergbeben"
+  }
+}

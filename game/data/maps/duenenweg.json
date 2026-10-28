@@ -1,0 +1,174 @@
+{
+ "name": "MAP_DUENENWEG",
+ "region": "dunes",
+ "time": "day",
+ "music": "dunes",
+ "battle_bg": "dunes",
+ "border": "sand",
+ "spawns": {
+  "from_crossroads": [
+   38,
+   10
+  ],
+  "from_town": [
+   1,
+   10
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    39,
+    10,
+    1,
+    2
+   ],
+   "to": "kreuzweg",
+   "spawn": "from_dunes"
+  },
+  {
+   "rect": [
+    0,
+    10,
+    1,
+    2
+   ],
+   "to": "mondquell",
+   "spawn": "from_route"
+  }
+ ],
+ "on_enter": {
+  "event": "duenenweg_arrive",
+  "unless": "duenenweg_arrived"
+ },
+ "npcs": [
+  {
+   "id": "karawane",
+   "sprite": "trader",
+   "at": [
+    20,
+    12
+   ],
+   "event": "karawane"
+  }
+ ],
+ "lingshou": [
+  {
+   "id": "w_kamel",
+   "species": "glockenkamel",
+   "at": [
+    30,
+    12
+   ],
+   "levels": [
+    23,
+    24
+   ],
+   "unless": "gone_w_kamel"
+  },
+  {
+   "id": "w_adler",
+   "species": "messingadler",
+   "at": [
+    12,
+    7
+   ],
+   "levels": [
+    23,
+    25
+   ],
+   "unless": "gone_w_adler"
+  }
+ ],
+ "objects": [
+  {
+   "id": "chest_duenen",
+   "kind": "chest",
+   "at": [
+    36,
+    20
+   ],
+   "event": "chest_duenen",
+   "unless": "chest_duenen"
+  }
+ ],
+ "encounters": {
+  "rate": 0.12,
+  "table": [
+   {
+    "species": "glockenkamel",
+    "levels": [
+     22,
+     25
+    ],
+    "weight": 2
+   },
+   {
+    "species": "duenenspringer",
+    "levels": [
+     22,
+     25
+    ],
+    "weight": 3
+   },
+   {
+    "species": "messingadler",
+    "levels": [
+     23,
+     26
+    ],
+    "weight": 2
+   },
+   {
+    "species": "firnleopard",
+    "levels": [
+     23,
+     26
+    ],
+    "weight": 1
+   },
+   {
+    "species": "goldkroete",
+    "levels": [
+     22,
+     24
+    ],
+    "weight": 1
+   },
+   {
+    "species": "schattenmotte",
+    "levels": [
+     23,
+     25
+    ],
+    "weight": 2,
+    "night": true
+   }
+  ]
+ },
+ "id": "duenenweg",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+  "SsssssssssssmmmmmmmmmssssssssssssssssssS",
+  "SsmmmmmmssssmmmmmmmmmsssssmmmmmmmssssssS",
+  "SsmmmmmmssssssssssssssssssmmmmmmmssssssS",
+  "SsmmmmmmssssssssssssssssssmmmmmmmssTsssS",
+  "SsssssssszzzzzzsssTssssssssssssssssssssS",
+  "SsssssssszzzzzzssssssssssssssssssssssssS",
+  "SsssssssszzzzzzssssssmmmmssszzzzzssssssS",
+  "SsssssssszzzzzzssssssmmmmssszzzzzssssssS",
+  "SssssssssssssssssssssmmmmssszzzzzssssssS",
+  "========================================",
+  "========================================",
+  "SssssssssssssssssssssssssssssssssssssssS",
+  "SssssssszzzzzssssssssszzzzzzsssssssssssS",
+  "SssssssszzzzzssssssssszzzzzzsssssssssssS",
+  "SssmmmmmzzzzzssssssssszzzzzzssmmmmmmmmsS",
+  "SssmmmmmssssssmmmmmmssssssssssmmmmmmmmsS",
+  "SssmmmmmssssssmmmmmmssssssssssmmmmmmmmsS",
+  "SssmmmmmssssssmmmmmmssssssssssmmmmmmmmsS",
+  "SssssssssssssssssssssssssssssssssssssssS",
+  "SssssssssssssssssssssssssssssssssssssssS",
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+ ]
+}

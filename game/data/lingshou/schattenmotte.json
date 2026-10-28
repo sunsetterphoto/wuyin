@@ -20,5 +20,6 @@
   ],
   "habitat": "night",
   "can_breed": false,
-  "voice_card": "cards/{lang}/schattenmotte.md"
+  "voice_card": "cards/{lang}/schattenmotte.md",
+  "desc": "LS_SCHATTENMOTTE_DESC"
 }

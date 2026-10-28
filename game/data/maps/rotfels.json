@@ -1,0 +1,197 @@
+{
+ "name": "MAP_ROTFELS",
+ "region": "ridge",
+ "time": "day",
+ "music": "town",
+ "battle_bg": "danxia",
+ "border": "redrock",
+ "inn_spawn": "inn",
+ "town": true,
+ "spawns": {
+  "from_route": [
+   16,
+   1
+  ],
+  "inn": [
+   6,
+   7
+  ],
+  "from_peak": [
+   16,
+   20
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    16,
+    0,
+    2,
+    1
+   ],
+   "to": "danxiapfad",
+   "spawn": "from_town"
+  },
+  {
+   "rect": [
+    16,
+    21,
+    2,
+    1
+   ],
+   "to": "feuergipfel",
+   "spawn": "from_town"
+  }
+ ],
+ "on_enter": {
+  "event": "rotfels_arrive",
+  "unless": "rotfels_arrived"
+ },
+ "npcs": [
+  {
+   "id": "rotfels_wirt",
+   "sprite": "innkeeper",
+   "at": [
+    8,
+    7
+   ],
+   "event": "rotfels_inn"
+  },
+  {
+   "id": "rotfels_haendler",
+   "sprite": "shopkeeper",
+   "at": [
+    15,
+    7
+   ],
+   "event": "rotfels_shop"
+  },
+  {
+   "id": "rotfels_teemeister",
+   "sprite": "teahouse",
+   "at": [
+    25,
+    7
+   ],
+   "event": "rotfels_tea"
+  },
+  {
+   "id": "rotfels_koch",
+   "sprite": "cook",
+   "at": [
+    29,
+    15
+   ],
+   "event": "rotfels_food"
+  },
+  {
+   "id": "buergermeisterin",
+   "sprite": "villager_a",
+   "at": [
+    8,
+    16
+   ],
+   "event": "buergermeisterin"
+  },
+  {
+   "id": "toepfer",
+   "sprite": "man_c",
+   "at": [
+    19,
+    17
+   ],
+   "event": "toepfer"
+  },
+  {
+   "id": "rotfels_kind",
+   "sprite": "villager_b",
+   "at": [
+    14,
+    12
+   ],
+   "event": "rotfels_kind",
+   "wander": 2
+  }
+ ],
+ "objects": [
+  {
+   "id": "rotfels_inn_door",
+   "kind": "invisible",
+   "at": [
+    6,
+    6
+   ],
+   "event": "rotfels_inn"
+  },
+  {
+   "id": "rotfels_shop_door",
+   "kind": "invisible",
+   "at": [
+    13,
+    6
+   ],
+   "event": "rotfels_shop"
+  },
+  {
+   "id": "rotfels_tea_door",
+   "kind": "invisible",
+   "at": [
+    23,
+    6
+   ],
+   "event": "rotfels_tea"
+  },
+  {
+   "id": "rotfels_food_door",
+   "kind": "invisible",
+   "at": [
+    27,
+    14
+   ],
+   "event": "rotfels_food"
+  },
+  {
+   "id": "rotfels_chime",
+   "kind": "chime",
+   "at": [
+    9,
+    6
+   ],
+   "event": "rotfels_inn"
+  },
+  {
+   "id": "mayor_door",
+   "kind": "invisible",
+   "at": [
+    6,
+    15
+   ],
+   "event": "buergermeisterin"
+  }
+ ],
+ "id": "rotfels",
+ "rows": [
+  "SSSSSSSSSSSSSSSS==SSSSSSSSSSSSSSSS",
+  "Syyyyyyyyyyyyyyy==yyyyyyyyyyyyyyyS",
+  "Syyyyyyyyyyyyyyy==yyyyyyyyyyyyyyyS",
+  "Syyhhhhhhhhhhhhh==hhhhhhhhhhhhhyyS",
+  "SyyhRRRRRhhHHHHh==hhhRRRRRhhhhhyyS",
+  "SyyhRRRRRhhHHHHh==hhhRRRRRhhhhhyyS",
+  "SyyhRRDRRhhHHDHh==hhhRRDRRhhhhhyyS",
+  "Syy============================yyS",
+  "Syy============================yyS",
+  "SyyhhhhhhhhL__________LhhhhhhfhyyS",
+  "Syyhhhhhhhh____________hhhhhhhhyyS",
+  "Syyhhhhhhhh_____W______hhhhhhhhyyS",
+  "Syyhhhhhhhh____________hhhHHHHhyyS",
+  "SyyhRRRRRhhL__________LhhhHHHHhyyS",
+  "SyyhRRRRRhhhhhhh==hhhhhhhhHDHHhyyS",
+  "SyyhRRDRRhhhhhhh==hhhhhhhhh=hhhyyS",
+  "Syyhhh=hhhhhhhhh============hhhyyS",
+  "Syyhhh============hhyyyyhhhhhhhyyS",
+  "Syyhhhhhhhhhhhhh==hhyyyyhhhhhhhyyS",
+  "Syyhhhhhhfhhhhhh==hhhhhhhfhhhhhyyS",
+  "Syyhhhhhhhhhhhhh==hhhhhhhhhhhhhyyS",
+  "SSSSSSSSSSSSSSSS==SSSSSSSSSSSSSSSS"
+ ]
+}

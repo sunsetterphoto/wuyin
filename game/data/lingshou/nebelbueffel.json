@@ -1,0 +1,29 @@
+{
+  "id": "nebelbueffel",
+  "name": "LS_NEBELBUEFFEL",
+  "animal": "LS_NEBELBUEFFEL_ANIMAL",
+  "desc": "LS_NEBELBUEFFEL_DESC",
+  "element": "water",
+  "temperaments": [
+    "stubborn"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 66,
+    "atk": 56,
+    "def": 56,
+    "spd": 20
+  },
+  "moves": [
+    "flutwelle",
+    "felsramme",
+    "schlammwand",
+    "stroemungsruf"
+  ],
+  "habitat": "pond",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/nebelbueffel.md",
+  "learn": {
+    "16": "perlenstrahl"
+  }
+}

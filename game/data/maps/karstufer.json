@@ -1,0 +1,176 @@
+{
+ "name": "MAP_KARSTUFER",
+ "region": "river",
+ "time": "day",
+ "music": "river",
+ "battle_bg": "karst",
+ "border": "karst",
+ "spawns": {
+  "from_crossroads": [
+   20,
+   20
+  ],
+  "from_harbour": [
+   29,
+   1
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    20,
+    21,
+    1,
+    1
+   ],
+   "to": "kreuzweg",
+   "spawn": "from_river"
+  },
+  {
+   "rect": [
+    29,
+    0,
+    2,
+    1
+   ],
+   "to": "nebelhafen",
+   "spawn": "from_route"
+  }
+ ],
+ "on_enter": {
+  "event": "karstufer_arrive",
+  "unless": "karstufer_arrived"
+ },
+ "lingshou": [
+  {
+   "id": "silent_kormoran",
+   "species": "perlkormoran",
+   "role": "silenced",
+   "at": [
+    9,
+    5
+   ],
+   "event": "silent_kormoran",
+   "when": "quest_kormoran",
+   "unless": "kormoran_done",
+   "static": true
+  },
+  {
+   "id": "w_bueffel",
+   "species": "nebelbueffel",
+   "at": [
+    24,
+    14
+   ],
+   "levels": [
+    13,
+    14
+   ],
+   "unless": "gone_w_bueffel"
+  },
+  {
+   "id": "w_delfin",
+   "species": "stromdelfin",
+   "at": [
+    16,
+    5
+   ],
+   "levels": [
+    12,
+    14
+   ],
+   "unless": "gone_w_delfin"
+  }
+ ],
+ "objects": [
+  {
+   "id": "chest_karst",
+   "kind": "chest",
+   "at": [
+    37,
+    19
+   ],
+   "event": "chest_karst",
+   "unless": "chest_karst"
+  }
+ ],
+ "encounters": {
+  "rate": 0.12,
+  "table": [
+   {
+    "species": "perlkormoran",
+    "levels": [
+     11,
+     14
+    ],
+    "weight": 3
+   },
+   {
+    "species": "stromdelfin",
+    "levels": [
+     11,
+     14
+    ],
+    "weight": 2
+   },
+   {
+    "species": "nebelbueffel",
+    "levels": [
+     12,
+     15
+    ],
+    "weight": 2
+   },
+   {
+    "species": "goldkroete",
+    "levels": [
+     11,
+     14
+    ],
+    "weight": 2
+   },
+   {
+    "species": "reisquak",
+    "levels": [
+     11,
+     13
+    ],
+    "weight": 1
+   },
+   {
+    "species": "schattenmotte",
+    "levels": [
+     12,
+     14
+    ],
+    "weight": 2,
+    "night": true
+   }
+  ]
+ },
+ "id": "karstufer",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSS==SSSSSSSSS",
+  "S~~~~~~~~~~~~~~~~~~~~~~~~~~~#==~~~~~~~~S",
+  "S~~~~~~~~~~~~~~~~~~~~~~~~~~~#==~~~~~~~~S",
+  "S~~~~~~~kkk~~~~~~~~~~~~~~~~~#==~~~~~~~~S",
+  "S~~~~~~~kkk~~~~~~~~~~~~~~~~~#==~~~~~~~~S",
+  "Sqqqqqqqq.....qqqqqq.........==qqqqqqq.S",
+  "Sqqqqqqqqq..kkqqqqqq.....T...==....kk..S",
+  "S..kk.......kk...f...........==....kk..S",
+  "S.....................kk.....==........S",
+  "S......kk...........===========........S",
+  "S......kk...........=............kk....S",
+  "S....,,,,,,.........=............kk....S",
+  "S....,,,,,,.........=..,,,,,,........T.S",
+  "S.T..,,,,,,.......T.=..,,,,,,.....f....S",
+  "S....,,,,,,.........=..,,,,,,..........S",
+  "S.......f......kk...=..,,,,,,.......kk.S",
+  "S...kk......,,,kk...=...............kk.S",
+  "S...kk......,,,.....=.....kk...,,,,,...S",
+  "S...........,,,.....=.....kk...,,,,,...S",
+  "S.........kk,,,.....=..........,,,,,...S",
+  "S.........kk........=..................S",
+  "SSSSSSSSSSSSSSSSSSSS=SSSSSSSSSSSSSSSSSSS"
+ ]
+}

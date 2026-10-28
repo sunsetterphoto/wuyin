@@ -1,0 +1,8 @@
+{
+  "id": "datteltee",
+  "name": "ITEM_DATTELTEE",
+  "desc": "ITEM_DATTELTEE_DESC",
+  "kind": "dish",
+  "price": 50,
+  "effect": "coins"
+}

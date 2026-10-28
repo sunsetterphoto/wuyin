@@ -1,0 +1,29 @@
+{
+  "id": "stromdelfin",
+  "name": "LS_STROMDELFIN",
+  "animal": "LS_STROMDELFIN_ANIMAL",
+  "desc": "LS_STROMDELFIN_DESC",
+  "element": "water",
+  "temperaments": [
+    "gentle"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 56,
+    "atk": 40,
+    "def": 42,
+    "spd": 56
+  },
+  "moves": [
+    "stroemungsruf",
+    "reisregen",
+    "perlenstrahl",
+    "echoruf"
+  ],
+  "habitat": "pond",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/stromdelfin.md",
+  "learn": {
+    "28": "flutwelle"
+  }
+}

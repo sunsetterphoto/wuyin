@@ -1,0 +1,10 @@
+{
+  "id": "perlenstrahl",
+  "name": "MOVE_PERLENSTRAHL",
+  "element": "water",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "llm_hint": "a beam of shining pearly mist",
+  "power": 70
+}

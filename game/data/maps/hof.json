@@ -1,0 +1,303 @@
+{
+ "name": "MAP_HOF",
+ "region": "bamboo",
+ "time": "day",
+ "music": "farm",
+ "battle_bg": "farm",
+ "border": "bamboo",
+ "inn_spawn": "home",
+ "spawns": {
+  "from_village": [
+   32,
+   7
+  ],
+  "home": [
+   6,
+   7
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    33,
+    7,
+    1,
+    2
+   ],
+   "to": "weidendorf",
+   "spawn": "from_farm"
+  }
+ ],
+ "on_enter": {
+  "event": "hof_arrive",
+  "unless": "hof_arrived"
+ },
+ "pens": [
+  {
+   "rect": [
+    10,
+    10,
+    3,
+    2
+   ],
+   "sign": [
+    11,
+    13
+   ]
+  },
+  {
+   "rect": [
+    16,
+    10,
+    3,
+    2
+   ],
+   "sign": [
+    17,
+    13
+   ]
+  },
+  {
+   "rect": [
+    22,
+    10,
+    3,
+    2
+   ],
+   "sign": [
+    23,
+    13
+   ]
+  },
+  {
+   "rect": [
+    28,
+    10,
+    3,
+    2
+   ],
+   "sign": [
+    29,
+    13
+   ]
+  },
+  {
+   "rect": [
+    10,
+    15,
+    3,
+    2
+   ],
+   "sign": [
+    11,
+    18
+   ]
+  },
+  {
+   "rect": [
+    16,
+    15,
+    3,
+    2
+   ],
+   "sign": [
+    17,
+    18
+   ]
+  },
+  {
+   "rect": [
+    22,
+    15,
+    3,
+    2
+   ],
+   "sign": [
+    23,
+    18
+   ]
+  },
+  {
+   "rect": [
+    28,
+    15,
+    3,
+    2
+   ],
+   "sign": [
+    29,
+    18
+   ]
+  },
+  {
+   "rect": [
+    10,
+    20,
+    3,
+    2
+   ],
+   "sign": [
+    11,
+    23
+   ]
+  },
+  {
+   "rect": [
+    16,
+    20,
+    3,
+    2
+   ],
+   "sign": [
+    17,
+    23
+   ]
+  },
+  {
+   "rect": [
+    22,
+    20,
+    3,
+    2
+   ],
+   "sign": [
+    23,
+    23
+   ]
+  },
+  {
+   "rect": [
+    28,
+    20,
+    3,
+    2
+   ],
+   "sign": [
+    29,
+    23
+   ]
+  },
+  {
+   "rect": [
+    10,
+    25,
+    3,
+    2
+   ],
+   "sign": [
+    11,
+    28
+   ]
+  },
+  {
+   "rect": [
+    16,
+    25,
+    3,
+    2
+   ],
+   "sign": [
+    17,
+    28
+   ]
+  },
+  {
+   "rect": [
+    22,
+    25,
+    3,
+    2
+   ],
+   "sign": [
+    23,
+    28
+   ]
+  },
+  {
+   "rect": [
+    28,
+    25,
+    3,
+    2
+   ],
+   "sign": [
+    29,
+    28
+   ]
+  }
+ ],
+ "npcs": [
+  {
+   "id": "zimmermann",
+   "sprite": "carpenter",
+   "at": [
+    10,
+    7
+   ],
+   "event": "zimmermann"
+  }
+ ],
+ "objects": [
+  {
+   "id": "hut_door",
+   "kind": "invisible",
+   "at": [
+    6,
+    6
+   ],
+   "event": "hof_hut"
+  },
+  {
+   "id": "farm_chime",
+   "kind": "chime",
+   "at": [
+    9,
+    6
+   ],
+   "event": "hof_hut"
+  },
+  {
+   "id": "farm_sign",
+   "kind": "sign",
+   "at": [
+    31,
+    9
+   ],
+   "event": "hof_sign",
+   "solid": false
+  }
+ ],
+ "id": "hof",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+  "SBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBS",
+  "SBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBS",
+  "SBB.............ffffffff..,,,,,,.S",
+  "SBB.HHHHH...T...ffffffff..,,,,,,.S",
+  "SBB.HHHHH.......ffffffff..,,,,,,.S",
+  "SBB.HHDHH........................S",
+  "SBB...============================",
+  "SBB...============================",
+  "SBB...==.FFFFF.FFFFF.FFFFF.FFFFF.S",
+  "SBB...==.F...F.F...F.F...F.F...F.S",
+  "SBB...==.F...F.F...F.F...F.F...F.S",
+  "SBB...==.FFFFF.FFFFF.FFFFF.FFFFF.S",
+  "SBB...===========================S",
+  "SBB...==.FFFFF.FFFFF.FFFFF.FFFFF.S",
+  "SBB...==.F...F.F...F.F...F.F...F.S",
+  "SBB...==.F...F.F...F.F...F.F...F.S",
+  "SBB...==.FFFFF.FFFFF.FFFFF.FFFFF.S",
+  "SBB...===========================S",
+  "SBB...==.FFFFF.FFFFF.FFFFF.FFFFF.S",
+  "SBB...==.F...F.F...F.F...F.F...F.S",
+  "SBB...==.F...F.F...F.F...F.F...F.S",
+  "SBB...==.FFFFF.FFFFF.FFFFF.FFFFF.S",
+  "SBB...===========================S",
+  "SBB...==.FFFFF.FFFFF.FFFFF.FFFFF.S",
+  "SBB...==.F...F.F...F.F...F.F...F.S",
+  "SBB...==.F...F.F...F.F...F.F...F.S",
+  "SBB...==.FFFFF.FFFFF.FFFFF.FFFFF.S",
+  "SBT...===========================S",
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+ ]
+}

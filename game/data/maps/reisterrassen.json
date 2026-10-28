@@ -1,5 +1,6 @@
 {
  "name": "MAP_REISTERRASSEN",
+ "region": "bamboo",
  "time": "day",
  "music": "route",
  "music_when_silent": "silence",

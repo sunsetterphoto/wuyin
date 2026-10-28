@@ -22,6 +22,12 @@ func _ready() -> void:
 		if AudioServer.get_bus_index(bus) < 0:
 			AudioServer.add_bus()
 			AudioServer.set_bus_name(AudioServer.bus_count - 1, bus)
+	var bus := AudioServer.get_bus_index("Music")
+	if AudioServer.get_bus_effect_count(bus) == 0:
+		var lp := AudioEffectLowPassFilter.new()
+		lp.cutoff_hz = 650.0
+		AudioServer.add_bus_effect(bus, lp)
+		AudioServer.set_bus_effect_enabled(bus, 0, false)
 	_a = _player("Music")
 	_b = _player("Music")
 	for i in 4:
@@ -64,6 +70,13 @@ func play(id: String) -> void:
 
 func stop() -> void:
 	play("")
+
+
+## Silent regions: the music sounds muffled and far away (GDD "Musik").
+func set_muffled(on: bool) -> void:
+	var bus := AudioServer.get_bus_index("Music")
+	if AudioServer.get_bus_effect_count(bus) > 0:
+		AudioServer.set_bus_effect_enabled(bus, 0, on)
 
 
 ## Short effects: select, back, hit, heal, bell, meow, encounter, level, trust, heart, fail, coin.

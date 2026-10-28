@@ -1,0 +1,14 @@
+{
+  "id": "phoenixlied",
+  "name": "MOVE_PHOENIXLIED",
+  "element": "fire",
+  "kind": "status",
+  "accuracy": 95,
+  "target": "ally_side",
+  "llm_hint": "the song of five tones that makes the team resonate",
+  "effect": {
+    "status": "resonance",
+    "turns": 3,
+    "chance": 100
+  }
+}

@@ -1,0 +1,210 @@
+{
+ "name": "MAP_NEBELHAFEN",
+ "region": "river",
+ "time": "day",
+ "music": "river",
+ "battle_bg": "karst",
+ "border": "karst",
+ "inn_spawn": "inn",
+ "town": true,
+ "spawns": {
+  "from_route": [
+   16,
+   22
+  ],
+  "inn": [
+   5,
+   12
+  ],
+  "dock": [
+   16,
+   7
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    16,
+    23,
+    2,
+    1
+   ],
+   "to": "karstufer",
+   "spawn": "from_harbour"
+  },
+  {
+   "rect": [
+    16,
+    1,
+    2,
+    1
+   ],
+   "to": "schildkroetenbucht",
+   "spawn": "from_boat",
+   "when": "has_boat",
+   "blocked_event": "boat_missing"
+  }
+ ],
+ "on_enter": {
+  "event": "nebelhafen_arrive",
+  "unless": "nebelhafen_arrived"
+ },
+ "npcs": [
+  {
+   "id": "nebelhafen_wirt",
+   "sprite": "innkeeper",
+   "at": [
+    7,
+    12
+   ],
+   "event": "nebelhafen_inn"
+  },
+  {
+   "id": "nebelhafen_haendler",
+   "sprite": "shopkeeper",
+   "at": [
+    15,
+    12
+   ],
+   "event": "nebelhafen_shop"
+  },
+  {
+   "id": "nebelhafen_teemeister",
+   "sprite": "teahouse",
+   "at": [
+    27,
+    12
+   ],
+   "event": "nebelhafen_tea"
+  },
+  {
+   "id": "nebelhafen_koch",
+   "sprite": "cook",
+   "at": [
+    32,
+    18
+   ],
+   "event": "nebelhafen_food"
+  },
+  {
+   "id": "fischer",
+   "sprite": "fisher",
+   "at": [
+    7,
+    17
+   ],
+   "event": "fischer"
+  },
+  {
+   "id": "bootsfrau",
+   "sprite": "boatwoman",
+   "at": [
+    18,
+    7
+   ],
+   "event": "bootsfrau"
+  },
+  {
+   "id": "hafen_kind",
+   "sprite": "girl_c",
+   "at": [
+    19,
+    16
+   ],
+   "event": "hafen_kind",
+   "wander": 2
+  },
+  {
+   "id": "hafen_alter",
+   "sprite": "elder",
+   "at": [
+    10,
+    15
+   ],
+   "event": "hafen_alter"
+  }
+ ],
+ "objects": [
+  {
+   "id": "nebelhafen_inn_door",
+   "kind": "invisible",
+   "at": [
+    5,
+    11
+   ],
+   "event": "nebelhafen_inn"
+  },
+  {
+   "id": "nebelhafen_shop_door",
+   "kind": "invisible",
+   "at": [
+    13,
+    11
+   ],
+   "event": "nebelhafen_shop"
+  },
+  {
+   "id": "nebelhafen_tea_door",
+   "kind": "invisible",
+   "at": [
+    25,
+    11
+   ],
+   "event": "nebelhafen_tea"
+  },
+  {
+   "id": "nebelhafen_food_door",
+   "kind": "invisible",
+   "at": [
+    30,
+    17
+   ],
+   "event": "nebelhafen_food"
+  },
+  {
+   "id": "nebelhafen_chime",
+   "kind": "chime",
+   "at": [
+    8,
+    11
+   ],
+   "event": "nebelhafen_inn"
+  },
+  {
+   "id": "fisher_door",
+   "kind": "invisible",
+   "at": [
+    5,
+    17
+   ],
+   "event": "fischer"
+  }
+ ],
+ "id": "nebelhafen",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+  "S~~~~~~~~~~~~~~~##~~~~~~~~~~~~~~~S",
+  "S~~~~~~~~~~~~~~~##~~~~~~~~~~~~~~~S",
+  "S~~~~~~~~~~~~~~~##~~~~~~~~~~~~~~~S",
+  "S~~~~~~~~~~~~~~~##~~~~~~~~~~~~~~~S",
+  "S~~~~~~~~~~~~~~~##~~~~~~~~~~~~~~~S",
+  "S~~~~~~~~~~~~~~~##~~~~~~~~~~~~~~~S",
+  "S================================S",
+  "S========L===========L===========S",
+  "S..RRRRR...HHHH........RRRRR.....S",
+  "S..RRRRR...HHHH........RRRRR.....S",
+  "S..RRDRR...HHDH........RRDRR.....S",
+  "S....=..f....=...........=.......S",
+  "S...........L_________L....f.....S",
+  "S...........___________..........S",
+  "S..HHHH....._____W_____.....HHHHHS",
+  "S..HHHH.....___________.....HHHHHS",
+  "S..HHDH.....L_________L.....HHDHHS",
+  "S....========...==............=..S",
+  "S...............==....=========..S",
+  "S.T.............==.f.............S",
+  "S.........T.....==......T........S",
+  "S...............==.............T.S",
+  "SSSSSSSSSSSSSSSS==SSSSSSSSSSSSSSSS"
+ ]
+}

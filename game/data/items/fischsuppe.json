@@ -1,0 +1,8 @@
+{
+  "id": "fischsuppe",
+  "name": "ITEM_FISCHSUPPE",
+  "desc": "ITEM_FISCHSUPPE_DESC",
+  "kind": "dish",
+  "price": 50,
+  "effect": "xp"
+}

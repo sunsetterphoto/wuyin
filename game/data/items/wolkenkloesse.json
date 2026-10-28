@@ -1,0 +1,8 @@
+{
+  "id": "wolkenkloesse",
+  "name": "ITEM_WOLKENKLOESSE",
+  "desc": "ITEM_WOLKENKLOESSE_DESC",
+  "kind": "dish",
+  "price": 60,
+  "effect": "def"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "steinhaut",
+  "name": "MOVE_STEINHAUT",
+  "element": "earth",
+  "kind": "guard",
+  "accuracy": 95,
+  "target": "ally",
+  "llm_hint": "turns skin to stone and shields an ally"
+}

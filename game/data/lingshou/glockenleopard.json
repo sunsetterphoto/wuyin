@@ -1,0 +1,30 @@
+{
+  "id": "glockenleopard",
+  "name": "LS_GLOCKENLEOPARD",
+  "animal": "LS_GLOCKENLEOPARD_ANIMAL",
+  "desc": "LS_GLOCKENLEOPARD_DESC",
+  "element": "metal",
+  "temperaments": [
+    "brave"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 58,
+    "atk": 68,
+    "def": 48,
+    "spd": 60
+  },
+  "moves": [
+    "raureifkralle",
+    "glockenschlag",
+    "klingenfeder",
+    "eisenstille"
+  ],
+  "habitat": "ore_grotto",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/glockenleopard.md",
+  "hybrid": true,
+  "learn": {
+    "28": "tigerbruellen"
+  }
+}

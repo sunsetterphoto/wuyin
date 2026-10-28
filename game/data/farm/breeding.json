@@ -1,0 +1,10 @@
+{
+ "note": "Generiert von tools/story/content.py",
+ "hybrids": {
+  "wood": "blattbaer",
+  "water": "perllurch",
+  "fire": "glutfalter",
+  "metal": "glockenleopard",
+  "earth": "zirpkroete"
+ }
+}

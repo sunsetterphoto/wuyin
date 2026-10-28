@@ -1,0 +1,15 @@
+{
+  "id": "funkenregen",
+  "name": "MOVE_FUNKENREGEN",
+  "element": "fire",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "llm_hint": "a rain of little sparks",
+  "power": 55,
+  "effect": {
+    "status": "dissonance",
+    "turns": 2,
+    "chance": 20
+  }
+}

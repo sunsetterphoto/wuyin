@@ -1,0 +1,7 @@
+{
+  "id": "rotes_banner",
+  "name": "ITEM_ROTES_BANNER",
+  "desc": "ITEM_ROTES_BANNER_DESC",
+  "kind": "festival",
+  "price": 1
+}

@@ -1,0 +1,214 @@
+{
+ "name": "MAP_MONDQUELL",
+ "region": "dunes",
+ "time": "day",
+ "music": "dunes",
+ "battle_bg": "dunes",
+ "border": "sand",
+ "inn_spawn": "inn",
+ "town": true,
+ "spawns": {
+  "from_route": [
+   32,
+   18
+  ],
+  "inn": [
+   5,
+   7
+  ],
+  "from_crest": [
+   17,
+   1
+  ],
+  "hall": [
+   21,
+   18
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    33,
+    18,
+    1,
+    2
+   ],
+   "to": "duenenweg",
+   "spawn": "from_town"
+  },
+  {
+   "rect": [
+    17,
+    0,
+    2,
+    1
+   ],
+   "to": "singender_kamm",
+   "spawn": "from_town"
+  }
+ ],
+ "on_enter": {
+  "event": "mondquell_arrive",
+  "unless": "mondquell_arrived"
+ },
+ "npcs": [
+  {
+   "id": "mondquell_wirt",
+   "sprite": "innkeeper",
+   "at": [
+    7,
+    7
+   ],
+   "event": "mondquell_inn"
+  },
+  {
+   "id": "mondquell_haendler",
+   "sprite": "shopkeeper",
+   "at": [
+    7,
+    16
+   ],
+   "event": "mondquell_shop"
+  },
+  {
+   "id": "mondquell_teemeister",
+   "sprite": "teahouse",
+   "at": [
+    24,
+    7
+   ],
+   "event": "mondquell_tea"
+  },
+  {
+   "id": "mondquell_koch",
+   "sprite": "cook",
+   "at": [
+    29,
+    16
+   ],
+   "event": "mondquell_food"
+  },
+  {
+   "id": "ordensmeisterin",
+   "sprite": "order_b",
+   "at": [
+    23,
+    18
+   ],
+   "event": "halle_tuer",
+   "unless": "yao_hall_done"
+  },
+  {
+   "id": "quell_haendlerin",
+   "sprite": "trader",
+   "at": [
+    14,
+    15
+   ],
+   "event": "quell_haendlerin"
+  },
+  {
+   "id": "quell_kind",
+   "sprite": "girl_c",
+   "at": [
+    9,
+    9
+   ],
+   "event": "quell_kind",
+   "wander": 2
+  },
+  {
+   "id": "yao_free",
+   "sprite": "yao",
+   "at": [
+    20,
+    19
+   ],
+   "event": "yao_after",
+   "when": "yao_returned"
+  }
+ ],
+ "objects": [
+  {
+   "id": "mondquell_inn_door",
+   "kind": "invisible",
+   "at": [
+    5,
+    6
+   ],
+   "event": "mondquell_inn"
+  },
+  {
+   "id": "mondquell_shop_door",
+   "kind": "invisible",
+   "at": [
+    5,
+    15
+   ],
+   "event": "mondquell_shop"
+  },
+  {
+   "id": "mondquell_tea_door",
+   "kind": "invisible",
+   "at": [
+    22,
+    6
+   ],
+   "event": "mondquell_tea"
+  },
+  {
+   "id": "mondquell_food_door",
+   "kind": "invisible",
+   "at": [
+    27,
+    15
+   ],
+   "event": "mondquell_food"
+  },
+  {
+   "id": "mondquell_chime",
+   "kind": "chime",
+   "at": [
+    8,
+    6
+   ],
+   "event": "mondquell_inn"
+  },
+  {
+   "id": "hall_door",
+   "kind": "invisible",
+   "at": [
+    21,
+    17
+   ],
+   "event": "halle_tuer"
+  }
+ ],
+ "id": "mondquell",
+ "rows": [
+  "SSSSSSSSSSSSSSSSS==SSSSSSSSSSSSSSS",
+  "Smmmmmmmmmmmmmmmm==mmmmmmmmmmmmmmS",
+  "Smmmmmmmmmmmmmmmm==mmmmmmmmmmmmmmS",
+  "Sssssssssssssssss======ssssssssssS",
+  "SssRRRRRssLssssss=ssRRRRRssssssssS",
+  "SssRRRRRssssss~~~sssRRRRRssssssssS",
+  "SssRRDRRssss~~~sssssRRDRRssssssssS",
+  "Sssss=sssss~~ssTssssss=ssssssssssS",
+  "Sssss=sssss~~sssTsssss=ssssssssssS",
+  "Sssss=sssss~~ssTssssss=ssfssssfssS",
+  "Sssss=ssssss~~~sssssss=ssssssssssS",
+  "Sssss=ssssssss~~~sssss=ssLsssssssS",
+  "Sssss======sssssssssss=ssssssssssS",
+  "SssHHHHsssssssssssssss=sssHHHHsssS",
+  "SssHHHHsssssssssssOOOOOOssHHHHsssS",
+  "SssHHDHsssssssssssOOOOOOssHDHHsssS",
+  "Sssss=ssssssssssssOOOOOOsss=sssssS",
+  "Sssss=sssfssssssssOOODOOsss=sssssS",
+  "S=================================",
+  "S=================================",
+  "SssssssssssssssssssssssssssssssssS",
+  "SmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmS",
+  "SmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmS",
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+ ]
+}

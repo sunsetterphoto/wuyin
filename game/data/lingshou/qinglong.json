@@ -23,5 +23,6 @@
   "can_breed": false,
   "guardian": true,
   "sprite_size": 96,
-  "voice_card": "cards/{lang}/qinglong.md"
+  "voice_card": "cards/{lang}/qinglong.md",
+  "desc": "LS_QINGLONG_DESC"
 }

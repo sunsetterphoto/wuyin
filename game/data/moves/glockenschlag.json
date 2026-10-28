@@ -1,0 +1,15 @@
+{
+  "id": "glockenschlag",
+  "name": "MOVE_GLOCKENSCHLAG",
+  "element": "metal",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "llm_hint": "a ringing bronze bell blow that can deafen",
+  "power": 60,
+  "effect": {
+    "status": "deaf",
+    "turns": 2,
+    "chance": 30
+  }
+}

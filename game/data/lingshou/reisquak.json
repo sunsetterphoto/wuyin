@@ -21,5 +21,10 @@
   ],
   "habitat": "pond",
   "can_breed": true,
-  "voice_card": "cards/{lang}/reisquak.md"
+  "voice_card": "cards/{lang}/reisquak.md",
+  "desc": "LS_REISQUAK_DESC",
+  "learn": {
+    "14": "perlenstrahl",
+    "26": "flutwelle"
+  }
 }

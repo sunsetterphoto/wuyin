@@ -1,0 +1,10 @@
+{
+  "id": "sonnenfeuer",
+  "name": "MOVE_SONNENFEUER",
+  "element": "fire",
+  "kind": "attack",
+  "accuracy": 85,
+  "target": "enemy",
+  "llm_hint": "fire as bright as the sun; strongest fire attack",
+  "power": 90
+}

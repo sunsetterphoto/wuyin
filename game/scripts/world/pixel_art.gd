@@ -79,6 +79,59 @@ static func tile(kind: String) -> ImageTexture:
 			for y in range(4, TILE - 4):
 				for x in range(10, 22):
 					img.set_pixel(x, y, Color("ffcf5a"))
+		"sand":
+			img = _noise_tile(Color("d9b874"), [Color("e6c886"), Color("c9a660"), Color("efd69a")], 15, 0.18)
+		"redrock":
+			img = _noise_tile(Color("b8644a"), [Color("c97656"), Color("a3543c"), Color("d9895e")], 16, 0.16)
+		"danxia":
+			img = _noise_tile(Color("c25a3c"), [Color("b04c30")], 17, 0.1)
+			var bands: Array[Color] = [Color("e0a050"), Color("c25a3c"), Color("d97a4a"), Color("8e3a2a"), Color("e8c070")]
+			for y in TILE:
+				var c: Color = bands[(y / 5) % bands.size()]
+				for x in TILE:
+					if (x + y * 3) % 7 != 0:
+						img.set_pixel(x, y, c)
+		"karst":
+			img = _noise_tile(Color("6f8a6a"), [Color("5a7458"), Color("8aa080"), Color("4f8a3c")], 18, 0.3)
+		"cloud":
+			img = _noise_tile(Color("eef2f6"), [Color("dfe6ee"), Color("ffffff"), Color("cfd8e2")], 19, 0.2)
+		"cloudstone":
+			img = _noise_tile(Color("a6a29a"), [Color("b8b4ac"), Color("948f86"), Color("c4c0b6")], 20, 0.15)
+			for i in TILE:
+				img.set_pixel(i, 0, Color("858076"))
+				img.set_pixel(0, i, Color("858076"))
+		"pillarstone":
+			img = _noise_tile(Color("8f8a80"), [Color("a39e93"), Color("7a756b"), Color("6a8a5a")], 21, 0.28)
+			for y in range(5, TILE, 9):
+				for x in TILE:
+					img.set_pixel(x, y, Color("6b675f"))
+		"pine":
+			img = _noise_tile(Color("2a4f3a"), [Color("356247"), Color("1f3d2d"), Color("4a7a52")], 22, 0.3)
+		"greywall":
+			img = _noise_tile(Color("b9b6ae"), [Color("a8a59d"), Color("c8c5bd")], 23, 0.08)
+			for x in TILE:
+				img.set_pixel(x, 31, Color("5e584c"))
+				img.set_pixel(x, 0, Color("5e584c"))
+		"greyroof":
+			img = _noise_tile(Color("5e6470"), [Color("6e7480"), Color("4e5460")], 24, 0.1)
+			for y in range(3, TILE, 6):
+				for x in TILE:
+					img.set_pixel(x, y, Color("3e4450"))
+		"ember":
+			img = _noise_tile(Color("4a3a34"), [Color("e8452f"), Color("ffb35a"), Color("3a2c28")], 25, 0.14)
+		"ore":
+			img = _noise_tile(Color("6b6875"), [Color("a9b1bb"), Color("4e4c58"), Color("c9d0d8")], 26, 0.2)
+		"gravel":
+			img = _noise_tile(Color("a39880"), [Color("8c826c"), Color("bdb39a"), Color("766c58")], 27, 0.35)
+		"pond":
+			img = _noise_tile(Color("4a86b0"), [Color("5a98c2"), Color("8fb8de"), Color("3f9a52")], 28, 0.1)
+		"floor":
+			img = _noise_tile(Color("9a6a42"), [Color("8a5b36"), Color("a8784e")], 29, 0.12)
+			for y in [0, 8, 16, 24]:
+				for x in TILE:
+					img.set_pixel(x, y, Color("6a4226"))
+		"gold":
+			img = _noise_tile(Color("e0b04a"), [Color("f0c860"), Color("c99a3a")], 30, 0.15)
 		_:
 			img = _noise_tile(Color.MAGENTA, [Color.BLACK], 0)
 	return ImageTexture.create_from_image(img)
@@ -94,7 +147,10 @@ static func tuft(kind: String) -> ImageTexture:
 		"tallgrass": [Color("3f7232"), Color("5f9c46"), Color("6aa84f"), Color("2f5a28")],
 		"rice": [Color("7fb069"), Color("9cc26a"), Color("c9c26a"), Color("5f9c46")],
 		"flowers": [Color("5f9c46"), Color("3f7232")],
-	}[kind]
+		"drygrass": [Color("c9a24a"), Color("b08a3a"), Color("dcbc6a"), Color("8e6e2e")],
+		"reeds": [Color("6a8a4a"), Color("8aa060"), Color("4f6a3a"), Color("b0b070")],
+		"sapling": [Color("3d8549"), Color("9cc26a"), Color("2f6b3a")],
+	}.get(kind, [Color("3f7232"), Color("5f9c46")])
 	for blade in 14:
 		var x := rng.randi_range(2, 29)
 		var h := rng.randi_range(10, 23)
@@ -128,6 +184,18 @@ const PEOPLE := {
 	"innkeeper": [Color("a39b8b"), Color("8e2e23"), Color("3a3046")],
 	"teahouse": [Color("1c1a1f"), Color("3f7a3a"), Color("553520")],
 	"monk": [Color("f1c9a5"), Color("d8682c"), Color("d8682c")],
+	"order_a": [Color("b9b6ae"), Color("a8a59d"), Color("6b675f")],
+	"order_b": [Color("e8e4dc"), Color("a8a59d"), Color("6b675f")],
+	"yao_order": [Color("1c1a1f"), Color("a8a59d"), Color("6b675f")],
+	"fisher": [Color("c9a24a"), Color("3b6ea5"), Color("553520")],
+	"boatwoman": [Color("3b6ea5"), Color("2f6f8f"), Color("3a3046")],
+	"trader": [Color("e8dcc4"), Color("c49a4a"), Color("6b3b22")],
+	"carpenter": [Color("6b3b22"), Color("8a5b36"), Color("3a3046")],
+	"cook": [Color("f4efe6"), Color("e8e4dc"), Color("553520")],
+	"elder": [Color("e8e4dc"), Color("5e584c"), Color("3a3046")],
+	"girl_c": [Color("1c1a1f"), Color("e8452f"), Color("3a3046")],
+	"man_c": [Color("2b2230"), Color("8a5b36"), Color("553520")],
+	"meister_free": [Color("e8e4dc"), Color("7a4e2d"), Color("553520")],
 }
 
 
@@ -135,8 +203,8 @@ const PEOPLE := {
 static func character(kind: String) -> ImageTexture:
 	var img := Image.create(32, 48, false, Image.FORMAT_RGBA8)
 	img.fill(Color(0, 0, 0, 0))
-	if PEOPLE.has(kind):
-		var c: Array = PEOPLE[kind]
+	if PEOPLE.has(kind) or kind not in ["hero", "jinli", "panda"]:
+		var c: Array = PEOPLE.get(kind, [Color("2b2230"), Color("8c8577"), Color("3a3046")])
 		_rect(img, 11, 6, 10, 10, Color("f1c9a5"))
 		_rect(img, 10, 3, 12, 5, c[0])
 		_rect(img, 13, 10, 2, 2, Color("2b2230"))

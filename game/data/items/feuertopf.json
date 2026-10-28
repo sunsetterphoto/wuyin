@@ -1,0 +1,8 @@
+{
+  "id": "feuertopf",
+  "name": "ITEM_FEUERTOPF",
+  "desc": "ITEM_FEUERTOPF_DESC",
+  "kind": "dish",
+  "price": 50,
+  "effect": "atk"
+}

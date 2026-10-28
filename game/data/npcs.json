@@ -1,4 +1,12 @@
 {
+ "zimmermann": {
+  "name": "NPC_ZIMMERMANN",
+  "voice": {
+   "tone": "gong",
+   "style": "stubborn",
+   "octave": -1
+  }
+ },
  "meister": {
   "name": "NPC_MEISTER",
   "voice": {
@@ -133,6 +141,510 @@
    "tone": "yu",
    "style": "playful",
    "octave": 1
+  }
+ },
+ "rast_wirt": {
+  "name": "NPC_RAST_WIRT",
+  "voice": {
+   "tone": "shang",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "order_west": {
+  "name": "NPC_ORDER_WEST",
+  "voice": {
+   "tone": "shang",
+   "style": "stubborn",
+   "octave": 0
+  }
+ },
+ "order_north": {
+  "name": "NPC_ORDER_NORTH",
+  "voice": {
+   "tone": "shang",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "kreuz_haendler": {
+  "name": "NPC_KREUZ_HAENDLER",
+  "voice": {
+   "tone": "zhi",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "fischer": {
+  "name": "NPC_FISCHER",
+  "voice": {
+   "tone": "yu",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "bootsfrau": {
+  "name": "NPC_BOOTSFRAU",
+  "voice": {
+   "tone": "yu",
+   "style": "brave",
+   "octave": 0
+  }
+ },
+ "hafen_kind": {
+  "name": "NPC_HAFEN_KIND",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 1
+  }
+ },
+ "hafen_alter": {
+  "name": "NPC_HAFEN_ALTER",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "order_bucht": {
+  "name": "NPC_ORDER_BUCHT",
+  "voice": {
+   "tone": "shang",
+   "style": "stubborn",
+   "octave": 0
+  }
+ },
+ "muschelfrau": {
+  "name": "NPC_MUSCHELFRAU",
+  "voice": {
+   "tone": "yu",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "xuanwu": {
+  "name": "NPC_XUANWU",
+  "voice": {
+   "tone": "yu",
+   "style": "stubborn",
+   "octave": -1
+  }
+ },
+ "xuanwu_free": {
+  "name": "NPC_XUANWU_FREE",
+  "voice": {
+   "tone": "yu",
+   "style": "stubborn",
+   "octave": -1
+  }
+ },
+ "foerster": {
+  "name": "NPC_FOERSTER",
+  "voice": {
+   "tone": "jue",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "buergermeisterin": {
+  "name": "NPC_BUERGERMEISTERIN",
+  "voice": {
+   "tone": "zhi",
+   "style": "stubborn",
+   "octave": 0
+  }
+ },
+ "toepfer": {
+  "name": "NPC_TOEPFER",
+  "voice": {
+   "tone": "gong",
+   "style": "stubborn",
+   "octave": -1
+  }
+ },
+ "rotfels_kind": {
+  "name": "NPC_ROTFELS_KIND",
+  "voice": {
+   "tone": "zhi",
+   "style": "playful",
+   "octave": 1
+  }
+ },
+ "order_gipfel": {
+  "name": "NPC_ORDER_GIPFEL",
+  "voice": {
+   "tone": "shang",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "einsiedler": {
+  "name": "NPC_EINSIEDLER",
+  "voice": {
+   "tone": "zhi",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "bifang": {
+  "name": "NPC_BIFANG",
+  "voice": {
+   "tone": "zhi",
+   "style": "brave",
+   "octave": 0
+  }
+ },
+ "bifang_free": {
+  "name": "NPC_BIFANG_FREE",
+  "voice": {
+   "tone": "zhi",
+   "style": "brave",
+   "octave": 0
+  }
+ },
+ "nebelhafen_wirt": {
+  "name": "NPC_NEBELHAFEN_WIRT",
+  "voice": {
+   "tone": "yu",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "nebelhafen_haendler": {
+  "name": "NPC_NEBELHAFEN_HAENDLER",
+  "voice": {
+   "tone": "zhi",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "nebelhafen_teemeister": {
+  "name": "NPC_NEBELHAFEN_TEEMEISTER",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "nebelhafen_koch": {
+  "name": "NPC_NEBELHAFEN_KOCH",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "rotfels_wirt": {
+  "name": "NPC_ROTFELS_WIRT",
+  "voice": {
+   "tone": "yu",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "rotfels_haendler": {
+  "name": "NPC_ROTFELS_HAENDLER",
+  "voice": {
+   "tone": "zhi",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "rotfels_teemeister": {
+  "name": "NPC_ROTFELS_TEEMEISTER",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "rotfels_koch": {
+  "name": "NPC_ROTFELS_KOCH",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "meister_free": {
+  "name": "NPC_MEISTER_FREE",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "nian": {
+  "name": "NPC_NIAN",
+  "voice": {
+   "tone": "gong",
+   "style": "moody",
+   "octave": -2
+  }
+ },
+ "kind_nian": {
+  "name": "NPC_KIND_NIAN",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 1
+  }
+ },
+ "oma_nian": {
+  "name": "NPC_OMA_NIAN",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "order_ying": {
+  "name": "NPC_ORDER_YING",
+  "voice": {
+   "tone": "shang",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "yao_order": {
+  "name": "NPC_YAO_ORDER",
+  "voice": {
+   "tone": "zhi",
+   "style": "brave",
+   "octave": 0
+  }
+ },
+ "karawane": {
+  "name": "NPC_KARAWANE",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "ordensmeisterin": {
+  "name": "NPC_ORDENSMEISTERIN",
+  "voice": {
+   "tone": "shang",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "quell_haendlerin": {
+  "name": "NPC_QUELL_HAENDLERIN",
+  "voice": {
+   "tone": "zhi",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "quell_kind": {
+  "name": "NPC_QUELL_KIND",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 1
+  }
+ },
+ "yao_free": {
+  "name": "NPC_YAO_FREE",
+  "voice": {
+   "tone": "zhi",
+   "style": "brave",
+   "octave": 0
+  }
+ },
+ "order_kamm": {
+  "name": "NPC_ORDER_KAMM",
+  "voice": {
+   "tone": "shang",
+   "style": "stubborn",
+   "octave": 0
+  }
+ },
+ "karawanenaelteste": {
+  "name": "NPC_KARAWANENAELTESTE",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "baihu": {
+  "name": "NPC_BAIHU",
+  "voice": {
+   "tone": "shang",
+   "style": "brave",
+   "octave": -1
+  }
+ },
+ "baihu_free": {
+  "name": "NPC_BAIHU_FREE",
+  "voice": {
+   "tone": "shang",
+   "style": "brave",
+   "octave": -1
+  }
+ },
+ "kiefer_aelteste": {
+  "name": "NPC_KIEFER_AELTESTE",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "kiefer_kind": {
+  "name": "NPC_KIEFER_KIND",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 1
+  }
+ },
+ "kiefer_frau": {
+  "name": "NPC_KIEFER_FRAU",
+  "voice": {
+   "tone": "yu",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "order_plateau": {
+  "name": "NPC_ORDER_PLATEAU",
+  "voice": {
+   "tone": "shang",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "eremitin": {
+  "name": "NPC_EREMITIN",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "qilin": {
+  "name": "NPC_QILIN",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "qilin_free": {
+  "name": "NPC_QILIN_FREE",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "mondquell_wirt": {
+  "name": "NPC_MONDQUELL_WIRT",
+  "voice": {
+   "tone": "yu",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "mondquell_haendler": {
+  "name": "NPC_MONDQUELL_HAENDLER",
+  "voice": {
+   "tone": "zhi",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "mondquell_teemeister": {
+  "name": "NPC_MONDQUELL_TEEMEISTER",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "mondquell_koch": {
+  "name": "NPC_MONDQUELL_KOCH",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "kiefernhang_wirt": {
+  "name": "NPC_KIEFERNHANG_WIRT",
+  "voice": {
+   "tone": "yu",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "kiefernhang_haendler": {
+  "name": "NPC_KIEFERNHANG_HAENDLER",
+  "voice": {
+   "tone": "zhi",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "kiefernhang_teemeister": {
+  "name": "NPC_KIEFERNHANG_TEEMEISTER",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "kiefernhang_koch": {
+  "name": "NPC_KIEFERNHANG_KOCH",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 0
+  }
+ },
+ "kranich": {
+  "name": "NPC_KRANICH",
+  "voice": {
+   "tone": "shang",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
+ "yao_ally": {
+  "name": "NPC_YAO_ALLY",
+  "voice": {
+   "tone": "zhi",
+   "style": "brave",
+   "octave": 0
+  }
+ },
+ "meister_temple": {
+  "name": "NPC_MEISTER_TEMPLE",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "wusheng_after": {
+  "name": "NPC_WUSHENG_AFTER",
+  "voice": {
+   "tone": "shang",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "fenghuang": {
+  "name": "NPC_FENGHUANG",
+  "voice": {
+   "tone": "zhi",
+   "style": "gentle",
+   "octave": 0
   }
  }
 }

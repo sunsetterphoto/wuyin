@@ -1,0 +1,7 @@
+{
+  "id": "flusskiesel",
+  "name": "ITEM_FLUSSKIESEL",
+  "desc": "ITEM_FLUSSKIESEL_DESC",
+  "kind": "material",
+  "price": 30
+}

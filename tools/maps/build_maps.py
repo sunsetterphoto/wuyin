@@ -6,57 +6,12 @@ consistent (equal row widths, doors in walls, paths connected) and prints
 each grid for a visual check.  python3 tools/maps/build_maps.py [--print]
 Legend: see MapData.LEGEND in game/scripts/world/map_data.gd.
 """
-import json, os, sys
+import os, sys
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "..", "game", "data", "maps")
-
-
-class Grid:
-    def __init__(self, w, h, fill="."):
-        self.w, self.h = w, h
-        self.g = [[fill] * w for _ in range(h)]
-        self.rect(0, 0, w, 1, "S"); self.rect(0, h - 1, w, 1, "S")
-        self.rect(0, 0, 1, h, "S"); self.rect(w - 1, 0, 1, h, "S")
-
-    def set(self, x, y, c):
-        self.g[y][x] = c
-
-    def rect(self, x, y, w, h, c):
-        for yy in range(y, y + h):
-            for xx in range(x, x + w):
-                self.g[yy][xx] = c
-
-    def house(self, x, y, w, h, door, kind="H"):
-        self.rect(x, y, w, h, kind)
-        self.set(x + door, y + h - 1, "D")
-        return (x + door, y + h)  # tile in front of the door
-
-    def hl(self, x1, x2, y, c="="):
-        for x in range(min(x1, x2), max(x1, x2) + 1):
-            self.g[y][x] = c
-
-    def vl(self, x, y1, y2, c="="):
-        for y in range(min(y1, y2), max(y1, y2) + 1):
-            self.g[y][x] = c
-
-    def dots(self, pts, c):
-        for x, y in pts:
-            self.g[y][x] = c
-
-    def rows(self):
-        return ["".join(r) for r in self.g]
+sys.path.insert(0, os.path.dirname(__file__))
 
 
-def save(mid, grid, data):
-    data = dict(data)
-    data["id"] = mid
-    data["rows"] = grid.rows()
-    with open(os.path.join(OUT, mid + ".json"), "w") as f:
-        json.dump(data, f, ensure_ascii=False, indent=1)
-    if "--print" in sys.argv:
-        print(f"== {mid} ({grid.w}x{grid.h})")
-        for i, r in enumerate(data["rows"]):
-            print(f"{i:2d} {r}")
+from grid import Grid, save, OUT
 
 
 # --- Weidendorf: home village, Lantern Festival night ---------------------------
@@ -82,26 +37,37 @@ g.rect(1, 19, 30, 2, "~")
 g.dots([(5, 1), (20, 3), (3, 8), (27, 16), (3, 17)], "T")
 g.dots([(2, 6), (11, 3), (2, 13), (17, 15), (26, 17)], "f")
 g.rect(24, 1, 2, 2, ","); g.rect(12, 17, 3, 2, ",")
+g.hl(0, 8, 10); g.set(8, 9, "="); g.vl(8, 9, 10)     # west road to the farm
 save("weidendorf", g, {
-    "name": "MAP_WEIDENDORF", "time": "night", "music": "village", "music_when_silent": "silence",
+    "name": "MAP_WEIDENDORF", "region": "bamboo", "time": "night", "music": "village", "music_when_silent": "silence",
     "battle_bg": "village_night", "inn_spawn": "home",
-    "spawns": {"start": [6, 5], "home": [6, 5], "from_river": [29, 14], "from_north": [28, 2]},
+    "spawns": {"start": [6, 5], "home": [6, 5], "inn": [6, 5], "from_river": [29, 14], "from_north": [28, 2], "from_farm": [1, 10]},
     "warps": [
         {"rect": [31, 14, 1, 2], "to": "flussufer", "spawn": "from_village", "when": "silence_fell",
          "blocked_event": "blocked_river"},
         {"rect": [28, 0, 2, 1], "to": "bambuspfad", "spawn": "from_village", "when": "prologue_done",
          "blocked_event": "blocked_north"},
+        {"rect": [0, 10, 1, 1], "to": "hof", "spawn": "from_village", "when": "prologue_done",
+         "blocked_event": "blocked_north"},
     ],
-    "on_enter": {"event": "intro", "unless": "intro_done"},
+    "on_enter": [{"event": "intro", "unless": "intro_done"},
+                 {"event": "meister_voice", "when": "three_tones", "unless": "meister_spoke"}],
     "npcs": [
         {"id": "meister", "at": [15, 5], "event": "meister_gift", "unless": "has_fengling"},
+        {"id": "meister_free", "sprite": "meister_free", "at": [15, 5], "event": "meister_home", "when": "meister_spoke"},
+        {"id": "nian", "lingshou": "nian", "at": [16, 12], "event": "nian_battle", "when": "nian_here", "scale": 1.2},
+        {"id": "kind_nian", "sprite": "villager_b", "at": [12, 13], "event": "kind_nian", "when": "nian_here"},
+        {"id": "oma_nian", "sprite": "innkeeper", "at": [27, 12], "event": "oma_nian", "when": "nian_here"},
+        {"id": "order_ying", "sprite": "order_b", "at": [19, 10], "event": "order_ying_idle", "when": "order_visit", "unless": "order_left"},
+        {"id": "yao_order", "sprite": "yao_order", "at": [20, 11], "event": "order_ying_idle", "when": "order_visit", "unless": "order_left"},
+        {"id": "yao_home", "sprite": "yao", "at": [21, 13], "event": "yao_after", "when": "yao_returned"},
         {"id": "meister_plaza", "sprite": "meister", "at": [13, 9], "event": "meister_plaza", "when": "has_fengling", "unless": "voice_taken"},
-        {"id": "meister_mute", "sprite": "meister", "at": [15, 5], "event": "meister_mute", "when": "voice_taken"},
+        {"id": "meister_mute", "sprite": "meister", "at": [15, 5], "event": "meister_mute", "when": "voice_taken", "unless": "meister_spoke"},
         {"id": "yao", "at": [20, 9], "event": "yao_festival", "unless": "silence_fell"},
         {"id": "wusheng", "at": [17, 9], "event": "wusheng_idle", "when": "wusheng_here"},
         {"id": "dorf_frau", "sprite": "villager_a", "at": [12, 11], "event": "dorf_frau"},
-        {"id": "dorf_kind", "sprite": "villager_b", "at": [20, 12], "event": "dorf_kind", "wander": 2},
-        {"id": "dorf_oma", "sprite": "innkeeper", "at": [27, 12], "event": "dorf_oma"},
+        {"id": "dorf_kind", "sprite": "villager_b", "at": [20, 12], "event": "dorf_kind", "wander": 2, "unless": "nian_here"},
+        {"id": "dorf_oma", "sprite": "innkeeper", "at": [27, 12], "event": "dorf_oma", "unless": "nian_here"},
     ],
     "objects": [
         {"id": "home_door", "kind": "invisible", "at": [6, 4], "event": "home_door"},
@@ -130,7 +96,7 @@ g.rect(6, 11, 3, 1, ","); g.rect(5, 12, 5, 1, ",")
 g.dots([(10, 1), (24, 1), (18, 4), (3, 6), (19, 11)], "T")
 g.dots([(22, 2), (6, 5), (26, 3), (19, 7), (8, 9), (15, 13)], "f")
 save("flussufer", g, {
-    "name": "MAP_FLUSSUFER", "time": "night", "music": "silence", "battle_bg": "river",
+    "name": "MAP_FLUSSUFER", "region": "bamboo", "time": "night", "music": "silence", "battle_bg": "river",
     "spawns": {"from_village": [1, 8]},
     "warps": [{"rect": [0, 7, 1, 2], "to": "weidendorf", "spawn": "from_river"}],
     "on_enter": {"event": "river_arrive", "unless": "river_arrived"},
@@ -162,7 +128,7 @@ g.rect(9, 3, 6, 2, ","); g.rect(3, 9, 3, 3, ","); g.rect(7, 9, 2, 3, ",")
 g.rect(11, 13, 5, 3, ","); g.rect(22, 3, 5, 2, ","); g.rect(24, 5, 3, 1, ",")
 g.dots([(9, 16), (19, 14)], "T"); g.dots([(6, 4), (20, 11), (19, 16)], "f")
 save("bambuspfad", g, {
-    "name": "MAP_BAMBUSPFAD", "border": "bamboo", "time": "day", "music": "route", "music_when_silent": "silence", "battle_bg": "bamboo",
+    "name": "MAP_BAMBUSPFAD", "region": "bamboo", "border": "bamboo", "time": "day", "music": "route", "music_when_silent": "silence", "battle_bg": "bamboo",
     "spawns": {"from_village": [6, 18], "from_town": [34, 6]},
     "warps": [
         {"rect": [6, 19, 1, 1], "to": "weidendorf", "spawn": "from_north"},
@@ -212,13 +178,15 @@ g.rect(29, 13, 4, 7, "~"); g.rect(25, 18, 4, 2, "~")
 g.dots([(2, 6), (31, 5), (8, 12), (23, 15), (19, 19)], "T")
 g.dots([(5, 1), (6, 1), (7, 1), (30, 6), (2, 12), (9, 16), (20, 16)], "f")
 g.rect(17, 14, 5, 3, "B")
+g.vl(9, 11, 21); g.hl(9, 10, 11)                    # south road to the crossroads
 save("teeufer", g, {
-    "name": "MAP_TEEUFER", "time": "day", "music": "town", "music_when_silent": "silence", "battle_bg": "terraces",
+    "name": "MAP_TEEUFER", "region": "bamboo", "time": "day", "music": "town", "music_when_silent": "silence", "battle_bg": "terraces",
     "inn_spawn": "inn",
-    "spawns": {"from_bamboo": [1, 9], "inn": [6, 5], "from_terraces": [26, 1]},
+    "spawns": {"from_bamboo": [1, 9], "inn": [6, 5], "from_terraces": [26, 1], "from_crossroads": [9, 20]},
     "warps": [
         {"rect": [0, 9, 1, 2], "to": "bambuspfad", "spawn": "from_town"},
         {"rect": [26, 0, 2, 1], "to": "reisterrassen", "spawn": "from_town"},
+        {"rect": [9, 21, 1, 1], "to": "kreuzweg", "spawn": "from_teeufer", "when": "tone_jue", "blocked_event": "blocked_south_teeufer"},
     ],
     "on_enter": {"event": "teeufer_arrive", "unless": "teeufer_arrived"},
     "npcs": [
@@ -252,7 +220,7 @@ g.rect(1, 1, 2, 2, "T"); g.rect(30, 1, 3, 2, "T")
 g.dots([(4, 7), (29, 12), (3, 17), (30, 22), (9, 22)], "T")
 g.dots([(20, 22), (5, 22), (31, 7)], "f")
 save("reisterrassen", g, {
-    "name": "MAP_REISTERRASSEN", "time": "day", "music": "route", "music_when_silent": "silence", "battle_bg": "terraces",
+    "name": "MAP_REISTERRASSEN", "region": "bamboo", "time": "day", "music": "route", "music_when_silent": "silence", "battle_bg": "terraces",
     "spawns": {"from_town": [26, 22], "from_shrine": [14, 2]},
     "warps": [
         {"rect": [26, 23, 1, 1], "to": "teeufer", "spawn": "from_terraces"},
@@ -283,7 +251,7 @@ g.rect(10, 2, 7, 2, "^"); g.dots([(9, 3), (17, 3)], "L")
 g.dots([(4, 15), (21, 15)], "L")
 g.dots([(3, 2), (22, 2), (3, 16), (22, 16)], "T")
 save("drachenschrein", g, {
-    "name": "MAP_DRACHENSCHREIN", "border": "rock", "time": "dusk", "music": "silence", "battle_bg": "shrine",
+    "name": "MAP_DRACHENSCHREIN", "region": "bamboo", "border": "rock", "time": "dusk", "music": "silence", "battle_bg": "shrine",
     "spawns": {"from_terraces": [13, 16]},
     "warps": [{"rect": [13, 19, 1, 1], "to": "reisterrassen", "spawn": "from_shrine"}],
     "on_enter": {"event": "shrine_arrive", "unless": "shrine_arrived"},
@@ -298,4 +266,5 @@ save("drachenschrein", g, {
         {"rect": [9, 7, 9, 2], "event": "boss_qinglong", "unless": "tone_jue"},
     ],
 })
+import regions  # noqa: E402,F401  (all maps after the Bamboo Sea)
 print("maps written to", os.path.normpath(OUT))

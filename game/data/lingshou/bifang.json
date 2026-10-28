@@ -1,0 +1,28 @@
+{
+  "id": "bifang",
+  "name": "LS_BIFANG",
+  "animal": "LS_BIFANG_ANIMAL",
+  "desc": "LS_BIFANG_DESC",
+  "element": "fire",
+  "temperaments": [
+    "brave"
+  ],
+  "alignment": "silenced",
+  "base_stats": {
+    "hp": 88,
+    "atk": 74,
+    "def": 52,
+    "spd": 62
+  },
+  "moves": [
+    "sonnenfeuer",
+    "flammensprung",
+    "glutkreischen",
+    "klingenfeder"
+  ],
+  "habitat": "shrine",
+  "can_breed": false,
+  "voice_card": "cards/{lang}/bifang.md",
+  "guardian": true,
+  "sprite_size": 96
+}

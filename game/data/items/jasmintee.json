@@ -1,0 +1,8 @@
+{
+  "id": "jasmintee",
+  "name": "ITEM_JASMINTEE",
+  "desc": "ITEM_JASMINTEE_DESC",
+  "kind": "heal",
+  "price": 45,
+  "heal_pct": 70
+}

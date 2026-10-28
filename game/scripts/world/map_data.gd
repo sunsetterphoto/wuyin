@@ -31,13 +31,40 @@ const LEGEND := {
 	"t": ["plaza", "stall", false, false],
 	"W": ["grass", "well", false, false],
 	"X": ["grass", "", false, false],
+	# Regions after the Bamboo Sea.
+	"s": ["sand", "", true, false],
+	"z": ["sand", "drygrass", true, true],
+	"m": ["sand", "dune", false, false],
+	"h": ["redrock", "", true, false],
+	"v": ["redrock", "drygrass", true, true],
+	"y": ["redrock", "danxia", false, false],
+	"k": ["grass", "karst", false, false],
+	"q": ["grass", "reeds", true, true],
+	"u": ["cloud", "", false, false],
+	"c": ["cloudstone", "", true, false],
+	"Q": ["cloudstone", "stonepillar", false, false],
+	"n": ["grass", "pine", false, false],
+	"O": ["grass", "house_grey", false, false],
+	"A": ["plaza", "altar", false, false],
+	"N": ["plaza", "nest", false, false],
+	# Farm pens (GDD "Gehege"): ground by pen type, walkable for the Lingshou inside.
+	"p": ["pond", "", true, false],
+	"b": ["grass", "sapling", true, false],
+	"e": ["ember", "", true, false],
+	"g": ["ore", "", true, false],
+	"a": ["gravel", "", true, false],
+	"w": ["floor", "", true, false],
 }
+## Pen type -> ground character (see LEGEND).
+const PEN_TILES := {"pond": "p", "bamboo": "b", "ember": "e", "ore": "g", "rock": "a", "empty": "."}
 
 var id := ""
 var def: Dictionary = {}
 var rows: Array[String] = []
 var width := 0
 var height := 0
+## Tiles changed at runtime (farm pens): Vector2i -> character.
+var overrides := {}
 
 
 static func exists(map_id: String) -> bool:
@@ -69,6 +96,8 @@ static func all_ids() -> Array[String]:
 
 
 func tile(x: int, z: int) -> String:
+	if not overrides.is_empty() and overrides.has(Vector2i(x, z)):
+		return overrides[Vector2i(x, z)]
 	if z < 0 or z >= height or x < 0 or x >= rows[z].length():
 		return "X"
 	return rows[z][x]

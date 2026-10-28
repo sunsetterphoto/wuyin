@@ -1,0 +1,11 @@
+{
+  "id": "wolkenbeeren",
+  "name": "ITEM_WOLKENBEEREN",
+  "desc": "ITEM_WOLKENBEEREN_DESC",
+  "kind": "food",
+  "price": 25,
+  "likes": [
+    "earth",
+    "wood"
+  ]
+}

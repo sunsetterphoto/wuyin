@@ -7,7 +7,7 @@ extends RefCounted
 ##   GameState.current.add_lingshou("bambaer", 5)
 ##   GameState.current.save_game()
 
-const VERSION := 1
+const VERSION := 2
 const SAVE_PATH := "user://save_%d.json"
 const START_BELLS := 2
 const MAX_BELLS := 12
@@ -34,12 +34,30 @@ var play_seconds := 0.0
 ## Counters for the endings (GDD "Mehrere Enden").
 var stats := {"battles": 0, "tamed": 0, "freed": 0, "defeated_silenced": 0, "calls": 0, "defeats": 0}
 var next_uid := 1
+## Random seed of this save: farm nights and weather are reproducible from it.
+var seed := 0
+## Game clock (GDD "Zeit"): day number and minute of the day (0..1439).
+var day := 1
+var minute := 18 * 60
+## Weather per region for today: region id -> kind (see Weather).
+var weather := {}
+## The farm: building stage, pens ({"type"}), eggs ({"species", "parents", "nights"}).
+var home := {"stage": 0, "pens": [{"type": "pond"}, {"type": "bamboo"}], "eggs": []}
+## Dish eaten today: {"id", "effect", "day"} (GDD "Restaurant").
+var buff := {}
+
+## Region -> flag of the tone that frees it (GDD "Die Welt Yunhai").
+const REGION_TONE := {"bamboo": "tone_jue", "river": "tone_yu", "ridge": "tone_zhi", "dunes": "tone_shang", "pillars": "tone_gong"}
+const TONES: Array[String] = ["tone_jue", "tone_yu", "tone_zhi", "tone_shang", "tone_gong"]
+## Bells on the wind chime by number of tones returned (GDD table).
+const BELLS_BY_TONES: Array[int] = [3, 4, 6, 8, 10, 11]
 
 
 static func new_game(player_name: String, hair := 0, outfit := 0) -> GameState:
 	var s := GameState.new()
 	s.player = {"name": player_name, "hair": hair, "outfit": outfit}
 	s.items = {"reisbaellchen": 3, "bambussprossen": 2, "suessreis": 2}
+	s.seed = randi()
 	return s
 
 
@@ -51,11 +69,13 @@ func add_lingshou(species_id: String, level: int, bond := 20) -> Dictionary:
 	var u := BattleUnit.create(species_id, level, "ls%d" % next_uid)
 	next_uid += 1
 	u.bond = bond
+	u.sex = "f" if hash([seed, u.uid]) % 2 == 0 else "m"
 	var rec := u.to_record()
 	if party.size() < bells:
 		party.append(rec)
 	else:
 		farm.append(rec)
+		Farm.auto_house(self, rec)
 	mark_seen(species_id)
 	return rec
 
@@ -107,13 +127,17 @@ func swap_with_farm(party_index: int, farm_index: int) -> void:
 
 func move_to_farm(party_index: int) -> void:
 	if party.size() > 1:
-		farm.append(party[party_index])
+		var rec: Dictionary = party[party_index]
+		farm.append(rec)
 		party.remove_at(party_index)
+		Farm.auto_house(self, rec)
 
 
 func move_to_party(farm_index: int) -> void:
 	if party.size() < bells:
-		party.append(farm[farm_index])
+		var rec: Dictionary = farm[farm_index]
+		rec["pen"] = -1
+		party.append(rec)
 		farm.remove_at(farm_index)
 
 
@@ -178,12 +202,76 @@ func count(stat: String, n := 1) -> void:
 	stats[stat] = int(stats.get(stat, 0)) + n
 
 
+func tones_count() -> int:
+	var n := 0
+	for t in TONES:
+		if flag(t):
+			n += 1
+	return n
+
+
+## A tone returns: flag, bells per the GDD table. Returns the new number of tones.
+func return_tone(tone_flag: String) -> int:
+	set_flag(tone_flag)
+	var n := tones_count()
+	bells = maxi(bells, BELLS_BY_TONES[mini(n, BELLS_BY_TONES.size() - 1)])
+	while party.size() < bells and not farm.is_empty():
+		move_to_party(0)
+	if n >= 5:
+		set_flag("five_tones")
+	return n
+
+
+## Is this region still under Wusheng's silence?
+func region_silent(region: String) -> bool:
+	if not flag("silence_fell"):
+		return false
+	if region == "temple":
+		return not flag("phoenix_reborn")
+	if REGION_TONE.has(region):
+		return not flag(REGION_TONE[region]) or flag("bitter_" + region)
+	return false
+
+
+# --- clock, weather, sleep ------------------------------------------------------
+
+func hour() -> int:
+	return minute / 60
+
+
+func is_night() -> bool:
+	return minute >= 21 * 60 or minute < 5 * 60
+
+
+func region_weather(region: String) -> String:
+	if not weather.has(region):
+		weather[region] = Weather.roll(region, seed, day)
+	return weather[region]
+
+
+## Ends the day: the farm night, a new morning with new weather, today's dish is gone.
+## Returns the farm diary of the night.
+func sleep() -> Array:
+	var diary := Farm.daily(self)
+	day += 1
+	minute = 6 * 60 + 30
+	weather.clear()
+	buff = {}
+	heal_party()
+	return diary
+
+
+func buff_effect() -> String:
+	return String(buff.get("effect", "")) if int(buff.get("day", -1)) == day else ""
+
+
 # --- save / load ---------------------------------------------------------------
 
 func to_dict() -> Dictionary:
 	return {"version": VERSION, "player": player, "party": party, "farm": farm, "bells": bells, "coins": coins,
 		"items": items, "flags": flags, "map": map, "pos": [pos.x, pos.y], "inn": inn, "seen": seen,
 		"play_seconds": play_seconds, "stats": stats, "next_uid": next_uid,
+		"seed": seed, "day": day, "minute": minute, "weather": weather, "home": home, "buff": buff,
 		"saved_at": Time.get_datetime_string_from_system()}
 
 
@@ -206,11 +294,32 @@ static func from_dict(d: Dictionary) -> GameState:
 	s.play_seconds = float(d.get("play_seconds", 0.0))
 	s.stats.merge(d.get("stats", {}), true)
 	s.next_uid = int(d.get("next_uid", 1))
+	s.seed = int(d.get("seed", hash(s.player.get("name", ""))))
+	s.day = int(d.get("day", 1))
+	s.minute = int(d.get("minute", 18 * 60))
+	s.weather = d.get("weather", {})
+	s.home = d.get("home", s.home)
+	for k in ["pens", "eggs"]:
+		if not s.home.has(k):
+			s.home[k] = [] if k == "eggs" else [{"type": "pond"}, {"type": "bamboo"}]
+	s.home["stage"] = int(s.home.get("stage", 0))
+	for egg in s.home["eggs"]:
+		egg["nights"] = int(egg.get("nights", 0))
+	s.buff = d.get("buff", {})
+	if s.buff.has("day"):
+		s.buff["day"] = int(s.buff["day"])
+	# Version 1 (beta): farm Lingshou had no pen yet.
+	for rec in s.farm:
+		if not rec.has("pen"):
+			Farm.auto_house(s, rec)
 	# JSON numbers come back as floats; keep record fields integer.
 	for list in [s.party, s.farm]:
 		for rec in list:
 			for k in ["level", "xp", "hp", "bond"]:
 				rec[k] = int(rec.get(k, 0))
+			for k in ["pen", "happy", "breed", "grow", "fed_day", "visit_day", "variant"]:
+				if rec.has(k):
+					rec[k] = int(rec[k])
 	for k in s.items:
 		s.items[k] = int(s.items[k])
 	return s

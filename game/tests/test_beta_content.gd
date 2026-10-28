@@ -7,7 +7,8 @@ const LOCALES: Array[String] = ["en", "de", "zh_Hans"]
 const STEP_KEYS: Array[String] = ["say", "choice", "if", "if_item", "if_party_min", "if_coins", "if_not", "set", "clear",
 	"quest", "goal", "give_item", "coins", "heal", "bells", "give_lingshou", "befriend", "battle", "warp", "music", "sfx",
 	"wait", "fade", "move", "teleport", "place", "refresh", "save", "set_inn", "silence", "shop", "inn", "rumor",
-	"hint", "voice", "run", "end_beta"]
+	"hint", "voice", "run", "end_beta", "if_tones", "if_stat", "if_any", "if_count", "if_items", "clear_region", "tone",
+	"persuade", "crane", "sleep", "restaurant", "farm", "time", "take_item", "ending", "credits", "count"]
 
 
 func _scripts(dir: String, out: Array[String]) -> void:
@@ -61,10 +62,11 @@ func _check_steps(event_id: String, steps: Array) -> void:
 				or not EventRunner.npc(sp).is_empty(), "%s: speaker %s known" % [event_id, sp])
 		if s.has("choice"):
 			for k in s["choice"]:
-				assert_true(_has_text(k), "%s: choice %s" % [event_id, k])
+				var key: String = k["text"] if k is Dictionary else k
+				assert_true(_has_text(key), "%s: choice %s" % [event_id, key])
 			for b in s.get("then", []):
 				_check_steps(event_id, b)
-		for branch in ["then", "else", "win", "lose", "tamed", "freed", "fled"]:
+		for branch in ["then", "else", "win", "lose", "tamed", "freed", "fled", "success", "fail", "sings", "silent"]:
 			if s.has(branch) and not s.has("choice"):
 				_check_steps(event_id, s[branch])
 		if s.has("quest"):
@@ -89,6 +91,17 @@ func _check_steps(event_id: String, steps: Array) -> void:
 			assert_true(EventRunner.has_event(s["run"]), "%s: runs %s" % [event_id, s["run"]])
 		if s.has("goal"):
 			assert_true(MapData.exists(s["goal"][0]), "%s: goal map %s" % [event_id, s["goal"][0]])
+			var gm := MapData.load_map(s["goal"][0])
+			assert_true(gm.walkable(int(s["goal"][1]), int(s["goal"][2])) or gm.tile(int(s["goal"][1]), int(s["goal"][2])) in ["N", "D"],
+				"%s: goal tile walkable %s" % [event_id, s["goal"]])
+		if s.has("persuade"):
+			assert_true(_has_text(s["persuade"]["intro"]), "%s: persuade intro" % event_id)
+			assert_false(EventRunner.npc(s["persuade"]["who"]).is_empty(), "%s: persuade person" % event_id)
+		if s.has("restaurant"):
+			for it in s["restaurant"]:
+				assert_eq(GameData.item(it).get("kind"), "dish", "%s: dish %s" % [event_id, it])
+		if s.has("tone"):
+			assert_true(s["tone"] in GameState.TONES, "%s: tone %s" % [event_id, s["tone"]])
 		if s.has("voice"):
 			assert_true(_has_text("VOICE_%s_%s" % [s["voice"].to_upper(), String(s.get("event", "freed")).to_upper()]),
 				"%s: voice template" % event_id)
@@ -137,6 +150,8 @@ func test_tame_keywords_cover_the_tones() -> void:
 
 
 func test_every_map_loads_in_the_world() -> void:
+	# Arrival scenes play by themselves (their dialog would otherwise wait for a tap).
+	DialogBox.autopilot = true
 	GameState.current = GameState.new_game("Test")
 	GameState.current.set_flag("intro_done")
 	GameState.current.set_flag("river_arrived")
@@ -154,6 +169,9 @@ func test_every_map_loads_in_the_world() -> void:
 		await world.enter_map(id, "", Vector2(-1, -1), false)
 		assert_eq(world.map.id, id)
 		assert_true(world.map.walkable(roundi(GameState.current.pos.x), roundi(GameState.current.pos.y)), "spawn walkable on " + id)
+		while world.events.running:
+			await tree.process_frame
 	world.queue_free()
 	await tree.process_frame
+	DialogBox.autopilot = false
 	GameState.delete_save(World.AUTOSAVE_SLOT)

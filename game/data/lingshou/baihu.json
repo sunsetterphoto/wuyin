@@ -1,0 +1,28 @@
+{
+  "id": "baihu",
+  "name": "LS_BAIHU",
+  "animal": "LS_BAIHU_ANIMAL",
+  "desc": "LS_BAIHU_DESC",
+  "element": "metal",
+  "temperaments": [
+    "brave"
+  ],
+  "alignment": "silenced",
+  "base_stats": {
+    "hp": 92,
+    "atk": 80,
+    "def": 60,
+    "spd": 64
+  },
+  "moves": [
+    "tigerbruellen",
+    "klingenfeder",
+    "raureifkralle",
+    "eisenstille"
+  ],
+  "habitat": "shrine",
+  "can_breed": false,
+  "voice_card": "cards/{lang}/baihu.md",
+  "guardian": true,
+  "sprite_size": 96
+}

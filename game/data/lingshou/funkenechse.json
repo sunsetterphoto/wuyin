@@ -1,0 +1,29 @@
+{
+  "id": "funkenechse",
+  "name": "LS_FUNKENECHSE",
+  "animal": "LS_FUNKENECHSE_ANIMAL",
+  "desc": "LS_FUNKENECHSE_DESC",
+  "element": "fire",
+  "temperaments": [
+    "anxious"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 40,
+    "atk": 48,
+    "def": 44,
+    "spd": 52
+  },
+  "moves": [
+    "funkenregen",
+    "glutfeder",
+    "sandwirbel",
+    "schlammwand"
+  ],
+  "habitat": "ember_pit",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/funkenechse.md",
+  "learn": {
+    "28": "sonnenfeuer"
+  }
+}

@@ -1,0 +1,241 @@
+{
+ "name": "MAP_KREUZWEG",
+ "region": "hub",
+ "time": "day",
+ "music": "route",
+ "battle_bg": "pillars",
+ "border": "grass",
+ "inn_spawn": "inn",
+ "spawns": {
+  "from_teeufer": [
+   34,
+   12
+  ],
+  "inn": [
+   23,
+   10
+  ],
+  "from_river": [
+   5,
+   1
+  ],
+  "from_ridge": [
+   17,
+   24
+  ],
+  "from_dunes": [
+   1,
+   13
+  ],
+  "from_pillars": [
+   17,
+   4
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    35,
+    12,
+    1,
+    2
+   ],
+   "to": "teeufer",
+   "spawn": "from_crossroads"
+  },
+  {
+   "rect": [
+    5,
+    0,
+    2,
+    1
+   ],
+   "to": "karstufer",
+   "spawn": "from_crossroads"
+  },
+  {
+   "rect": [
+    17,
+    25,
+    2,
+    1
+   ],
+   "to": "danxiapfad",
+   "spawn": "from_crossroads"
+  },
+  {
+   "rect": [
+    0,
+    12,
+    1,
+    2
+   ],
+   "to": "duenenweg",
+   "spawn": "from_crossroads",
+   "when": "nian_driven",
+   "blocked_event": "order_block_west"
+  },
+  {
+   "rect": [
+    17,
+    0,
+    2,
+    1
+   ],
+   "to": "saeulenpfad",
+   "spawn": "from_crossroads",
+   "when": "nian_driven",
+   "blocked_event": "order_block_north"
+  }
+ ],
+ "on_enter": {
+  "event": "kreuzweg_arrive",
+  "unless": "kreuzweg_arrived"
+ },
+ "npcs": [
+  {
+   "id": "rast_wirt",
+   "sprite": "monk",
+   "at": [
+    25,
+    10
+   ],
+   "event": "kreuzweg_inn"
+  },
+  {
+   "id": "order_west",
+   "sprite": "order_a",
+   "at": [
+    2,
+    12
+   ],
+   "event": "order_block_west",
+   "unless": "nian_driven"
+  },
+  {
+   "id": "order_north",
+   "sprite": "order_b",
+   "at": [
+    18,
+    4
+   ],
+   "event": "order_block_north",
+   "unless": "nian_driven"
+  },
+  {
+   "id": "kreuz_haendler",
+   "sprite": "trader",
+   "at": [
+    20,
+    14
+   ],
+   "event": "kreuzweg_trader",
+   "wander": 2
+  }
+ ],
+ "objects": [
+  {
+   "id": "rest_door",
+   "kind": "invisible",
+   "at": [
+    23,
+    9
+   ],
+   "event": "kreuzweg_inn"
+  },
+  {
+   "id": "kreuz_chime",
+   "kind": "chime",
+   "at": [
+    20,
+    10
+   ],
+   "event": "kreuzweg_inn"
+  },
+  {
+   "id": "kreuz_sign",
+   "kind": "sign",
+   "at": [
+    15,
+    11
+   ],
+   "event": "kreuzweg_sign",
+   "solid": false
+  }
+ ],
+ "encounters": {
+  "rate": 0.1,
+  "table": [
+   {
+    "species": "nebelaffe",
+    "levels": [
+     10,
+     13
+    ],
+    "weight": 2
+   },
+   {
+    "species": "zirpo",
+    "levels": [
+     10,
+     13
+    ],
+    "weight": 2
+   },
+   {
+    "species": "goldkroete",
+    "levels": [
+     10,
+     13
+    ],
+    "weight": 2
+   },
+   {
+    "species": "lampionfalter",
+    "levels": [
+     10,
+     13
+    ],
+    "weight": 1
+   },
+   {
+    "species": "schattenmotte",
+    "levels": [
+     11,
+     13
+    ],
+    "weight": 2,
+    "night": true
+   }
+  ]
+ },
+ "id": "kreuzweg",
+ "rows": [
+  "SSSSS==SSSSSSSSSS==SSSSSSSSSSSSSSSSS",
+  "SQQQ.==.QQQQQQQQc==cQQQQQQQQQQQQQQQS",
+  "SQQQ.==.QQQQQQQQc==cQQQQQQQQQQQQQQQS",
+  "SQQQ.==.QQQQQQQQc==cQQQQQQQQQQQQQQQS",
+  "Snnn.==..........==............nnnnS",
+  "Snnn.==..........==............nnnnS",
+  "Snnn.==.,,,,,....==............nnnnS",
+  "Snnn.==.,,,,,....==..RRRRR.....nnnnS",
+  "Snnn.==.,,,,,....==..RRRRR.....nnnnS",
+  "Snnn.==.,,,,,f...==..RRDRR.........S",
+  "S....==..........==....=...........S",
+  "S....==.........L==L...=....f......S",
+  "====================================",
+  "====================================",
+  "S................==...........T....S",
+  "S.f.....,,,,,,...==................S",
+  "S.......,,,,,,...==.f...,,,,,,,....S",
+  "S..T....,,,,,,...==.....,,,,,,,....S",
+  "S.......,,,,,,...==.....,,,,,,,..f.S",
+  "S................==.....,,,,,,,....S",
+  "S................==.......,,,,,....S",
+  "S.............T..==.......,,,,,....S",
+  "S................==.......,,,,,....S",
+  "S..........T.....==...T............S",
+  "S................==................S",
+  "SSSSSSSSSSSSSSSSS==SSSSSSSSSSSSSSSSS"
+ ]
+}

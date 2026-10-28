@@ -1,0 +1,15 @@
+{
+  "id": "tigerbruellen",
+  "name": "MOVE_TIGERBRUELLEN",
+  "element": "metal",
+  "kind": "attack",
+  "accuracy": 90,
+  "target": "enemy",
+  "llm_hint": "a roar of metal and wind; strongest metal attack",
+  "power": 85,
+  "effect": {
+    "status": "deaf",
+    "turns": 2,
+    "chance": 30
+  }
+}

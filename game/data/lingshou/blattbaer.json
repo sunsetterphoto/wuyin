@@ -1,0 +1,30 @@
+{
+  "id": "blattbaer",
+  "name": "LS_BLATTBAER",
+  "animal": "LS_BLATTBAER_ANIMAL",
+  "desc": "LS_BLATTBAER_DESC",
+  "element": "wood",
+  "temperaments": [
+    "gentle"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 62,
+    "atk": 50,
+    "def": 50,
+    "spd": 46
+  },
+  "moves": [
+    "bambusschlag",
+    "blattflug",
+    "bambushain",
+    "rankenpeitsche"
+  ],
+  "habitat": "bamboo_grove",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/blattbaer.md",
+  "hybrid": true,
+  "learn": {
+    "28": "fruehlingssturm"
+  }
+}

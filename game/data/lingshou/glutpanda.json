@@ -1,0 +1,29 @@
+{
+  "id": "glutpanda",
+  "name": "LS_GLUTPANDA",
+  "animal": "LS_GLUTPANDA_ANIMAL",
+  "desc": "LS_GLUTPANDA_DESC",
+  "element": "fire",
+  "temperaments": [
+    "playful"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 48,
+    "atk": 52,
+    "def": 38,
+    "spd": 58
+  },
+  "moves": [
+    "glutring",
+    "funkenregen",
+    "bambusschlag",
+    "nebelschleier"
+  ],
+  "habitat": "ember_pit",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/glutpanda.md",
+  "learn": {
+    "28": "sonnenfeuer"
+  }
+}

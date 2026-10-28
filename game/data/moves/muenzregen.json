@@ -1,0 +1,10 @@
+{
+  "id": "muenzregen",
+  "name": "MOVE_MUENZREGEN",
+  "element": "earth",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "llm_hint": "throws a shower of golden coins",
+  "power": 50
+}

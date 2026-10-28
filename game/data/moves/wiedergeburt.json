@@ -1,0 +1,10 @@
+{
+  "id": "wiedergeburt",
+  "name": "MOVE_WIEDERGEBURT",
+  "element": "fire",
+  "kind": "attack",
+  "accuracy": 90,
+  "target": "enemy",
+  "llm_hint": "the phoenix's flame of rebirth; the strongest attack",
+  "power": 100
+}

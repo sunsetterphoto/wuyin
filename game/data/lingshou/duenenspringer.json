@@ -1,0 +1,30 @@
+{
+  "id": "duenenspringer",
+  "name": "LS_DUENENSPRINGER",
+  "animal": "LS_DUENENSPRINGER_ANIMAL",
+  "desc": "LS_DUENENSPRINGER_DESC",
+  "element": "earth",
+  "temperaments": [
+    "playful"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 40,
+    "atk": 46,
+    "def": 34,
+    "spd": 72
+  },
+  "moves": [
+    "sandsturm",
+    "erdstoss",
+    "echoruf",
+    "glockenschlag"
+  ],
+  "habitat": "rock_garden",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/duenenspringer.md",
+  "learn": {
+    "16": "felsramme",
+    "28": "bergbeben"
+  }
+}

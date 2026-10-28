@@ -21,5 +21,10 @@
   ],
   "habitat": "bamboo_grove",
   "can_breed": true,
-  "voice_card": "cards/{lang}/bambaer.md"
+  "voice_card": "cards/{lang}/bambaer.md",
+  "desc": "LS_BAMBAER_DESC",
+  "learn": {
+    "14": "steinhaut",
+    "24": "fruehlingssturm"
+  }
 }

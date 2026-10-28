@@ -1,0 +1,7 @@
+{
+  "id": "feuerwerk",
+  "name": "ITEM_FEUERWERK",
+  "desc": "ITEM_FEUERWERK_DESC",
+  "kind": "festival",
+  "price": 1
+}

@@ -1,0 +1,7 @@
+{
+  "id": "trommel",
+  "name": "ITEM_TROMMEL",
+  "desc": "ITEM_TROMMEL_DESC",
+  "kind": "festival",
+  "price": 1
+}

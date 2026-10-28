@@ -608,6 +608,9 @@
     "text": "EV_WU_5"
    },
    {
+    "set": "lesson_master"
+   },
+   {
     "say": "wusheng",
     "text": "EV_WU_6"
    },
@@ -876,13 +879,32 @@
     "text": "EV_SHOP"
    },
    {
-    "shop": [
-     "reisbaellchen",
-     "kraeutertee",
-     "glockenbluete",
-     "bambussprossen",
-     "suessreis",
-     "silbertau"
+    "if": "tone_jue",
+    "then": [
+     {
+      "shop": [
+       "reisbaellchen",
+       "kraeutertee",
+       "glockenbluete",
+       "bambussprossen",
+       "suessreis",
+       "silbertau",
+       "bambus",
+       "fahrrad"
+      ]
+     }
+    ],
+    "else": [
+     {
+      "shop": [
+       "reisbaellchen",
+       "kraeutertee",
+       "glockenbluete",
+       "bambussprossen",
+       "suessreis",
+       "silbertau"
+      ]
+     }
     ]
    }
   ],
@@ -1143,15 +1165,6 @@
     "music": "tone_returns"
    },
    {
-    "set": "tone_jue"
-   },
-   {
-    "silence": false
-   },
-   {
-    "refresh": true
-   },
-   {
     "if": "freed_qinglong",
     "then": [
      {
@@ -1170,6 +1183,12 @@
     ]
    },
    {
+    "tone": "tone_jue"
+   },
+   {
+    "refresh": true
+   },
+   {
     "say": "narrator",
     "text": "EV_TONE_2"
    },
@@ -1182,29 +1201,47 @@
     "text": "EV_TONE_3"
    },
    {
-    "sfx": "bell"
+    "set": "lesson_bamboo"
    },
    {
-    "bells": 4
+    "say": "qinglong",
+    "text": "EV_TONE_3B"
+   },
+   {
+    "sfx": "bell"
    },
    {
     "say": "jinli",
     "text": "EV_TONE_4"
    },
    {
-    "quest": "QUEST_FREE"
+    "say": "narrator",
+    "text": "EV_TONE_TUT"
+   },
+   {
+    "quest": "QUEST_TWO_TONES"
+   },
+   {
+    "goal": [
+     "kreuzweg",
+     17,
+     12
+    ]
    },
    {
     "save": true
-   },
-   {
-    "end_beta": true
    }
   ],
   "qinglong_free": [
    {
     "say": "qinglong_free",
-    "text": "EV_QL_FREE"
+    "text": "EV_QL_FREE2"
+   }
+  ],
+  "blocked_south_teeufer": [
+   {
+    "say": "jinli",
+    "text": "EV_BLOCK_SOUTH"
    }
   ],
   "jinli_talk": [

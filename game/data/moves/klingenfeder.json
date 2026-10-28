@@ -1,0 +1,10 @@
+{
+  "id": "klingenfeder",
+  "name": "MOVE_KLINGENFEDER",
+  "element": "metal",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "llm_hint": "feathers sharp as blades",
+  "power": 70
+}

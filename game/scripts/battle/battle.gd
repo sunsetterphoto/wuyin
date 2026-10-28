@@ -33,6 +33,19 @@ var breath: Array[int] = []
 var moods: Dictionary = {}
 ## Every event of the battle so far (for replays and determinism checks).
 var history: Array[Dictionary] = []
+## Outside influences, set by the caller after create():
+##   "weather": "sun"|"rain"|"storm"|"fog"|"snow"|"sandstorm"
+##   "atk_mult" / "def_mult": {side: factor}  (dishes), "xp_mult": factor for side 0,
+##   "trust_bonus": extra trust per befriending act of side 0.
+var mods := {}
+
+## Element boost per weather (GDD "Wetter").
+const WEATHER_BOOST := {"rain": {"water": 1.15, "fire": 0.9}, "storm": {"water": 1.15, "fire": 0.9, "metal": 1.1},
+	"sun": {"fire": 1.15, "water": 0.95}, "snow": {"metal": 1.15}, "sandstorm": {"earth": 1.15}}
+const FOG_ACCURACY := 8
+## Each fright lowers the Nian's attack and defence by this share; at FEAR_FLEE it runs away.
+const FEAR_STEP := 0.22
+const FEAR_FLEE := 3
 
 
 static func create(battle_seed: int, parties: Array, active := 1) -> Battle:
@@ -89,6 +102,11 @@ static func tame_action(act: String, target_slot: int, item := "", tone := "neut
 ## Using an item from the bag on a party member (heal, revive).
 static func item_action(item: String, party_index: int) -> Dictionary:
 	return {"type": "item", "item": item, "party_index": party_index}
+
+
+## Holding up a festival item (drum, firecrackers, red banner) against an opponent.
+static func scare_action(item: String, target_slot: int) -> Dictionary:
+	return {"type": "item", "item": item, "target_slot": target_slot}
 
 
 static func flee_action() -> Dictionary:
@@ -209,6 +227,10 @@ func submit(side: int, slot: int, action: Dictionary) -> String:
 				return "unknown befriending act"
 			if act == "feed" and (not Taming.is_tameable(t) or GameData.item(action.get("item", "")).get("kind") != "food"):
 				return "can only feed wild Lingshou with food"
+		"item" when GameData.item(action.get("item", "")).get("kind") == "festival":
+			var t := unit_at(1 - side, int(action.get("target_slot", 0)))
+			if t == null or not t.is_alive():
+				return "nothing to frighten there"
 		"item":
 			var it := GameData.item(action.get("item", ""))
 			var idx := int(action.get("party_index", -1))
@@ -307,6 +329,8 @@ func _do_tame(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> v
 		return
 	var act: String = action["act"]
 	var amount := Taming.gain(t, act, action.get("item", ""), action.get("tone", "neutral"), moods.get(t.uid, 0.0))
+	if amount > 0 and u.side == 0:
+		amount += int(mods.get("trust_bonus", 0))
 	events.append({"type": "tame_" + act, "user": u.uid, "target": t.uid, "item": action.get("item", ""),
 		"tone": action.get("tone", "")})
 	if Taming.is_silenced(t):
@@ -340,6 +364,9 @@ func _add_heart(t: BattleUnit, amount: int, events: Array[Dictionary]) -> void:
 
 func _do_item(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> void:
 	var it := GameData.item(action["item"])
+	if it.get("kind") == "festival":
+		_do_scare(u, action, events)
+		return
 	var t: BattleUnit = sides[u.side]["party"][int(action["party_index"])]
 	events.append({"type": "item", "user": u.uid, "item": action["item"], "target": t.uid})
 	match it["kind"]:
@@ -356,6 +383,24 @@ func _do_item(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> v
 				return
 			t.hp = maxi(1, ceili(t.max_hp * float(it.get("heal_pct", 50)) / 100.0))
 			events.append({"type": "revive", "target": t.uid, "amount": t.hp})
+
+
+func _do_scare(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> void:
+	var t := unit_at(1 - u.side, int(action.get("target_slot", 0)))
+	if t == null or not t.is_alive():
+		t = null
+		for a in active_units(1 - u.side):
+			if a.is_alive() and action["item"] in a.species.get("fears", []):
+				t = a
+	events.append({"type": "scare_item", "user": u.uid, "item": action["item"], "target": t.uid if t else ""})
+	if t == null or action["item"] not in t.species.get("fears", []):
+		events.append({"type": "no_effect"})
+		return
+	t.fear += 1
+	events.append({"type": "scared", "target": t.uid, "fear": t.fear})
+	if t.fear >= FEAR_FLEE:
+		t.hp = 0
+		events.append({"type": "flees", "target": t.uid})
 
 
 func _do_switch(u: BattleUnit, action: Dictionary, events: Array[Dictionary]) -> void:
@@ -463,7 +508,9 @@ func _attack(u: BattleUnit, t: BattleUnit, mv: Dictionary, power_mult: float, ev
 ## Damage of one hit. `roll` is the random factor (0.9..1.0); pass 1.0 for previews.
 func damage(u: BattleUnit, t: BattleUnit, mv: Dictionary, power_mult := 1.0, roll := 1.0) -> int:
 	# sqrt keeps lopsided attack/defense matchups from one-shotting (target: 3-4 hits per Lingshou).
-	var ratio := sqrt(float(u.atk) / float(maxi(1, t.def)))
+	var atk := float(u.atk) * float(mods.get("atk_mult", {}).get(u.side, 1.0)) * (1.0 - FEAR_STEP * u.fear)
+	var de := float(t.def) * float(mods.get("def_mult", {}).get(t.side, 1.0)) * (1.0 - FEAR_STEP * t.fear)
+	var ratio := sqrt(atk / maxf(1.0, de))
 	var base := float(mv.get("power", 0)) * power_mult * ratio * (0.5 + u.level * 0.05) * DAMAGE_SCALE
 	var mult := WuXing.effectiveness(mv["element"], t.element())
 	if mv["element"] == u.element():
@@ -471,6 +518,7 @@ func damage(u: BattleUnit, t: BattleUnit, mv: Dictionary, power_mult := 1.0, rol
 	mult *= 1.0 + team_bonus(u.side)
 	if t.shielded:
 		mult *= GUARD_MULT
+	mult *= float(WEATHER_BOOST.get(mods.get("weather", ""), {}).get(mv["element"], 1.0))
 	return maxi(1, roundi(base * mult * roll))
 
 
@@ -487,6 +535,8 @@ func _apply_effect(mv: Dictionary, t: BattleUnit, events: Array[Dictionary], pri
 
 func _hits(mv: Dictionary) -> bool:
 	var acc := int(mv.get("accuracy", 100))
+	if mods.get("weather", "") == "fog":
+		acc -= FOG_ACCURACY
 	return acc >= 100 or rng.randi_range(1, 100) <= acc
 
 
@@ -573,6 +623,8 @@ func _award_xp(side: int, events: Array[Dictionary]) -> void:
 	var reward := 0
 	for u in sides[1 - side]["party"]:
 		reward += BattleUnit.xp_reward(u.level)
+	if side == 0:
+		reward = roundi(reward * float(mods.get("xp_mult", 1.0)))
 	for u in sides[side]["party"]:
 		# Everyone who came along learns something; exhausted ones half as much.
 		var amount: int = reward if u.is_alive() else reward / 2
@@ -580,6 +632,8 @@ func _award_xp(side: int, events: Array[Dictionary]) -> void:
 		events.append({"type": "xp", "target": u.uid, "amount": amount})
 		if gained > 0:
 			events.append({"type": "level_up", "target": u.uid, "level": u.level})
+			for mv in u.learned_new:
+				events.append({"type": "learned", "target": u.uid, "move": mv, "active": mv in u.moves})
 
 
 func _announce_team_bonus(events: Array[Dictionary], only_side := -1) -> void:

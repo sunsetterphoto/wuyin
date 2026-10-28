@@ -55,6 +55,7 @@ func run(battle_setup: Dictionary, game_state: GameState) -> Dictionary:
 	var enemies: Array = setup["enemies"]
 	var seed_value: int = setup.get("seed", Time.get_ticks_usec())
 	battle = Battle.create(seed_value, [state.party_specs(), enemies], int(setup.get("active", 1)))
+	battle.mods = setup.get("mods", {})
 	ai = BattleAI.new(seed_value)
 	for e in enemies:
 		state.mark_seen(e["id"])
@@ -411,6 +412,10 @@ func _open_tab(tab: String, rebuild := true) -> void:
 				if it.get("kind") in ["heal", "revive"]:
 					any = true
 					_cmd_button("%s ×%d" % [tr(it["name"]), state.item_count(id)], _on_item.bind(id))
+				elif it.get("kind") == "festival":
+					any = true
+					var b := _cmd_button(tr(it["name"]), func(): _submit(Battle.scare_action(id, 0)))
+					b.add_theme_color_override("font_color", UiTheme.VERMILION.lightened(0.3))
 			if not any:
 				_prompt.text = tr("BATTLE_BAG_EMPTY")
 		"switch":
@@ -591,8 +596,12 @@ func _auto_choose() -> void:
 				best = tone
 		_submit(Battle.tame_action("talk", battle.slot_of(t), "", best))
 		return
+	for e in battle.active_units(ENEMY):
+		for item in e.species.get("fears", []):
+			if e.is_alive() and state.item_count(item) > 0 and _submit(Battle.scare_action(item, battle.slot_of(e))):
+				return
 	if float(u.hp) / u.max_hp < 0.35:
-		for item in ["kraeutertee", "reisbaellchen"]:
+		for item in ["kraeutertee", "jasmintee", "reisbaellchen"]:
 			if state.item_count(item) > 0 and _submit(Battle.item_action(item, battle.sides[PLAYER]["party"].find(u))):
 				state.take_item(item)
 				return
@@ -624,8 +633,13 @@ func _play_events(events: Array[Dictionary]) -> void:
 			"heal", "revive":
 				Audio.sfx("heal")
 				_float_text(e["target"], "+%d" % e["amount"], UiTheme.JADE)
-			"faint":
+			"faint", "flees":
 				_faint(e["target"])
+			"scared":
+				Audio.sfx("hit")
+				_float_text(e["target"], "!", UiTheme.VERMILION)
+			"learned":
+				Audio.sfx("level")
 			"trust":
 				Audio.sfx("trust" if e["amount"] > 0 else "fail")
 				_float_text(e["target"], ("♥ +%d" % e["amount"]) if e["amount"] >= 0 else ("♥ %d" % e["amount"]),

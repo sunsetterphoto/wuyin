@@ -27,7 +27,7 @@ var _rng := RandomNumberGenerator.new()
 var _mood := 0.0
 
 
-func run(species: String, level: int, game_state: GameState) -> Dictionary:
+func run(species: String, level: int, game_state: GameState, join := true) -> Dictionary:
 	state = game_state
 	unit = BattleUnit.create(species, level, "befriend")
 	unit.side = 1
@@ -47,7 +47,7 @@ func run(species: String, level: int, game_state: GameState) -> Dictionary:
 		_auto.call_deferred()
 	await _done
 	var outcome := "tamed" if unit.trust >= Taming.TRUST_FULL else "fled"
-	if outcome == "tamed":
+	if outcome == "tamed" and join:
 		state.count("tamed")
 		state.add_lingshou(species, level, Taming.starting_bond(unit.trust))
 	PlaytestLog.record("befriend", {"species": species, "outcome": outcome})
@@ -72,7 +72,8 @@ func _build() -> void:
 	bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	bg.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	var path := BattleView.BG_DIR + "river.png"
+	var w := World.instance()
+	var path := BattleView.BG_DIR + String(w.map.def.get("battle_bg", "river") if w and w.map else "river") + ".png"
 	if ResourceLoader.exists(path):
 		bg.texture = load(path)
 	var back := ColorRect.new()

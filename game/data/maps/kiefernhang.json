@@ -1,0 +1,204 @@
+{
+ "name": "MAP_KIEFERNHANG",
+ "region": "pillars",
+ "time": "day",
+ "music": "pillars",
+ "battle_bg": "pillars",
+ "border": "cloud",
+ "inn_spawn": "inn",
+ "town": true,
+ "spawns": {
+  "from_route": [
+   17,
+   20
+  ],
+  "inn": [
+   6,
+   7
+  ],
+  "from_temple": [
+   16,
+   3
+  ],
+  "from_plateau": [
+   32,
+   10
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    16,
+    21,
+    2,
+    1
+   ],
+   "to": "saeulenpfad",
+   "spawn": "from_town"
+  },
+  {
+   "rect": [
+    33,
+    10,
+    1,
+    2
+   ],
+   "to": "qilin_plateau",
+   "spawn": "from_town"
+  },
+  {
+   "rect": [
+    15,
+    0,
+    4,
+    1
+   ],
+   "to": "phoenixtempel",
+   "spawn": "from_town",
+   "when": "five_tones",
+   "blocked_event": "temple_closed"
+  }
+ ],
+ "on_enter": {
+  "event": "kiefernhang_arrive",
+  "unless": "kiefernhang_arrived"
+ },
+ "npcs": [
+  {
+   "id": "kiefernhang_wirt",
+   "sprite": "innkeeper",
+   "at": [
+    8,
+    7
+   ],
+   "event": "kiefernhang_inn"
+  },
+  {
+   "id": "kiefernhang_haendler",
+   "sprite": "shopkeeper",
+   "at": [
+    15,
+    7
+   ],
+   "event": "kiefernhang_shop"
+  },
+  {
+   "id": "kiefernhang_teemeister",
+   "sprite": "teahouse",
+   "at": [
+    25,
+    7
+   ],
+   "event": "kiefernhang_tea"
+  },
+  {
+   "id": "kiefernhang_koch",
+   "sprite": "cook",
+   "at": [
+    28,
+    16
+   ],
+   "event": "kiefernhang_food"
+  },
+  {
+   "id": "kiefer_aelteste",
+   "sprite": "elder",
+   "at": [
+    17,
+    4
+   ],
+   "event": "kiefer_aelteste"
+  },
+  {
+   "id": "kiefer_kind",
+   "sprite": "villager_b",
+   "at": [
+    15,
+    11
+   ],
+   "event": "kiefer_kind",
+   "wander": 2
+  },
+  {
+   "id": "kiefer_frau",
+   "sprite": "girl_c",
+   "at": [
+    20,
+    15
+   ],
+   "event": "kiefer_frau"
+  }
+ ],
+ "objects": [
+  {
+   "id": "kiefernhang_inn_door",
+   "kind": "invisible",
+   "at": [
+    6,
+    6
+   ],
+   "event": "kiefernhang_inn"
+  },
+  {
+   "id": "kiefernhang_shop_door",
+   "kind": "invisible",
+   "at": [
+    13,
+    6
+   ],
+   "event": "kiefernhang_shop"
+  },
+  {
+   "id": "kiefernhang_tea_door",
+   "kind": "invisible",
+   "at": [
+    23,
+    6
+   ],
+   "event": "kiefernhang_tea"
+  },
+  {
+   "id": "kiefernhang_food_door",
+   "kind": "invisible",
+   "at": [
+    26,
+    15
+   ],
+   "event": "kiefernhang_food"
+  },
+  {
+   "id": "kiefernhang_chime",
+   "kind": "chime",
+   "at": [
+    9,
+    6
+   ],
+   "event": "kiefernhang_inn"
+  }
+ ],
+ "id": "kiefernhang",
+ "rows": [
+  "SSSSSSSSSSSSSSSccccSSSSSSSSSSSSSSS",
+  "SuuuuuuuuuuuuuQccccQuuuuuuuuuuuuuS",
+  "SuuuuuuuuuuuuuccccccuuuuuuuuuuuuuS",
+  "SuuccccccccccccccccccccccccccccuuS",
+  "SuucRRRRRccHHHHccccccRRRRRcccccuuS",
+  "SuucRRRRRccHHHHccccccRRRRRcccccuuS",
+  "SuucRRDRRccHHDHccccccRRDRRcccccuuS",
+  "SuuccccccccccccccccccccccccccccuuS",
+  "SuuccccccccccccccccccccccccccncuuS",
+  "SuuccccccccL__________LccccccccuuS",
+  "Suucccccccc______================S",
+  "Suucccccccc______================S",
+  "Suucccccccc____________ccccccccuuS",
+  "SuuccccccccL__________LccHHHHccuuS",
+  "Suucnccccccccccc==cccccccHHHHccuuS",
+  "Suuccccccccccccc==cccccccHDHHccuuS",
+  "Suuccccccccccccc==cccccccccccccuuS",
+  "Suuc,,,cnccccccc==cc,,,,cccccccuuS",
+  "Suuc,,,ccccccccc==cc,,,,cccncccuuS",
+  "Suuc,,,cccnccccc==cccccccccccccuuS",
+  "Suuccccccccccccc==cccccccccccccuuS",
+  "SSSSSSSSSSSSSSSS==SSSSSSSSSSSSSSSS"
+ ]
+}

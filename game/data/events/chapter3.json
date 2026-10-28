@@ -1,0 +1,1272 @@
+{
+ "note": "Generiert von tools/story/chapter3.py – dort bearbeiten.",
+ "events": {
+  "meister_voice": [
+   {
+    "set": "meister_spoke"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "music": "village"
+   },
+   {
+    "teleport": [
+     15,
+     7
+    ]
+   },
+   {
+    "say": "narrator",
+    "text": "EV_MV_1"
+   },
+   {
+    "say": "meister_free",
+    "text": "EV_MV_2"
+   },
+   {
+    "say": "meister_free",
+    "text": "EV_MV_3"
+   },
+   {
+    "time": 22
+   },
+   {
+    "music": ""
+   },
+   {
+    "fade": "out",
+    "seconds": 0.6
+   },
+   {
+    "set": "nian_here"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "fade": "in",
+    "seconds": 1.0
+   },
+   {
+    "sfx": "fail"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_MV_4"
+   },
+   {
+    "music": "nian"
+   },
+   {
+    "say": "nian",
+    "text": "EV_MV_5"
+   },
+   {
+    "say": "meister_free",
+    "text": "EV_MV_6"
+   },
+   {
+    "say": "meister_free",
+    "text": "EV_MV_7"
+   },
+   {
+    "give_item": "feuerwerk",
+    "n": 1
+   },
+   {
+    "quest": "QUEST_NIAN"
+   },
+   {
+    "goal": [
+     "weidendorf",
+     13,
+     13
+    ]
+   },
+   {
+    "save": true
+   }
+  ],
+  "kind_nian": [
+   {
+    "if_item": "trommel",
+    "then": [
+     {
+      "say": "kind_nian",
+      "text": "EV_BO_N2"
+     }
+    ],
+    "else": [
+     {
+      "say": "kind_nian",
+      "text": "EV_BO_N1"
+     },
+     {
+      "give_item": "trommel",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "oma_nian": [
+   {
+    "if_item": "rotes_banner",
+    "then": [
+     {
+      "say": "oma_nian",
+      "text": "EV_HU_N2"
+     }
+    ],
+    "else": [
+     {
+      "say": "oma_nian",
+      "text": "EV_HU_N1"
+     },
+     {
+      "give_item": "rotes_banner",
+      "n": 1
+     }
+    ]
+   }
+  ],
+  "nian_battle": [
+   {
+    "if_items": [
+     "trommel",
+     1
+    ],
+    "then": [],
+    "else": [
+     {
+      "say": "jinli",
+      "text": "EV_NB_WARN"
+     }
+    ]
+   },
+   {
+    "say": "nian",
+    "text": "EV_NB_1"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_NB_TUT"
+   },
+   {
+    "battle": {
+     "enemies": [
+      {
+       "id": "nian",
+       "level": 21,
+       "scale": 1
+      },
+      {
+       "id": "schattenmotte",
+       "level": 18,
+       "scale": -2
+      }
+     ],
+     "active": 2,
+     "music": "nian",
+     "bg": "village_night",
+     "no_join": true
+    },
+    "win": [
+     {
+      "run": "nian_driven_scene"
+     }
+    ],
+    "lose": [
+     {
+      "say": "meister_free",
+      "text": "EV_NB_LOSE"
+     }
+    ]
+   }
+  ],
+  "nian_driven_scene": [
+   {
+    "set": "nian_driven"
+   },
+   {
+    "clear": "nian_here"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "music": "village"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_ND_1"
+   },
+   {
+    "say": "meister_free",
+    "text": "EV_ND_2"
+   },
+   {
+    "set": "order_visit"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_ND_3"
+   },
+   {
+    "say": "order_ying",
+    "text": "EV_ND_4"
+   },
+   {
+    "say": "yao_order",
+    "text": "EV_ND_5"
+   },
+   {
+    "choice": [
+     "CH_YAO_ND_A",
+     "CH_YAO_ND_B"
+    ],
+    "then": [
+     [
+      {
+       "say": "yao_order",
+       "text": "EV_ND_6A"
+      }
+     ],
+     [
+      {
+       "say": "yao_order",
+       "text": "EV_ND_6B"
+      }
+     ]
+    ]
+   },
+   {
+    "say": "order_ying",
+    "text": "EV_ND_7"
+   },
+   {
+    "fade": "out",
+    "seconds": 0.5
+   },
+   {
+    "set": "order_left"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "time": 7
+   },
+   {
+    "fade": "in",
+    "seconds": 0.8
+   },
+   {
+    "say": "meister_free",
+    "text": "EV_ND_8"
+   },
+   {
+    "give_item": "phoenixfeder",
+    "n": 1
+   },
+   {
+    "quest": "QUEST_LAST_TWO"
+   },
+   {
+    "goal": [
+     "kreuzweg",
+     17,
+     12
+    ]
+   },
+   {
+    "save": true
+   }
+  ],
+  "meister_home": [
+   {
+    "if": "nian_here",
+    "then": [
+     {
+      "say": "meister_free",
+      "text": "EV_MH_1"
+     }
+    ],
+    "else": [
+     {
+      "if": "phoenix_reborn",
+      "then": [
+       {
+        "say": "meister_free",
+        "text": "EV_MH_3"
+       }
+      ],
+      "else": [
+       {
+        "say": "meister_free",
+        "text": "EV_MH_2"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "order_ying_idle": [
+   {
+    "say": "order_ying",
+    "text": "EV_YING_IDLE"
+   }
+  ],
+  "duenenweg_arrive": [
+   {
+    "set": "duenenweg_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_DW_1"
+   },
+   {
+    "quest": "QUEST_DUNES_1",
+    "region": "dunes"
+   },
+   {
+    "goal": [
+     "mondquell",
+     16,
+     18
+    ],
+    "region": "dunes"
+   }
+  ],
+  "chest_duenen": [
+   {
+    "say": "narrator",
+    "text": "EV_CHEST_DUENEN"
+   },
+   {
+    "give_item": "wuestenkupfer",
+    "n": 3
+   },
+   {
+    "give_item": "phoenixfeder",
+    "n": 1
+   },
+   {
+    "set": "chest_duenen"
+   },
+   {
+    "refresh": true
+   }
+  ],
+  "karawane": [
+   {
+    "say": "karawane",
+    "text": "EV_BATU"
+   },
+   {
+    "shop": [
+     "wuestendatteln",
+     "wuestenkupfer",
+     "jasmintee",
+     "kraeutertee",
+     "phoenixfeder"
+    ]
+   }
+  ],
+  "mondquell_arrive": [
+   {
+    "set": "mondquell_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_MQ_1"
+   },
+   {
+    "quest": "QUEST_DUNES_2",
+    "region": "dunes"
+   },
+   {
+    "goal": [
+     "mondquell",
+     21,
+     18
+    ],
+    "region": "dunes"
+   },
+   {
+    "set_inn": [
+     "mondquell",
+     "inn"
+    ]
+   }
+  ],
+  "halle_tuer": [
+   {
+    "if": "yao_hall_done",
+    "then": [
+     {
+      "say": "ordensmeisterin",
+      "text": "EV_HALL_DONE"
+     }
+    ],
+    "else": [
+     {
+      "say": "ordensmeisterin",
+      "text": "EV_HALL_1"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_HALL_2"
+     },
+     {
+      "say": "yao_order",
+      "text": "EV_HALL_3"
+     },
+     {
+      "choice": [
+       {
+        "text": "CH_HALL_A",
+        "when": "yao_understood"
+       },
+       "CH_HALL_B",
+       "CH_HALL_C"
+      ],
+      "then": [
+       [
+        {
+         "set": "yao_doubt"
+        },
+        {
+         "say": "yao_order",
+         "text": "EV_HALL_4A"
+        }
+       ],
+       [
+        {
+         "set": "yao_doubt"
+        },
+        {
+         "say": "yao_order",
+         "text": "EV_HALL_4B"
+        }
+       ],
+       [
+        {
+         "say": "yao_order",
+         "text": "EV_HALL_4C"
+        }
+       ]
+      ]
+     },
+     {
+      "battle": {
+       "enemies": [
+        {
+         "id": "glutfasan",
+         "level": 25,
+         "scale": 0
+        },
+        {
+         "id": "messingadler",
+         "level": 24,
+         "role": "silenced",
+         "scale": -1
+        },
+        {
+         "id": "rollschupp",
+         "level": 24,
+         "scale": -1
+        }
+       ],
+       "active": 2,
+       "foe": "yao_order",
+       "coins": 200,
+       "bg": "order_hall",
+       "music": "order"
+      },
+      "win": [
+       {
+        "set": "yao_hall_done"
+       },
+       {
+        "refresh": true
+       },
+       {
+        "if": "yao_doubt",
+        "then": [
+         {
+          "say": "yao_order",
+          "text": "EV_HALL_5A"
+         }
+        ],
+        "else": [
+         {
+          "say": "yao_order",
+          "text": "EV_HALL_5B"
+         }
+        ]
+       },
+       {
+        "count": "order_fought"
+       }
+      ],
+      "lose": [
+       {
+        "say": "yao_order",
+        "text": "EV_HALL_LOSE"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "quell_haendlerin": [
+   {
+    "if": "tone_shang",
+    "then": [
+     {
+      "say": "quell_haendlerin",
+      "text": "EV_GUL_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "quell_haendlerin",
+      "text": "EV_GUL_1"
+     }
+    ]
+   }
+  ],
+  "quell_kind": [
+   {
+    "say": "quell_kind",
+    "text": "EV_AYLA"
+   }
+  ],
+  "yao_after": [
+   {
+    "say": "yao_free",
+    "text": "EV_YAO_AFTER"
+   }
+  ],
+  "mondquell_inn": [
+   {
+    "say": "mondquell_wirt",
+    "text": "EV_MONDQUELL_INN"
+   },
+   {
+    "set_inn": [
+     "mondquell",
+     "inn"
+    ]
+   },
+   {
+    "inn": true
+   }
+  ],
+  "mondquell_shop": [
+   {
+    "say": "mondquell_haendler",
+    "text": "EV_MONDQUELL_SHOP"
+   },
+   {
+    "shop": [
+     "reisbaellchen",
+     "jasmintee",
+     "kraeutertee",
+     "glockenbluete",
+     "phoenixfeder",
+     "wuestendatteln",
+     "silbertau",
+     "wuestenkupfer"
+    ]
+   }
+  ],
+  "mondquell_tea": [
+   {
+    "say": "mondquell_teemeister",
+    "text": "EV_MONDQUELL_TEA"
+   },
+   {
+    "rumor": true,
+    "speaker": "mondquell_teemeister",
+    "templates": [
+     "RUMOR_MONDQUELL_0",
+     "RUMOR_MONDQUELL_1",
+     "RUMOR_MONDQUELL_2"
+    ]
+   }
+  ],
+  "mondquell_food": [
+   {
+    "say": "mondquell_koch",
+    "text": "EV_MONDQUELL_FOOD"
+   },
+   {
+    "restaurant": [
+     "datteltee"
+    ]
+   }
+  ],
+  "kamm_arrive": [
+   {
+    "set": "kamm_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_KA_1"
+   },
+   {
+    "quest": "QUEST_DUNES_3",
+    "region": "dunes"
+   },
+   {
+    "goal": [
+     "singender_kamm",
+     13,
+     8
+    ],
+    "region": "dunes"
+   }
+  ],
+  "order_kamm": [
+   {
+    "persuade": {
+     "who": "order_kamm",
+     "intro": "PER_KAMM_INTRO",
+     "accept": {
+      "logic": 2,
+      "proof": 2,
+      "compassion": 1,
+      "threat": -1
+     },
+     "need": 2,
+     "tries": 3,
+     "proof_flags": [
+      "tone_jue",
+      "tone_yu",
+      "tone_zhi"
+     ]
+    },
+    "success": [
+     {
+      "say": "order_kamm",
+      "text": "EV_ORDER_KAMM_WON"
+     },
+     {
+      "set": "order_kamm_done"
+     },
+     {
+      "count": "order_convinced"
+     },
+     {
+      "refresh": true
+     }
+    ],
+    "fail": [
+     {
+      "say": "order_kamm",
+      "text": "EV_ORDER_KAMM_FIGHT"
+     },
+     {
+      "battle": {
+       "enemies": [
+        {
+         "id": "duenenspringer",
+         "level": 25,
+         "role": "silenced"
+        }
+       ],
+       "active": 1,
+       "foe": "order_kamm",
+       "coins": 80,
+       "bg": "dunes"
+      },
+      "win": [
+       {
+        "set": "order_kamm_done"
+       },
+       {
+        "count": "order_fought"
+       },
+       {
+        "refresh": true
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "karawanenaelteste": [
+   {
+    "say": "karawanenaelteste",
+    "text": "EV_SAULE"
+   },
+   {
+    "heal": true
+   },
+   {
+    "set_inn": [
+     "singender_kamm",
+     "from_town"
+    ]
+   },
+   {
+    "save": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_SAULE_2"
+   }
+  ],
+  "boss_baihu": [
+   {
+    "if_not": "baihu_seen",
+    "then": [
+     {
+      "set": "baihu_seen"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_BH_1"
+     },
+     {
+      "say": "baihu",
+      "text": "EV_BH_2"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_BH_TUT"
+     }
+    ]
+   },
+   {
+    "if_party_min": 2,
+    "then": [
+     {
+      "battle": {
+       "enemies": [
+        {
+         "id": "baihu",
+         "level": 30,
+         "role": "silenced",
+         "scale": 1
+        },
+        {
+         "id": "messingadler",
+         "level": 26,
+         "role": "silenced",
+         "scale": -2
+        }
+       ],
+       "active": 2,
+       "music": "boss",
+       "bg": "dunes"
+      },
+      "win": [
+       {
+        "run": "tone_shang_returns"
+       }
+      ],
+      "lose": [
+       {
+        "say": "karawanenaelteste",
+        "text": "EV_BH_LOSE"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "say": "karawanenaelteste",
+      "text": "EV_BH_ALONE"
+     }
+    ]
+   }
+  ],
+  "tone_shang_returns": [
+   {
+    "music": "tone_returns"
+   },
+   {
+    "if": "freed_baihu",
+    "then": [
+     {
+      "say": "narrator",
+      "text": "EV_SH_1"
+     }
+    ],
+    "else": [
+     {
+      "say": "narrator",
+      "text": "EV_SH_1B"
+     }
+    ]
+   },
+   {
+    "tone": "tone_shang"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_SH_2"
+   },
+   {
+    "voice": "baihu",
+    "event": "freed"
+   },
+   {
+    "say": "baihu",
+    "text": "EV_SH_3"
+   },
+   {
+    "set": "lesson_leaves"
+   },
+   {
+    "give_item": "wuestenkupfer",
+    "n": 3
+   },
+   {
+    "clear_region": "dunes"
+   },
+   {
+    "run": "after_tone"
+   }
+  ],
+  "baihu_free": [
+   {
+    "if": "bitter_dunes",
+    "then": [
+     {
+      "run": "bitter_dunes_free"
+     }
+    ],
+    "else": [
+     {
+      "say": "baihu_free",
+      "text": "EV_BH_FREE"
+     }
+    ]
+   }
+  ],
+  "saeulenpfad_arrive": [
+   {
+    "set": "saeulenpfad_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_SP_1"
+   },
+   {
+    "quest": "QUEST_PILLARS_1",
+    "region": "pillars"
+   },
+   {
+    "goal": [
+     "kiefernhang",
+     17,
+     12
+    ],
+    "region": "pillars"
+   }
+  ],
+  "chest_saeulen": [
+   {
+    "say": "narrator",
+    "text": "EV_CHEST_SAEULEN"
+   },
+   {
+    "give_item": "wolkenjade",
+    "n": 3
+   },
+   {
+    "give_item": "phoenixfeder",
+    "n": 1
+   },
+   {
+    "set": "chest_saeulen"
+   },
+   {
+    "refresh": true
+   }
+  ],
+  "kiefernhang_arrive": [
+   {
+    "set": "kiefernhang_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_KH_1"
+   },
+   {
+    "quest": "QUEST_PILLARS_2",
+    "region": "pillars"
+   },
+   {
+    "goal": [
+     "qilin_plateau",
+     14,
+     9
+    ],
+    "region": "pillars"
+   },
+   {
+    "set_inn": [
+     "kiefernhang",
+     "inn"
+    ]
+   }
+  ],
+  "kiefer_aelteste": [
+   {
+    "if": "five_tones",
+    "then": [
+     {
+      "say": "kiefer_aelteste",
+      "text": "EV_SONG_3"
+     }
+    ],
+    "else": [
+     {
+      "say": "kiefer_aelteste",
+      "text": "EV_SONG_1"
+     },
+     {
+      "say": "kiefer_aelteste",
+      "text": "EV_SONG_2"
+     },
+     {
+      "set": "heard_crane_story"
+     }
+    ]
+   }
+  ],
+  "temple_closed": [
+   {
+    "say": "jinli",
+    "text": "EV_TEMPLE_CLOSED"
+   }
+  ],
+  "kiefer_kind": [
+   {
+    "say": "kiefer_kind",
+    "text": "EV_SHAN"
+   }
+  ],
+  "kiefer_frau": [
+   {
+    "say": "kiefer_frau",
+    "text": "EV_YUE"
+   },
+   {
+    "if_not": "got_berries",
+    "then": [
+     {
+      "give_item": "wolkenbeeren",
+      "n": 3
+     },
+     {
+      "set": "got_berries"
+     }
+    ]
+   }
+  ],
+  "kiefernhang_inn": [
+   {
+    "say": "kiefernhang_wirt",
+    "text": "EV_KIEFERNHANG_INN"
+   },
+   {
+    "set_inn": [
+     "kiefernhang",
+     "inn"
+    ]
+   },
+   {
+    "inn": true
+   }
+  ],
+  "kiefernhang_shop": [
+   {
+    "say": "kiefernhang_haendler",
+    "text": "EV_KIEFERNHANG_SHOP"
+   },
+   {
+    "shop": [
+     "reisbaellchen",
+     "jasmintee",
+     "kraeutertee",
+     "glockenbluete",
+     "phoenixfeder",
+     "wolkenbeeren",
+     "wolkenjade"
+    ]
+   }
+  ],
+  "kiefernhang_tea": [
+   {
+    "say": "kiefernhang_teemeister",
+    "text": "EV_KIEFERNHANG_TEA"
+   },
+   {
+    "rumor": true,
+    "speaker": "kiefernhang_teemeister",
+    "templates": [
+     "RUMOR_KIEFERNHANG_0",
+     "RUMOR_KIEFERNHANG_1",
+     "RUMOR_KIEFERNHANG_2"
+    ]
+   }
+  ],
+  "kiefernhang_food": [
+   {
+    "say": "kiefernhang_koch",
+    "text": "EV_KIEFERNHANG_FOOD"
+   },
+   {
+    "restaurant": [
+     "wolkenkloesse"
+    ]
+   }
+  ],
+  "plateau_arrive": [
+   {
+    "set": "plateau_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_PL_1"
+   },
+   {
+    "quest": "QUEST_PILLARS_3",
+    "region": "pillars"
+   },
+   {
+    "goal": [
+     "qilin_plateau",
+     14,
+     9
+    ],
+    "region": "pillars"
+   }
+  ],
+  "order_plateau": [
+   {
+    "persuade": {
+     "who": "order_plateau",
+     "intro": "PER_PLATEAU_INTRO",
+     "accept": {
+      "compassion": 2,
+      "logic": 1,
+      "proof": 1,
+      "threat": -2
+     },
+     "need": 2,
+     "tries": 3,
+     "proof_flags": [
+      "lesson_water",
+      "lesson_fisher",
+      "lesson_master"
+     ]
+    },
+    "success": [
+     {
+      "say": "order_plateau",
+      "text": "EV_ORDER_PLATEAU_WON"
+     },
+     {
+      "set": "order_plateau_done"
+     },
+     {
+      "count": "order_convinced"
+     },
+     {
+      "refresh": true
+     }
+    ],
+    "fail": [
+     {
+      "say": "order_plateau",
+      "text": "EV_ORDER_PLATEAU_FIGHT"
+     },
+     {
+      "battle": {
+       "enemies": [
+        {
+         "id": "felstakin",
+         "level": 25,
+         "role": "silenced"
+        }
+       ],
+       "active": 1,
+       "foe": "order_plateau",
+       "coins": 80,
+       "bg": "pillars"
+      },
+      "win": [
+       {
+        "set": "order_plateau_done"
+       },
+       {
+        "count": "order_fought"
+       },
+       {
+        "refresh": true
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "eremitin": [
+   {
+    "say": "eremitin",
+    "text": "EV_QING"
+   },
+   {
+    "heal": true
+   },
+   {
+    "set_inn": [
+     "qilin_plateau",
+     "from_town"
+    ]
+   },
+   {
+    "save": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_QING_2"
+   }
+  ],
+  "boss_qilin": [
+   {
+    "if_not": "qilin_seen",
+    "then": [
+     {
+      "set": "qilin_seen"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_QL_1"
+     },
+     {
+      "say": "qilin",
+      "text": "EV_QL_2"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_QL_TUT"
+     }
+    ]
+   },
+   {
+    "if_party_min": 2,
+    "then": [
+     {
+      "battle": {
+       "enemies": [
+        {
+         "id": "qilin",
+         "level": 30,
+         "role": "silenced",
+         "scale": 1
+        },
+        {
+         "id": "steinloewe",
+         "level": 26,
+         "role": "silenced",
+         "scale": -2
+        }
+       ],
+       "active": 2,
+       "music": "boss",
+       "bg": "pillars"
+      },
+      "win": [
+       {
+        "run": "tone_gong_returns"
+       }
+      ],
+      "lose": [
+       {
+        "say": "eremitin",
+        "text": "EV_QL_LOSE"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "say": "eremitin",
+      "text": "EV_QL_ALONE"
+     }
+    ]
+   }
+  ],
+  "tone_gong_returns": [
+   {
+    "music": "tone_returns"
+   },
+   {
+    "if": "freed_qilin",
+    "then": [
+     {
+      "say": "narrator",
+      "text": "EV_GO_1"
+     }
+    ],
+    "else": [
+     {
+      "say": "narrator",
+      "text": "EV_GO_1B"
+     }
+    ]
+   },
+   {
+    "tone": "tone_gong"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_GO_2"
+   },
+   {
+    "voice": "qilin",
+    "event": "freed"
+   },
+   {
+    "say": "qilin",
+    "text": "EV_GO_3"
+   },
+   {
+    "set": "lesson_earth"
+   },
+   {
+    "give_item": "wolkenjade",
+    "n": 3
+   },
+   {
+    "clear_region": "pillars"
+   },
+   {
+    "run": "after_tone"
+   }
+  ],
+  "qilin_free": [
+   {
+    "say": "qilin_free",
+    "text": "EV_QL_FREE"
+   }
+  ]
+ }
+}

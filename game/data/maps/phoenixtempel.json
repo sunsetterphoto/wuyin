@@ -1,0 +1,154 @@
+{
+ "name": "MAP_PHOENIXTEMPEL",
+ "region": "temple",
+ "time": "dusk",
+ "music": "order",
+ "battle_bg": "phoenix_temple",
+ "border": "cloud",
+ "spawns": {
+  "from_town": [
+   14,
+   22
+  ],
+  "nest": [
+   14,
+   8
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    14,
+    23,
+    2,
+    1
+   ],
+   "to": "kiefernhang",
+   "spawn": "from_temple"
+  }
+ ],
+ "on_enter": {
+  "event": "temple_arrive",
+  "unless": "temple_arrived"
+ },
+ "npcs": [
+  {
+   "id": "wusheng",
+   "at": [
+    14,
+    9
+   ],
+   "event": "wusheng_temple",
+   "unless": "finale_done"
+  },
+  {
+   "id": "kranich",
+   "lingshou": "silberkranich",
+   "at": [
+    16,
+    9
+   ],
+   "event": "kranich_temple",
+   "unless": "finale_done"
+  },
+  {
+   "id": "yao",
+   "sprite": "yao_order",
+   "at": [
+    11,
+    12
+   ],
+   "event": "yao_temple",
+   "unless": [
+    "yao_returned",
+    "yao_left",
+    "finale_done"
+   ]
+  },
+  {
+   "id": "yao_ally",
+   "sprite": "yao",
+   "at": [
+    11,
+    14
+   ],
+   "event": "yao_ally",
+   "when": "yao_returned",
+   "unless": "finale_done"
+  },
+  {
+   "id": "phoenix_ashes",
+   "lingshou": "fenghuang_ashes",
+   "at": [
+    14,
+    4
+   ],
+   "event": "phoenix_ashes",
+   "unless": "finale_done",
+   "scale": 1.2
+  },
+  {
+   "id": "meister_temple",
+   "sprite": "meister_free",
+   "at": [
+    12,
+    14
+   ],
+   "event": "meister_temple",
+   "when": "finale_done"
+  },
+  {
+   "id": "wusheng_after",
+   "sprite": "wusheng",
+   "at": [
+    17,
+    8
+   ],
+   "event": "wusheng_after",
+   "when": [
+    "finale_done",
+    "ending_reconcile"
+   ]
+  }
+ ],
+ "triggers": [
+  {
+   "rect": [
+    10,
+    11,
+    10,
+    2
+   ],
+   "event": "finale",
+   "unless": "finale_done",
+   "once": false
+  }
+ ],
+ "id": "phoenixtempel",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+  "SuuuuuuuuuuuuuuuuuuuuuuuuuuuuS",
+  "SuuuccccccccccccccccccccccuuuS",
+  "SuuucccccL___NNNN___LcccccuuuS",
+  "Suuuccccc____NNNN____cccccuuuS",
+  "Suuuccccc____________cccccuuuS",
+  "SuuuccPcc____________ccPccuuuS",
+  "Suuuccccc____________cccccuuuS",
+  "Suuuccccc____________cccccuuuS",
+  "Suuuccccc____________cccccuuuS",
+  "SuuucccccL__________LcccccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "SuuuccPccccccc==cccccccPccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "Suuucccccccccc==ccccccccccuuuS",
+  "SSSSSSSSSSSSSS==SSSSSSSSSSSSSS"
+ ]
+}

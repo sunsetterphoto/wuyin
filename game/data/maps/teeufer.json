@@ -1,5 +1,6 @@
 {
  "name": "MAP_TEEUFER",
+ "region": "bamboo",
  "time": "day",
  "music": "town",
  "music_when_silent": "silence",
@@ -17,6 +18,10 @@
   "from_terraces": [
    26,
    1
+  ],
+  "from_crossroads": [
+   9,
+   20
   ]
  },
  "warps": [
@@ -39,6 +44,18 @@
    ],
    "to": "reisterrassen",
    "spawn": "from_town"
+  },
+  {
+   "rect": [
+    9,
+    21,
+    1,
+    1
+   ],
+   "to": "kreuzweg",
+   "spawn": "from_teeufer",
+   "when": "tone_jue",
+   "blocked_event": "blocked_south_teeufer"
   }
  ],
  "on_enter": {
@@ -153,16 +170,16 @@
   "S.........___t___t___=...........S",
   "===========____W_____=..RRRRR....S",
   "===========__________=..RRRRR....S",
-  "S.........L_________L=..RRDRR....S",
-  "S.f.....T.....=......======......S",
-  "S.............=......=.......~~~~S",
-  "S..HHHH.......=..BBBBB.......~~~~S",
-  "S..HHHH.....HHHH.BBBBB.T.....~~~~S",
-  "S..HDHH..f..HHHH.BBBBB.......~~~~S",
-  "S...=.......HHDH.............~~~~S",
+  "S........==_________L=..RRDRR....S",
+  "S.f.....T=....=......======......S",
+  "S........=....=......=.......~~~~S",
+  "S..HHHH..=....=..BBBBB.......~~~~S",
+  "S..HHHH..=..HHHH.BBBBB.T.....~~~~S",
+  "S..HDHH..=..HHHH.BBBBB.......~~~~S",
+  "S...=....=..HHDH.............~~~~S",
   "S...===========..........~~~~~~~~S",
-  "S..................T.....~~~~~~~~S",
-  "S................................S",
-  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+  "S........=.........T.....~~~~~~~~S",
+  "S........=.......................S",
+  "SSSSSSSSS=SSSSSSSSSSSSSSSSSSSSSSSS"
  ]
 }

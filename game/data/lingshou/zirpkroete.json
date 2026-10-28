@@ -1,0 +1,31 @@
+{
+  "id": "zirpkroete",
+  "name": "LS_ZIRPKROETE",
+  "animal": "LS_ZIRPKROETE_ANIMAL",
+  "desc": "LS_ZIRPKROETE_DESC",
+  "element": "earth",
+  "temperaments": [
+    "moody"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 58,
+    "atk": 48,
+    "def": 52,
+    "spd": 48
+  },
+  "moves": [
+    "zirpgesang",
+    "muenzregen",
+    "erdstoss",
+    "sandsturm"
+  ],
+  "habitat": "rock_garden",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/zirpkroete.md",
+  "hybrid": true,
+  "learn": {
+    "16": "felsramme",
+    "28": "bergbeben"
+  }
+}

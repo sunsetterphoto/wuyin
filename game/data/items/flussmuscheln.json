@@ -1,0 +1,11 @@
+{
+  "id": "flussmuscheln",
+  "name": "ITEM_FLUSSMUSCHELN",
+  "desc": "ITEM_FLUSSMUSCHELN_DESC",
+  "kind": "food",
+  "price": 25,
+  "likes": [
+    "water",
+    "earth"
+  ]
+}

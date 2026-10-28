@@ -1,0 +1,1341 @@
+{
+ "note": "Generiert von tools/story/chapter2.py – dort bearbeiten.",
+ "events": {
+  "after_tone": [
+   {
+    "if_tones": 5,
+    "then": [
+     {
+      "set": "five_tones"
+     },
+     {
+      "quest": "QUEST_TEMPLE"
+     },
+     {
+      "goal": [
+       "kiefernhang",
+       16,
+       2
+      ]
+     }
+    ],
+    "else": [
+     {
+      "if_tones": 4,
+      "then": [
+       {
+        "if": "tone_shang",
+        "then": [
+         {
+          "quest": "QUEST_LAST_GONG"
+         },
+         {
+          "goal": [
+           "kiefernhang",
+           17,
+           12
+          ]
+         }
+        ],
+        "else": [
+         {
+          "quest": "QUEST_LAST_SHANG"
+         },
+         {
+          "goal": [
+           "mondquell",
+           16,
+           18
+          ]
+         }
+        ]
+       }
+      ],
+      "else": [
+       {
+        "if_tones": 3,
+        "then": [
+         {
+          "set": "three_tones"
+         },
+         {
+          "quest": "QUEST_HOME_VOICE"
+         },
+         {
+          "goal": [
+           "weidendorf",
+           16,
+           11
+          ]
+         }
+        ],
+        "else": [
+         {
+          "if": "tone_yu",
+          "then": [
+           {
+            "quest": "QUEST_ZHI"
+           },
+           {
+            "goal": [
+             "rotfels",
+             16,
+             10
+            ]
+           }
+          ],
+          "else": [
+           {
+            "quest": "QUEST_YU"
+           },
+           {
+            "goal": [
+             "nebelhafen",
+             16,
+             20
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "save": true
+   }
+  ],
+  "kreuzweg_arrive": [
+   {
+    "set": "kreuzweg_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_KW_1"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_KW_2"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_KW_3"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_KW_TUT"
+   },
+   {
+    "set_inn": [
+     "kreuzweg",
+     "inn"
+    ]
+   }
+  ],
+  "kreuzweg_inn": [
+   {
+    "say": "rast_wirt",
+    "text": "EV_KW_INN"
+   },
+   {
+    "set_inn": [
+     "kreuzweg",
+     "inn"
+    ]
+   },
+   {
+    "inn": true
+   }
+  ],
+  "kreuzweg_sign": [
+   {
+    "say": "narrator",
+    "text": "EV_KW_SIGN"
+   }
+  ],
+  "kreuzweg_trader": [
+   {
+    "say": "kreuz_haendler",
+    "text": "EV_KW_TRADER"
+   },
+   {
+    "shop": [
+     "bambus",
+     "flusskiesel",
+     "danxia_ton",
+     "reisbaellchen",
+     "jasmintee",
+     "flussmuscheln",
+     "chilischoten"
+    ]
+   }
+  ],
+  "order_block_west": [
+   {
+    "say": "order_west",
+    "text": "EV_ORDER_BLOCK_WEST"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_ORDER_BLOCK_WEST_J"
+   }
+  ],
+  "order_block_north": [
+   {
+    "say": "order_north",
+    "text": "EV_ORDER_BLOCK_NORTH"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_ORDER_BLOCK_NORTH_J"
+   }
+  ],
+  "karstufer_arrive": [
+   {
+    "set": "karstufer_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_KU_1"
+   },
+   {
+    "quest": "QUEST_RIVER_1",
+    "region": "river"
+   },
+   {
+    "goal": [
+     "nebelhafen",
+     16,
+     20
+    ],
+    "region": "river"
+   }
+  ],
+  "chest_karst": [
+   {
+    "say": "narrator",
+    "text": "EV_CHEST_KARST"
+   },
+   {
+    "give_item": "flusskiesel",
+    "n": 3
+   },
+   {
+    "give_item": "jasmintee",
+    "n": 1
+   },
+   {
+    "set": "chest_karst"
+   },
+   {
+    "refresh": true
+   }
+  ],
+  "nebelhafen_arrive": [
+   {
+    "set": "nebelhafen_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_NH_1"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_NH_2"
+   },
+   {
+    "quest": "QUEST_RIVER_2",
+    "region": "river"
+   },
+   {
+    "goal": [
+     "nebelhafen",
+     6,
+     18
+    ],
+    "region": "river"
+   },
+   {
+    "set_inn": [
+     "nebelhafen",
+     "inn"
+    ]
+   }
+  ],
+  "fischer": [
+   {
+    "if": "has_boat",
+    "then": [
+     {
+      "say": "fischer",
+      "text": "EV_FI_DONE"
+     }
+    ],
+    "else": [
+     {
+      "if": "kormoran_done",
+      "then": [
+       {
+        "if": "kormoran_freed",
+        "then": [
+         {
+          "say": "fischer",
+          "text": "EV_FI_FREED_1"
+         },
+         {
+          "say": "fischer",
+          "text": "EV_FI_FREED_2"
+         },
+         {
+          "set": "lesson_fisher"
+         }
+        ],
+        "else": [
+         {
+          "say": "fischer",
+          "text": "EV_FI_DEF"
+         }
+        ]
+       },
+       {
+        "say": "fischer",
+        "text": "EV_FI_BOAT"
+       },
+       {
+        "give_item": "boot",
+        "n": 1
+       },
+       {
+        "set": "has_boat"
+       },
+       {
+        "quest": "QUEST_RIVER_4",
+        "region": "river"
+       },
+       {
+        "goal": [
+         "nebelhafen",
+         16,
+         2
+        ],
+        "region": "river"
+       }
+      ],
+      "else": [
+       {
+        "say": "fischer",
+        "text": "EV_FI_1"
+       },
+       {
+        "say": "fischer",
+        "text": "EV_FI_2"
+       },
+       {
+        "set": "quest_kormoran"
+       },
+       {
+        "quest": "QUEST_RIVER_3",
+        "region": "river"
+       },
+       {
+        "goal": [
+         "karstufer",
+         9,
+         6
+        ],
+        "region": "river"
+       },
+       {
+        "refresh": true
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "silent_kormoran": [
+   {
+    "say": "narrator",
+    "text": "EV_KOR_1"
+   },
+   {
+    "battle": {
+     "enemies": [
+      {
+       "id": "perlkormoran",
+       "level": 13,
+       "role": "silenced"
+      }
+     ],
+     "active": 1,
+     "no_join": true,
+     "bg": "karst"
+    },
+    "win": [
+     {
+      "set": "kormoran_done"
+     },
+     {
+      "set": "kormoran_defeated"
+     },
+     {
+      "refresh": true
+     },
+     {
+      "say": "narrator",
+      "text": "EV_KOR_WIN"
+     }
+    ],
+    "freed": [
+     {
+      "set": "kormoran_done"
+     },
+     {
+      "set": "kormoran_freed"
+     },
+     {
+      "refresh": true
+     },
+     {
+      "say": "narrator",
+      "text": "EV_KOR_FREED"
+     }
+    ]
+   },
+   {
+    "if": "kormoran_done",
+    "then": [
+     {
+      "quest": "QUEST_RIVER_3B",
+      "region": "river"
+     },
+     {
+      "goal": [
+       "nebelhafen",
+       6,
+       18
+      ],
+      "region": "river"
+     }
+    ]
+   }
+  ],
+  "bootsfrau": [
+   {
+    "if": "has_boat",
+    "then": [
+     {
+      "say": "bootsfrau",
+      "text": "EV_BF_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "bootsfrau",
+      "text": "EV_BF_1"
+     }
+    ]
+   }
+  ],
+  "boat_missing": [
+   {
+    "say": "jinli",
+    "text": "EV_BOAT_MISSING"
+   }
+  ],
+  "hafen_kind": [
+   {
+    "if": "tone_yu",
+    "then": [
+     {
+      "say": "hafen_kind",
+      "text": "EV_XY_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "hafen_kind",
+      "text": "EV_XY_1"
+     }
+    ]
+   }
+  ],
+  "hafen_alter": [
+   {
+    "say": "hafen_alter",
+    "text": "EV_PAN_1"
+   },
+   {
+    "say": "hafen_alter",
+    "text": "EV_PAN_2"
+   },
+   {
+    "set": "heard_crane_story"
+   }
+  ],
+  "nebelhafen_inn": [
+   {
+    "say": "nebelhafen_wirt",
+    "text": "EV_NEBELHAFEN_INN"
+   },
+   {
+    "set_inn": [
+     "nebelhafen",
+     "inn"
+    ]
+   },
+   {
+    "inn": true
+   }
+  ],
+  "nebelhafen_shop": [
+   {
+    "say": "nebelhafen_haendler",
+    "text": "EV_NEBELHAFEN_SHOP"
+   },
+   {
+    "shop": [
+     "reisbaellchen",
+     "kraeutertee",
+     "jasmintee",
+     "glockenbluete",
+     "flussmuscheln",
+     "silbertau",
+     "flusskiesel"
+    ]
+   }
+  ],
+  "nebelhafen_tea": [
+   {
+    "say": "nebelhafen_teemeister",
+    "text": "EV_NEBELHAFEN_TEA"
+   },
+   {
+    "rumor": true,
+    "speaker": "nebelhafen_teemeister",
+    "templates": [
+     "RUMOR_NEBELHAFEN_0",
+     "RUMOR_NEBELHAFEN_1",
+     "RUMOR_NEBELHAFEN_2"
+    ]
+   }
+  ],
+  "nebelhafen_food": [
+   {
+    "say": "nebelhafen_koch",
+    "text": "EV_NEBELHAFEN_FOOD"
+   },
+   {
+    "restaurant": [
+     "fischsuppe"
+    ]
+   }
+  ],
+  "bucht_arrive": [
+   {
+    "set": "bucht_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_BU_1"
+   },
+   {
+    "quest": "QUEST_RIVER_5",
+    "region": "river"
+   },
+   {
+    "goal": [
+     "schildkroetenbucht",
+     14,
+     8
+    ],
+    "region": "river"
+   }
+  ],
+  "order_bucht": [
+   {
+    "persuade": {
+     "who": "order_bucht",
+     "intro": "PER_BUCHT_INTRO",
+     "accept": {
+      "logic": 2,
+      "compassion": 1,
+      "proof": 2,
+      "threat": -1
+     },
+     "need": 2,
+     "tries": 3,
+     "proof_flags": [
+      "tone_jue"
+     ]
+    },
+    "success": [
+     {
+      "say": "order_bucht",
+      "text": "EV_ORDER_BUCHT_WON"
+     },
+     {
+      "set": "order_bucht_done"
+     },
+     {
+      "count": "order_convinced"
+     },
+     {
+      "refresh": true
+     }
+    ],
+    "fail": [
+     {
+      "say": "order_bucht",
+      "text": "EV_ORDER_BUCHT_FIGHT"
+     },
+     {
+      "battle": {
+       "enemies": [
+        {
+         "id": "nebelbueffel",
+         "level": 14,
+         "role": "silenced"
+        }
+       ],
+       "active": 1,
+       "foe": "order_bucht",
+       "coins": 80,
+       "bg": "karst"
+      },
+      "win": [
+       {
+        "set": "order_bucht_done"
+       },
+       {
+        "count": "order_fought"
+       },
+       {
+        "refresh": true
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "muschelfrau": [
+   {
+    "say": "muschelfrau",
+    "text": "EV_PEI"
+   },
+   {
+    "heal": true
+   },
+   {
+    "set_inn": [
+     "schildkroetenbucht",
+     "from_boat"
+    ]
+   },
+   {
+    "save": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_PEI_2"
+   }
+  ],
+  "boss_xuanwu": [
+   {
+    "if_not": "xuanwu_seen",
+    "then": [
+     {
+      "set": "xuanwu_seen"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_XW_1"
+     },
+     {
+      "say": "xuanwu",
+      "text": "EV_XW_2"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_XW_TUT"
+     }
+    ]
+   },
+   {
+    "if_party_min": 2,
+    "then": [
+     {
+      "battle": {
+       "enemies": [
+        {
+         "id": "xuanwu",
+         "level": 18,
+         "role": "silenced",
+         "scale": 1
+        },
+        {
+         "id": "schattenmotte",
+         "level": 15,
+         "scale": -2
+        }
+       ],
+       "active": 2,
+       "music": "boss",
+       "bg": "karst",
+       "no_join": true
+      },
+      "win": [
+       {
+        "run": "tone_yu_returns"
+       }
+      ],
+      "lose": [
+       {
+        "say": "muschelfrau",
+        "text": "EV_XW_LOSE"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "say": "muschelfrau",
+      "text": "EV_XW_ALONE"
+     }
+    ]
+   }
+  ],
+  "tone_yu_returns": [
+   {
+    "music": "tone_returns"
+   },
+   {
+    "if": "freed_xuanwu",
+    "then": [
+     {
+      "say": "narrator",
+      "text": "EV_YU_1"
+     }
+    ],
+    "else": [
+     {
+      "say": "narrator",
+      "text": "EV_YU_1B"
+     }
+    ]
+   },
+   {
+    "tone": "tone_yu"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_YU_2"
+   },
+   {
+    "voice": "xuanwu",
+    "event": "freed"
+   },
+   {
+    "say": "xuanwu",
+    "text": "EV_YU_3"
+   },
+   {
+    "set": "lesson_water"
+   },
+   {
+    "say": "xuanwu",
+    "text": "EV_YU_4"
+   },
+   {
+    "give_item": "kranichfeder",
+    "n": 1
+   },
+   {
+    "give_item": "flusskiesel",
+    "n": 3
+   },
+   {
+    "clear_region": "river"
+   },
+   {
+    "run": "after_tone"
+   }
+  ],
+  "xuanwu_free": [
+   {
+    "say": "xuanwu_free",
+    "text": "EV_XW_FREE"
+   }
+  ],
+  "danxiapfad_arrive": [
+   {
+    "set": "danxiapfad_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_DX_1"
+   },
+   {
+    "quest": "QUEST_RIDGE_1",
+    "region": "ridge"
+   },
+   {
+    "goal": [
+     "rotfels",
+     16,
+     10
+    ],
+    "region": "ridge"
+   }
+  ],
+  "chest_danxia": [
+   {
+    "say": "narrator",
+    "text": "EV_CHEST_DANXIA"
+   },
+   {
+    "give_item": "danxia_ton",
+    "n": 2
+   },
+   {
+    "give_item": "chilischoten",
+    "n": 2
+   },
+   {
+    "set": "chest_danxia"
+   },
+   {
+    "refresh": true
+   }
+  ],
+  "foerster": [
+   {
+    "if": "lesson_forest",
+    "then": [
+     {
+      "say": "foerster",
+      "text": "EV_MU_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "foerster",
+      "text": "EV_MU_1"
+     },
+     {
+      "say": "foerster",
+      "text": "EV_MU_1B"
+     },
+     {
+      "set": "lesson_forest"
+     },
+     {
+      "say": "foerster",
+      "text": "EV_MU_1C"
+     },
+     {
+      "give_item": "danxia_ton",
+      "n": 2
+     }
+    ]
+   }
+  ],
+  "rotfels_arrive": [
+   {
+    "set": "rotfels_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_RF_1"
+   },
+   {
+    "quest": "QUEST_RIDGE_2",
+    "region": "ridge"
+   },
+   {
+    "goal": [
+     "rotfels",
+     6,
+     16
+    ],
+    "region": "ridge"
+   },
+   {
+    "set_inn": [
+     "rotfels",
+     "inn"
+    ]
+   }
+  ],
+  "buergermeisterin": [
+   {
+    "if": "helped_rotfels",
+    "then": [
+     {
+      "say": "buergermeisterin",
+      "text": "EV_HONG_DONE"
+     }
+    ],
+    "else": [
+     {
+      "if": "met_hong",
+      "then": [
+       {
+        "say": "buergermeisterin",
+        "text": "EV_HONG_AGAIN"
+       }
+      ],
+      "else": [
+       {
+        "set": "met_hong"
+       },
+       {
+        "say": "buergermeisterin",
+        "text": "EV_HONG_1"
+       },
+       {
+        "say": "buergermeisterin",
+        "text": "EV_HONG_2"
+       },
+       {
+        "choice": [
+         "CH_HONG_A",
+         "CH_HONG_B"
+        ],
+        "then": [
+         [
+          {
+           "say": "buergermeisterin",
+           "text": "EV_HONG_3"
+          },
+          {
+           "set": "rotfels_task"
+          },
+          {
+           "quest": "QUEST_RIDGE_3",
+           "region": "ridge"
+          },
+          {
+           "goal": [
+            "rotfels",
+            19,
+            16
+           ],
+           "region": "ridge"
+          }
+         ],
+         [
+          {
+           "say": "buergermeisterin",
+           "text": "EV_HONG_4"
+          },
+          {
+           "quest": "QUEST_RIDGE_4",
+           "region": "ridge"
+          },
+          {
+           "goal": [
+            "feuergipfel",
+            12,
+            8
+           ],
+           "region": "ridge"
+          }
+         ]
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "toepfer": [
+   {
+    "if": "helped_rotfels",
+    "then": [
+     {
+      "say": "toepfer",
+      "text": "EV_SHI_DONE"
+     }
+    ],
+    "else": [
+     {
+      "if": "rotfels_task",
+      "then": [
+       {
+        "if_items": [
+         "danxia_ton",
+         3
+        ],
+        "then": [
+         {
+          "take_item": "danxia_ton",
+          "n": 3
+         },
+         {
+          "say": "toepfer",
+          "text": "EV_SHI_2"
+         },
+         {
+          "wait": 0.6
+         },
+         {
+          "say": "narrator",
+          "text": "EV_SHI_3"
+         },
+         {
+          "set": "helped_rotfels"
+         },
+         {
+          "count": "helped_villagers"
+         },
+         {
+          "coins": 150
+         },
+         {
+          "quest": "QUEST_RIDGE_4",
+          "region": "ridge"
+         },
+         {
+          "goal": [
+           "feuergipfel",
+           12,
+           8
+          ],
+          "region": "ridge"
+         }
+        ],
+        "else": [
+         {
+          "say": "toepfer",
+          "text": "EV_SHI_1"
+         }
+        ]
+       }
+      ],
+      "else": [
+       {
+        "say": "toepfer",
+        "text": "EV_SHI_0"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "rotfels_kind": [
+   {
+    "if": "tone_zhi",
+    "then": [
+     {
+      "say": "rotfels_kind",
+      "text": "EV_HH_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "rotfels_kind",
+      "text": "EV_HH_1"
+     }
+    ]
+   }
+  ],
+  "rotfels_inn": [
+   {
+    "say": "rotfels_wirt",
+    "text": "EV_ROTFELS_INN"
+   },
+   {
+    "set_inn": [
+     "rotfels",
+     "inn"
+    ]
+   },
+   {
+    "inn": true
+   }
+  ],
+  "rotfels_shop": [
+   {
+    "say": "rotfels_haendler",
+    "text": "EV_ROTFELS_SHOP"
+   },
+   {
+    "shop": [
+     "reisbaellchen",
+     "kraeutertee",
+     "jasmintee",
+     "glockenbluete",
+     "chilischoten",
+     "suessreis",
+     "danxia_ton"
+    ]
+   }
+  ],
+  "rotfels_tea": [
+   {
+    "say": "rotfels_teemeister",
+    "text": "EV_ROTFELS_TEA"
+   },
+   {
+    "rumor": true,
+    "speaker": "rotfels_teemeister",
+    "templates": [
+     "RUMOR_ROTFELS_0",
+     "RUMOR_ROTFELS_1",
+     "RUMOR_ROTFELS_2"
+    ]
+   }
+  ],
+  "rotfels_food": [
+   {
+    "say": "rotfels_koch",
+    "text": "EV_ROTFELS_FOOD"
+   },
+   {
+    "restaurant": [
+     "feuertopf"
+    ]
+   }
+  ],
+  "gipfel_arrive": [
+   {
+    "set": "gipfel_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_GI_1"
+   },
+   {
+    "quest": "QUEST_RIDGE_5",
+    "region": "ridge"
+   },
+   {
+    "goal": [
+     "feuergipfel",
+     12,
+     8
+    ],
+    "region": "ridge"
+   }
+  ],
+  "order_gipfel": [
+   {
+    "persuade": {
+     "who": "order_gipfel",
+     "intro": "PER_GIPFEL_INTRO",
+     "accept": {
+      "compassion": 2,
+      "logic": 1,
+      "proof": 1,
+      "threat": -1
+     },
+     "need": 2,
+     "tries": 3,
+     "proof_flags": [
+      "helped_rotfels",
+      "lesson_forest",
+      "tone_yu",
+      "tone_jue"
+     ]
+    },
+    "success": [
+     {
+      "say": "order_gipfel",
+      "text": "EV_ORDER_GIPFEL_WON"
+     },
+     {
+      "set": "order_gipfel_done"
+     },
+     {
+      "count": "order_convinced"
+     },
+     {
+      "refresh": true
+     }
+    ],
+    "fail": [
+     {
+      "say": "order_gipfel",
+      "text": "EV_ORDER_GIPFEL_FIGHT"
+     },
+     {
+      "battle": {
+       "enemies": [
+        {
+         "id": "glutpanda",
+         "level": 15,
+         "role": "silenced"
+        }
+       ],
+       "active": 1,
+       "foe": "order_gipfel",
+       "coins": 80,
+       "bg": "danxia"
+      },
+      "win": [
+       {
+        "set": "order_gipfel_done"
+       },
+       {
+        "count": "order_fought"
+       },
+       {
+        "refresh": true
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "einsiedler": [
+   {
+    "say": "einsiedler",
+    "text": "EV_FENG"
+   },
+   {
+    "heal": true
+   },
+   {
+    "set_inn": [
+     "feuergipfel",
+     "from_town"
+    ]
+   },
+   {
+    "save": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_FENG_2"
+   }
+  ],
+  "boss_bifang": [
+   {
+    "if_not": "bifang_seen",
+    "then": [
+     {
+      "set": "bifang_seen"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_BI_1"
+     },
+     {
+      "say": "bifang",
+      "text": "EV_BI_2"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_BI_TUT"
+     }
+    ]
+   },
+   {
+    "if_party_min": 2,
+    "then": [
+     {
+      "battle": {
+       "enemies": [
+        {
+         "id": "bifang",
+         "level": 18,
+         "role": "silenced",
+         "scale": 1
+        },
+        {
+         "id": "funkenechse",
+         "level": 15,
+         "role": "silenced",
+         "scale": -2
+        }
+       ],
+       "active": 2,
+       "music": "boss",
+       "bg": "danxia"
+      },
+      "win": [
+       {
+        "run": "tone_zhi_returns"
+       }
+      ],
+      "lose": [
+       {
+        "say": "einsiedler",
+        "text": "EV_BI_LOSE"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "say": "einsiedler",
+      "text": "EV_BI_ALONE"
+     }
+    ]
+   }
+  ],
+  "tone_zhi_returns": [
+   {
+    "music": "tone_returns"
+   },
+   {
+    "if": "freed_bifang",
+    "then": [
+     {
+      "say": "narrator",
+      "text": "EV_ZHI_1"
+     }
+    ],
+    "else": [
+     {
+      "say": "narrator",
+      "text": "EV_ZHI_1B"
+     }
+    ]
+   },
+   {
+    "tone": "tone_zhi"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_ZHI_2"
+   },
+   {
+    "voice": "bifang",
+    "event": "freed"
+   },
+   {
+    "say": "bifang",
+    "text": "EV_ZHI_3"
+   },
+   {
+    "set": "lesson_fire"
+   },
+   {
+    "give_item": "danxia_ton",
+    "n": 3
+   },
+   {
+    "clear_region": "ridge"
+   },
+   {
+    "run": "after_tone"
+   }
+  ],
+  "bifang_free": [
+   {
+    "say": "bifang_free",
+    "text": "EV_BI_FREE"
+   }
+  ]
+ }
+}

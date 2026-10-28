@@ -1,0 +1,32 @@
+{
+  "id": "nian",
+  "name": "LS_NIAN",
+  "animal": "LS_NIAN_ANIMAL",
+  "desc": "LS_NIAN_DESC",
+  "element": "earth",
+  "temperaments": [
+    "moody"
+  ],
+  "alignment": "nian",
+  "base_stats": {
+    "hp": 150,
+    "atk": 78,
+    "def": 70,
+    "spd": 44
+  },
+  "moves": [
+    "neujahrsgebruell",
+    "klangfrass",
+    "bergbeben",
+    "felsramme"
+  ],
+  "habitat": "night",
+  "can_breed": false,
+  "voice_card": "cards/{lang}/nian.md",
+  "sprite_size": 96,
+  "fears": [
+    "trommel",
+    "feuerwerk",
+    "rotes_banner"
+  ]
+}

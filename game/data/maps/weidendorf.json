@@ -1,5 +1,6 @@
 {
  "name": "MAP_WEIDENDORF",
+ "region": "bamboo",
  "time": "night",
  "music": "village",
  "music_when_silent": "silence",
@@ -14,6 +15,10 @@
    6,
    5
   ],
+  "inn": [
+   6,
+   5
+  ],
   "from_river": [
    29,
    14
@@ -21,6 +26,10 @@
   "from_north": [
    28,
    2
+  ],
+  "from_farm": [
+   1,
+   10
   ]
  },
  "warps": [
@@ -47,12 +56,31 @@
    "spawn": "from_village",
    "when": "prologue_done",
    "blocked_event": "blocked_north"
+  },
+  {
+   "rect": [
+    0,
+    10,
+    1,
+    1
+   ],
+   "to": "hof",
+   "spawn": "from_village",
+   "when": "prologue_done",
+   "blocked_event": "blocked_north"
   }
  ],
- "on_enter": {
-  "event": "intro",
-  "unless": "intro_done"
- },
+ "on_enter": [
+  {
+   "event": "intro",
+   "unless": "intro_done"
+  },
+  {
+   "event": "meister_voice",
+   "when": "three_tones",
+   "unless": "meister_spoke"
+  }
+ ],
  "npcs": [
   {
    "id": "meister",
@@ -62,6 +90,79 @@
    ],
    "event": "meister_gift",
    "unless": "has_fengling"
+  },
+  {
+   "id": "meister_free",
+   "sprite": "meister_free",
+   "at": [
+    15,
+    5
+   ],
+   "event": "meister_home",
+   "when": "meister_spoke"
+  },
+  {
+   "id": "nian",
+   "lingshou": "nian",
+   "at": [
+    16,
+    12
+   ],
+   "event": "nian_battle",
+   "when": "nian_here",
+   "scale": 1.2
+  },
+  {
+   "id": "kind_nian",
+   "sprite": "villager_b",
+   "at": [
+    12,
+    13
+   ],
+   "event": "kind_nian",
+   "when": "nian_here"
+  },
+  {
+   "id": "oma_nian",
+   "sprite": "innkeeper",
+   "at": [
+    27,
+    12
+   ],
+   "event": "oma_nian",
+   "when": "nian_here"
+  },
+  {
+   "id": "order_ying",
+   "sprite": "order_b",
+   "at": [
+    19,
+    10
+   ],
+   "event": "order_ying_idle",
+   "when": "order_visit",
+   "unless": "order_left"
+  },
+  {
+   "id": "yao_order",
+   "sprite": "yao_order",
+   "at": [
+    20,
+    11
+   ],
+   "event": "order_ying_idle",
+   "when": "order_visit",
+   "unless": "order_left"
+  },
+  {
+   "id": "yao_home",
+   "sprite": "yao",
+   "at": [
+    21,
+    13
+   ],
+   "event": "yao_after",
+   "when": "yao_returned"
   },
   {
    "id": "meister_plaza",
@@ -82,7 +183,8 @@
     5
    ],
    "event": "meister_mute",
-   "when": "voice_taken"
+   "when": "voice_taken",
+   "unless": "meister_spoke"
   },
   {
    "id": "yao",
@@ -119,7 +221,8 @@
     12
    ],
    "event": "dorf_kind",
-   "wander": 2
+   "wander": 2,
+   "unless": "nian_here"
   },
   {
    "id": "dorf_oma",
@@ -128,7 +231,8 @@
     27,
     12
    ],
-   "event": "dorf_oma"
+   "event": "dorf_oma",
+   "unless": "nian_here"
   }
  ],
  "objects": [
@@ -206,8 +310,8 @@
   "S.f...========================.S",
   "S.........=...............=....S",
   "S..T....L_=_____________L.=....S",
-  "S........t______________t.=HHH.S",
-  "S........_______W________.=HHH.S",
+  "S.......=t______________t.=HHH.S",
+  "=========_______W________.=HHH.S",
   "S........t______________t.=HDH.S",
   "S.......L_=_______=_____L.=....S",
   "S.f.......=.......=.......=....S",

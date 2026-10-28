@@ -1,0 +1,7 @@
+{
+  "id": "kranichfeder",
+  "name": "ITEM_KRANICHFEDER",
+  "desc": "ITEM_KRANICHFEDER_DESC",
+  "kind": "key",
+  "price": 1
+}

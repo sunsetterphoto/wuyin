@@ -24,3 +24,9 @@ static func sfx(name: String) -> void:
 static func current() -> String:
 	var n := _node()
 	return n.current if n else ""
+
+
+static func set_muffled(on: bool) -> void:
+	var n := _node()
+	if n:
+		n.set_muffled(on)

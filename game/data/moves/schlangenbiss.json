@@ -1,0 +1,15 @@
+{
+  "id": "schlangenbiss",
+  "name": "MOVE_SCHLANGENBISS",
+  "element": "water",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "llm_hint": "the serpent strikes fast like a wave",
+  "power": 65,
+  "effect": {
+    "status": "dissonance",
+    "turns": 2,
+    "chance": 20
+  }
+}

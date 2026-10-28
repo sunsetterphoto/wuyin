@@ -1,0 +1,9 @@
+{
+  "id": "panzerwacht",
+  "name": "MOVE_PANZERWACHT",
+  "element": "water",
+  "kind": "guard",
+  "accuracy": 95,
+  "target": "ally",
+  "llm_hint": "holds up a shell and protects an ally from the next hit"
+}

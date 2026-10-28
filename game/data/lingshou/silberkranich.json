@@ -21,5 +21,6 @@
   ],
   "habitat": "pond",
   "can_breed": false,
-  "voice_card": "cards/{lang}/silberkranich.md"
+  "voice_card": "cards/{lang}/silberkranich.md",
+  "desc": "LS_SILBERKRANICH_DESC"
 }

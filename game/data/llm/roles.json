@@ -54,5 +54,26 @@
     "timeout_ms": 4000,
     "priority": 2,
     "note": "Untertitel für Jinlis Hinweis zur aktuellen Aufgabe, Vorlage pro Aufgabe und Deutlichkeitsstufe."
+  },
+  "persuade_judge": {
+    "max_tokens": 6,
+    "temperature": 0.0,
+    "timeout_ms": 3000,
+    "priority": 3,
+    "note": "Überreden: nennt nur die Kategorie des Satzes (Logik, Mitgefühl, Drohung, Bestechung, Beweis); ob es wirkt, entscheidet der Code."
+  },
+  "farm_diary": {
+    "max_tokens": 50,
+    "temperature": 0.8,
+    "timeout_ms": 6000,
+    "priority": 0,
+    "note": "Hoftagebuch: ein Satz über die Nacht auf dem Hof aus Fakten, beim Schlafen erzeugt."
+  },
+  "region_line": {
+    "max_tokens": 50,
+    "temperature": 0.8,
+    "timeout_ms": 6000,
+    "priority": 1,
+    "note": "Kurzer Satz eines freien Himmelswächters oder Lingshou in der Oberwelt aus Fakten."
   }
 }

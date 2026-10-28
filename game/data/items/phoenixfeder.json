@@ -1,0 +1,8 @@
+{
+  "id": "phoenixfeder",
+  "name": "ITEM_PHOENIXFEDER",
+  "desc": "ITEM_PHOENIXFEDER_DESC",
+  "kind": "revive",
+  "price": 220,
+  "heal_pct": 100
+}

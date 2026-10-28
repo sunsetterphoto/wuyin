@@ -93,6 +93,14 @@ static func describe(battle: Battle, e: Dictionary) -> Array[String]:
 			out.append(_t("BATTLE_REVIVE", {"target": target}))
 		"watch":
 			out.append(_t("BATTLE_WATCHES", {"user": user}))
+		"scare_item":
+			out.append(_t("BATTLE_SCARE_ITEM", {"item": TranslationServer.translate(GameData.item(e["item"])["name"])}))
+		"scared":
+			out.append(_t("BATTLE_SCARED", {"target": target}))
+		"flees":
+			out.append(_t("BATTLE_FLEES", {"target": target}))
+		"learned":
+			out.append(_t("BATTLE_LEARNED" if e["active"] else "BATTLE_LEARNED_SWAP", {"target": target, "move": move_name(e["move"])}))
 		"fled":
 			pass
 	return out

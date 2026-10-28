@@ -1,0 +1,756 @@
+{
+ "note": "Generiert von tools/story/chapter4.py – dort bearbeiten.",
+ "events": {
+  "temple_arrive": [
+   {
+    "set": "temple_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_TA_1"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_TA_2"
+   },
+   {
+    "quest": "QUEST_FINALE"
+   },
+   {
+    "goal": [
+     "phoenixtempel",
+     14,
+     12
+    ]
+   },
+   {
+    "set_inn": [
+     "kiefernhang",
+     "inn"
+    ]
+   }
+  ],
+  "wusheng_temple": [
+   {
+    "run": "finale"
+   }
+  ],
+  "kranich_temple": [
+   {
+    "say": "narrator",
+    "text": "EV_KT"
+   }
+  ],
+  "phoenix_ashes": [
+   {
+    "say": "narrator",
+    "text": "EV_ASHES"
+   }
+  ],
+  "yao_temple": [
+   {
+    "say": "yao_order",
+    "text": "EV_YT"
+   }
+  ],
+  "yao_ally": [
+   {
+    "say": "yao_ally",
+    "text": "EV_YA"
+   }
+  ],
+  "finale": [
+   {
+    "if": "wusheng_resolved",
+    "then": [
+     {
+      "run": "finale_nian"
+     }
+    ],
+    "else": [
+     {
+      "run": "finale_talk"
+     }
+    ]
+   }
+  ],
+  "finale_talk": [
+   {
+    "music": "order"
+   },
+   {
+    "if_not": "finale_started",
+    "then": [
+     {
+      "set": "finale_started"
+     },
+     {
+      "say": "wusheng",
+      "text": "EV_FIN_1"
+     },
+     {
+      "say": "wusheng",
+      "text": "EV_FIN_2"
+     },
+     {
+      "say": "narrator",
+      "text": "EV_FIN_3"
+     }
+    ]
+   },
+   {
+    "if": "yao_returned",
+    "then": [],
+    "else": [
+     {
+      "if": "yao_doubt",
+      "then": [
+       {
+        "say": "yao_order",
+        "text": "EV_FIN_YAO_1"
+       },
+       {
+        "say": "narrator",
+        "text": "EV_FIN_YAO_2"
+       },
+       {
+        "set": "yao_returned"
+       },
+       {
+        "refresh": true
+       }
+      ],
+      "else": [
+       {
+        "if_not": "yao_left",
+        "then": [
+         {
+          "say": "yao_order",
+          "text": "EV_FIN_YAO_3"
+         },
+         {
+          "battle": {
+           "enemies": [
+            {
+             "id": "glutfasan",
+             "level": 33,
+             "scale": 0
+            },
+            {
+             "id": "rollschupp",
+             "level": 32,
+             "scale": -1
+            },
+            {
+             "id": "messingadler",
+             "level": 32,
+             "role": "silenced",
+             "scale": -1
+            }
+           ],
+           "active": 2,
+           "foe": "yao_order",
+           "coins": 300,
+           "music": "order",
+           "bg": "phoenix_temple"
+          },
+          "win": [
+           {
+            "say": "yao_order",
+            "text": "EV_FIN_YAO_4"
+           },
+           {
+            "set": "yao_left"
+           },
+           {
+            "refresh": true
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "clear": "wise_1"
+   },
+   {
+    "clear": "wise_2"
+   },
+   {
+    "clear": "wise_3"
+   },
+   {
+    "say": "wusheng",
+    "text": "EV_FIN_Q1"
+   },
+   {
+    "choice": [
+     {
+      "text": "CH_FI_1A",
+      "when": "lesson_bamboo"
+     },
+     {
+      "text": "CH_FI_1B",
+      "when": "lesson_forest"
+     },
+     "CH_FI_1C"
+    ],
+    "then": [
+     [
+      {
+       "set": "wise_1"
+      },
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_1A"
+      }
+     ],
+     [
+      {
+       "set": "wise_1"
+      },
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_1B"
+      }
+     ],
+     [
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_1C"
+      }
+     ]
+    ]
+   },
+   {
+    "say": "wusheng",
+    "text": "EV_FIN_Q2"
+   },
+   {
+    "choice": [
+     {
+      "text": "CH_FI_2A",
+      "when": "lesson_fisher"
+     },
+     {
+      "text": "CH_FI_2B",
+      "when": "lesson_water"
+     },
+     {
+      "text": "CH_FI_2C",
+      "when": "lesson_master"
+     },
+     "CH_FI_2D"
+    ],
+    "then": [
+     [
+      {
+       "set": "wise_2"
+      },
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_2A"
+      }
+     ],
+     [
+      {
+       "set": "wise_2"
+      },
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_2B"
+      }
+     ],
+     [
+      {
+       "set": "wise_2"
+      },
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_2C"
+      }
+     ],
+     [
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_2D"
+      }
+     ]
+    ]
+   },
+   {
+    "say": "wusheng",
+    "text": "EV_FIN_Q3"
+   },
+   {
+    "choice": [
+     {
+      "text": "CH_FI_3A",
+      "when": "lesson_leaves"
+     },
+     {
+      "text": "CH_FI_3B",
+      "when": "lesson_earth"
+     },
+     {
+      "text": "CH_FI_3C",
+      "when": "lesson_fire"
+     },
+     "CH_FI_3D"
+    ],
+    "then": [
+     [
+      {
+       "set": "wise_3"
+      },
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_3A"
+      }
+     ],
+     [
+      {
+       "set": "wise_3"
+      },
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_3B"
+      }
+     ],
+     [
+      {
+       "set": "wise_3"
+      },
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_3C"
+      }
+     ],
+     [
+      {
+       "say": "wusheng",
+       "text": "EV_FIN_3D"
+      }
+     ]
+    ]
+   },
+   {
+    "if_count": [
+     [
+      "wise_1",
+      "wise_2",
+      "wise_3"
+     ],
+     2
+    ],
+    "then": [
+     {
+      "say": "wusheng",
+      "text": "EV_FIN_W1"
+     },
+     {
+      "say": "wusheng",
+      "text": "EV_FIN_W2"
+     },
+     {
+      "if_item": "kranichfeder",
+      "then": [
+       {
+        "choice": [
+         "CH_FI_FEATHER",
+         "CH_FI_NOFEATHER"
+        ],
+        "then": [
+         [
+          {
+           "say": "narrator",
+           "text": "EV_FIN_F1"
+          },
+          {
+           "say": "narrator",
+           "text": "EV_FIN_F2"
+          },
+          {
+           "crane": true,
+           "sings": [
+            {
+             "set": "crane_sings"
+            },
+            {
+             "set": "wusheng_convinced"
+            },
+            {
+             "run": "crane_song"
+            }
+           ],
+           "silent": [
+            {
+             "say": "narrator",
+             "text": "EV_FIN_F3"
+            },
+            {
+             "say": "wusheng",
+             "text": "EV_FIN_F4"
+            },
+            {
+             "run": "wusheng_battle"
+            }
+           ]
+          }
+         ],
+         [
+          {
+           "run": "wusheng_battle"
+          }
+         ]
+        ]
+       }
+      ],
+      "else": [
+       {
+        "say": "wusheng",
+        "text": "EV_FIN_W3"
+       },
+       {
+        "run": "wusheng_battle"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "say": "wusheng",
+      "text": "EV_FIN_N1"
+     },
+     {
+      "run": "wusheng_battle"
+     }
+    ]
+   }
+  ],
+  "crane_song": [
+   {
+    "music": "tone_returns"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_CS_1"
+   },
+   {
+    "say": "wusheng",
+    "text": "EV_CS_2"
+   },
+   {
+    "say": "wusheng",
+    "text": "EV_CS_3"
+   },
+   {
+    "set": "wusheng_resolved"
+   },
+   {
+    "count": "order_convinced"
+   },
+   {
+    "run": "finale_nian"
+   }
+  ],
+  "wusheng_battle": [
+   {
+    "say": "wusheng",
+    "text": "EV_WB_1"
+   },
+   {
+    "battle": {
+     "enemies": [
+      {
+       "id": "steinloewe",
+       "level": 34,
+       "role": "silenced",
+       "scale": 1
+      },
+      {
+       "id": "nebelbueffel",
+       "level": 33,
+       "role": "silenced",
+       "scale": 0
+      },
+      {
+       "id": "firnleopard",
+       "level": 33,
+       "role": "silenced",
+       "scale": 0
+      }
+     ],
+     "active": 2,
+     "foe": "wusheng",
+     "music": "finale",
+     "bg": "phoenix_temple",
+     "coins": 500
+    },
+    "win": [
+     {
+      "say": "wusheng",
+      "text": "EV_WB_2"
+     },
+     {
+      "set": "wusheng_defeated"
+     },
+     {
+      "set": "wusheng_resolved"
+     },
+     {
+      "count": "order_fought"
+     },
+     {
+      "run": "finale_nian"
+     }
+    ]
+   }
+  ],
+  "finale_nian": [
+   {
+    "heal": true
+   },
+   {
+    "say": "narrator",
+    "text": "EV_FN_1"
+   },
+   {
+    "say": "nian",
+    "text": "EV_FN_2"
+   },
+   {
+    "if": "yao_returned",
+    "then": [
+     {
+      "say": "yao_ally",
+      "text": "EV_FN_YAO"
+     }
+    ]
+   },
+   {
+    "say": "narrator",
+    "text": "EV_FN_TUT"
+   },
+   {
+    "battle": {
+     "enemies": [
+      {
+       "id": "nian",
+       "level": 36,
+       "scale": 2
+      },
+      {
+       "id": "schattenmotte",
+       "level": 30,
+       "scale": -3
+      },
+      {
+       "id": "schattenmotte",
+       "level": 30,
+       "scale": -3
+      }
+     ],
+     "active": 2,
+     "music": "finale",
+     "bg": "phoenix_temple",
+     "no_join": true
+    },
+    "win": [
+     {
+      "run": "rebirth"
+     }
+    ],
+    "lose": [
+     {
+      "say": "jinli",
+      "text": "EV_FN_LOSE"
+     }
+    ]
+   }
+  ],
+  "rebirth": [
+   {
+    "set": "finale_done"
+   },
+   {
+    "music": "tone_returns"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_RB_1"
+   },
+   {
+    "sfx": "bell"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_RB_2"
+   },
+   {
+    "ending": true
+   }
+  ],
+  "ending_reconcile": [
+   {
+    "say": "narrator",
+    "text": "EV_END_R1"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_END_R2"
+   },
+   {
+    "run": "phoenix_joins"
+   }
+  ],
+  "ending_victory": [
+   {
+    "say": "narrator",
+    "text": "EV_END_V1"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_END_V2"
+   },
+   {
+    "run": "phoenix_joins"
+   }
+  ],
+  "ending_bitter": [
+   {
+    "say": "narrator",
+    "text": "EV_END_B1"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_END_B2"
+   },
+   {
+    "set": "bitter_dunes"
+   },
+   {
+    "run": "phoenix_joins"
+   }
+  ],
+  "phoenix_joins": [
+   {
+    "set": "phoenix_reborn"
+   },
+   {
+    "refresh": true
+   },
+   {
+    "voice": "fenghuang",
+    "event": "freed"
+   },
+   {
+    "say": "fenghuang",
+    "text": "EV_PJ_1"
+   },
+   {
+    "bells": 12
+   },
+   {
+    "give_lingshou": "fenghuang",
+    "level": 40,
+    "bond": 80
+   },
+   {
+    "count": "freed"
+   },
+   {
+    "say": "meister_temple",
+    "text": "EV_PJ_2"
+   },
+   {
+    "music": "ending"
+   },
+   {
+    "credits": true
+   },
+   {
+    "if": "bitter_dunes",
+    "then": [
+     {
+      "quest": "QUEST_POST_BITTER"
+     },
+     {
+      "goal": [
+       "singender_kamm",
+       13,
+       8
+      ]
+     }
+    ],
+    "else": [
+     {
+      "quest": "QUEST_POST"
+     }
+    ]
+   },
+   {
+    "save": true
+   }
+  ],
+  "bitter_dunes_free": [
+   {
+    "say": "narrator",
+    "text": "EV_BDF_1"
+   },
+   {
+    "battle": {
+     "enemies": [
+      {
+       "id": "baihu",
+       "level": 40,
+       "role": "silenced",
+       "scale": 0
+      }
+     ],
+     "active": 1,
+     "music": "boss",
+     "bg": "dunes",
+     "no_join": true
+    },
+    "freed": [
+     {
+      "set": "bitter_dunes",
+      "value": false
+     },
+     {
+      "refresh": true
+     },
+     {
+      "say": "narrator",
+      "text": "EV_BDF_2"
+     },
+     {
+      "quest": "QUEST_POST"
+     }
+    ],
+    "win": [
+     {
+      "say": "narrator",
+      "text": "EV_BDF_3"
+     }
+    ]
+   }
+  ],
+  "meister_temple": [
+   {
+    "say": "meister_temple",
+    "text": "EV_MT"
+   }
+  ],
+  "wusheng_after": [
+   {
+    "say": "wusheng_after",
+    "text": "EV_WA"
+   }
+  ]
+ }
+}

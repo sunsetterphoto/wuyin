@@ -1,0 +1,174 @@
+{
+ "name": "MAP_DANXIAPFAD",
+ "region": "ridge",
+ "time": "day",
+ "music": "ridge",
+ "battle_bg": "danxia",
+ "border": "redrock",
+ "spawns": {
+  "from_crossroads": [
+   19,
+   1
+  ],
+  "from_town": [
+   19,
+   20
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    19,
+    0,
+    2,
+    1
+   ],
+   "to": "kreuzweg",
+   "spawn": "from_ridge"
+  },
+  {
+   "rect": [
+    19,
+    21,
+    2,
+    1
+   ],
+   "to": "rotfels",
+   "spawn": "from_route"
+  }
+ ],
+ "on_enter": {
+  "event": "danxiapfad_arrive",
+  "unless": "danxiapfad_arrived"
+ },
+ "npcs": [
+  {
+   "id": "foerster",
+   "sprite": "man_c",
+   "at": [
+    12,
+    13
+   ],
+   "event": "foerster"
+  }
+ ],
+ "lingshou": [
+  {
+   "id": "w_panda",
+   "species": "glutpanda",
+   "at": [
+    24,
+    6
+   ],
+   "levels": [
+    12,
+    14
+   ],
+   "unless": "gone_w_panda"
+  },
+  {
+   "id": "w_falter",
+   "species": "lampionfalter",
+   "at": [
+    6,
+    5
+   ],
+   "levels": [
+    12,
+    13
+   ],
+   "unless": "gone_w_falter"
+  }
+ ],
+ "objects": [
+  {
+   "id": "chest_danxia",
+   "kind": "chest",
+   "at": [
+    37,
+    15
+   ],
+   "event": "chest_danxia",
+   "unless": "chest_danxia"
+  }
+ ],
+ "encounters": {
+  "rate": 0.12,
+  "table": [
+   {
+    "species": "glutpanda",
+    "levels": [
+     11,
+     14
+    ],
+    "weight": 3
+   },
+   {
+    "species": "funkenechse",
+    "levels": [
+     11,
+     14
+    ],
+    "weight": 3
+   },
+   {
+    "species": "lampionfalter",
+    "levels": [
+     11,
+     14
+    ],
+    "weight": 2
+   },
+   {
+    "species": "glutfasan",
+    "levels": [
+     12,
+     15
+    ],
+    "weight": 1
+   },
+   {
+    "species": "rollschupp",
+    "levels": [
+     12,
+     15
+    ],
+    "weight": 1
+   },
+   {
+    "species": "schattenmotte",
+    "levels": [
+     12,
+     14
+    ],
+    "weight": 2,
+    "night": true
+   }
+  ]
+ },
+ "id": "danxiapfad",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSS==SSSSSSSSSSSSSSSSSSS",
+  "Syyyyyyyyhhhyyyyyyh==hhhyyyyyyyyyyyyyyyS",
+  "Syyyyyyyyhhhyyyyyyh==hhhyyyyyyyyyyyyyyyS",
+  "Syyyyyyyyhhhhhhhhhh==hhhyyyyyyyyyyyyyyyS",
+  "Shhhvvvvvhhhhhfhhhh==hhhhhhhhhhhhhhhhhhS",
+  "Shhhvvvvvhhhhhhhhhh==hhvvvvhhhhhhfhhhhhS",
+  "Shhhvvvvvhhhhhhhhhh==hhvvvvhhhhhhhhhhhhS",
+  "Syyyhhhhhhhhhhhhhhh==hhvvvvyyyyhhhhhhhhS",
+  "Syyyhhhhyyyyyhhhhhh==hhvvvvyyyyhhhhyyyyS",
+  "Syyyhhhhyyyyyhhhhhh==hhhhhhyyyyhhhhyyyyS",
+  "Syyyhhhhhh.hh.hhhhh==hhhhhhyyyyhhhhyyyyS",
+  "Syyyhhhhhbbbbbbh.hh==hhhhhhhhhhhhhhyyyyS",
+  "Syyyhhhhhbbbbbbhhhh==hhhhhhhhhhhhhhyyyyS",
+  "Shhhhhhhhhhhhhyyyyh==hhhhhhhhhhvvvhyyyyS",
+  "Shhhhhfhhhhhhhyyyyh==hhhhhhhhhhvvvhhhhhS",
+  "Shhhhhhhhvvvvhyyyyh==hyyyhhhhhhvvvhhhhhS",
+  "Syyyyyyhhvvvvhhhhhh==hyyyhhhhhhhhhhhhhhS",
+  "Syyyyyyhhvvvvhhhhhh==hyyyhhhhhyyyyyyyyyS",
+  "Syyyyyyhhvvvvhhhhhh==hhhhhhhhhyyyyyyyyyS",
+  "Syyyyyyhhhhhhhhhhhh==hhhhvvvvhyyyyyyyyyS",
+  "Syyyyyyhhhhhhhhhhhh==hhhhvvvvhyyyyyyyyyS",
+  "SSSSSSSSSSSSSSSSSSS==SSSSSSSSSSSSSSSSSSS"
+ ]
+}

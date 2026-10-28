@@ -21,5 +21,10 @@
   ],
   "habitat": "ore_grotto",
   "can_breed": true,
-  "voice_card": "cards/{lang}/firnleopard.md"
+  "voice_card": "cards/{lang}/firnleopard.md",
+  "desc": "LS_FIRNLEOPARD_DESC",
+  "learn": {
+    "16": "klingenfeder",
+    "28": "tigerbruellen"
+  }
 }

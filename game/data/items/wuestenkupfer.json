@@ -1,0 +1,7 @@
+{
+  "id": "wuestenkupfer",
+  "name": "ITEM_WUESTENKUPFER",
+  "desc": "ITEM_WUESTENKUPFER_DESC",
+  "kind": "material",
+  "price": 30
+}

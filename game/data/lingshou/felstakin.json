@@ -1,0 +1,29 @@
+{
+  "id": "felstakin",
+  "name": "LS_FELSTAKIN",
+  "animal": "LS_FELSTAKIN_ANIMAL",
+  "desc": "LS_FELSTAKIN_DESC",
+  "element": "earth",
+  "temperaments": [
+    "stubborn"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 70,
+    "atk": 56,
+    "def": 62,
+    "spd": 24
+  },
+  "moves": [
+    "felsramme",
+    "steinhaut",
+    "erdstoss",
+    "bambusschlag"
+  ],
+  "habitat": "rock_garden",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/felstakin.md",
+  "learn": {
+    "28": "bergbeben"
+  }
+}

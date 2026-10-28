@@ -21,5 +21,10 @@
   ],
   "habitat": "ember_pit",
   "can_breed": true,
-  "voice_card": "cards/{lang}/glutfasan.md"
+  "voice_card": "cards/{lang}/glutfasan.md",
+  "desc": "LS_GLUTFASAN_DESC",
+  "learn": {
+    "15": "funkenregen",
+    "28": "sonnenfeuer"
+  }
 }

@@ -1,65 +1,25 @@
-#!/usr/bin/env python3
-"""Chapter 1 of the beta: events (game/data/events/chapter1.json), people
-(game/data/npcs.json) and every story text in en/de/zh-Hans
-(game/data/i18n/story.csv). Text sits next to the event that uses it; the
-game itself only reads the generated JSON and CSV (rule 4).
-
-  python3 tools/story/chapter1.py
-"""
-import csv, json, os
-
-ROOT = os.path.join(os.path.dirname(__file__), "..", "..", "game", "data")
-TEXT = {}  # key -> (en, de, zh)
-
-
-def t(key, de, en, zh):
-    assert key not in TEXT or TEXT[key] == (en, de, zh), "duplicate key with other text: " + key
-    TEXT[key] = (en, de, zh)
-    return key
-
-
-def say(speaker, key, de, en, zh):
-    return {"say": speaker, "text": t(key, de, en, zh)}
-
-
-def quest(key, de, en, zh):
-    return {"quest": t(key, de, en, zh)}
-
-
-def hints(name, de, en, zh):
-    for i in range(3):
-        t(f"HINT_{name}_{i}", de[i], en[i], zh[i])
-
-
-def choice(options, branches):
-    return {"choice": [t(*o) for o in options], "then": branches}
-
+"""Prologue and chapter 1 (Bamboo Sea): events, people and texts.
+Part of tools/story/build.py; edit here, then run build.py."""
+from common import *
 
 # --- people ---------------------------------------------------------------------
-NPCS = {
-    "meister": ("Meister Lu", "Master Lu", "卢师傅", "gong", "gentle", -1),
-    "meister_plaza": ("Meister Lu", "Master Lu", "卢师傅", "gong", "gentle", -1),
-    "meister_mute": ("Meister Lu", "Master Lu", "卢师傅", "gong", "gentle", -1),
-    "yao": ("Yao", "Yao", "尧", "zhi", "brave", 0),
-    "wusheng": ("Wusheng", "Wusheng", "无声", "shang", "stubborn", -1),
-    "dorf_frau": ("Frau Fang", "Mrs Fang", "方大婶", "yu", "gentle", 1),
-    "dorf_kind": ("Kleiner Bo", "Little Bo", "小波", "jue", "playful", 1),
-    "dorf_oma": ("Oma Hu", "Granny Hu", "胡奶奶", "gong", "gentle", 0),
-    "wirtin": ("Wirtin Su", "Innkeeper Su", "苏老板娘", "yu", "gentle", 0),
-    "haendler": ("Händler Gao", "Merchant Gao", "高掌柜", "zhi", "playful", 0),
-    "teemeister": ("Teemeister Chen", "Tea Master Chen", "陈茶师", "gong", "gentle", -1),
-    "stille_frau": ("Frau Ning", "Mrs Ning", "宁夫人", "yu", "moody", 0),
-    "teeufer_kind": ("Ah Tao", "Ah Tao", "阿桃", "jue", "playful", 1),
-    "pilger": ("Pilger Wen", "Pilgrim Wen", "文香客", "jue", "gentle", 0),
-    "moench": ("Mönch Huan", "Monk Huan", "幻和尚", "shang", "gentle", -1),
-    "qinglong_free": ("Azurdrache", "Azure Dragon", "青龙", "jue", "gentle", -1),
-    "jinli": ("Jinli", "Jinli", "锦鲤", "yu", "playful", 1),
-}
-npcs = {}
-for nid, (de, en, zh, tone, style, octave) in NPCS.items():
-    key = "NPC_" + nid.upper()
-    t(key, de, en, zh)
-    npcs[nid] = {"name": key, "voice": {"tone": tone, "style": style, "octave": octave}}
+person("meister", "Meister Lu", "Master Lu", "卢师傅", "gong", "gentle", -1)
+person("meister_plaza", "Meister Lu", "Master Lu", "卢师傅", "gong", "gentle", -1)
+person("meister_mute", "Meister Lu", "Master Lu", "卢师傅", "gong", "gentle", -1)
+person("yao", "Yao", "Yao", "尧", "zhi", "brave", 0)
+person("wusheng", "Wusheng", "Wusheng", "无声", "shang", "stubborn", -1)
+person("dorf_frau", "Frau Fang", "Mrs Fang", "方大婶", "yu", "gentle", 1)
+person("dorf_kind", "Kleiner Bo", "Little Bo", "小波", "jue", "playful", 1)
+person("dorf_oma", "Oma Hu", "Granny Hu", "胡奶奶", "gong", "gentle", 0)
+person("wirtin", "Wirtin Su", "Innkeeper Su", "苏老板娘", "yu", "gentle", 0)
+person("haendler", "Händler Gao", "Merchant Gao", "高掌柜", "zhi", "playful", 0)
+person("teemeister", "Teemeister Chen", "Tea Master Chen", "陈茶师", "gong", "gentle", -1)
+person("stille_frau", "Frau Ning", "Mrs Ning", "宁夫人", "yu", "moody", 0)
+person("teeufer_kind", "Ah Tao", "Ah Tao", "阿桃", "jue", "playful", 1)
+person("pilger", "Pilger Wen", "Pilgrim Wen", "文香客", "jue", "gentle", 0)
+person("moench", "Mönch Huan", "Monk Huan", "幻和尚", "shang", "gentle", -1)
+person("qinglong_free", "Azurdrache", "Azure Dragon", "青龙", "jue", "gentle", -1)
+person("jinli", "Jinli", "Jinli", "锦鲤", "yu", "playful", 1)
 
 E = {}
 
@@ -463,6 +423,7 @@ E["wusheng_scene"] = [
         "Give them back? So the Phoenix burns and takes everything we love with it? No, old friend. From today on, nothing ends. No storms. No farewells.",
         "还回去？让凤凰燃尽，带走我们所爱的一切？不，老朋友。从今天起，再也没有终结。没有风暴，没有离别。"),
     say("meister_plaza", "EV_WU_5", "Ohne Abschied gibt es auch kein Wiedersehen, Wusheng! Ohne Ende keinen Frühling!", "Without farewell there is no reunion, Wusheng! Without an end, no spring!", "没有离别就没有重逢，无声！没有终结，就没有春天！"),
+    {"set": "lesson_master"},
     say("wusheng", "EV_WU_6", "Du redest zu viel.", "You talk too much.", "你话太多了。"),
     {"sfx": "fail"},
     {"fade": "out", "seconds": 0.15},
@@ -542,7 +503,8 @@ E["inn_door"] = [
 ]
 E["shop_door"] = [
     say("haendler", "EV_SHOP", "Kundschaft! Reisbällchen, Kräutertee, Futter für scheue Lingshou – alles frisch, auch wenn die Waage nicht mehr piept.", "A customer! Rice balls, herbal tea, food for shy Lingshou - all fresh, even if the scales don't beep anymore.", "来客人啦！饭团、草药茶、给怕生灵兽的食物——都是新鲜的，虽然秤不响了。"),
-    {"shop": ["reisbaellchen", "kraeutertee", "glockenbluete", "bambussprossen", "suessreis", "silbertau"]},
+    {"if": "tone_jue", "then": [{"shop": ["reisbaellchen", "kraeutertee", "glockenbluete", "bambussprossen", "suessreis", "silbertau", "bambus", "fahrrad"]}],
+     "else": [{"shop": ["reisbaellchen", "kraeutertee", "glockenbluete", "bambussprossen", "suessreis", "silbertau"]}]},
 ]
 E["teahouse"] = [
     say("teemeister", "EV_TEA_1", "Setz dich. Tee schmeckt auch in der Stille. Und Neuigkeiten gibt es immer.", "Sit down. Tea tastes good even in silence. And there's always news.", "坐吧。安静时茶也一样香。消息嘛，总是有的。"),
@@ -616,46 +578,41 @@ E["boss_qinglong"] = [
 ]
 E["tone_returns"] = [
     {"music": "tone_returns"},
-    {"set": "tone_jue"},
-    {"silence": False},
-    {"refresh": True},
     {"if": "freed_qinglong",
      "then": [say("narrator", "EV_TONE_1", "Der Herzklang des Drachen schwillt an – und plötzlich ist er da: ein einzelner, warmer Ton. Jue.", "The dragon's heartsong swells - and suddenly it is there: a single, warm tone. Jue.", "青龙的心音越来越响——忽然间，它出现了：一个温暖的音。角。")],
      "else": [{"set": "qinglong_defeated"},
               say("narrator", "EV_TONE_1B", "Der Drache sinkt erschöpft nieder. Die Stille bricht – aber leiser, als sie hätte brechen können. Ein einzelner Ton: Jue.", "The dragon sinks down, exhausted. The silence breaks - but more quietly than it could have. A single tone: Jue.", "巨龙精疲力竭地伏下。寂静被打破了——却比本可以的更轻。一个音：角。")]},
+    {"tone": "tone_jue"},
+    {"refresh": True},
     say("narrator", "EV_TONE_2", "Der Wind fährt durch den Bambus. Das Rauschen kehrt zurück, das Wasser in den Terrassen gluckst. Die Farben kommen zurück in die Welt.", "Wind sweeps through the bamboo. The rustling returns, water gurgles in the terraces. Colour flows back into the world.", "风穿过竹林。沙沙声回来了，梯田里的水汩汩作响。色彩重新回到了世界。"),
     {"voice": "qinglong", "event": "freed"},
     say("qinglong", "EV_TONE_3", "Wusheng nahm mein Lied, weil er Angst vor dem Abschied hat. Doch auch der Bambus muss alte Halme abwerfen, damit neue wachsen. Vier weitere Töne fehlen noch, kleiner Mensch.",
         "Wusheng took my song because he fears farewell. But even bamboo must shed old stalks so new ones can grow. Four more tones are still missing, little one.",
         "无声夺走我的歌，是因为他害怕离别。可竹子也要褪去旧竿，新竹才能生长。还有四个音没有找回，小家伙。"),
+    {"set": "lesson_bamboo"},
+    say("qinglong", "EV_TONE_3B", "Zwei Töne rufen jetzt nach dir: Yu im Norden, im Nebelfluss, und Zhi im Süden, am Regenbogengrat. Südlich von Teeufer führt der Weg zum Kreuzweg – von dort erreichst du beide.",
+        "Two tones call for you now: Yu in the north, at the Misty River, and Zhi in the south, at Rainbow Ridge. South of Teabank the road leads to the Crossroads - from there you can reach both.",
+        "现在有两个音在呼唤你：北方雾河的“羽”，南方彩虹岭的“徵”。从茶岸镇往南走就是十字路口——从那里两边都能去。"),
     {"sfx": "bell"},
-    {"bells": 4},
     say("jinli", "EV_TONE_4", "Miau! (Jinlis Glöckchen klingt hell – und von weit her antwortet ein anderes.)", "Mew! (Jinli's bell rings brightly - and from far away, another one answers.)", "喵！（锦鲤的铃铛清脆地响起——远处传来另一声回应。）"),
-    quest("QUEST_FREE", "Der erste Ton ist zurück. Fortsetzung folgt – erkunde weiter, zähme und befreie.", "The first tone is back. To be continued - keep exploring, taming and freeing.", "第一个音回来了。未完待续——继续探索、驯服和解放吧。"),
+    say("narrator", "EV_TONE_TUT", "Neu: Mit dem Windspiel-Schrein jeder Unterkunft reist du zu Städten, die du schon besucht hast. In Teeufer gibt es jetzt ein Fahrrad zu kaufen. Und auf deinem Hof westlich von Weidendorf leben Lingshou, die gerade kein Glöckchen haben.",
+        "New: with the wind chime shrine of any inn you travel to towns you've already visited. Teabank now sells a bicycle. And Lingshou without a bell live on your farm west of Willowdale.",
+        "新功能：通过任何客栈的风铃神龛，可以前往去过的城镇。茶岸镇现在有自行车卖。没有铃铛的灵兽住在柳村西边你的农庄里。"),
+    quest("QUEST_TWO_TONES", "Zwei Töne rufen: Yu im Norden (Nebelfluss) und Zhi im Süden (Regenbogengrat). Der Weg führt über den Kreuzweg südlich von Teeufer.",
+          "Two tones are calling: Yu in the north (Misty River) and Zhi in the south (Rainbow Ridge). The way leads over the Crossroads south of Teabank.",
+          "两个音在呼唤：北方的“羽”（雾河）和南方的“徵”（彩虹岭）。路经茶岸镇以南的十字路口。"),
+    {"goal": ["kreuzweg", 17, 12]},
     {"save": True},
-    {"end_beta": True},
 ]
-hints("FREE", ["Miau! (Jinli schnurrt zufrieden.)", "Miau. (Jinli rollt sich in der Sonne zusammen. Vielleicht warten noch Lingshou im hohen Gras?)", "Miaaau. (Mehr Töne gibt es in einer späteren Version. Bis dahin: Zähmen, kämpfen, die Beta bewerten!)"],
-      ["Mew! (Jinli purrs happily.)", "Mew. (Jinli curls up in the sun. Maybe more Lingshou wait in the tall grass?)", "Meeew. (More tones come in a later version. Until then: tame, battle, rate the beta!)"],
-      ["喵！（锦鲤满足地打着呼噜。）", "喵。（锦鲤在阳光下蜷成一团。也许高草丛里还有灵兽在等你？）", "喵——。（更多的音会在以后的版本中出现。现在先驯服、战斗、给测试版打分吧！）"])
+hints("TWO_TONES", ["Miau! (Jinli schaut nach Süden.)", "Miau, miau! (Von Teeufer aus führt ein Weg nach Süden zum Kreuzweg.)", "Miaaau! (Unten links in Teeufer geht es zum Kreuzweg. Von dort nach Norden zum Nebelfluss oder nach Süden zum Regenbogengrat.)"],
+      ["Mew! (Jinli looks south.)", "Mew, mew! (From Teabank a road leads south to the Crossroads.)", "Meeew! (At the bottom left of Teabank the road leads to the Crossroads. From there north to the Misty River or south to Rainbow Ridge.)"],
+      ["喵！（锦鲤望向南方。）", "喵喵！（从茶岸镇有条路往南通到十字路口。）", "喵——！（茶岸镇左下方的路通往十字路口。从那里往北去雾河，往南去彩虹岭。）"])
 E["qinglong_free"] = [
-    say("qinglong_free", "EV_QL_FREE", "Hörst du? Der Bambus singt wieder. Geh, kleiner Mensch. Der nächste Ton ruht im Norden, im Nebelfluss … doch das ist eine Reise für ein anderes Mal.",
-        "Do you hear it? The bamboo sings again. Go, little one. The next tone rests in the north, in the Misty River... but that is a journey for another time.",
-        "听见了吗？竹子又在歌唱了。去吧，小家伙。下一个音在北方的雾河……不过那是以后的旅程了。"),
+    say("qinglong_free", "EV_QL_FREE2", "Hörst du? Der Bambus singt wieder. Geh, kleiner Mensch. Yu ruht im Norden, Zhi im Süden. Und vergiss nicht: Auch ein Ende ist ein Teil des Liedes.",
+        "Do you hear it? The bamboo sings again. Go, little one. Yu rests in the north, Zhi in the south. And remember: an ending, too, is part of the song.",
+        "听见了吗？竹子又在歌唱了。去吧，小家伙。“羽”在北方，“徵”在南方。别忘了：结束也是歌的一部分。"),
 ]
+E["blocked_south_teeufer"] = [say("jinli", "EV_BLOCK_SOUTH", "Miau. (Jinli setzt sich auf den Weg nach Süden. Erst muss der Drache wieder singen.)", "Mew. (Jinli sits down on the road south. First the dragon must sing again.)", "喵。（锦鲤坐在往南的路上。得先让青龙重新歌唱。）")]
 
 # Jinli: hint on request (the event runner asks the model with the quest's templates).
 E["jinli_talk"] = [{"hint": True}]
-
-# --- write ------------------------------------------------------------------------
-with open(os.path.join(ROOT, "events", "chapter1.json"), "w") as f:
-    json.dump({"note": "Generiert von tools/story/chapter1.py – dort bearbeiten.", "events": E}, f, ensure_ascii=False, indent=1)
-with open(os.path.join(ROOT, "npcs.json"), "w") as f:
-    json.dump(npcs, f, ensure_ascii=False, indent=1)
-with open(os.path.join(ROOT, "i18n", "story.csv"), "w", newline="") as f:
-    w = csv.writer(f)
-    w.writerow(["keys", "en", "de", "zh_Hans"])
-    for k in sorted(TEXT):
-        en, de, zh = TEXT[k]
-        w.writerow([k, en, de, zh])
-print(f"{len(E)} events, {len(TEXT)} texts, {len(npcs)} people")

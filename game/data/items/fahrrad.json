@@ -1,0 +1,7 @@
+{
+  "id": "fahrrad",
+  "name": "ITEM_FAHRRAD",
+  "desc": "ITEM_FAHRRAD_DESC",
+  "kind": "key",
+  "price": 400
+}

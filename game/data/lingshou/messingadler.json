@@ -1,0 +1,30 @@
+{
+  "id": "messingadler",
+  "name": "LS_MESSINGADLER",
+  "animal": "LS_MESSINGADLER_ANIMAL",
+  "desc": "LS_MESSINGADLER_DESC",
+  "element": "metal",
+  "temperaments": [
+    "brave"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 50,
+    "atk": 66,
+    "def": 40,
+    "spd": 66
+  },
+  "moves": [
+    "klingenfeder",
+    "raureifkralle",
+    "sandsturm",
+    "glutfeder"
+  ],
+  "habitat": "ore_grotto",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/messingadler.md",
+  "learn": {
+    "16": "glockenschlag",
+    "28": "tigerbruellen"
+  }
+}

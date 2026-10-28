@@ -1,0 +1,28 @@
+{
+  "id": "qilin",
+  "name": "LS_QILIN",
+  "animal": "LS_QILIN_ANIMAL",
+  "desc": "LS_QILIN_DESC",
+  "element": "earth",
+  "temperaments": [
+    "gentle"
+  ],
+  "alignment": "silenced",
+  "base_stats": {
+    "hp": 96,
+    "atk": 66,
+    "def": 72,
+    "spd": 56
+  },
+  "moves": [
+    "bergbeben",
+    "qilinsegen",
+    "steinhaut",
+    "fruehlingssturm"
+  ],
+  "habitat": "shrine",
+  "can_breed": false,
+  "voice_card": "cards/{lang}/qilin.md",
+  "guardian": true,
+  "sprite_size": 96
+}

@@ -28,6 +28,30 @@ static func lingshou(id: String, silenced := false) -> Texture2D:
 	return _cache[key]
 
 
+## A Lingshou record's look: rare colour variants are hue-shifted (GDD "Zucht").
+static func lingshou_rec(rec: Dictionary) -> Texture2D:
+	var base := lingshou(rec["species"])
+	if int(rec.get("variant", 0)) == 0:
+		return base
+	var key := "var:" + String(rec["species"])
+	if not _cache.has(key):
+		var img := base.get_image()
+		img.decompress()
+		for y in img.get_height():
+			for x in img.get_width():
+				var c := img.get_pixel(x, y)
+				if c.a > 0.5 and c.s > 0.15:
+					img.set_pixel(x, y, Color.from_hsv(fposmod(c.h + 0.45, 1.0), c.s, c.v, c.a))
+		_cache[key] = ImageTexture.create_from_image(img)
+	return _cache[key]
+
+
+## Back or side view of a character if the art has one (<id>_back.png), else null.
+static func character_view(id: String, view: String) -> Texture2D:
+	var path := CHARS_DIR + id + "_" + view + ".png"
+	return load(path) if ResourceLoader.exists(path) else null
+
+
 static func character(id: String) -> Texture2D:
 	var key := "ch:" + id
 	if not _cache.has(key):
@@ -37,11 +61,13 @@ static func character(id: String) -> Texture2D:
 
 
 ## The hero recoloured with the chosen hair and outfit (hue swap of the base colours).
-static func hero(hair: int, outfit: int) -> Texture2D:
-	var key := "hero:%d:%d" % [hair, outfit]
+static func hero(hair: int, outfit: int, view := "") -> Texture2D:
+	var key := "hero:%d:%d:%s" % [hair, outfit, view]
 	if _cache.has(key):
 		return _cache[key]
-	var base := character("hero")
+	var base := character("hero") if view == "" else character_view("hero", view)
+	if base == null:
+		return null
 	var img := base.get_image()
 	img.decompress()
 	var hair_c := HAIR_COLORS[hair % HAIR_COLORS.size()]

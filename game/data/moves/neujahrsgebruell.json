@@ -1,0 +1,15 @@
+{
+  "id": "neujahrsgebruell",
+  "name": "MOVE_NEUJAHRSGEBRUELL",
+  "element": "earth",
+  "kind": "attack",
+  "accuracy": 90,
+  "target": "enemy",
+  "llm_hint": "the Nian's terrible roar",
+  "power": 80,
+  "effect": {
+    "status": "deaf",
+    "turns": 2,
+    "chance": 40
+  }
+}

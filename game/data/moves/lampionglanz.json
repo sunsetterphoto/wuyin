@@ -1,0 +1,10 @@
+{
+  "id": "lampionglanz",
+  "name": "MOVE_LAMPIONGLANZ",
+  "element": "fire",
+  "kind": "heal",
+  "accuracy": 95,
+  "target": "ally",
+  "llm_hint": "a warm lantern light that heals an ally",
+  "heal_pct": 35
+}

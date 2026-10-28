@@ -16,6 +16,13 @@ extends Node
 ##   {"refresh": true} / {"save": true} / {"set_inn": ["map", "spawn"]} / {"silence": bool}
 ##   {"shop": ["item", ...]} / {"inn": true} / {"rumor": true} / {"hint": true}
 ##   {"voice": "species", "event": "freed"} / {"end_beta": true} / {"run": "other_event"}
+##   {"quest": KEY, "region": "river"} / {"goal": [...], "region": "river"} / {"clear_region": "river"}
+##   {"tone": "tone_yu"}  a tone returns (bells per GDD table, colour and music come back)
+##   {"if_tones": n} / {"if_stat": ["freed", ">=", 3]} / {"if_any": [flags]}  (with "then"/"else")
+##   {"persuade": {...}, "success": [...], "fail": [...]}   talk someone round (Persuader)
+##   {"crane": true, "sings": [...], "silent": [...]}        talk to Wusheng's crane
+##   {"sleep": true} / {"travel": true} / {"restaurant": [...]} / {"farm": "pen"|"hut"|"carpenter"}
+##   {"time": hour} / {"take_item": "id"} / {"ending": true} / {"credits": true}
 
 const DIR := "res://data/events/"
 const NPCS_PATH := "res://data/npcs.json"
@@ -97,15 +104,42 @@ func _step(s: Dictionary) -> void:
 	if s.has("say"):
 		await say_key(s["say"], s["text"])
 	elif s.has("choice"):
+		# Options are keys, or {"text": key, "when": flag} shown only when the flag is set.
 		var opts: Array[String] = []
-		for k in s["choice"]:
-			opts.append(_fmt(tr(k)))
+		var index: Array[int] = []
+		for i in s["choice"].size():
+			var o = s["choice"][i]
+			if o is Dictionary:
+				if not MapData.condition_ok(o, st):
+					continue
+				o = o["text"]
+			opts.append(_fmt(tr(o)))
+			index.append(i)
 		var picked := await world.dialog.ask(opts)
 		var branches: Array = s.get("then", [])
-		if picked < branches.size():
-			await _run_steps(branches[picked])
-	elif s.has("if") or s.has("if_item") or s.has("if_party_min") or s.has("if_coins") or s.has("if_not"):
+		if picked >= 0 and picked < index.size() and index[picked] < branches.size():
+			await _run_steps(branches[index[picked]])
+	elif s.has("if") or s.has("if_item") or s.has("if_party_min") or s.has("if_coins") or s.has("if_not") \
+			or s.has("if_tones") or s.has("if_stat") or s.has("if_any") or s.has("if_count") or s.has("if_items"):
 		var ok := true
+		if s.has("if_items"):
+			ok = ok and st.item_count(s["if_items"][0]) >= int(s["if_items"][1])
+		if s.has("if_count"):
+			ok = ok and s["if_count"][0].filter(func(f): return bool(st.flag(f))).size() >= int(s["if_count"][1])
+		if s.has("if_tones"):
+			ok = ok and st.tones_count() >= int(s["if_tones"])
+		if s.has("if_stat"):
+			var v := int(st.stats.get(s["if_stat"][0], 0))
+			var n := int(s["if_stat"][2])
+			match s["if_stat"][1]:
+				">=":
+					ok = ok and v >= n
+				"<":
+					ok = ok and v < n
+				">":
+					ok = ok and v > n
+		if s.has("if_any"):
+			ok = ok and s["if_any"].any(func(f): return bool(st.flag(f)))
 		if s.has("if"):
 			ok = bool(st.flag(s["if"]))
 		if s.has("if_not"):
@@ -124,11 +158,68 @@ func _step(s: Dictionary) -> void:
 		st.flags.erase(s["clear"])
 		world.refresh_people()
 	elif s.has("quest"):
-		st.set_flag("quest", s["quest"])
+		if s.has("region"):
+			var rq: Dictionary = st.flag("rquest", {})
+			rq[s["region"]] = s["quest"]
+			st.set_flag("rquest", rq)
+		else:
+			st.set_flag("quest", s["quest"])
 		st.set_flag("hint_asks", 0)
 		world.update_quest()
 	elif s.has("goal"):
-		st.set_flag("goal", s["goal"])
+		if s.has("region"):
+			var rg: Dictionary = st.flag("rgoal", {})
+			rg[s["region"]] = s["goal"]
+			st.set_flag("rgoal", rg)
+		else:
+			st.set_flag("goal", s["goal"])
+	elif s.has("clear_region"):
+		for k in ["rquest", "rgoal"]:
+			var d: Dictionary = st.flag(k, {})
+			d.erase(s["clear_region"])
+			st.set_flag(k, d)
+		world.update_quest()
+	elif s.has("tone"):
+		var before := st.bells
+		st.return_tone(s["tone"])
+		world.set_silent(st.region_silent(world.region()))
+		Audio.set_muffled(false)
+		world.refresh_people()
+		world.refresh_party_follower()
+		if st.bells > before:
+			Audio.sfx("bell")
+			await say_key("narrator", "MSG_NEW_BELL", {"n": st.bells})
+	elif s.has("persuade"):
+		var ok := await world.persuade(s["persuade"])
+		await _run_steps(s.get("success", []) if ok else s.get("fail", []))
+	elif s.has("crane"):
+		var r := await world.befriend("silberkranich", 30, false)
+		await _run_steps(s.get("sings", []) if r["outcome"] == "tamed" else s.get("silent", []))
+	elif s.has("sleep"):
+		await world.sleep()
+	elif s.has("restaurant"):
+		await world.show_ui(RestaurantMenu.make(s["restaurant"]))
+	elif s.has("farm"):
+		match s["farm"]:
+			"pen":
+				await world.show_ui(PenMenu.make(_pen_index()))
+			"carpenter":
+				await world.show_ui(CarpenterMenu.new())
+			"hut":
+				await _inn(true)
+	elif s.has("count"):
+		st.count(s["count"], int(s.get("n", 1)))
+	elif s.has("time"):
+		st.minute = int(s["time"]) * 60
+	elif s.has("take_item"):
+		st.take_item(s["take_item"], int(s.get("n", 1)))
+	elif s.has("ending"):
+		var kind := Endings.decide(st)
+		st.set_flag("ending_" + kind)
+		st.set_flag("ending", kind)
+		await _run_steps(steps_of("ending_" + kind))
+	elif s.has("credits"):
+		await world.show_ui(EndScreen.make("final"))
 	elif s.has("give_item"):
 		st.give_item(s["give_item"], int(s.get("n", 1)))
 		Audio.sfx("coin")
@@ -200,9 +291,9 @@ func _step(s: Dictionary) -> void:
 	elif s.has("shop"):
 		await world.show_ui(ShopMenu.make(s["shop"]))
 	elif s.has("inn"):
-		await world.show_ui(InnMenu.new())
+		await _inn(false)
 	elif s.has("rumor"):
-		await _rumor(s.get("speaker", _self_id))
+		await _rumor(s.get("speaker", _self_id), s.get("templates", ["RUMOR_0", "RUMOR_1", "RUMOR_2"]))
 	elif s.has("hint"):
 		await _hint()
 	elif s.has("voice"):
@@ -210,9 +301,32 @@ func _step(s: Dictionary) -> void:
 	elif s.has("run"):
 		await _run_steps(steps_of(s["run"]))
 	elif s.has("end_beta"):
-		await world.show_ui(EndScreen.new())
+		await world.show_ui(EndScreen.make("beta"))
 	else:
 		push_warning("unknown event step: %s" % s)
+
+
+## The inn menu; sleeping and travelling run after it closed.
+func _inn(home: bool) -> void:
+	var st := world.state
+	st.inn = {"map": world.map.id, "spawn": world.map.def.get("inn_spawn", "inn")}
+	await world.show_ui(InnMenu.make(home))
+	var act: String = st.flag("_inn_action", "")
+	st.flags.erase("_inn_action")
+	if act == "sleep":
+		await world.sleep()
+	elif act.begins_with("travel:"):
+		var parts := act.split(":")
+		Audio.sfx("bell")
+		await world.enter_map(parts[1], parts[2])
+
+
+## Pen index of the pen sign or farm Lingshou that started the event.
+func _pen_index() -> int:
+	if _self_id.begins_with("pen_"):
+		return int(_self_id.trim_prefix("pen_"))
+	var a := world.actor(_self_id)
+	return int(a.entry.get("pen", -1)) if a else -1
 
 
 # --- text --------------------------------------------------------------------
@@ -259,7 +373,7 @@ func _fmt(text: String, args := {}) -> String:
 ## Jinli's hint for the current quest: clearer the more often the player asks.
 func _hint() -> void:
 	var st := world.state
-	var quest: String = st.flag("quest", "")
+	var quest: String = world.current_quest()
 	var asks := int(st.flag("hint_asks", 0))
 	st.set_flag("hint_asks", asks + 1)
 	if quest == "":
@@ -277,24 +391,34 @@ func _hint() -> void:
 	await say_text("jinli", r["text"], r["report"])
 
 
-func _rumor(speaker: String) -> void:
+## A rumour in a teahouse: retold by the model from facts of the region (sightings, the guardian,
+## the weather), or one of the event's templates.
+func _rumor(speaker: String, templates: Array) -> void:
 	var st := world.state
 	var facts: Array[String] = []
-	for m in ["bambuspfad", "reisterrassen"]:
-		if MapData.exists(m):
-			var md := MapData.load_map(m)
-			var names: Array = []
-			for e in md.def.get("encounters", {}).get("table", []):
-				names.append(tr(GameData.lingshou(e["species"])["name"]))
-			facts.append("%s: %s" % [tr(md.name_key()), ", ".join(names)])
-	facts.append("The Azure Dragon in the shrine above the rice terraces has fallen silent.")
-	if st.flag("tone_jue"):
-		facts.append("The tone Jue has returned; the bamboo sings again.")
-	var template := _fmt(tr("RUMOR_%d" % (int(st.flag("rumor_n", 0)) % 3)))
-	st.set_flag("rumor_n", int(st.flag("rumor_n", 0)) + 1)
+	var reg := world.region()
+	for m in MapData.all_ids():
+		var md := MapData.load_map(m)
+		if md.def.get("region", "") != reg or not md.def.has("encounters"):
+			continue
+		var names: Array = []
+		for e in md.def.get("encounters", {}).get("table", []):
+			if not e.get("night", false):
+				names.append(Texts.get_text(GameData.lingshou(e["species"])["name"], "en"))
+		facts.append("Wild spirit animals at %s: %s" % [Texts.get_text(md.name_key(), "en"), ", ".join(names)])
+	var guardian: String = {"bamboo": "Azure Dragon", "river": "Black Tortoise Xuanwu", "ridge": "fire bird Bifang",
+		"dunes": "White Tiger Baihu", "pillars": "Qilin"}.get(reg, "")
+	if guardian != "":
+		facts.append(("The %s has its song back." if not st.region_silent(reg) else "The %s has fallen silent; the land around is grey and still.") % guardian)
+	var w := Weather.current(st, world.map)
+	if w != "":
+		facts.append("Today's weather: " + w)
+	var n := int(st.flag("rumor_n", 0))
+	var template := _fmt(tr(templates[n % templates.size()]))
+	st.set_flag("rumor_n", n + 1)
 	var locale := TranslationServer.get_locale()
 	var msgs := [
-		{"role": "system", "content": "You are the tea master of the tea terrace town Teeufer in a family-friendly fantasy game. Tell the traveller one short rumour (one or two sentences, max 30 words) using only these facts. Do not invent new places. %s" % LingshouVoice.ANSWER_IN.get(locale, "")},
+		{"role": "system", "content": "You are a tea house keeper in a family-friendly fantasy game. Tell the traveller one short rumour (one or two sentences, max 30 words) using only these facts. Do not invent new places. %s" % LingshouVoice.ANSWER_IN.get(locale, "")},
 		{"role": "user", "content": "Facts:\n- %s\nTell a rumour. %s" % ["\n- ".join(facts), LingshouVoice.ANSWER_IN.get(locale, "")]},
 	]
 	var r := await _model_line("rumor", msgs, RUMOR_MAX_CHARS, template, speaker)

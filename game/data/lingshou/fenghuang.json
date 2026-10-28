@@ -1,0 +1,28 @@
+{
+  "id": "fenghuang",
+  "name": "LS_FENGHUANG",
+  "animal": "LS_FENGHUANG_ANIMAL",
+  "desc": "LS_FENGHUANG_DESC",
+  "element": "fire",
+  "temperaments": [
+    "gentle"
+  ],
+  "alignment": "free",
+  "base_stats": {
+    "hp": 110,
+    "atk": 82,
+    "def": 66,
+    "spd": 72
+  },
+  "moves": [
+    "wiedergeburt",
+    "phoenixlied",
+    "sonnenfeuer",
+    "qilinsegen"
+  ],
+  "habitat": "shrine",
+  "can_breed": false,
+  "voice_card": "cards/{lang}/fenghuang.md",
+  "guardian": true,
+  "sprite_size": 96
+}

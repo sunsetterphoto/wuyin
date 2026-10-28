@@ -1,0 +1,10 @@
+{
+  "id": "flutwelle",
+  "name": "MOVE_FLUTWELLE",
+  "element": "water",
+  "kind": "attack",
+  "accuracy": 85,
+  "target": "enemy",
+  "llm_hint": "a huge wave; strongest water attack",
+  "power": 85
+}

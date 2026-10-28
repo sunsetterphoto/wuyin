@@ -1,0 +1,29 @@
+{
+  "id": "glockenkamel",
+  "name": "LS_GLOCKENKAMEL",
+  "animal": "LS_GLOCKENKAMEL_ANIMAL",
+  "desc": "LS_GLOCKENKAMEL_DESC",
+  "element": "metal",
+  "temperaments": [
+    "gentle"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 66,
+    "atk": 46,
+    "def": 56,
+    "spd": 30
+  },
+  "moves": [
+    "glockenschlag",
+    "kranichlied",
+    "sandwirbel",
+    "eisenrolle"
+  ],
+  "habitat": "ore_grotto",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/glockenkamel.md",
+  "learn": {
+    "28": "tigerbruellen"
+  }
+}

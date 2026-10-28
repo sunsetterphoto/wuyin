@@ -1,0 +1,10 @@
+{
+  "id": "wolkenpfiff",
+  "name": "MOVE_WOLKENPFIFF",
+  "element": "earth",
+  "kind": "heal",
+  "accuracy": 95,
+  "target": "ally",
+  "llm_hint": "a whistle that brings soft healing clouds",
+  "heal_pct": 35
+}

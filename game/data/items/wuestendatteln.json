@@ -1,0 +1,11 @@
+{
+  "id": "wuestendatteln",
+  "name": "ITEM_WUESTENDATTELN",
+  "desc": "ITEM_WUESTENDATTELN_DESC",
+  "kind": "food",
+  "price": 25,
+  "likes": [
+    "metal",
+    "fire"
+  ]
+}

@@ -21,5 +21,10 @@
   ],
   "habitat": "bamboo_grove",
   "can_breed": true,
-  "voice_card": "cards/{lang}/nebelaffe.md"
+  "voice_card": "cards/{lang}/nebelaffe.md",
+  "desc": "LS_NEBELAFFE_DESC",
+  "learn": {
+    "13": "blattflug",
+    "25": "fruehlingssturm"
+  }
 }

@@ -1,0 +1,30 @@
+{
+  "id": "lampionfalter",
+  "name": "LS_LAMPIONFALTER",
+  "animal": "LS_LAMPIONFALTER_ANIMAL",
+  "desc": "LS_LAMPIONFALTER_DESC",
+  "element": "fire",
+  "temperaments": [
+    "gentle"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 42,
+    "atk": 46,
+    "def": 36,
+    "spd": 60
+  },
+  "moves": [
+    "lampionglanz",
+    "glutring",
+    "blattflug",
+    "echoruf"
+  ],
+  "habitat": "ember_pit",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/lampionfalter.md",
+  "learn": {
+    "16": "funkenregen",
+    "28": "sonnenfeuer"
+  }
+}

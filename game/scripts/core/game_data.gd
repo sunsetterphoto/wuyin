@@ -6,10 +6,10 @@ extends RefCounted
 const LINGSHOU_DIR := "res://data/lingshou"
 const MOVES_DIR := "res://data/moves"
 const ITEMS_DIR := "res://data/items"
-const ITEM_KINDS: Array[String] = ["heal", "revive", "food"]
+const ITEM_KINDS: Array[String] = ["heal", "revive", "food", "material", "key", "festival", "dish"]
 
 const TEMPERAMENTS: Array[String] = ["brave", "anxious", "stubborn", "playful", "gentle", "moody"]
-const ALIGNMENTS: Array[String] = ["free", "wild", "silenced", "shadow_moth"]
+const ALIGNMENTS: Array[String] = ["free", "wild", "silenced", "shadow_moth", "nian"]
 const MOVE_KINDS: Array[String] = ["attack", "status", "heal", "guard"]
 const MOVE_TARGETS: Array[String] = ["enemy", "ally", "self", "ally_side"]
 const STATUSES: Array[String] = ["silenced", "echo", "dissonance", "deaf", "resonance"]

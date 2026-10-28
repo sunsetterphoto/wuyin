@@ -5,6 +5,7 @@ BATTLE_CALMS,You hum softly for {target}.,Du summst leise für {target}.,你轻�
 BATTLE_COINS,You find {n} coins.,Du findest {n} Münzen.,你找到了{n}铜钱。
 BATTLE_FEEDS,You offer {target} some {item}.,Du bietest {target} {item} an.,你把{item}递给{target}。
 BATTLE_FLED,You step back and move on.,Du weichst aus und gehst weiter.,你退开，继续前行。
+BATTLE_FLEES,{target} can't stand the noise and the red and flees!,{target} hält den Lärm und das Rot nicht aus und flieht!,{target}受不了喧闹和红色，逃走了！
 BATTLE_FLEE_CONFIRM,Step back and leave,Ausweichen und gehen,退开离去
 BATTLE_FREED,The silence falls away from {target}!,Die Stille fällt von {target} ab!,寂静从{target}身上褪去！
 BATTLE_HEART,Heartsong,Herzklang,心音
@@ -15,8 +16,12 @@ BATTLE_INTRO_MOTH,"A {name} flutters close, eating the last sounds!",Eine {name}
 BATTLE_INTRO_SILENCED,A silenced {name} blocks the way. Fill its heartsong!,Ein verstummtes {name} versperrt den Weg. Fülle seinen Herzklang!,失声的{name}挡住了去路。唤醒它的心音！
 BATTLE_INTRO_WILD,A wild {name} appears!,Ein wildes {name} taucht auf!,野生的{name}出现了！
 BATTLE_ITEM,{item} for {target}.,{item} für {target}.,给{target}使用了{item}。
+BATTLE_LEARNED,{target} learned {move}!,{target} kann jetzt {move}!,{target}学会了{move}！
+BATTLE_LEARNED_SWAP,{target} learned {move}! (Swap it in from the companions menu.),{target} kann jetzt {move}! (Im Gefolge-Menü gegen eine andere Attacke tauschen.),{target}学会了{move}！（可在同伴菜单中替换招式。）
 BATTLE_NOT_POSSIBLE,That doesn't work right now.,Das geht gerade nicht.,现在做不到。
 BATTLE_REVIVE,{target} gets back up!,{target} steht wieder auf!,{target}重新站了起来！
+BATTLE_SCARED,{target} recoils in fright! Its strength wanes.,{target} weicht erschrocken zurück! Seine Kraft schwindet.,{target}吓得后退！力量减弱了。
+BATTLE_SCARE_ITEM,You hold up the {item}!,Du hältst {item} hoch!,你举起了{item}！
 BATTLE_TAB_ATTACK,Moves,Attacken,招式
 BATTLE_TAB_BAG,Bag,Beutel,背包
 BATTLE_TAB_CALL,Call,Ruf,呼唤
@@ -38,29 +43,163 @@ BATTLE_TRUST_UP,{target} comes a little closer.,{target} kommt ein Stück näher
 BATTLE_WATCHES,{user} watches you curiously.,{user} beobachtet dich neugierig.,{user}好奇地看着你。
 BEFRIEND_FLED,{name} startles and darts away...,{name} erschrickt und huscht davon …,{name}吓了一跳，溜走了……
 BEFRIEND_INTRO,"{name} is shy ({temperament}). Calm it, feed it or talk to it - don't attack.","{name} ist scheu ({temperament}). Beruhige es, füttere es oder sprich mit ihm – greif es nicht an.",{name}很怕生（{temperament}）。安抚它、喂它或者和它说话——不要攻击。
+CARPENTER_BUILD,Build,Ausbauen,扩建
+CARPENTER_DONE,Done! Have a look at your new farm.,Fertig! Schau dir deinen neuen Hof an.,完工了！去看看你的新农庄吧。
+CARPENTER_NEXT,Upgrade to: {stage} ({pens} pens),Ausbau zu: {stage} ({pens} Gehege),扩建为：{stage}（{pens}个围栏）
+CARPENTER_NOW,Your farm: {stage}. Pens: {built} of {pens} possible.,Dein Hof: {stage}. Gehege: {built} von {pens} möglichen.,你的农庄：{stage}。围栏：{built}/{pens}。
+CARPENTER_TITLE,Carpenter,Zimmermann,木匠
+CH_FI_1A,Even bamboo sheds old stalks so new ones can grow. The Azure Dragon told me that.,"Auch der Bambus wirft alte Halme ab, damit neue wachsen. Das hat mir der Azurdrache gesagt.",竹子也要褪去旧竿，新竹才能生长。这是青龙告诉我的。
+CH_FI_1B,The fire pine opens its cones only in fire. Without burning there's no new forest.,Die Feuerkiefer öffnet ihre Zapfen nur im Feuer. Ohne Brand gibt es keinen neuen Wald.,火松的松果只在火中张开。没有燃烧，就没有新的森林。
+CH_FI_1C,Because that's just how it has to be!,Weil es nun mal so sein muss!,因为本来就该这样！
+CH_FI_2A,The fisher in Misthaven lets his cormorant go every autumn. And every spring it comes back.,Der Fischer in Nebelhafen lässt seinen Kormoran jeden Herbst ziehen. Und jeden Frühling kommt er zurück.,雾港的渔夫每年秋天都放他的鸬鹚走。每年春天它都会回来。
+CH_FI_2B,"Xuanwu has seen ten thousand winters. Each one left, each one came back.","Xuanwu hat zehntausend Winter gesehen. Jeder ging, jeder kam wieder.",玄武见过一万个冬天。每一个都离开了，每一个都回来了。
+CH_FI_2C,Master Lu told you: without farewell there is no reunion.,Meister Lu hat es dir gesagt: Ohne Abschied gibt es kein Wiedersehen.,卢师傅早就告诉过你：没有离别，就没有重逢。
+CH_FI_2D,I don't care.,Das ist mir egal.,我不在乎。
+CH_FI_3A,Baihu said: even the leaves fall so the tree survives the winter.,"Baihu hat gesagt: Auch das Laub fällt, damit der Baum den Winter übersteht.",白虎说过：树叶落下，大树才能熬过冬天。
+CH_FI_3B,The Qilin says: the earth takes back every leaf and gives it to the spring. Nothing is lost.,Der Qilin sagt: Die Erde nimmt jedes Blatt zurück und schenkt es dem Frühling. Nichts geht verloren.,麒麟说：大地收回每一片叶子，再把它送给春天。什么都不会失去。
+CH_FI_3C,Bifang said: a forest that never burns never grows young.,"Bifang hat gesagt: Ein Wald, der nie brennt, wird nie jung.",毕方说过：从不燃烧的森林，永远不会年轻。
+CH_FI_3D,"Just give up, old man!","Gib einfach auf, alter Mann!",放弃吧，老头！
+CH_FI_FEATHER,Show the crane the feather from Tortoise Bay and talk to it.,Zeig dem Kranich die Feder aus der Schildkrötenbucht und sprich mit ihm.,把玄龟湾的羽毛给鹤看，和它说说话。
+CH_FI_NOFEATHER,Enough talk.,Genug geredet.,说够了。
+CH_HALL_A,"Your grandfather liked spring, Yao. He'd want it to come back.","Dein Großvater mochte den Frühling, Yao. Er würde wollen, dass er wiederkommt.",你爷爷喜欢春天，尧。他会希望春天回来的。
+CH_HALL_B,I'm afraid of goodbyes too. But I don't want everything to stand still.,"Ich habe auch Angst vor Abschieden. Aber ich will nicht, dass alles stehen bleibt.",我也害怕告别。但我不想让一切都停下来。
+CH_HALL_C,"You're just running away, Yao. Coward.","Du läufst nur weg, Yao. Feigling.",你只是在逃避，尧。胆小鬼。
+CH_HONG_A,I'll help you build a firebreak. Then the village is safe when Bifang calls again.,"Ich helfe euch, eine Feuerschneise zu bauen. Dann ist das Dorf sicher, wenn Bifang wieder ruft.",我帮你们修一条防火带。这样等毕方再叫的时候，村子也安全。
+CH_HONG_B,Without fire nothing new grows. I'm going anyway.,Ohne Feuer wächst nichts Neues. Ich gehe trotzdem.,没有火，就长不出新东西。我还是要去。
 CH_YAO_A,I understand you. But without an end there is no spring either.,Ich verstehe dich. Aber ohne Ende gibt es auch keinen Frühling.,我懂你。但没有终结，也就没有春天。
 CH_YAO_B,Wusheng takes everyone's voice. That isn't peace.,Wusheng nimmt allen ihre Stimme. Das ist kein Frieden.,无声夺走了所有人的声音，这不是安宁。
+CH_YAO_ND_A,"Yao, come home. We'll find another way.","Yao, komm nach Hause. Wir finden einen anderen Weg.",尧，回家吧。我们会找到别的办法。
+CH_YAO_ND_B,"The Nian grew strong in the silence, Yao - not in the noise.","Der Nian wurde in der Stille stark, Yao – nicht im Lärm.",年兽是在寂静中变强的，尧——不是在喧闹中。
+CREDITS_TEXT,"Idea, direction and Jinli: Samuel. Programming, story and text: Claude (Anthropic) with Claude Code. Art: Z-Image Turbo, music: ACE-Step 1.5, language model: Gemma 4 E2B - all generated locally. Engine: Godot 4. Thank you for playing!","Idee, Spielleitung und Jinli: Samuel. Programmierung, Geschichte und Texte: Claude (Anthropic) mit Claude Code. Grafik: Z-Image Turbo, Musik: ACE-Step 1.5, Sprachmodell: Gemma 4 E2B – alles lokal erzeugt. Engine: Godot 4. Danke fürs Spielen!",创意、总监和锦鲤：Samuel。程序、故事与文字：Claude（Anthropic），使用Claude Code。美术：Z-Image Turbo，音乐：ACE-Step 1.5，语言模型：Gemma 4 E2B——全部本地生成。引擎：Godot 4。感谢游玩！
+CREDITS_TITLE,Credits,Mitwirkende,制作
+DIARY_ALONE,{a} looked at the gate for a long time. Maybe it wants company.,{a} hat lange zum Tor geschaut. Vielleicht wünscht es sich Gesellschaft.,{a}望着大门望了很久。也许它想要个伴。
+DIARY_CHAT_0,{a} told {b} stories half the night.,{a} hat {b} die halbe Nacht Geschichten erzählt.,{a}给{b}讲了半夜的故事。
+DIARY_CHAT_1,{a} and {b} argued over the last bit of food - and then shared it.,{a} und {b} haben um das letzte Futter gestritten – und es dann geteilt.,{a}和{b}为最后一口食物吵了一架——然后分着吃了。
+DIARY_CHAT_2,{b} laughed at {a} for snoring.,{b} hat {a} beim Schnarchen ausgelacht.,{b}笑话{a}打呼噜。
+DIARY_CHAT_3,{a} and {b} counted the stars together.,{a} und {b} haben zusammen die Sterne gezählt.,{a}和{b}一起数星星。
+DIARY_EGG,Farm diary: {a} and {b} have laid an egg!,Hoftagebuch: {a} und {b} haben ein Ei gelegt!,农庄日记：{a}和{b}下了一个蛋！
+DIARY_GROWN,Farm diary: {a} has grown up.,Hoftagebuch: {a} ist erwachsen geworden.,农庄日记：{a}长大了。
+DIARY_HATCHED,Farm diary: A little {a} has hatched!,Hoftagebuch: Ein kleines {a} ist geschlüpft!,农庄日记：一只小{a}孵出来了！
+DIARY_HATCHED_RARE,Farm diary: A little {a} has hatched - in very rare colours!,Hoftagebuch: Ein kleines {a} ist geschlüpft – in ganz seltenen Farben!,农庄日记：一只小{a}孵出来了——颜色非常罕见！
+DIARY_PREFIX,Farm diary:,Hoftagebuch:,农庄日记：
+ENDING_TEXT_BITTER,"The phoenix is reborn, but too many of the silenced were defeated instead of freed. Their silence still lies over the Singing Dunes - not a sound can be heard there. Perhaps you can still free them.","Der Phönix ist neu geboren, doch zu viele Verstummte wurden besiegt statt befreit. Ihre Stille liegt noch über den Singenden Dünen – dort hört man keinen Ton. Vielleicht kannst du sie noch befreien.",凤凰重生了，但太多失声的灵兽被打败而不是被解放。它们的寂静仍笼罩着鸣沙丘——那里听不到一点声音。也许你还能解放它们。
+ENDING_TEXT_RECONCILE,"Wusheng has said farewell to his crane, and the phoenix is reborn from its song. The Order of Silence has dissolved. All five tones ring over Yunhai again - and for the first time in a long while, nobody fears the end of a song.","Wusheng hat Abschied von seinem Kranich genommen, und der Phönix ist aus seinem Lied neu geboren. Der Orden der Stille hat sich aufgelöst. Über Yunhai klingen wieder alle fünf Töne – und zum ersten Mal seit langer Zeit hat niemand mehr Angst vor dem Ende eines Liedes.",无声与他的鹤告别了，凤凰从歌声中重生。寂静教团解散了。五音再次响彻云海——很久以来第一次，再也没有人害怕一首歌的结束。
+ENDING_TEXT_VICTORY,"Wusheng is defeated and banished, and the phoenix is reborn. The five tones ring again. Yet some of the silenced never found their voice again, and somewhere Wusheng sits alone with a crane that stays silent.","Wusheng ist besiegt und verbannt, und der Phönix ist neu geboren. Die fünf Töne klingen wieder. Doch manche Verstummte haben ihre Stimme nie wiedergefunden, und Wusheng sitzt irgendwo allein mit einem Kranich, der schweigt.",无声被打败并被放逐，凤凰重生了。五音再次响起。可是有些失声的灵兽再也没能找回声音，而无声独自坐在某处，身边是一只沉默的鹤。
+ENDING_TITLE_BITTER,Ending: Bitter Silence,Ende: Bittere Stille,结局：苦涩的寂静
+ENDING_TITLE_RECONCILE,Ending: Reconciliation,Ende: Versöhnung,结局：和解
+ENDING_TITLE_VICTORY,Ending: Victory,Ende: Sieg,结局：胜利
 END_CONTINUE,Keep playing,Weiterspielen,继续游玩
+END_GAME_TITLE,The End,Ende,终
 END_RATE,Rate now,Jetzt bewerten,现在评价
 END_STATS,Play time {time} · {battles} battles · {tamed} tamed · {freed} freed · {calls} calls · {party} Lingshou,Spielzeit {time} · {battles} Kämpfe · {tamed} gezähmt · {freed} befreit · {calls} Rufe · {party} Lingshou,游戏时间{time} · 战斗{battles}次 · 驯服{tamed} · 解放{freed} · 呼唤{calls}次 · 灵兽{party}只
 END_TEXT,"The first tone is back - the Bamboo Sea sings again. This is where the Wuyin beta ends. Thank you for playing! You can keep exploring, taming and battling.","Der erste Ton ist zurück – das Bambusmeer singt wieder. Hier endet die Beta von Wuyin. Danke fürs Spielen! Du kannst weiter herumlaufen, zähmen und kämpfen.",第一个音回来了——竹海再次歌唱。五音测试版到此结束。感谢游玩！你可以继续探索、驯服和战斗。
 END_TITLE,End of the beta,Ende der Beta,测试版结束
+EPI_FARM,Young Lingshou romp around your farm in Willowdale. Jinli looks after them all.,Auf deinem Hof in Weidendorf tollen junge Lingshou herum. Jinli passt auf sie alle auf.,柳村的农庄里，小灵兽们嬉戏打闹。锦鲤照看着它们。
+EPI_MASTER,"Master Lu builds a new wind chime with twelve bells. He hangs up the biggest one for you, {player}.","Meister Lu baut ein neues Windspiel mit zwölf Glöckchen. Das größte hängt er für dich auf, {player}.",卢师傅做了一只挂着十二只铃铛的新风铃。最大的那只，他为你挂了起来，{player}。
+EPI_ORDER_FIGHT,"You often fought the Order. Some of its members still keep silent, out of spite.","Mit dem Orden hast du oft gekämpft. Manche seiner Mitglieder schweigen noch immer, aus Trotz.",你常和教团交手。有些成员至今仍赌气沉默着。
+EPI_ORDER_TALK,You won over many of the Order with words. They went back to their villages and sing along again.,Viele aus dem Orden hast du mit Worten überzeugt. Sie sind in ihre Dörfer zurückgekehrt und singen wieder mit.,你用言语说服了许多教团成员。他们回到了自己的村子，又一起唱歌了。
+EPI_ROTFELS,In Redrock the firebreak protects the village. Bifang sings - and the mayor quietly sings along.,In Rotfels schützt die Feuerschneise das Dorf. Bifang singt – und die Bürgermeisterin singt leise mit.,赤岩镇的防火带保护着村子。毕方在歌唱——镇长也轻轻地跟着唱。
+EPI_YAO_BACK,Yao lives in Willowdale again. In spring he plants bamboo by his grandfather's grave - and laughs again.,Yao lebt wieder in Weidendorf. Im Frühling pflanzt er Bambus am Grab seines Großvaters – und lacht wieder.,尧又住回了柳村。春天，他在爷爷的坟前种竹子——又会笑了。
+EPI_YAO_GONE,"Yao has gone away, nobody knows where. Sometimes a bamboo leaf lies at your door.","Yao ist fortgegangen, niemand weiß wohin. Manchmal liegt ein Bambusblatt vor deiner Tür.",尧走了，没人知道他去了哪里。有时你门前会放着一片竹叶。
+EV_ASHES,"The ashes are warm. Deep inside, a spark glows, waiting for its song.","Die Asche ist warm. Ganz tief darin glimmt ein Funke, der auf sein Lied wartet.",灰烬是温的。在最深处，一粒火星在闪烁，等待着它的歌。
+EV_AYLA,Do you know why the moon lives in our spring? Because otherwise he feels so lonely at night!,"Weißt du, warum der Mond in unserer Quelle wohnt? Weil er sich sonst nachts so allein fühlt!",你知道月亮为什么住在我们的泉水里吗？因为不然它晚上会很孤单！
+EV_BATU,"The dunes used to sing us the way. Now even the camels get lost. Dates? Copper? For the road, friend.","Früher sangen die Dünen uns den Weg. Jetzt verirren sich sogar die Kamele. Datteln? Kupfer? Für den Weg, Freund.",以前沙丘会唱着给我们指路。现在连骆驼都会迷路。枣子？铜？路上用得着，朋友。
+EV_BDF_1,Baihu lies grey in the sand again. The silence of the defeated has settled over him.,Baihu liegt wieder grau im Sand. Die Stille der Besiegten hat sich über ihn gelegt.,白虎又灰扑扑地躺在沙里。被打败者的寂静笼罩着它。
+EV_BDF_2,The dunes begin to sing. Now the Song of the Phoenix is complete.,Die Dünen beginnen zu singen. Jetzt klingt das Lied des Phönix vollständig.,沙丘开始歌唱。现在，凤凰之歌终于完整了。
+EV_BDF_3,"Baihu sinks down, the dunes stay mute. Force won't do it.","Baihu sinkt nieder, die Dünen bleiben stumm. Mit Gewalt geht es nicht.",白虎倒下了，沙丘依旧无声。用武力是不行的。
+EV_BF_1,"No current, no boat; no cormorant, no fish. Only old Zhou has a boat you can row - but he hasn't moved since his Bai left.","Ohne Strömung kein Boot, ohne Kormoran kein Fisch. Nur der alte Zhou hat ein Boot, das man rudern kann – aber der rührt sich nicht, seit sein Bai fort ist.",没有水流就没有船，没有鸬鹚就没有鱼。只有老周有条能划的船——可自从他的小白走了，他就一动不动了。
+EV_BF_2,"Rowing without a current is hard work. When the tone is back, the river will carry you by itself again.","Rudern ohne Strömung ist harte Arbeit. Wenn der Ton zurück ist, trägt dich der Fluss wieder von allein.",没有水流，划船可辛苦了。等音回来了，河水又会自己载着你走。
+EV_BH_1,"Baihu raises his head. His stripes, once silver, are dull. He roars - without a sound.","Baihu hebt den Kopf. Seine Streifen, einst silbern, sind stumpf. Er brüllt – lautlos.",白虎抬起了头。它曾经银光闪闪的条纹黯淡无光。它咆哮着——却没有声音。
+EV_BH_2,... autumn... never... again...,… Herbst … nie … mehr …,……秋天……再也……不……
+EV_BH_ALONE,Alone? You need at least two companions.,Allein? Du brauchst mindestens zwei Gefährten.,一个人？你至少需要两个同伴。
+EV_BH_FREE,"Show me your heart, not your claws. You did that.","Zeig mir dein Herz, nicht deine Krallen. Das hast du getan.",给我看你的心，而不是你的爪子。你做到了。
+EV_BH_LOSE,The tiger is strong. Rest and try again.,Der Tiger ist stark. Ruh dich aus und versuch es noch einmal.,老虎很强。休息一下再试吧。
+EV_BH_TUT,Two against two! Brave ones want to hear encouragement and praise.,Zwei gegen zwei! Mutige wollen Ermutigung und Lob hören.,二对二！勇敢的灵兽喜欢听鼓励和称赞。
+EV_BI_1,Bifang turns its head. No sparks fly from its grey plumage - only dust.,Bifang dreht den Kopf. Aus seinem grauen Gefieder stieben keine Funken – nur Staub.,毕方转过头来。灰色的羽毛里没有迸出火星——只有灰尘。
+EV_BI_2,... no... fire... no... morning...,… kein … Feuer … kein … Morgen …,……没有……火……没有……明天……
+EV_BI_ALONE,Alone? You need at least two companions.,Allein? Du brauchst mindestens zwei Gefährten.,一个人？你至少需要两个同伴。
+EV_BI_FREE,"Stand firm, even if you only have one leg! Ha!","Steh fest, auch wenn du nur ein Bein hast! Ha!",站稳了，哪怕你只有一条腿！哈！
+EV_BI_LOSE,Fire takes patience. Rest and try again.,Feuer braucht Geduld. Ruh dich aus und versuch es noch einmal.,火需要耐心。休息一下再试吧。
+EV_BI_TUT,Two against two! Brave ones like encouragement - give Bifang courage to fill its heartsong.,"Zwei gegen zwei! Mutige mögen Ermutigung – sprich Bifang Mut zu, um seinen Herzklang zu füllen.",二对二！勇敢的灵兽喜欢鼓励——给毕方打气，唤醒它的心音。
 EV_BLOCK_NORTH,Mew. (Jinli sits down on the road. Tonight is the festival - not the journey.),Miau. (Jinli setzt sich auf den Weg. Heute Nacht ist das Fest – nicht die Reise.),喵。（锦鲤坐在路中间。今晚是节日，不是出远门的时候。）
 EV_BLOCK_RIVER,Mew? (Jinli looks back at the festival square. Festival first!),Miau? (Jinli schaut zurück zum Festplatz. Erst das Fest!),喵？（锦鲤回头看着节日广场。先过节吧！）
+EV_BLOCK_SOUTH,Mew. (Jinli sits down on the road south. First the dragon must sing again.),Miau. (Jinli setzt sich auf den Weg nach Süden. Erst muss der Drache wieder singen.),喵。（锦鲤坐在往南的路上。得先让青龙重新歌唱。）
+EV_BOAT_MISSING,"Mew? (Jinli looks at the water, then at you. Without a boat you can't go on.)","Miau? (Jinli schaut aufs Wasser, dann zu dir. Ohne Boot kommt ihr nicht weiter.)",喵？（锦鲤看看水面，又看看你。没有船过不去。）
 EV_BOSS_1,"The dragon opens its eyes. Grey, empty. A shadow moth peels away from its scales.","Der Drache öffnet die Augen. Grau, leer. Eine Schattenmotte löst sich aus seinen Schuppen.",巨龙睁开眼睛，灰暗而空洞。一只影蛾从它的鳞片间飞了出来。
 EV_BOSS_2,... spring... gone... nothing... grows...,… Frühling … fort … nichts … wächst …,……春天……走了……什么……都不长……
 EV_BOSS_ALONE,You can't reach him alone. You need at least two companions.,Allein kommst du nicht an ihn heran. Du brauchst mindestens zwei Gefährten.,一个人是靠近不了他的。你至少需要两个同伴。
 EV_BOSS_LOSE,Rest and try again. He is waiting.,Ruh dich aus und versuch es noch einmal. Er wartet.,休息一下再试吧。他会等你的。
 EV_BOSS_TUT,Two against two! Fill the Azure Dragon's heartsong to free it. The moth eats sounds - keep it in check.,"Zwei gegen zwei! Fülle den Herzklang des Azurdrachen, um ihn zu befreien. Die Motte frisst Klänge – halte sie in Schach.",二对二！唤醒青龙的心音来解放它。影蛾会吞食声音——要压制住它。
+EV_BO_N1,"My drum sounds again! Ever since the dragon sings! Here, take it - give the Nian an earful!","Meine Trommel klingt wieder! Seit der Drache singt! Hier, nimm sie – hau dem Nian was auf die Ohren!",我的鼓又能响了！自从青龙唱歌以后！给你——敲得年兽耳朵嗡嗡响！
+EV_BO_N2,Hit it! Boom-boom!,Hau drauf! Bumm-bumm!,使劲敲！咚咚！
+EV_BU_1,"Tortoise Bay. On a stone terrace lies a shell as big as a house, mossy and grey. A sleeping serpent coils around it.","Die Schildkrötenbucht. Auf einer Steinterrasse liegt ein Panzer, so groß wie ein Haus, bemoost und grau. Um ihn windet sich eine schlafende Schlange.",玄龟湾。石台上躺着一副房子那么大的龟甲，长满青苔，灰扑扑的。一条沉睡的蛇缠绕着它。
 EV_CHEST,A little chest stands between the bamboo roots.,Zwischen den Bambuswurzeln steht eine kleine Kiste.,竹根之间放着一个小箱子。
+EV_CHEST_DANXIA,A chest of red clay stands in a rock niche.,In einer Felsnische steht eine Kiste aus rotem Ton.,岩洞里放着一个红陶箱子。
+EV_CHEST_DUENEN,Half buried in the sand: a chest with copper fittings.,Halb im Sand vergraben: eine Kiste mit Kupferbeschlägen.,半埋在沙里：一个包铜的箱子。
+EV_CHEST_KARST,A chest with fishing-net knots is wedged between the rocks.,Zwischen den Felsen klemmt eine Kiste mit Fischernetz-Knoten.,岩石间卡着一个打着渔网结的箱子。
+EV_CHEST_SAEULEN,"On a pillar, between pine roots: a chest of green jade.","Auf einer Säule, zwischen Kiefernwurzeln: eine Kiste aus grüner Jade.",石柱上，松根之间：一个绿玉箱子。
 EV_CHIME,"The festival tree by the well, full of red ribbons.","Der Festbaum am Brunnen, voller roter Bänder.",井边的节日树，挂满了红丝带。
 EV_CHIME_SILENT,The wind chime hangs on the festival tree. It moves in the wind - but makes no sound.,Das Windspiel hängt am Festbaum. Es bewegt sich im Wind – aber es klingt nicht.,风铃挂在节日树上，随风摆动——却没有一点声音。
+EV_CS_1,"The crane raises its head, spreads its wings - and sings. A bright, trembling tone, old and beautiful.","Der Kranich hebt den Kopf, breitet die Flügel aus – und singt. Ein heller, zitternder Ton, alt und wunderschön.",鹤抬起头，展开双翅——唱了起来。一个明亮、颤抖的音，古老而美丽。
+EV_CS_2,"... You knew all along. You wanted to go, and you only kept silent for me.","… Du hast es die ganze Zeit gewusst. Du wolltest gehen, und hast nur für mich geschwiegen.",……你一直都知道。你想走，只是为了我才保持沉默。
+EV_CS_3,"I let you go, old friend. Thank you for every song.","Ich lasse dich gehen, alter Freund. Danke für jedes Lied.",我放你走，老朋友。谢谢你唱过的每一首歌。
+EV_DW_1,Golden dunes to the horizon. They say they sing when the wind brushes over them. Today they are silent.,"Goldene Dünen bis zum Horizont. Man sagt, sie singen, wenn der Wind über sie streicht. Heute schweigen sie.",金色的沙丘一直延伸到天边。听说风吹过时它们会歌唱。今天它们沉默着。
+EV_DX_1,"Bands of red, yellow and orange rock run through the mountains like a frozen rainbow. Without the tone Zhi they look dull, like ash.","Rote, gelbe und orangefarbene Felsbänder ziehen sich durch die Berge wie ein erstarrter Regenbogen. Ohne den Ton Zhi wirken sie stumpf, wie Asche.",红、黄、橙色的岩层贯穿群山，像一道凝固的彩虹。没有“徵”音，它们显得暗淡，像灰烬一样。
+EV_END_B1,"The ashes catch fire, and the phoenix rises. But its song sounds thin, as if a voice were missing.","Die Asche fängt Feuer, und der Phönix steigt auf. Doch sein Lied klingt dünn, als fehle ihm eine Stimme.",灰烬燃起，凤凰升空。可它的歌声单薄，好像缺了一个声音。
+EV_END_B2,"Too many of the silenced were defeated instead of freed. In the west, over the Singing Dunes, it stays silent.","Zu viele Verstummte wurden besiegt statt befreit. Im Westen, über den Singenden Dünen, bleibt es still.",太多失声的灵兽被打败而不是被解放。西边的鸣沙丘上，依旧一片寂静。
+EV_END_R1,Wusheng holds the crane in his arms one last time. Then the old bird flies singing into the nest - and the ashes catch fire.,Wusheng hält den Kranich ein letztes Mal im Arm. Dann fliegt der alte Vogel singend in das Nest – und die Asche fängt Feuer.,无声最后一次把鹤抱在怀里。然后，老鹤唱着歌飞进了巢中——灰烬燃了起来。
+EV_END_R2,"Out of the flames rises the phoenix, in all five colours. Its song carries over the whole sea of clouds. Wusheng weeps - and smiles.","Aus den Flammen steigt der Phönix, in allen fünf Farben. Sein Lied trägt über das ganze Wolkenmeer. Wusheng weint – und lächelt.",凤凰从火焰中升起，五彩斑斓。它的歌声传遍整个云海。无声流着泪——笑了。
+EV_END_V1,"Wusheng stands motionless as the ashes catch fire. The crane does not fly into the fire. It follows Wusheng, who descends the cloud stairs without a word.","Wusheng steht reglos, als die Asche Feuer fängt. Der Kranich fliegt nicht ins Feuer. Er folgt Wusheng, der wortlos die Wolkentreppe hinabsteigt.",灰烬燃起时，无声一动不动。鹤没有飞进火里。它跟着一言不发的无声，走下了云梯。
+EV_END_V2,"Out of the flames rises the phoenix, in all five colours. Its song carries over the sea of clouds - only behind Wusheng does it stay quiet.","Aus den Flammen steigt der Phönix, in allen fünf Farben. Sein Lied trägt über das Wolkenmeer – nur hinter Wusheng bleibt es leise.",凤凰从火焰中升起，五彩斑斓。它的歌声传遍云海——只有无声身后依旧安静。
+EV_FENG,"I live up here because the fire doesn't scare me. Sit, rest.","Ich lebe hier oben, weil das Feuer mich nicht schreckt. Setz dich, ruh dich aus.",我住在这上面，因为火吓不倒我。坐吧，歇一歇。
+EV_FENG_2,Your companions are healed. Saved.,Dein Gefolge ist geheilt. Gespeichert.,同伴已恢复。已存档。
+EV_FIN_1,"So you have come, child of the wind chime. With all five tones. I heard them return, one after another.","Du bist also gekommen, Kind des Windspiels. Mit allen fünf Tönen. Ich habe gehört, wie sie einer nach dem anderen zurückkehrten.",你还是来了，风铃之子。带着全部五音。我听着它们一个接一个地回来。
+EV_FIN_1A,... The dragon. He was always the most patient of them all.,… Der Drache. Er war immer der Geduldigste von allen.,……青龙。它一向是最有耐心的。
+EV_FIN_1B,... I have seen those cones. I thought they had simply burned.,"… Ich habe diese Zapfen gesehen. Ich dachte, sie seien einfach verbrannt.",……我见过那些松果。我以为它们只是被烧焦了。
+EV_FIN_1C,Must it? That's what everyone says who has nothing to lose.,"Muss es? Das sagen alle, die nichts zu verlieren haben.",该这样？没有东西可失去的人都这么说。
+EV_FIN_2,"When the song sounds, the phoenix burns, and the old goes with it. This time he would go too.","Wenn das Lied erklingt, verbrennt der Phönix, und mit ihm geht das Alte. Diesmal ginge auch er.",歌声一响，凤凰就会燃尽，旧的一切随之而去。这一次，他也会走。
+EV_FIN_2A,... Every spring.,… Jeden Frühling.,……每个春天。
+EV_FIN_2B,... The old tortoise. She loved listening to him.,… Die alte Schildkröte. Sie hat ihm so gern zugehört.,……那只老玄龟。她那么喜欢听他唱歌。
+EV_FIN_2C,... Lu. Old friend. You were right even back then.,… Lu. Alter Freund. Du hattest damals schon recht.,……卢。老朋友。你那时候就说对了。
+EV_FIN_2D,Then you understand nothing.,Dann verstehst du nichts.,那你什么都不懂。
+EV_FIN_3,Wusheng lays his hand on the crane's back. The bird leans its head against his shoulder.,Wusheng legt die Hand auf den Rücken des Kranichs. Der Vogel lehnt den Kopf an seine Schulter.,无声把手放在鹤的背上。鹤把头靠在他的肩上。
+EV_FIN_3A,"... The tiger never used many words. But when he did, they were true.","… Der Tiger hat nie viele Worte gemacht. Aber wenn, dann stimmten sie.",……白虎从不多言。可他说的话，句句是真。
+EV_FIN_3B,... Nothing is lost.,… Nichts geht verloren.,……什么都不会失去。
+EV_FIN_3C,... Never young.,… Nie jung.,……永远不会年轻。
+EV_FIN_3D,Give up? I have never done anything but hold on.,"Aufgeben? Ich habe nie etwas anderes getan, als festzuhalten.",放弃？我这辈子除了紧抓不放，什么都没做过。
+EV_FIN_F1,"You hold up the silver feather. The crane recognises it - it lost it at the lake, back when it sang for Xuanwu.","Du hältst die silberne Feder hoch. Der Kranich erkennt sie – er hat sie am See verloren, damals, als er für Xuanwu sang.",你举起银色的羽毛。鹤认出了它——那是它当年在湖边为玄武唱歌时掉落的。
+EV_FIN_F2,Talk to the crane. It isn't silent because it lacks a voice - but out of loyalty. Find the right words.,"Sprich mit dem Kranich. Er schweigt nicht, weil ihm die Stimme fehlt – sondern aus Treue. Finde die richtigen Worte.",和鹤说说话。它沉默不是因为失去了声音——而是出于忠诚。找到合适的话吧。
+EV_FIN_F3,The crane lowers its head. It stays silent.,Der Kranich senkt den Kopf. Er bleibt stumm.,鹤低下了头，依旧沉默。
+EV_FIN_F4,You see? He doesn't want to. Then everything shall stay as it is!,"Siehst du? Er will nicht. Dann soll alles so bleiben, wie es ist!",你看到了吧？他不愿意。那就让一切保持原样！
+EV_FIN_N1,Words. Only words. You understand nothing of losing.,Worte. Nur Worte. Du verstehst nichts vom Verlieren.,空话。全是空话。你根本不懂失去。
+EV_FIN_Q1,"Tell me, child: why should I let everything I love burn?","Sag mir, Kind: Warum sollte ich zulassen, dass alles verbrennt, was ich liebe?",告诉我，孩子：我为什么要让我所爱的一切都烧掉？
+EV_FIN_Q2,"And those who leave? He is old. When the phoenix burns, he goes with it. I don't want to lose him.","Und die, die gehen? Er ist alt. Wenn der Phönix verbrennt, geht er mit. Ich will ihn nicht verlieren.",那些离去的呢？他老了。凤凰燃尽时，他也会随之而去。我不想失去他。
+EV_FIN_Q3,"What do you know of letting go, child?","Was weißt du schon vom Loslassen, Kind?",你又懂什么叫放手，孩子？
+EV_FIN_W1,... Perhaps you are right. Perhaps all these years I was only afraid.,… Vielleicht hast du recht. Vielleicht habe ich all die Jahre nur Angst gehabt.,……也许你说得对。也许这些年来，我只是在害怕。
+EV_FIN_W2,"But he... he doesn't sing anymore. Not even for me. If he wants to go, why won't he tell me?","Aber er … er singt nicht mehr. Nicht einmal für mich. Wenn er gehen will, warum sagt er es mir nicht?",可是他……他不再唱歌了。连为我都不唱了。如果他想走，为什么不告诉我？
+EV_FIN_W3,No... I can't. Not without a sign from him.,Nein … ich kann es nicht. Nicht ohne ein Zeichen von ihm.,不……我做不到。没有他的一点表示，我做不到。
+EV_FIN_YAO_1,Grand Chancellor... I've had enough of the silence. Grandfather would have wanted me to keep singing.,"Großkanzler … Ich habe genug von der Stille. Großvater hätte gewollt, dass ich weitersinge.",大司仪……我受够了寂静。爷爷会希望我继续唱下去的。
+EV_FIN_YAO_2,Yao takes off the grey robe and stands beside you.,Yao zieht die graue Kutte aus und stellt sich neben dich.,尧脱下灰袍，站到了你身边。
+EV_FIN_YAO_3,"I won't let you burn everything, {player}!","Ich lasse nicht zu, dass du alles verbrennst, {player}!",我不会让你把一切都烧掉的，{player}！
+EV_FIN_YAO_4,... Do what you want. I'm leaving.,"… Mach doch, was du willst. Ich geh.",……随你便吧。我走了。
 EV_FIRST_1,Mew! (Jinli rubs against your new companion.),Miau! (Jinli reibt sich an deinem neuen Gefährten.),喵！（锦鲤蹭了蹭你的新伙伴。）
 EV_FIRST_2,Not bad. I've got one too - my Cinderfowl has been with me for a while. Let's see who knows theirs better!,"Nicht schlecht. Ich hab auch eins – meinen Glutfasan hab ich schon länger. Lass uns sehen, wer seins besser kennt!",不错嘛。我也有——我的炭雉跟了我好久了。看看谁更了解自己的伙伴！
 EV_FIRST_3,One bell on the wind chime is still free.,Am Windspiel ist noch ein Glöckchen frei.,风铃上还有一只铃铛空着。
 EV_FIRST_LOSE,Ha! But your Lingshou fought well. You just need to trust it more.,Ha! Aber dein Lingshou hat gut gekämpft. Du musst ihm nur mehr zutrauen.,哈！不过你的灵兽打得不错。你只是需要更信任它。
 EV_FIRST_TUT,"In battle, pick a move - or call out to your Lingshou what to do: tap a suggested call or type your own. A call costs breath.","Im Kampf wählst du eine Attacke – oder du rufst deinem Lingshou zu, was es tun soll: Tippe einen Ruf an oder schreib ihn selbst. Ein Ruf kostet Atem.",战斗中可以选择招式——也可以对灵兽喊出指令：点选建议的呼唤，或自己输入。呼唤会消耗气息。
 EV_FIRST_WIN,"Tch. Lucky. ... Okay, you earned it.","Tch. Glück gehabt. … Okay, du hast es verdient.",切，运气好罢了。……好吧，算你厉害。
+EV_FI_1,"You want a boat? The boat isn't the problem, child. My cormorant Bai is. Since the silence came, he's gone.","Ein Boot willst du? Das Boot ist nicht das Problem, Kind. Mein Kormoran Bai ist es. Seit die Stille kam, ist er fort.",你想要船？船不是问题，孩子。问题是我的鸬鹚小白。寂静降临后，它就不见了。
+EV_FI_2,"He sits up on the cliff at the Karst Bank and stares into nothing. Grey, mute. Bring him back - but be gentle with him. Then I'll lend you my boat.","Er sitzt oben auf der Klippe am Karstufer und starrt ins Leere. Grau, stumm. Bring ihn zurück – aber sei sanft mit ihm. Dann leihe ich dir mein Boot.",它蹲在岩溶河岸的悬崖上，呆呆地望着远方。灰扑扑的，不出声。把它带回来——但要温柔。然后我就把船借给你。
+EV_FI_BOAT,"Take my boat. Without a current you'll have to row, but you'll make it to Tortoise Bay. Just walk up the pier.","Nimm mein Boot. Ohne Strömung musst du rudern, aber bis zur Schildkrötenbucht schaffst du es. Lauf einfach den Steg hinauf.",用我的船吧。没有水流得自己划，不过划到玄龟湾没问题。沿着码头往前走就行。
+EV_FI_DEF,"Bai sits here again, but his eyes stay grey. He's exhausted... and mute. Thank you anyway for bringing him here.","Bai sitzt wieder hier, aber seine Augen bleiben grau. Er ist erschöpft … und stumm. Trotzdem danke, dass du ihn hergebracht hast.",小白又回来了，可它的眼睛还是灰的。它累坏了……也不会叫了。不过还是谢谢你把它带回来。
+EV_FI_DONE,"The boat is at the pier. Off you go, and say hello to the old tortoise for me.","Das Boot liegt am Steg. Fahr nur, und grüß mir die alte Schildkröte.",船在码头。去吧，替我向老玄龟问好。
+EV_FI_FREED_1,"Bai! My Bai is back - and he's calling again! Child, you gave him back his voice.","Bai! Mein Bai ist wieder da – und er ruft wieder! Kind, du hast ihm seine Stimme zurückgegeben.",小白！我的小白回来了——又会叫了！孩子，是你让它找回了声音。
+EV_FI_FREED_2,"You know, every autumn I let him go. He flies south, and every time I think that's it. But every spring he comes back. Holding on would never have brought him back to me.","Weißt du, jeden Herbst lasse ich ihn ziehen. Er fliegt nach Süden, und ich denke jedes Mal, das war's. Aber jeden Frühling kommt er zurück. Festhalten hätte ihn nie zu mir zurückgebracht.",你知道吗，每年秋天我都放它走。它飞去南方，每次我都以为再也见不到了。可每年春天它都会回来。抓着不放，是永远换不回它的。
+EV_FN_1,Then the ashes in the nest tremble. Out of the shadows between the pillars crawls something huge and shaggy. The Nian - bigger than in Willowdale.,"Da bebt die Asche im Nest. Aus den Schatten zwischen den Säulen kriecht etwas Riesiges, Zotteliges. Der Nian – größer als in Weidendorf.",巢里的灰烬颤动起来。从柱子间的阴影里，爬出一个巨大的、毛茸茸的东西。年兽——比在柳村时更大了。
+EV_FN_2,So much silence up here... I have been feeding for a whole year. You won't get the song!,So viel Stille hier oben … ein ganzes Jahr lang habe ich gefressen. Das Lied bekommt ihr nicht!,这上面这么安静……我吃了整整一年。你们别想得到那首歌！
+EV_FN_LOSE,Mew... (Jinli licks your hand. Once more. You can do this.),Miau … (Jinli leckt dir die Hand. Noch einmal. Ihr schafft das.),喵……（锦鲤舔了舔你的手。再来一次。你们能行的。）
+EV_FN_TUT,"The last battle! Hold up the drum, firecrackers and banner against the Nian to weaken it and drive it off.","Der letzte Kampf! Halte dem Nian Trommel, Feuerwerk und Banner entgegen, um ihn zu schwächen und zu vertreiben.",最后一战！对年兽举起鼓、鞭炮和红幡，削弱它、赶走它。
+EV_FN_YAO,"Drums, {player}! I brought mine!","Trommeln, {player}! Ich hab meine dabei!",打鼓，{player}！我带着我的鼓呢！
 EV_FRAU_1,"Can you smell the mooncakes? When the song is over, there's one for everyone!","Riechst du die Mondkuchen? Wenn das Lied vorbei ist, gibt es für jeden einen!",闻到月饼的香味了吗？歌唱完了每人一个！
 EV_FRAU_2,I can't even hear my own heart anymore... What happened?,Ich höre nicht einmal mehr mein eigenes Herz … Was ist nur passiert?,我连自己的心跳都听不见了……到底发生了什么？
 EV_FRAU_3,"Master Lu just sits in front of his workshop, staring at his hands. Bring back his song, {player}.","Meister Lu sitzt nur noch vor seiner Werkstatt und starrt auf seine Hände. Bring ihm sein Lied zurück, {player}.",卢师傅只是坐在作坊前，盯着自己的手。{player}，把他的歌找回来吧。
@@ -68,31 +207,162 @@ EV_GIFT_1,Tonight we hang the wind chime of the Phoenix Temple on the festival s
 EV_GIFT_2,You receive the wind chime. Two small bells hang from it.,Du erhältst das Windspiel. Zwei kleine Glöckchen hängen daran.,你得到了风铃，上面挂着两只小铃铛。
 EV_GIFT_3,Each bell allows one Lingshou to follow you. Not because you catch it - because it trusts you. Never forget that.,"Jedes Glöckchen erlaubt einem Lingshou, dir zu folgen. Nicht weil du es fängst – weil es dir vertraut. Vergiss das nie.",每只铃铛都能让一只灵兽跟随你。不是因为你抓住了它，而是因为它信任你。永远别忘了。
 EV_GIFT_4,Go ahead to the festival square. I'll follow.,Geh schon vor zum Festplatz. Ich komme nach.,你先去节日广场吧，我随后就来。
+EV_GI_1,"The Fire Peak. Up on a charred rock, a great bird stands on a single leg. Its feathers are grey as cold ash.","Der Feuergipfel. Oben, auf einem verkohlten Felsen, steht ein großer Vogel auf einem einzigen Bein. Seine Federn sind grau wie kalte Asche.",火峰。山顶一块烧焦的岩石上，一只大鸟单足而立，羽毛灰得像冷却的灰烬。
+EV_GO_1,"The Qilin's heartsong grows deep and warm as the earth itself - and there it is: Gong, the root tone.","Der Herzklang des Qilin wird tief und warm wie die Erde selbst – und da ist er: Gong, der Grundton.",麒麟的心音变得深沉而温暖，就像大地本身——它来了：宫，五音之本。
+EV_GO_1B,"The Qilin kneels down. A tone rises from the ground, quiet and heavy: Gong.","Der Qilin kniet nieder. Ein Ton steigt aus dem Boden, leise und schwer: Gong.",麒麟跪了下来。一个音从地底升起，低沉而厚重：宫。
+EV_GO_2,The clouds below the pillars begin to surge. The pines rustle. Green grass sprouts under the Qilin's hooves.,Die Wolken unter den Säulen beginnen zu wogen. Die Kiefern rauschen. Unter den Hufen des Qilin sprießt grünes Gras.,石柱下的云海开始翻涌，松涛阵阵。麒麟蹄下冒出了青草。
+EV_GO_3,"The earth takes back every leaf and gives it to the spring. Nothing is lost, little one. It only changes.","Die Erde nimmt jedes Blatt zurück und schenkt es dem Frühling. Nichts geht verloren, kleiner Mensch. Es verwandelt sich nur.",大地收回每一片叶子，再把它送给春天。什么都不会失去，小家伙。它只是变了样子。
+EV_GUL_1,Half the town has moved into the hall. They say it's peaceful there. I just find it... empty.,"Die halbe Stadt ist in die Halle gezogen. Sie sagen, dort ist es friedlich. Ich finde es nur … leer.",半个镇子的人都搬进了大殿。他们说那里很安宁。我只觉得……空荡荡的。
+EV_GUL_2,Do you hear the dunes? They're humming again! The customers are coming back.,Hörst du die Dünen? Sie summen wieder! Die Kunden kommen zurück.,听见沙丘了吗？它们又在哼歌了！客人们都回来了。
+EV_HALL_1,Welcome to the Hall of Silence. Here nobody has to say goodbye. Yao awaits you.,Willkommen in der Halle der Stille. Hier muss niemand Abschied nehmen. Yao erwartet dich.,欢迎来到寂静堂。在这里，没有人需要告别。尧在等你。
+EV_HALL_2,"Hundreds of bronze bells hang in the hall. None of them rings. Yao stands in the middle, arms crossed.","In der Halle hängen hunderte Bronzeglocken. Keine klingt. In der Mitte steht Yao, die Arme verschränkt.",大殿里挂着几百只铜钟，没有一只在响。尧抱着胳膊站在中间。
+EV_HALL_3,So you came. Do you know why I'm here? Because here everything stays. Nothing gets lost. Nobody just dies like Grandfather did.,"Du bist also gekommen. Weißt du, warum ich hier bin? Weil hier alles bleibt. Nichts geht verloren. Niemand stirbt einfach so wie Großvater.",你还是来了。你知道我为什么在这里吗？因为在这里，一切都不会变。什么都不会失去。没有人会像爷爷那样，说走就走。
+EV_HALL_4A,... Spring. Every year he looked for the first bamboo shoots for me.,… Der Frühling. Er hat jedes Jahr die ersten Bambussprossen für mich gesucht.,……春天。每年他都会给我找第一批竹笋。
+EV_HALL_4B,... You too? I thought you weren't afraid of anything.,"… Du auch? Ich dachte, du hättest vor gar nichts Angst.",……你也会？我还以为你什么都不怕。
+EV_HALL_4C,Coward? Then show me how brave you are!,"Feigling? Dann zeig mir, wie mutig du bist!",胆小鬼？那你就让我看看你有多勇敢！
+EV_HALL_5A,... I don't know what's right anymore. Go to your tones. When you're up in the temple... I'll come too.,"… Ich weiß nicht mehr, was richtig ist. Geh zu deinen Tönen. Wenn du oben im Tempel bist … dann komme ich auch.",……我不知道什么才是对的了。去找你的音吧。等你到了上面的庙里……我也会去。
+EV_HALL_5B,You won. So what? Grandfather is still gone. I'm going to the Grand Chancellor.,Du hast gewonnen. Und? Großvater bleibt trotzdem fort. Ich gehe zum Großkanzler.,你赢了。那又怎样？爷爷还是回不来了。我去找大司仪。
+EV_HALL_DONE,The hall has become empty. Many have gone home.,Die Halle ist leer geworden. Viele sind nach Hause gegangen.,大殿空了。很多人都回家了。
+EV_HALL_LOSE,See? The silence is stronger.,Siehst du? Die Stille ist stärker.,看吧？寂静更强大。
+EV_HH_1,Mum says I can't play with fire anymore. Now there's no fire at all. Dumb.,"Mama sagt, ich darf nicht mehr mit Feuer spielen. Jetzt gibt's gar kein Feuer mehr. Doof.",妈妈说我不能再玩火了。现在根本没有火了。真没劲。
+EV_HH_2,"The rocks are glowing again! Red, yellow, orange - like a rainbow that fell asleep!","Die Felsen leuchten wieder! Rot, gelb, orange – wie ein Regenbogen, der eingeschlafen ist!",石头又亮起来了！红的、黄的、橙的——像一道睡着的彩虹！
+EV_HOF_1,Your farm at the edge of Willowdale. For now it's just a hut with two empty pens.,Dein Hof am Rand von Weidendorf. Noch ist es nur eine Hütte mit zwei leeren Gehegen.,柳村边上你的农庄。现在还只是一间小屋和两个空围栏。
+EV_HOF_2,"Well, apprentice! Lingshou who follow you but have no bell left live here. Bring me coins and building materials, and I'll build up your farm.","Na, Lehrling! Lingshou, die dir folgen, aber kein Glöckchen mehr haben, wohnen hier. Bring mir Münzen und Baumaterial, und ich baue dir den Hof aus.",嘿，学徒！跟随你却没有铃铛的灵兽就住在这里。给我带铜钱和建材来，我帮你扩建农庄。
+EV_HOF_SIGN,"""{player}'s farm. Lingshou welcome."" Someone has signed underneath with paw prints.",„Hof von {player}. Lingshou willkommen.“ Darunter hat jemand mit Pfotenabdrücken unterschrieben.,“{player}的农庄。欢迎灵兽。”下面有人用爪印签了名。
+EV_HOF_TUT,Tap a pen sign to move Lingshou in and feed them. Two of the same kind or element lay eggs when they're very content. Sleeping in the hut lets the night pass.,"Tippe ein Gehege-Schild an, um Lingshou einziehen zu lassen und sie zu füttern. Zwei derselben Art oder desselben Elements bekommen bei hoher Zufriedenheit Eier. Schlafen in der Hütte lässt die Nacht vergehen.",点击围栏的牌子，让灵兽搬进来并喂食。同种或同元素的两只在很满足时会下蛋。在小屋睡觉可以度过一夜。
 EV_HOME,"Your home. A bed, a stove and Jinli's favourite cushion.","Dein Zuhause. Ein Bett, eine Kochstelle und Jinlis Lieblingskissen.",你的家。一张床、一个灶台，还有锦鲤最爱的垫子。
+EV_HONG_1,You want to wake Bifang? Do you know what happened last summer? His fire burned half the village. My house. The school.,"Du willst Bifang wecken? Weißt du, was letzten Sommer passiert ist? Sein Feuer hat das halbe Dorf verbrannt. Mein Haus. Die Schule.",你要唤醒毕方？你知道去年夏天发生了什么吗？他的火烧掉了半个村子。我的房子。学堂。
+EV_HONG_2,The Order says nothing burns in the silence. I don't know if they're right. I only know I don't want to be afraid anymore.,"Der Orden sagt, in der Stille brennt nichts mehr. Ich weiß nicht, ob sie recht haben. Ich weiß nur, dass ich keine Angst mehr haben will.",教团说，寂静中什么都不会再烧起来。我不知道他们说得对不对。我只知道我不想再害怕了。
+EV_HONG_3,... You'd do that? Potter Shi knows how to burn a firebreak. He needs three lumps of Danxia clay.,"… Das würdest du tun? Töpfer Shi weiß, wie man eine Schneise brennt. Er braucht drei Klumpen Danxia-Ton.",……你愿意这么做？石陶匠懂得怎么烧防火带。他需要三块丹霞陶土。
+EV_HONG_4,"Then go. But if it burns again, it's your fault.","Dann geh. Aber wenn es wieder brennt, war es deine Schuld.",那你去吧。但要是再烧起来，那就是你的错。
+EV_HONG_AGAIN,Potter Shi needs three lumps of Danxia clay for the firebreak. Then we'll talk.,Töpfer Shi braucht drei Klumpen Danxia-Ton für die Schneise. Dann reden wir weiter.,石陶匠需要三块丹霞陶土来修防火带。到时候我们再谈。
+EV_HONG_DONE,"The firebreak holds. Go to Bifang, child. And... tell him we're not afraid anymore.","Die Schneise hält. Geh zu Bifang, Kind. Und … sag ihm, wir haben keine Angst mehr.",防火带很牢固。去找毕方吧，孩子。还有……告诉他，我们不再害怕了。
+EV_HUT,"Your hut. Bed, stove, chest - and Jinli's favourite cushion.","Deine Hütte. Bett, Kochstelle, Truhe – und Jinlis Lieblingskissen.",你的小屋。床、灶台、箱子——还有锦鲤最爱的垫子。
+EV_HU_N1,Already done! From all the red ribbons on the festival tree. My grandmother drove the Nian off this way - and her grandmother too.,Schon fertig! Aus allen roten Bändern vom Festbaum. Meine Großmutter hat den Nian so vertrieben – und ihre Großmutter auch.,已经缝好了！用节日树上所有的红丝带缝的。我奶奶就是这样赶走年兽的——她奶奶也是。
+EV_HU_N2,"Red like luck, child. Hold it high!","Rot wie Glück, Kind. Halt es hoch!",红色代表好运，孩子。举高点！
 EV_INN,"Welcome to the Inn of the Quiet Tea - well, it's only been called that since yesterday. Rest, traveller.","Willkommen im Gasthaus zum Stillen Tee – na ja, so heißt es erst seit gestern. Ruh dich aus, Reisende Seele.",欢迎光临静茶客栈——嗯，这名字是昨天才改的。旅人，歇歇脚吧。
 EV_INTRO_1,"Willowdale in the Bamboo Sea, on the evening of the Lantern Festival. Once every five hundred years, the whole land sings the Song of the Phoenix.","Weidendorf im Bambusmeer, am Abend des Laternenfests. Einmal alle fünfhundert Jahre singt das ganze Land das Lied des Phönix.",竹海中的柳村，元宵灯会之夜。每隔五百年，整片大地都会唱起凤凰之歌。
 EV_INTRO_2,"You are {player}, apprentice of the old wind chime maker. And this is Jinli, your little tortoiseshell cat.","Du bist {player}, Lehrling des alten Windspielmachers. Und das ist Jinli, deine kleine dreifarbige Katze.",你是{player}，老风铃匠的学徒。这是锦鲤，你的三花小猫。
 EV_INTRO_3,Mew! (Jinli hops off the windowsill and runs ahead of you.),Miau! (Jinli springt von der Fensterbank und läuft dir voraus.),喵！（锦鲤从窗台跳下，跑在你前面。）
 EV_INTRO_4,"{player}! There you are. Come to the workshop, I have something for you - before the festival begins.","{player}! Da bist du ja. Komm zur Werkstatt, ich habe etwas für dich – bevor das Fest beginnt.",{player}！你来啦。到作坊来，节日开始前我有东西要给你。
 EV_INTRO_TUT,Walk: hold and drag on the left half of the screen. Talk: A. Menu: ☰ at the top right.,Laufen: linke Bildschirmhälfte gedrückt halten und ziehen. Sprechen: A. Menü: ☰ oben rechts.,移动：按住屏幕左半边拖动。对话：A。菜单：右上角的☰。
+EV_KA_1,"The Singing Crest. On the highest ridge lies a white tiger as big as a horse. The sand around him is smooth, not a breath of wind.","Der Singende Kamm. Auf dem höchsten Grat liegt ein weißer Tiger, so groß wie ein Pferd. Der Sand um ihn ist glatt, kein Windhauch.",鸣沙脊。最高的沙脊上躺着一只马那么大的白虎。它周围的沙子平平整整，一丝风都没有。
+EV_KH_1,"Pinecliff, a village on a pillar high above the clouds. Above the village floats a staircase of clouds - it ends in nothing.","Kiefernhang, ein Dorf auf einer Säule hoch über den Wolken. Über dem Dorf schwebt eine Treppe aus Wolken – sie endet im Nichts.",松崖村，一座建在高耸入云的石柱上的村子。村子上方飘着一道云梯——却通向虚无。
+EV_KIEFERNHANG_FOOD,"Cloud dumplings! Light as mist, firm as rock.","Wolkenklöße! Leicht wie Nebel, fest wie Fels.",云饺！轻如薄雾，结实如石。
+EV_KIEFERNHANG_INN,Up here you sleep above the clouds. Good night.,Hier oben schläft man über den Wolken. Gute Nacht.,在这里，人睡在云上。晚安。
+EV_KIEFERNHANG_SHOP,"Jade, berries, tea. And phoenix down - just in case.","Jade, Beeren, Tee. Und Phönixdaunen – für alle Fälle.",玉石、云莓、茶叶。还有凤羽——以防万一。
+EV_KIEFERNHANG_TEA,Tea from cloud water. It tastes of heights.,Tee aus Wolkenwasser. Er schmeckt nach Höhe.,用云水泡的茶。尝起来有高处的味道。
 EV_KIND_1,"Boom-boom! I'll drum along to the song! The Nian is scared of drums, you know?","Bumm-bumm! Ich trommel beim Lied mit! Der Nian hat Angst vor Trommeln, weißt du?",咚咚！我要跟着歌打鼓！年兽最怕鼓声了，你知道吗？
 EV_KIND_2,My drum doesn't make a sound anymore! Did you break it?,Meine Trommel macht keinen Ton mehr! Hast du sie kaputt gemacht?,我的鼓不响了！是你弄坏的吗？
+EV_KOR_1,"A cormorant with grey plumage crouches on the cliff. Its throat pouch, which once glowed like a pearl, is dull.","Auf der Klippe hockt ein Kormoran mit grauem Gefieder. Sein Kehlsack, der einmal wie eine Perle leuchtete, ist stumpf.",悬崖上蹲着一只羽毛灰暗的鸬鹚。它曾像珍珠一样发光的喉囊，如今黯淡无光。
+EV_KOR_FREED,"The cormorant's throat pouch lights up, and with a loud call it flies back to Misthaven.","Der Kehlsack des Kormorans leuchtet auf, und er fliegt mit einem lauten Ruf zurück nach Nebelhafen.",鸬鹚的喉囊亮了起来，它大叫一声，飞回了雾港。
+EV_KOR_WIN,"The cormorant collapses, exhausted. You carefully carry it to Misthaven - its eyes stay grey.",Der Kormoran sinkt erschöpft zusammen. Du trägst ihn vorsichtig nach Nebelhafen – seine Augen bleiben grau.,鸬鹚精疲力竭地倒下。你小心地把它抱回雾港——它的眼睛依旧灰暗。
+EV_KT,The crane looks at you. It opens its beak as if to say something - and closes it again.,"Der Kranich sieht dich an. Er öffnet den Schnabel, als wolle er etwas sagen – und schließt ihn wieder.",鹤看着你。它张开喙，好像要说什么——又合上了。
+EV_KU_1,"Green cone mountains rise out of the mist. The river lies still as a mirror - no splashing, no bird calling.","Grüne Kegelberge wachsen aus dem Nebel. Der Fluss liegt still wie ein Spiegel – kein Plätschern, kein Ruf eines Vogels.",青翠的锥形山峰从雾中升起。河面静如明镜——没有水声，没有鸟鸣。
+EV_KW_1,The Crossroads at the foot of the Cloud Pillars. The roads of all five regions meet here. Stone pillars tower above you into the clouds.,Der Kreuzweg am Fuß der Wolkensäulen. Hier treffen sich die Straßen aller fünf Regionen. Über dir ragen Steinsäulen bis in die Wolken.,云柱脚下的十字路口。五个地区的道路在这里交汇。头顶上，石柱直插云霄。
+EV_KW_2,"In front of the stone stairs to the north and on the road west stand figures in grey robes, a closed eye on their sashes.","Vor der Steintreppe nach Norden und am Weg nach Westen stehen Gestalten in grauen Kutten, ein geschlossenes Auge auf der Schärpe.",往北的石阶前和往西的路上，站着身穿灰袍的人，腰带上绣着一只闭着的眼睛。
+EV_KW_3,"Mew! (Jinli turns in a circle: she hears two tones - one in the north, left past the pillars, and one deep in the south.)","Miau! (Jinli dreht sich im Kreis: Sie hört zwei Töne – einen im Norden, links an den Säulen vorbei, und einen tief im Süden.)",喵！（锦鲤原地转了一圈：她听到了两个音——一个在北边，从石柱左边绕过去；一个在遥远的南方。）
+EV_KW_INN,"A bed, a bowl of rice and the rest house's wind chime. No traveller needs more.","Ein Lager, eine Schale Reis und das Windspiel des Rasthauses. Mehr braucht kein Wanderer.",一张床、一碗饭，还有驿站的风铃。旅人不需要更多了。
+EV_KW_SIGN,Signpost: North (left) - Misty River. North (stairs) - Cloud Pillars. West - Singing Dunes. South - Rainbow Ridge. East - Teabank.,Wegweiser: Norden (links) – Nebelfluss. Norden (Treppe) – Wolkensäulen. Westen – Singende Dünen. Süden – Regenbogengrat. Osten – Teeufer.,路牌：北（左）——雾河。北（石阶）——云柱。西——鸣沙丘。南——彩虹岭。东——茶岸镇。
+EV_KW_TRADER,"Bamboo, pebbles, clay, copper - I've got a little of everything. For your farm, apprentice?","Bambus, Kiesel, Ton, Kupfer – ich hab von allem ein bisschen. Für deinen Hof, Lehrling?",竹子、卵石、陶土、铜——我什么都有一点。给你的农庄用吗，学徒？
+EV_KW_TUT,"At the rest house you can sleep, save and travel with the wind chime. At night shadow moths flutter through the grass.","Im Rasthaus kannst du schlafen, speichern und mit dem Windspiel reisen. Nachts flattern Schattenmotten durchs Gras.",在驿站可以睡觉、存档，也可以乘风铃旅行。夜里会有影蛾在草丛中飞舞。
 EV_LEO_1,"In the narrow pass sits a Frostpard. Its eyes are grey, as if dusted with ash. It growls - without a sound.","Im engen Pass sitzt ein Firnleopard. Seine Augen sind grau, wie mit Asche bestreut. Er knurrt – lautlos.",狭窄的山口坐着一只霜豹，眼睛灰蒙蒙的，像落了灰。它在低吼——却没有声音。
 EV_LEO_TUT,"Silenced Lingshou aren't tamed - they are freed. Fill their heartsong: talking and calming help most, hits loosen the silence too. If you exhaust it instead, it stays silenced.","Verstummte Lingshou zähmst du nicht – du befreist sie. Fülle ihren Herzklang: Zureden und Beruhigen helfen am meisten, auch Treffer lockern die Stille. Erschöpfst du es stattdessen, bleibt es verstummt.",失声的灵兽不是被驯服的，而是被解放的。唤醒它的心音：说话和安抚最有用，攻击也能松动寂静。但如果把它打倒，它就会一直失声。
 EV_LEO_WIN,The Frostpard collapses and drags itself away. Its eyes stay grey.,Der Firnleopard bricht zusammen und schleppt sich davon. Seine Augen bleiben grau.,霜豹倒下了，拖着身子离开，眼睛依旧灰暗。
 EV_MEISTER_PLAZA,"The song is about to begin. Hang the wind chime on the festival tree by the well, {player}.","Gleich beginnt das Lied. Häng das Windspiel an den Festbaum am Brunnen, {player}.",歌马上就要开始了。{player}，把风铃挂到井边的节日树上。
+EV_MH_1,"Drum, firecrackers, banner! The Nian waits on the square.","Trommel, Feuerwerk, Banner! Der Nian wartet auf dem Platz.",鼓、鞭炮、红幡！年兽在广场上等着。
+EV_MH_2,Rest at home when you're tired. And don't forget your farm - the Lingshou there miss you.,"Ruh dich zu Hause aus, wenn du müde bist. Und vergiss deinen Hof nicht – die Lingshou dort vermissen dich.",累了就回家歇歇。别忘了你的农庄——那里的灵兽想你了。
+EV_MH_3,"Twelve bells, {player}. I never thought I'd live to see it.","Zwölf Glöckchen, {player}. Ich hätte nie gedacht, dass ich das noch erlebe.",十二只铃铛，{player}。我从没想过这辈子还能看到。
+EV_MONDQUELL_FOOD,Date tea! Whoever drinks it finds coins in the sand.,"Dattel-Tee! Wer ihn trinkt, findet Münzen im Sand.",枣茶！喝了它的人能在沙里捡到铜钱。
+EV_MONDQUELL_INN,"A cool bed after the heat. Sleep well, traveller.","Ein kühles Bett nach der Hitze. Schlaf gut, Wanderer.",炎热之后的一张凉床。睡个好觉，旅人。
+EV_MONDQUELL_SHOP,"Dates, copper, tea - everything the desert gives.","Datteln, Kupfer, Tee – alles, was die Wüste hergibt.",枣子、铜、茶——沙漠出产的都在这里。
+EV_MONDQUELL_TEA,Date tea and stories. Neither ever runs out here.,Dattel-Tee und Geschichten. Beides wird hier nie alle.,枣茶和故事，在这里永远不会少。
 EV_MONK,Sit. Breathe. ... There. Now you are ready.,Setzt euch. Atmet. … So. Jetzt seid ihr bereit.,坐下，呼吸……好了。现在你们准备好了。
 EV_MONK_2,Your companions are healed. Saved.,Dein Gefolge ist geheilt. Gespeichert.,同伴已恢复。已存档。
+EV_MQ_1,Moonspring: a village around a spring shaped like a crescent moon. Most houses are quiet. People in robes stand in front of a large grey hall.,Mondquell: ein Dorf um eine Quelle in Form einer Mondsichel. Die meisten Häuser sind still. Vor einer großen grauen Halle stehen Menschen in Kutten.,月泉镇：一座围着新月形泉水的村子。大多数房子都静悄悄的。一座灰色大殿前站着穿袍子的人。
+EV_MT,"I'll build you a new wind chime, {player}. With twelve bells.","Ich baue dir ein neues Windspiel, {player}. Mit zwölf Glöckchen.",我给你做一只新风铃，{player}。挂十二只铃铛。
 EV_MUTE,"(Master Lu smiles sadly and taps his slate: ""East. Azure Dragon. I believe in you."")",(Meister Lu lächelt traurig und tippt auf seine Tafel: „Osten. Azurdrache. Ich glaube an dich.“),（卢师傅悲伤地笑了笑，敲了敲石板：“东方。青龙。我相信你。”）
+EV_MU_1,Last summer the whole forest burned here. Bifang's fire. In Redrock everyone is glad the bird is silent now.,"Letzten Sommer brannte hier der ganze Wald. Bifangs Feuer. In Rotfels sind alle froh, dass der Vogel jetzt schweigt.",去年夏天，这里整片树林都烧了。是毕方的火。赤岩镇的人都庆幸这只鸟现在不叫了。
+EV_MU_1B,But look here: the little shoots. The fire pine opens its cones only in the heat. Without the fire there wouldn't be a single new tree.,Aber schau her: die kleinen Triebe. Die Feuerkiefer öffnet ihre Zapfen nur in der Hitze. Ohne Brand gäbe es keinen einzigen neuen Baum.,可你看这里：这些小嫩芽。火松的松果只有在高温下才会张开。没有那场火，一棵新树都长不出来。
+EV_MU_1C,"Here, Danxia clay. The potter in Redrock can use it.","Hier, Danxia-Ton. Der Töpfer in Rotfels kann ihn brauchen.",给，丹霞陶土。赤岩镇的陶匠用得上。
+EV_MU_2,"When Bifang calls again, it will turn green here again. I'm sure of it.","Wenn Bifang wieder ruft, wird es hier wieder grün. Ganz bestimmt.",等毕方再次鸣叫，这里又会变绿的。一定会的。
+EV_MV_1,"Master Lu stands in front of the workshop. When he sees you, he opens his mouth - and this time a sound comes out.","Vor der Werkstatt steht Meister Lu. Als er dich sieht, öffnet er den Mund – und diesmal kommt ein Laut heraus.",卢师傅站在作坊门前。看见你的时候，他张开嘴——这一次，发出了声音。
+EV_MV_2,"{player}! I... I can speak again! Three tones - I felt every single one, like wind in my chimes.","{player}! Ich … ich kann wieder sprechen! Drei Töne – ich habe jeden einzelnen gespürt, wie Wind in meinen Windspielen.",{player}！我……我又能说话了！三个音——每一个我都感觉到了，就像风吹过我的风铃。
+EV_MV_3,"Listen. While you were away, people in grey came to the village. The Order of Silence. They say without change there is no pain. Mrs Fang listens to them... and not only her.","Hör zu. Während du fort warst, kamen Leute in Grau ins Dorf. Der Orden der Stille. Sie sagen, ohne Wandel gibt es keinen Schmerz. Frau Fang hört ihnen zu … und nicht nur sie.",听着。你不在的时候，有些穿灰衣的人来过村子。寂静教团。他们说，没有变化就没有痛苦。方大婶听进去了……不只是她。
+EV_MV_4,"Suddenly it is night. The lanterns flicker and go out, one after another. Something big and shaggy crouches on the festival square.","Plötzlich ist es Nacht. Die Laternen flackern und gehen aus, eine nach der anderen. Auf dem Festplatz hockt etwas Großes, Zotteliges.",突然间入夜了。灯笼一盏接一盏地闪烁、熄灭。节日广场上蹲着一个巨大、毛茸茸的东西。
+EV_MV_5,Grrr... so quiet. So deliciously quiet. Silence tastes best here.,Grrr … so still. So köstlich still. Hier schmeckt die Stille am besten.,呼……好安静。安静得真美味。这里的寂静最好吃了。
+EV_MV_6,"The Nian! It grows ever stronger in the silence. You can't beat it with strength alone - it fears noise and the colour red! Drums, firecrackers, red banners!","Der Nian! Er wird in der Stille immer stärker. Mit Kraft allein besiegst du ihn nicht – er fürchtet Lärm und die Farbe Rot! Trommeln, Feuerwerk, rote Banner!",是年兽！它在寂静中越来越强。光靠力气打不过它——它怕响声和红色！鼓、鞭炮、红幡！
+EV_MV_7,"Here, the firecrackers from the Lantern Festival - they've been in the workshop all along. Little Bo has his drum, and Granny Hu will sew you a banner from the festival ribbons. Quickly!","Hier, das Feuerwerk vom Laternenfest – es lag die ganze Zeit in der Werkstatt. Kleiner Bo hat seine Trommel, und Oma Hu näht dir ein Banner aus den Festbändern. Schnell!",给，元宵灯会剩下的鞭炮——一直放在作坊里。小波有他的鼓，胡奶奶会用节日的红丝带给你缝一面幡。快！
+EV_NB_1,More sound? I'll eat it!,Noch mehr Klang? Ich fresse ihn!,还有声音？我要吃掉它！
+EV_NB_LOSE,"Get up! The Nian is still here. Drum, firecrackers, banner - you can do it!","Steh auf! Der Nian ist noch da. Trommel, Feuerwerk, Banner – du schaffst das!",起来！年兽还在。鼓、鞭炮、红幡——你能行的！
+EV_NB_TUT,"In your bag you find the drum, firecrackers and banner. Hold them up at the Nian - three times, and it flees!","Im Beutel findest du Trommel, Feuerwerk und Banner. Halte sie dem Nian entgegen – dreimal, und er flieht!",背包里有鼓、鞭炮和红幡。对着年兽举起它们——三次，它就会逃跑！
+EV_NB_WARN,Mew! (Jinli tugs at your sleeve. Without drum and banner this is dangerous!),Miau! (Jinli zerrt an deinem Ärmel. Ohne Trommel und Banner ist das gefährlich!),喵！（锦鲤拽着你的袖子。没有鼓和幡太危险了！）
+EV_ND_1,"The Nian howls and flees into the night. Behind you someone starts drumming. Then someone else. Soon the whole village is drumming, and the lanterns light up again.","Der Nian heult auf und flieht in die Nacht. Hinter dir beginnt jemand zu trommeln. Dann noch jemand. Bald trommelt das ganze Dorf, und die Laternen gehen wieder an.",年兽嚎叫着逃进了夜色。你身后有人开始打鼓，又一个人跟着打。很快全村都敲起了鼓，灯笼又亮了起来。
+EV_ND_2,"Do you hear that, {player}? That's Willowdale. Loud and alive.","Hörst du das, {player}? Das ist Weidendorf. Laut und lebendig.",听到了吗，{player}？这就是柳村。热闹又鲜活。
+EV_ND_3,"But at the edge of the square stand figures in grey. A woman with a calm gaze steps forward. Next to her - Yao, in a grey robe.","Doch am Rand des Platzes stehen Gestalten in Grau. Eine Frau mit ruhigem Blick tritt vor. Neben ihr – Yao, in einer grauen Kutte.",可广场边上站着几个灰衣人。一个目光平静的女人走上前来。她身边——是穿着灰袍的尧。
+EV_ND_4,"I am Ying, Mistress of the Order of Silence. Do you see what change brings? With the tones the Nian returns too. Every year it will come back.","Ich bin Ying, Meisterin des Ordens der Stille. Siehst du, was der Wandel bringt? Mit den Tönen kehrt auch der Nian zurück. Jedes Jahr wird er wiederkommen.",我是莹，寂静教团的大师。你看到变化带来了什么吗？五音回来了，年兽也会回来。它每年都会再来。
+EV_ND_5,"She's right, {player}. Every song ends. Every person leaves. I don't want that anymore. In the Order nobody has to say goodbye.","Sie hat recht, {player}. Jedes Lied endet. Jeder Mensch geht. Ich will das nicht mehr. Im Orden muss niemand mehr Abschied nehmen.",她说得对，{player}。每首歌都会结束，每个人都会离开。我不想再这样了。在教团里，没有人需要告别。
+EV_ND_6A,... Home. Nobody waits for me there anymore.,… Nach Hause. Da wartet niemand mehr auf mich.,……家。那里已经没有人等我了。
+EV_ND_6B,"... Easy for you to say. Come to Moonspring, to the Hall of Silence. Then we'll talk.","… Das sagst du so. Komm nach Mondquell, in die Halle der Stille. Dann reden wir.",……你说得轻巧。来月泉镇的寂静堂吧。到时候再说。
+EV_ND_7,The roads west and to the pillars are open to you. Whoever seeks silence finds us in the dunes. And the Grand Chancellor awaits you at the very top.,"Die Wege nach Westen und zu den Säulen stehen dir offen. Wer die Stille sucht, findet uns in den Dünen. Und der Großkanzler erwartet dich ganz oben.",往西和去云柱的路都为你敞开了。寻求寂静的人会在沙丘找到我们。大司仪在最高处等你。
+EV_ND_8,"Yao... He was always a good boy. Bring him back if you can. And the last two tones: Shang in the dunes, Gong at the pillars.","Yao … Er war immer ein guter Junge. Bring ihn zurück, wenn du kannst. Und die letzten zwei Töne: Shang in den Dünen, Gong bei den Säulen.",尧……他一直是个好孩子。如果可以，把他带回来。还有最后两个音：沙丘的“商”，云柱的“宫”。
+EV_NEBELHAFEN_FOOD,"Mist fish soup! Well, yesterday's fish. But the soup makes you clever.","Nebelfisch-Suppe! Na ja, Fisch von gestern. Aber die Suppe macht klug.",雾鱼汤！嗯，昨天的鱼。不过这汤能让人变聪明。
+EV_NEBELHAFEN_INN,A dry bed in the damp mist. Rest a while.,Ein trockenes Bett im feuchten Nebel. Ruh dich aus.,潮湿雾气里的一张干床。歇歇吧。
+EV_NEBELHAFEN_SHOP,"Clams, tea, river pebbles - help yourself!","Muscheln, Tee, Kiesel vom Fluss – greif zu!",河蚌、茶叶、河卵石——随便挑！
+EV_NEBELHAFEN_TEA,In the mist you hear the best stories. Sit down.,Im Nebel hört man die besten Geschichten. Setz dich.,雾里能听到最好的故事。坐吧。
+EV_NH_1,"Misthaven. Boats lie motionless at the pier, nets hang dry. Without a current no boat sails, without cormorants nobody catches fish.","Nebelhafen. Boote liegen reglos am Steg, Netze hängen trocken. Ohne Strömung fährt kein Boot, ohne Kormorane fängt niemand Fisch.",雾港。船只一动不动地靠在码头，渔网晾着。没有水流就开不了船，没有鸬鹚就打不到鱼。
+EV_NH_2,"Mew. (Jinli looks across the lake. Somewhere out there, in the mist, lies the tone Yu.)","Miau. (Jinli schaut über den See. Irgendwo dort draußen, im Nebel, liegt der Ton Yu.)",喵。（锦鲤望着湖面。在那片雾的某处，藏着“羽”音。）
 EV_NING_1,"You know, the silence isn't so bad. No storms, no floods. My husband was taken by the spring flood. If nothing changes anymore... maybe that's good.","Weißt du, die Stille ist gar nicht so schlecht. Kein Sturm, kein Hochwasser. Mein Mann ist im Frühjahr mit dem Hochwasser gegangen. Wenn sich nichts mehr ändert … vielleicht ist das gut so.",你知道吗，寂静也没那么糟。没有风暴，没有洪水。我丈夫就是在春汛里走的。如果一切都不再改变……也许这样也好。
 EV_NING_2,The wind is back. And with it the whistling in the shutters... I admit I liked the quiet. But I missed the pickers' songs.,"Der Wind ist zurück. Und mit ihm das Pfeifen in den Fensterläden … Ich gebe zu, ich hatte die Ruhe gemocht. Aber die Lieder der Pflückerinnen haben mir gefehlt.",风回来了，百叶窗又开始呼呼作响……我承认，我曾喜欢那份安静。可我也想念采茶女的歌。
 EV_OMA_1,"Five hundred years... I'm not as old as I look, but I've never heard the song.","Fünfhundert Jahre … Ich bin nicht so alt, wie ich aussehe, aber ich habe das Lied noch nie gehört.",五百年啊……我没看上去那么老，可这首歌我也从没听过。
 EV_OMA_2,"The bamboo path leads north and then east to Teabank. Take some rice balls, child.","Der Bambuspfad führt nach Norden und dann nach Osten bis Teeufer. Nimm Reisbällchen mit, Kind.",竹径先往北再往东，一直通到茶岸镇。孩子，带些饭团吧。
-EV_QL_FREE,"Do you hear it? The bamboo sings again. Go, little one. The next tone rests in the north, in the Misty River... but that is a journey for another time.","Hörst du? Der Bambus singt wieder. Geh, kleiner Mensch. Der nächste Ton ruht im Norden, im Nebelfluss … doch das ist eine Reise für ein anderes Mal.",听见了吗？竹子又在歌唱了。去吧，小家伙。下一个音在北方的雾河……不过那是以后的旅程了。
+EV_ORDER_BLOCK_NORTH,"The Cloud Pillars are closed. Up there the Grand Chancellor waits for the end of all endings. Turn back, child - it's more peaceful this way.","Die Wolkensäulen sind gesperrt. Oben wartet der Großkanzler auf das Ende aller Enden. Kehr um, Kind – es ist friedlicher so.",云柱封闭了。大司仪在上面等待一切终结的终结。回去吧，孩子——这样更安宁。
+EV_ORDER_BLOCK_NORTH_J,Mew. (Jinli pulls you away. The other tones first.),Miau. (Jinli zieht dich weg. Erst die anderen Töne.),喵。（锦鲤把你拉走了。先去找其他的音。）
+EV_ORDER_BLOCK_WEST,"The Singing Dunes are silent, and that's good. Nobody goes there until the Grand Mistress allows it.","Die Singenden Dünen schweigen, und das ist gut so. Niemand geht dorthin, bis die Ordensmeisterin es erlaubt.",鸣沙丘沉默了，这很好。在教团大师允许之前，谁也不许去。
+EV_ORDER_BLOCK_WEST_J,Mew. (Jinli pulls you away. The other tones first.),Miau. (Jinli zieht dich weg. Erst die anderen Töne.),喵。（锦鲤把你拉走了。先去找其他的音。）
+EV_ORDER_BUCHT_FIGHT,Words change nothing. My buffalo will stop you.,Worte ändern nichts. Mein Büffel wird dich aufhalten.,说什么都没用。我的水牛会拦住你。
+EV_ORDER_BUCHT_WON,Still water goes stale... Maybe you're right. Go. I won't stop you.,Stilles Wasser fault … Vielleicht hast du recht. Geh. Ich werde dich nicht aufhalten.,静水会腐……也许你是对的。去吧，我不拦你。
+EV_ORDER_GIPFEL_FIGHT,Then my Emberpanda must stop you. I'm sorry.,Dann muss mein Glutpanda dich aufhalten. Es tut mir leid.,那就只能让我的火团团拦住你了。对不起。
+EV_ORDER_GIPFEL_WON,You thought of the people... not only of the bird. Go. I'm going back to my family.,Du hast an die Menschen gedacht … nicht nur an den Vogel. Geh. Ich gehe zurück zu meiner Familie.,你想到了人……而不只是那只鸟。去吧。我要回家人身边了。
+EV_ORDER_KAMM_FIGHT,No. My Duneskip and I stay here.,Nein. Mein Springer und ich bleiben hier.,不。我和我的沙跳鼠留在这里。
+EV_ORDER_KAMM_WON,The caravans get lost anyway... because the dunes no longer sing them the way. You're right. Go.,Die Karawanen verirren sich trotzdem … weil die Dünen ihnen keinen Weg mehr singen. Du hast recht. Geh.,商队还是会迷路……因为沙丘不再为他们唱出道路。你说得对。去吧。
+EV_ORDER_PLATEAU_FIGHT,I can't. Please forgive me.,Ich kann nicht. Bitte verzeih mir.,我做不到。请原谅我。
+EV_ORDER_PLATEAU_WON,... She always said I should keep singing when she's gone. I had forgotten. Thank you.,"… Sie hat immer gesagt, ich soll weitersingen, wenn sie nicht mehr da ist. Ich hatte es vergessen. Danke.",……她总说，等她不在了，我要继续唱下去。我都忘了。谢谢你。
+EV_PAN_1,"When I was young, a temple keeper came here with a silver crane. The crane sang for the old tortoise - so beautifully that the whole lake listened.","Als ich jung war, kam ein Tempelhüter mit einem Silberkranich hierher. Der Kranich sang für die alte Schildkröte – so schön, dass der ganze See zuhörte.",我年轻的时候，有个庙祝带着一只银鹤来过这里。那只鹤为老玄龟唱歌——唱得那么美，整个湖都在听。
+EV_PAN_2,The keeper's name was Wusheng. Back then he still laughed.,Der Hüter hieß Wusheng. Damals lachte er noch.,那个庙祝叫无声。那时候他还会笑。
+EV_PEI,You want to go to the tortoise? Then rest first. She's old and stubborn - and strong.,Du willst zur Schildkröte? Dann ruh dich erst aus. Sie ist alt und stur – und stark.,你要去找玄龟？那先歇歇吧。她又老又倔——还很强。
+EV_PEI_2,Your companions are healed. Saved.,Dein Gefolge ist geheilt. Gespeichert.,同伴已恢复。已存档。
+EV_PJ_1,"Every ending is a song that begins anew. I thank you, {player}. Let me be the twelfth bell on your wind chime.","Jedes Ende ist ein Lied, das neu beginnt. Ich danke dir, {player}. Lass mich das zwölfte Glöckchen an deinem Windspiel sein.",每一次结束，都是一首重新开始的歌。谢谢你，{player}。让我成为你风铃上的第十二只铃铛吧。
+EV_PJ_2,{player}! I climbed the stairs as fast as my old legs could. Just listen - the whole land is singing.,"{player}! Ich bin die Treppe hinaufgestiegen, so schnell meine alten Beine konnten. Hör nur – das ganze Land singt.",{player}！我拼了这把老骨头，尽快爬上了云梯。听啊——整片大地都在歌唱。
+EV_PL_1,"The Qilin Plateau. Between the pillars stands a creature like a deer with scales and a single horn. Grey, motionless - as if made of stone.","Das Qilin-Plateau. Zwischen den Säulen steht ein Wesen wie ein Hirsch mit Schuppen und einem einzelnen Horn. Grau, reglos – wie aus Stein.",麒麟台。石柱间站着一头像鹿一样、身披鳞片、头生独角的生灵。灰扑扑的，一动不动——像石头雕成的。
+EV_QING,Breathe in the clouds. Slowly. Like that.,Atme die Wolken ein. Langsam. So.,吸一口云气。慢慢地。就这样。
+EV_QING_2,Your companions are healed. Saved.,Dein Gefolge ist geheilt. Gespeichert.,同伴已恢复。已存档。
+EV_QL_1,"The Qilin raises its head. Where its hooves touch the ground, the grass is grey and stiff.","Der Qilin hebt den Kopf. Wo seine Hufe den Boden berühren, ist das Gras grau und starr.",麒麟抬起了头。它的蹄子踩过的地方，草又灰又硬。
+EV_QL_2,... nothing... returns...,… nichts … kehrt … zurück …,……什么……都不……回来……
+EV_QL_ALONE,Alone? You need at least two companions.,Allein? Du brauchst mindestens zwei Gefährten.,一个人？你至少需要两个同伴。
+EV_QL_FREE,"Walk softly, and you hear everything.","Geh leise, und du hörst alles.",轻轻地走，你就能听见一切。
+EV_QL_FREE2,"Do you hear it? The bamboo sings again. Go, little one. Yu rests in the north, Zhi in the south. And remember: an ending, too, is part of the song.","Hörst du? Der Bambus singt wieder. Geh, kleiner Mensch. Yu ruht im Norden, Zhi im Süden. Und vergiss nicht: Auch ein Ende ist ein Teil des Liedes.",听见了吗？竹子又在歌唱了。去吧，小家伙。“羽”在北方，“徵”在南方。别忘了：结束也是歌的一部分。
+EV_QL_LOSE,The earth is patient. Be patient too. Try again.,Die Erde ist geduldig. Sei du es auch. Versuch es noch einmal.,大地很有耐心。你也要有耐心。再试一次吧。
+EV_QL_TUT,Two against two! Gentle ones listen to calm and respect.,Zwei gegen zwei! Sanfte hören auf Ruhe und Respekt.,二对二！温和的灵兽听得进平静和尊重。
+EV_RB_1,The Nian flees howling into the clouds. Silence - but a different silence. One that waits.,"Der Nian flieht heulend in die Wolken. Stille – aber eine andere Stille. Eine, die wartet.",年兽嚎叫着逃进了云里。寂静——但这是另一种寂静。一种在等待的寂静。
+EV_RB_2,"Mew! (Jinli's koi bell rings. And then, one after another, the five tones sound: Jue, Yu, Zhi, Shang, Gong.)","Miau! (Jinlis Koi-Glöckchen klingt. Und dann, eins nach dem anderen, erklingen die fünf Töne: Jue, Yu, Zhi, Shang, Gong.)",喵！（锦鲤的锦鲤铃响了。接着，五音一个接一个地响起：角、羽、徵、商、宫。）
+EV_RF_1,"Redrock, a village of red stone. The kilns are cold. The people eye you suspiciously - nobody here misses the fire.","Rotfels, ein Dorf aus rotem Stein. Die Brennöfen sind kalt. Die Leute schauen dich misstrauisch an – niemand hier vermisst das Feuer.",赤岩镇，一座红石砌成的村子。窑炉都冷了。人们疑惑地打量着你——这里没有人怀念那火。
 EV_RIVER_1,"At the river, the water stands still as glass. Shy Lingshou crouch between reeds and bamboo.",Am Fluss steht das Wasser still wie Glas. Zwischen Schilf und Bambus kauern scheue Lingshou.,河水静止如镜。芦苇和竹林之间蜷缩着怕生的灵兽。
 EV_RIVER_2,You're here too? ... The silence. Do you hear that? Nothing at all. Isn't it... peaceful?,Du auch hier? … Die Stille. Hörst du das? Gar nichts. Ist das nicht … friedlich?,你也来了？……这寂静，你听，什么都没有。不觉得……很安宁吗？
 EV_RIVER_3,The little Lingshou here are trembling. Let's see who they trust more - you or me.,"Die kleinen Lingshou hier zittern vor Angst. Mal sehen, wem sie eher vertrauen – dir oder mir.",这里的小灵兽都在发抖。看看它们更信任谁——你还是我。
 EV_RIVER_TUT,"Walk up to a shy Lingshou. Calm it, feed it or talk to it until it trusts you. Each Lingshou likes something else: anxious ones need calm, brave ones courage, playful ones fun.","Geh zu einem scheuen Lingshou. Beruhige es, füttere es oder sprich mit ihm, bis es dir vertraut. Jedes Lingshou mag etwas anderes: Ängstliche brauchen Ruhe, Mutige Ermutigung, Verspielte Spaß.",走近一只怕生的灵兽，安抚它、喂它或和它说话，直到它信任你。每只灵兽喜欢的不一样：胆小的需要安静，勇敢的需要鼓励，顽皮的需要乐趣。
+EV_ROTFELS_FOOD,"Fire pot! Served cold, sadly. It still makes you strong.","Feuertopf! Kalt serviert, leider. Er macht trotzdem stark.",火锅！可惜是凉的。不过照样让人有劲。
+EV_ROTFELS_INN,"The beds are warm, even without a stove. Sleep well.","Die Betten sind warm, auch ohne Ofen. Schlaf gut.",就算没有炉子，床也是暖的。睡个好觉。
+EV_ROTFELS_SHOP,"Chili, clay, tea. Everything a fire doesn't need - not yet.","Chili, Ton, Tee. Alles, was ein Feuer nicht braucht – noch nicht.",辣椒、陶土、茶叶。都是火用不上的东西——暂时还用不上。
+EV_ROTFELS_TEA,Tea without hot water is hard to make. But rumours are always hot.,Tee ohne heißes Wasser ist schwer zu machen. Aber Gerüchte sind immer heiß.,没有热水很难泡茶。不过传闻总是热乎的。
+EV_SAULE,"Sit in the shade, child. Drink. Then go to the tiger.","Setz dich in den Schatten, Kind. Trink. Dann geh zum Tiger.",到阴凉处坐会儿，孩子。喝点水。然后去找老虎吧。
+EV_SAULE_2,Your companions are healed. Saved.,Dein Gefolge ist geheilt. Gespeichert.,同伴已恢复。已存档。
+EV_SHAN,"If you spit from here it takes forever to reach the bottom. So I've heard. I'd never do that, of course.","Wenn man von hier spuckt, dauert es ewig, bis es unten ankommt. Hab ich gehört. Ich mach das natürlich nie.",从这儿吐口水，要好久才能落到底。我听说的。我当然从来不这么干。
+EV_SHI_0,"Cold kilns, cold hands. Lovely silence, eh?","Kalte Öfen, kalte Hände. Schöne Stille, was?",冷窑炉，冷手。好安静啊，是吧？
+EV_SHI_1,"I need three lumps of Danxia clay. Chests, the forester on the trail, the shop - you'll find some somewhere.","Drei Klumpen Danxia-Ton brauche ich. Kisten, der Förster am Pfad, der Laden – irgendwo findest du welchen.",我需要三块丹霞陶土。箱子里、小径上的护林人、商店——总能找到的。
+EV_SHI_2,"Three lumps, nice. Give me a day - no, an hour. A trench, fired clay, no sparks will reach the village anymore.","Drei Klumpen, sauber. Gib mir einen Tag – nein, eine Stunde. Ein Graben, gebrannter Ton, keine Funken kommen mehr ins Dorf.",三块，不错。给我一天——不，一个时辰。挖条沟，烧上陶土，火星就再也飞不进村子了。
+EV_SHI_3,Together with the people of Redrock you build a firebreak of fired clay around the village. The mayor watches - and nods.,Gemeinsam mit den Leuten aus Rotfels zieht ihr eine Schneise aus gebranntem Ton um das Dorf. Die Bürgermeisterin schaut zu – und nickt.,你和赤岩镇的人一起，在村子周围修了一条烧陶防火带。镇长在一旁看着——点了点头。
+EV_SHI_DONE,The firebreak stands. Now let the bird sing.,Die Schneise steht. Jetzt soll der Vogel ruhig singen.,防火带修好了。现在就让那只鸟尽情地唱吧。
 EV_SHOP,"A customer! Rice balls, herbal tea, food for shy Lingshou - all fresh, even if the scales don't beep anymore.","Kundschaft! Reisbällchen, Kräutertee, Futter für scheue Lingshou – alles frisch, auch wenn die Waage nicht mehr piept.",来客人啦！饭团、草药茶、给怕生灵兽的食物——都是新鲜的，虽然秤不响了。
 EV_SHR_1,"The Dragon Shrine. Red pillars, grey with dust. Above, coiled around the altar, a huge dragon sleeps - azure once, now ashen.","Der Drachenschrein. Rote Säulen, grau vor Staub. Oben, um den Altar gewunden, schläft ein riesiger Drache – azurblau einst, jetzt aschfahl.",龙祠。朱红的柱子蒙着灰。上方，一条巨龙盘绕着祭坛沉睡——曾经青碧如天，如今灰白如烬。
 EV_SHR_2,You've come to wake him? Then be gentle. He isn't evil - he has only lost his song. Come to me when your companions need rest.,"Du kommst, um ihn zu wecken? Dann sei behutsam. Er ist nicht böse – er hat nur sein Lied verloren. Komm zu mir, wenn deine Gefährten Ruhe brauchen.",你是来唤醒他的？那就温柔些。他并不邪恶——只是失去了自己的歌。同伴需要休息时就来找我。
@@ -101,6 +371,10 @@ EV_SHY_FLED,"It ran away in fright - but not far. Try again, maybe more kindly."
 EV_SHY_NEBELAFFE,"A Mistape swings on a branch, half hidden in its own mist.",Ein Nebelaffe schaukelt an einem Ast und versteckt sich halb in seinem eigenen Nebel.,一只雾猴在树枝上荡来荡去，半个身子藏在自己的雾里。
 EV_SHY_WAWALURCH,"A Wailamander crouches by the water, crying softly. It looks at you with big eyes.",Ein Wawalurch kauert am Wasser und weint leise. Es sieht dich mit großen Augen an.,一只娃娃鲵蹲在水边轻声哭泣，睁着大眼睛看着你。
 EV_SHY_ZIRPO,A Chirpo sits on a warm stone and chirps - without a sound. It looks rather offended.,Ein Zirpo hockt auf einem warmen Stein und zirpt – lautlos. Es wirkt ziemlich beleidigt.,一只唧唧蹲在暖石上鸣叫——却没有声音。它看起来很不高兴。
+EV_SH_1,"Baihu's heartsong rings like metal - and there it is: a clear, silver tone. Shang.","Baihus Herzklang klirrt wie Metall – und da ist er: ein klarer, silberner Ton. Shang.",白虎的心音像金属一样铿锵作响——它来了：一个清亮的银色之音。商。
+EV_SH_1B,"The tiger lies down. A tone rings out, thin as a thread: Shang.","Der Tiger legt sich nieder. Ein Ton klingt auf, dünn wie ein Faden: Shang.",老虎卧了下去。一个音响起，细得像一根丝线：商。
+EV_SH_2,"Wind brushes over the dunes, and they begin to sing - a deep, humming song you feel in your chest.","Wind streicht über die Dünen, und sie beginnen zu singen – ein tiefes, summendes Lied, das man in der Brust spürt.",风拂过沙丘，它们开始歌唱——一首低沉的、嗡嗡作响的歌，能在胸口感觉到。
+EV_SH_3,"Even the leaves fall so the tree survives the winter. Whoever lets nothing go can hold nothing new. Tell Wusheng that, little one.","Auch das Laub fällt, damit der Baum den Winter übersteht. Wer nichts loslässt, kann nichts Neues halten. Sag das Wusheng, kleiner Mensch.",树叶落下，大树才能熬过冬天。什么都不放手的人，也抓不住新的东西。把这话告诉无声吧，小家伙。
 EV_SIGN_BAMBOO,Bamboo Path. East: Teabank. South: Willowdale. Careful: wild Lingshou live in the tall grass.,Bambuspfad. Osten: Teeufer. Süden: Weidendorf. Achtung: Im hohen Gras leben wilde Lingshou.,竹径。东：茶岸镇。南：柳村。注意：高草丛中有野生灵兽。
 EV_SIGN_NORTH,"Signpost: North - Bamboo Path, Teabank.","Wegweiser: Norden – Bambuspfad, Teeufer.",路牌：北——竹径、茶岸镇。
 EV_SILENCE_1,You hang the wind chime on the festival tree. The whole village begins the Song of the Phoenix...,Du hängst das Windspiel an den Festbaum. Das ganze Dorf stimmt das Lied des Phönix an …,你把风铃挂上节日树。全村人一起唱起了凤凰之歌……
@@ -110,20 +384,32 @@ EV_SILENCE_4,The song... someone has stolen it. The tones are gone.,Das Lied …
 EV_SILENCE_5,"MEW! (Jinli's koi bell rings - the only sound in the whole village. She stares east, towards the river.)","MIAU! (Jinlis Koi-Glöckchen klingt – als einziges im ganzen Dorf. Sie starrt nach Osten, zum Fluss.)",喵！（锦鲤的锦鲤铃响了——全村唯一的声音。她盯着东边的河。）
 EV_SILENCE_6,"Jinli hears something we cannot. Follow her, {player}. The Lingshou at the river must be frightened. Maybe they will follow you.","Jinli hört etwas, das wir nicht hören. Folge ihr, {player}. Am Fluss sind die Lingshou bestimmt verängstigt. Vielleicht folgen sie dir.",锦鲤听到了我们听不到的东西。{player}，跟着她。河边的灵兽一定吓坏了，也许它们会跟随你。
 EV_SILENCE_TUT,"Tip: When you don't know where to go, talk to Jinli. She shows you the way.","Tipp: Wenn du nicht weiterweißt, sprich Jinli an. Sie zeigt dir den Weg.",提示：不知道去哪儿时，和锦鲤说话，她会给你指路。
+EV_SONG_1,The cloud stairs lead to the Phoenix Temple. They only carry you when all five tones ring.,"Die Wolkentreppe führt zum Phönixtempel. Sie trägt nur, wenn alle fünf Töne klingen.",云梯通往凤凰庙。只有五音齐鸣时，它才能载人上去。
+EV_SONG_2,"A year ago Wusheng climbed them, a silver crane on his shoulder. The crane was old. It no longer sang - but it looked at him as if it wanted to say something.","Vor einem Jahr stieg Wusheng sie hinauf, mit einem Silberkranich auf der Schulter. Der Kranich war alt. Er sang nicht mehr – aber er sah ihn an, als wolle er etwas sagen.",一年前，无声肩上带着一只银鹤走了上去。那只鹤老了，不再唱歌——但它望着他，好像想说什么。
+EV_SONG_3,"The cloud stairs will carry you now. Go, child of the wind chime. Up there waits an old man who is afraid.","Die Wolkentreppe trägt dich jetzt. Geh, Kind des Windspiels. Oben wartet ein alter Mann, der Angst hat.",云梯现在能载你上去了。去吧，风铃之子。上面有个害怕的老人在等你。
+EV_SP_1,Stone pillars rise out of a sea of clouds. A narrow path winds upwards from pillar to pillar. Pines cling to the rocks.,Steinsäulen ragen aus einem Meer aus Wolken. Ein schmaler Pfad windet sich von Säule zu Säule nach oben. Kiefern krallen sich an die Felsen.,石柱从云海中拔地而起。一条窄窄的小路在石柱间蜿蜒向上。松树紧紧扒着岩石。
 EV_TAO,I saw a Paddyhop! They croak without a sound now. It looks sooo funny!,Ich hab ein Reisquak gesehen! Die quaken jetzt lautlos. Das sieht sooo lustig aus!,我看到稻蛙仔了！它们现在呱呱叫却没声音，好好笑！
+EV_TA_1,"The Phoenix Temple floats above the sea of clouds. Five pillars carry five faded banners. In a nest of gold, a heap of ashes glows faintly.",Der Phönixtempel schwebt über dem Wolkenmeer. Fünf Säulen tragen fünf ausgeblichene Banner. In einem Nest aus Gold glimmt ein Haufen Asche.,凤凰庙悬浮在云海之上。五根柱子上挂着五面褪色的幡。金色的巢里，一堆灰烬微微发光。
+EV_TA_2,"In front of it stands Wusheng. Beside him, on one leg, an old silver crane watching you silently.","Davor steht Wusheng. Neben ihm, auf einem Bein, ein alter Silberkranich, der dich still ansieht.",无声站在巢前。他身旁，一只年老的银鹤单脚而立，静静地看着你。
 EV_TEA_1,Sit down. Tea tastes good even in silence. And there's always news.,Setz dich. Tee schmeckt auch in der Stille. Und Neuigkeiten gibt es immer.,坐吧。安静时茶也一样香。消息嘛，总是有的。
+EV_TEMPLE_CLOSED,Mew. (Jinli steps onto the first cloud step - and her paw sinks through. Tones are still missing.),Miau. (Jinli tritt auf die erste Wolkenstufe – und ihre Pfote sinkt durch. Es fehlen noch Töne.),喵。（锦鲤踩上第一级云阶——爪子却陷了进去。还缺音呢。）
 EV_TER_1,"The rice terraces mirror the sky. Dark moths dance over the water - shadow moths, creatures of the Nian that eat sounds.","Die Reisterrassen spiegeln den Himmel. Über dem Wasser tanzen dunkle Motten – Schattenmotten, Geschöpfe des Nian, die Klänge fressen.",稻田映着天空。水面上飞舞着黑色的蛾子——影蛾，年兽的爪牙，以声音为食。
 EV_TONE_1,"The dragon's heartsong swells - and suddenly it is there: a single, warm tone. Jue.","Der Herzklang des Drachen schwillt an – und plötzlich ist er da: ein einzelner, warmer Ton. Jue.",青龙的心音越来越响——忽然间，它出现了：一个温暖的音。角。
 EV_TONE_1B,"The dragon sinks down, exhausted. The silence breaks - but more quietly than it could have. A single tone: Jue.","Der Drache sinkt erschöpft nieder. Die Stille bricht – aber leiser, als sie hätte brechen können. Ein einzelner Ton: Jue.",巨龙精疲力竭地伏下。寂静被打破了——却比本可以的更轻。一个音：角。
 EV_TONE_2,"Wind sweeps through the bamboo. The rustling returns, water gurgles in the terraces. Colour flows back into the world.","Der Wind fährt durch den Bambus. Das Rauschen kehrt zurück, das Wasser in den Terrassen gluckst. Die Farben kommen zurück in die Welt.",风穿过竹林。沙沙声回来了，梯田里的水汩汩作响。色彩重新回到了世界。
 EV_TONE_3,"Wusheng took my song because he fears farewell. But even bamboo must shed old stalks so new ones can grow. Four more tones are still missing, little one.","Wusheng nahm mein Lied, weil er Angst vor dem Abschied hat. Doch auch der Bambus muss alte Halme abwerfen, damit neue wachsen. Vier weitere Töne fehlen noch, kleiner Mensch.",无声夺走我的歌，是因为他害怕离别。可竹子也要褪去旧竿，新竹才能生长。还有四个音没有找回，小家伙。
+EV_TONE_3B,"Two tones call for you now: Yu in the north, at the Misty River, and Zhi in the south, at Rainbow Ridge. South of Teabank the road leads to the Crossroads - from there you can reach both.","Zwei Töne rufen jetzt nach dir: Yu im Norden, im Nebelfluss, und Zhi im Süden, am Regenbogengrat. Südlich von Teeufer führt der Weg zum Kreuzweg – von dort erreichst du beide.",现在有两个音在呼唤你：北方雾河的“羽”，南方彩虹岭的“徵”。从茶岸镇往南走就是十字路口——从那里两边都能去。
 EV_TONE_4,"Mew! (Jinli's bell rings brightly - and from far away, another one answers.)",Miau! (Jinlis Glöckchen klingt hell – und von weit her antwortet ein anderes.),喵！（锦鲤的铃铛清脆地响起——远处传来另一声回应。）
+EV_TONE_TUT,New: with the wind chime shrine of any inn you travel to towns you've already visited. Teabank now sells a bicycle. And Lingshou without a bell live on your farm west of Willowdale.,"Neu: Mit dem Windspiel-Schrein jeder Unterkunft reist du zu Städten, die du schon besucht hast. In Teeufer gibt es jetzt ein Fahrrad zu kaufen. Und auf deinem Hof westlich von Weidendorf leben Lingshou, die gerade kein Glöckchen haben.",新功能：通过任何客栈的风铃神龛，可以前往去过的城镇。茶岸镇现在有自行车卖。没有铃铛的灵兽住在柳村西边你的农庄里。
 EV_TOWN_1,"Teabank: tea terraces by the river, usually full of the pickers' songs. Today not even the baskets rattle.","Teeufer: Teeterrassen am Fluss, sonst voller Lieder der Pflückerinnen. Heute hört man nur das Klappern der Körbe nicht.",茶岸镇：河边的茶园梯田，平时满是采茶女的歌声。今天连竹篓的碰撞声都听不见。
 EV_TOWN_2,"Mew. (Jinli looks up the mountain, to the north.)","Miau. (Jinli schaut den Berg hinauf, nach Norden.)",喵。（锦鲤抬头望向北边的山。）
 EV_TOWN_TUT,At the lodging (top left) you rest and save. The shop (top middle) sells food and remedies. At the teahouse (right) you hear rumours.,In der Unterkunft (links oben) ruhst du dich aus und speicherst. Im Laden (Mitte oben) gibt es Futter und Heilmittel. Im Teehaus (rechts) hört man Gerüchte.,在客栈（左上）可以休息存档，商店（中上）卖食物和药品，茶馆（右边）能听到传闻。
 EV_TWO_1,"Two bells, two Lingshou. The others come with me.","Zwei Glöckchen, zwei Lingshou. Die anderen kommen mit mir.",两只铃铛，两只灵兽。剩下的跟我走。
 EV_TWO_2,"Hey... tell me. If this silence stays - then nothing gets lost anymore either, right?","Du … sag mal. Wenn diese Stille bleibt – dann geht doch auch nichts mehr verloren, oder?",喂……你说，如果这寂静一直持续下去，那也就不会再失去什么了，对吧？
 EV_TWO_3,MEW! (Jinli hisses towards the village. Her fur bristles.),MIAU! (Jinli faucht in Richtung Dorf. Ihr Fell sträubt sich.),喵！（锦鲤朝村子方向哈气，毛都竖起来了。）
+EV_WA,"I still hear him when the wind passes through the pillars. Thank you, child of the wind chime.","Ich höre ihn noch, wenn der Wind durch die Säulen geht. Danke, Kind des Windspiels.",风吹过石柱的时候，我还能听见他。谢谢你，风铃之子。
+EV_WB_1,"Then force me, child of the wind chime!","Dann zwinge mich, Kind des Windspiels!",那就来逼我吧，风铃之子！
+EV_WB_2,... It is over.,… Es ist vorbei.,……结束了。
 EV_WEN_1,I wanted to make a pilgrimage to the Azure Dragon's shrine. But a silenced snow leopard sits at the pass. Force alone won't get you past.,Ich wollte zum Schrein des Azurdrachen pilgern. Doch am Pass sitzt ein verstummter Schneeleopard. Mit Gewalt allein kommt man da nicht vorbei.,我本想去青龙祠朝拜，可山口坐着一只失声的雪豹。光靠蛮力是过不去的。
 EV_WEN_2,"Do you hear the bamboo rustle? The dragon sings again. Thank you, child.","Hörst du den Bambus rauschen? Der Drache singt wieder. Danke dir, Kind.",听到竹林沙沙响了吗？青龙又在歌唱了。谢谢你，孩子。
 EV_WORK,The workshop smells of bamboo and lacquer. Half-finished wind chimes hang everywhere.,Die Werkstatt riecht nach Bambus und Lack. Überall hängen halbfertige Windspiele.,作坊里弥漫着竹子和漆的味道，到处挂着做了一半的风铃。
@@ -140,6 +426,16 @@ EV_WU_8,"Do not go east, child of the wind chime. There is nothing there you nee
 EV_WU_9,"Mew... (Jinli presses against the wind chime. A third bell appears on it, bright as a spark.)","Miau … (Jinli drückt sich an das Windspiel. Ein drittes Glöckchen erscheint daran, hell wie ein Funke.)",喵……（锦鲤贴着风铃。风铃上出现了第三只铃铛，亮得像一粒火星。）
 EV_WU_IDLE,...,…,……
 EV_WU_TUT,Prologue complete! The menu (☰) shows your companions and bag. At home you can rest and save.,Prolog geschafft! Im Menü (☰) siehst du dein Gefolge und den Beutel. Zu Hause kannst du dich ausruhen und speichern.,序章完成！菜单（☰）里可以查看同伴和背包。回家可以休息和存档。
+EV_XW_1,The serpent raises its head. The huge shell moves. Two ancient grey eyes open.,"Die Schlange hebt den Kopf. Der riesige Panzer bewegt sich. Zwei uralte, graue Augen öffnen sich.",巨蛇抬起了头，巨大的龟甲动了。两只古老的灰色眼睛睁开了。
+EV_XW_2,... winter... forever... nothing... thaws...,… Winter … ewig … nichts … taut …,……冬天……永远……什么……都不融……
+EV_XW_ALONE,Alone? You need at least two companions.,Allein? Du brauchst mindestens zwei Gefährten.,一个人？你至少需要两个同伴。
+EV_XW_FREE,"Go, little one. And if you grow tired: I am slow too. I still arrive.","Geh, kleiner Mensch. Und wenn du müde wirst: Auch ich bin langsam. Ich komme trotzdem an.",去吧，小家伙。累了的时候想想：我也很慢，可我总会到达。
+EV_XW_LOSE,Rest and try again. She won't run away - she's a tortoise.,Ruh dich aus und versuch es noch einmal. Sie läuft nicht weg – sie ist eine Schildkröte.,休息一下再试吧。她跑不了的——她可是乌龟。
+EV_XW_TUT,Two against two! Fill Xuanwu's heartsong to free her. Stubborn ones listen to respect - and patience.,"Zwei gegen zwei! Fülle Xuanwus Herzklang, um sie zu befreien. Sture hören auf Respekt – und Geduld.",二对二！唤醒玄武的心音来解放她。倔强的灵兽听得进尊重——和耐心。
+EV_XY_1,"I throw stones into the lake, but they don't go splash. Boring!","Ich werfe Steine in den See, aber sie machen kein Platsch. Langweilig!",我往湖里扔石头，可它们都不扑通。真没劲！
+EV_XY_2,The fish are jumping again! Grandpa says I can come on the boat tomorrow!,"Die Fische springen wieder! Opa sagt, ich darf morgen mit aufs Boot!",鱼又跳起来了！爷爷说明天可以带我上船！
+EV_YA,"I'm with you, {player}.","Ich bin bei dir, {player}.",我和你在一起，{player}。
+EV_YAO_AFTER,"I'm starting to drum again, {player}. Very quietly at first.","Ich fange wieder an zu trommeln, {player}. Ganz leise erst.",我又开始打鼓了，{player}。先轻轻地。
 EV_YAO_B_1,So you're really going. Because an old man wrote it on a slate.,Du gehst also wirklich. Weil ein alter Mann es auf eine Tafel geschrieben hat.,你真的要去啊。就因为一个老头在石板上写了几个字。
 EV_YAO_B_2,"My grandfather left last winter. Just like that. If nothing ends anymore, nobody has to leave anymore. Don't you understand?","Mein Großvater ist letzten Winter gegangen. Einfach so. Wenn nichts mehr endet, muss auch niemand mehr gehen. Verstehst du das nicht?",我爷爷去年冬天走了，就那么走了。如果一切都不会结束，就没有人需要离开。你不明白吗？
 EV_YAO_B_3,... Spring. Grandfather liked spring.,… Frühling. Großvater mochte den Frühling.,……春天。爷爷喜欢春天。
@@ -152,6 +448,27 @@ EV_YAO_FEST_1,"Hey, {player}. They let you carry the wind chime? Great.","He, {p
 EV_YAO_FEST_2,"You know what I hate about the Song of the Phoenix? Afterwards everything is different. The old goes, the new comes. As if it were that easy.","Weißt du, was ich am Lied des Phönix hasse? Danach ist alles anders. Altes geht, Neues kommt. Als ob das so einfach wäre.",你知道我讨厌凤凰之歌哪一点吗？唱完以后一切都变了。旧的离开，新的到来。说得好像很容易似的。
 EV_YAO_RIVER_1,What are you waiting for? The Lingshou won't come to you by themselves.,Worauf wartest du? Die Lingshou laufen nicht von selbst zu dir.,还等什么？灵兽可不会自己跑过来。
 EV_YAO_RIVER_2,"Go on, the second bell is waiting.","Na los, das zweite Glöckchen wartet.",去吧，第二只铃铛在等着呢。
+EV_YING_IDLE,...,…,……
+EV_YT,...,…,……
+EV_YUE,"Cloud berries! Earth spirits love them. Take a few, the pillars are long.","Wolkenbeeren! Die Erdgeister lieben sie. Nimm ein paar mit, die Säulen sind lang.",云莓！土灵最爱吃了。带上几颗吧，石柱道很长。
+EV_YU_1,"Xuanwu's heartsong swells like a wave - and there it is: a deep, cool tone. Yu.","Xuanwus Herzklang schwillt an wie eine Welle – und da ist er: ein tiefer, kühler Ton. Yu.",玄武的心音像波浪一样涌起——它来了：一个深沉、清凉的音。羽。
+EV_YU_1B,"The tortoise pulls in her head, exhausted. Quietly, almost hesitantly, a tone sounds: Yu.","Die Schildkröte zieht den Kopf ein, erschöpft. Leise, fast zögernd, erklingt ein Ton: Yu.",玄龟疲惫地缩回了头。轻轻地、几乎是犹豫地，一个音响起：羽。
+EV_YU_2,"The lake breathes. Waves slap against the landing, the mist begins to drift. Somewhere a cormorant calls.","Der See atmet. Wellen schlagen gegen den Steg, der Nebel beginnt zu wandern. Irgendwo ruft ein Kormoran.",湖水在呼吸。波浪拍打着码头，雾开始流动。远处传来鸬鹚的叫声。
+EV_YU_3,"Ten thousand winters I have seen, little one. Each one left. Each one returned. Water does not hold on - that is why it is strong.","Zehntausend Winter habe ich gesehen, kleiner Mensch. Jeder ging. Jeder kam wieder. Das Wasser hält nicht fest – darum ist es stark.",我见过一万个冬天，小家伙。每一个都离开了，每一个都回来了。水从不紧抓不放——所以它强大。
+EV_YU_4,"Once Wusheng came here with a silver crane. The crane sang for me, and Wusheng laughed. Take this feather it lost here. Perhaps it will remind him of his song.","Einst kam Wusheng mit einem Silberkranich hierher. Der Kranich sang für mich, und Wusheng lachte. Nimm diese Feder, die er hier verlor. Vielleicht erinnert sie ihn an sein Lied.",从前无声带着一只银鹤来过这里。鹤为我唱歌，无声在笑。拿着这根它落在这里的羽毛吧。也许它能让他想起自己的歌。
+EV_ZHI_1,"Bifang's heartsong blazes up like a flame - and there it is: a bright, warm tone. Zhi.","Bifangs Herzklang lodert auf wie eine Flamme – und da ist er: ein heller, warmer Ton. Zhi.",毕方的心音像火焰一样燃起——它来了：一个明亮、温暖的音。徵。
+EV_ZHI_1B,"The fire bird sinks into the ashes. A tone glows, faint as a last spark: Zhi.","Der Feuervogel sinkt in die Asche. Ein Ton glimmt auf, schwach wie ein letzter Funke: Zhi.",火鸟沉入灰烬。一个音亮了起来，微弱得像最后一粒火星：徵。
+EV_ZHI_2,"The rock bands light up, red, yellow and orange. Down in Redrock smoke rises from the kilns - for the first time in a long while.","Die Felsbänder leuchten auf, rot, gelb und orange. Unten in Rotfels steigt Rauch aus den Öfen – zum ersten Mal seit Langem.",岩层亮了起来，红的、黄的、橙的。山下赤岩镇的窑炉冒起了烟——这是很久以来的第一次。
+EV_ZHI_3,"A forest that never burns never grows young, little one. But a fire without limits is no blessing. Thank you for thinking of the people below.","Ein Wald, der nie brennt, wird nie jung, kleiner Mensch. Doch ein Feuer ohne Grenzen ist kein Segen. Danke, dass du an die Menschen unten gedacht hast.",从不燃烧的森林，永远不会年轻，小家伙。可没有边界的火也不是福气。谢谢你想着山下的人。
+EV_ZIMMER,"Wood, stone, sweat - and a little patience. What'll it be?","Holz, Stein, Schweiß – und ein bisschen Geduld. Was soll's sein?",木头、石头、汗水——还有一点耐心。要做点什么？
+FARM_MAX,Your farm is as big as it can get.,"Dein Hof ist so groß, wie er werden kann.",你的农庄已经扩建到最大了。
+FARM_NOT_YET,It's too early for that - bring back more tones first.,Dafür ist es noch zu früh – bring erst mehr Töne zurück.,现在还太早——先找回更多的音吧。
+FARM_NO_MATERIAL,You're still missing building materials.,Dafür fehlen noch Baumaterialien.,还缺少建材。
+FARM_STAGE_0,Hut,Hütte,小屋
+FARM_STAGE_1,House,Haus,房子
+FARM_STAGE_2,Farmstead,Hof,农院
+FARM_STAGE_3,Manor farm,Gutshof,庄园
+FARM_STAGE_4,Estate,Anwesen,大宅
 FB_BATTLES,Battles,Kämpfe,战斗
 FB_CALLS,Calls (free text in battle),Ruf (Freitext im Kampf),呼唤（战斗自由输入）
 FB_COMMENT,"What was good, what bothered you?","Was war gut, was hat gestört?",哪里好？哪里不好？
@@ -167,22 +484,97 @@ FB_STORY,Story and characters,Geschichte und Figuren,故事与角色
 FB_TAMING,Taming and freeing,Zähmen und Befreien,驯服与解放
 FB_THANKS,Thank you! Your rating is saved.,Danke! Deine Bewertung ist gespeichert.,谢谢！你的评价已保存。
 FB_TITLE,Rate the beta,Beta bewerten,评价测试版
+FOOD_ACTIVE,You already ate {dish} today. A new dish replaces its effect.,Du hast heute schon {dish} gegessen. Ein neues Gericht ersetzt die Wirkung.,你今天已经吃过{dish}了。点新菜会替换效果。
+FOOD_EATEN,Mmm! {dish} works until you sleep.,Mmh! {dish} wirkt bis zum Schlafen.,嗯！{dish}的效果持续到睡觉。
+FOOD_TITLE,Restaurant,Restaurant,饭馆
 HINT_BACK_0,Mew! (Jinli pulls you west.),Miau! (Jinli zieht dich nach Westen.),喵！（锦鲤拉着你往西走。）
 HINT_BACK_1,"Mew, mew! (Back to Willowdale, the road on the left by the river.)","Miau, miau! (Zurück nach Weidendorf, der Weg links am Fluss.)",喵喵！（回柳村，沿着河岸左边的路。）
 HINT_BACK_2,Meeew! (The road on the far left leads back to the village. Hurry!),Miaaau! (Der Weg ganz links führt zurück ins Dorf. Schnell!),喵——！（最左边的路通回村子，快！）
+HINT_DUNES_1_0,Mew! (Jinli trudges west through the sand.),Miau! (Jinli stapft durch den Sand nach Westen.),喵！（锦鲤踩着沙子往西走。）
+HINT_DUNES_1_1,"Mew, mew! (Keep following the road to the left.)","Miau, miau! (Immer dem Weg nach links folgen.)",喵喵！（一直沿着路往左走。）
+HINT_DUNES_1_2,Meeew! (The road in the middle leads to Moonspring at the far left.),Miaaau! (Der Weg in der Mitte führt ganz links nach Mondquell.),喵——！（中间的路一直往左就是月泉镇。）
+HINT_DUNES_2_0,Mew! (Jinli looks at the grey hall.),Miau! (Jinli schaut zur grauen Halle.),喵！（锦鲤望着灰色的大殿。）
+HINT_DUNES_2_1,"Mew, mew! (The Hall of Silence is the big grey house below.)","Miau, miau! (Die Halle der Stille ist das große graue Haus unten.)",喵喵！（寂静堂就是下面那座灰色的大房子。）
+HINT_DUNES_2_2,"Meeew! (Hall of Silence, bottom middle - Yao is there. The way to the crest is at the top.)",Miaaau! (Halle der Stille unten in der Mitte – dort ist Yao. Der Weg zum Kamm ist oben.),喵——！（下方中间的寂静堂——尧在那里。去沙脊的路在上方。）
+HINT_DUNES_3_0,Mew! (Jinli looks up the ridge.),Miau! (Jinli schaut den Grat hinauf.),喵！（锦鲤望着沙脊。）
+HINT_DUNES_3_1,"Mew, mew! (Baihu lies at the very top.)","Miau, miau! (Ganz oben liegt Baihu.)",喵喵！（白虎在最上面。）
+HINT_DUNES_3_2,Meeew! (Up on the crest: Baihu. The elder below heals your companions.),Miaaau! (Oben auf dem Kamm: Baihu. Die Älteste unten heilt dein Gefolge.),喵——！（沙脊上就是白虎。下面的长老能给同伴疗伤。）
 HINT_FESTIVAL_0,Mew! (Jinli looks at all the lanterns.),Miau! (Jinli schaut zu den vielen Laternen.),喵！（锦鲤看着满街的灯笼。）
 HINT_FESTIVAL_1,Mew! (Jinli runs towards the big square with the well.),Miau! (Jinli läuft zum großen Platz mit dem Brunnen.),喵！（锦鲤跑向有水井的大广场。）
 HINT_FESTIVAL_2,"Meeew! (To the festival square with the well, in the middle of the village, just below the workshop.)","Miaaau! (Zum Festplatz mit dem Brunnen in der Mitte des Dorfs, direkt unter der Werkstatt.)",喵——！（去村子中间、作坊下面那个有水井的节日广场。）
-HINT_FREE_0,Mew! (Jinli purrs happily.),Miau! (Jinli schnurrt zufrieden.),喵！（锦鲤满足地打着呼噜。）
-HINT_FREE_1,Mew. (Jinli curls up in the sun. Maybe more Lingshou wait in the tall grass?),Miau. (Jinli rollt sich in der Sonne zusammen. Vielleicht warten noch Lingshou im hohen Gras?),喵。（锦鲤在阳光下蜷成一团。也许高草丛里还有灵兽在等你？）
-HINT_FREE_2,"Meeew. (More tones come in a later version. Until then: tame, battle, rate the beta!)","Miaaau. (Mehr Töne gibt es in einer späteren Version. Bis dahin: Zähmen, kämpfen, die Beta bewerten!)",喵——。（更多的音会在以后的版本中出现。现在先驯服、战斗、给测试版打分吧！）
+HINT_FINALE_0,Mew. (Jinli looks at Wusheng. Her tail twitches.),Miau. (Jinli schaut zu Wusheng. Ihr Schwanz zuckt.),喵。（锦鲤盯着无声，尾巴一抽一抽的。）
+HINT_FINALE_1,Mew! (Go to Wusheng in front of the nest.),Miau! (Geh zu Wusheng vor dem Nest.),喵！（去巢前找无声。）
+HINT_FINALE_2,Meeew! (Wusheng stands in front of the golden nest. You have learned everything you need.),"Miaaau! (Wusheng steht vor dem goldenen Nest. Du hast alles gelernt, was du brauchst.)",喵——！（无声站在金色的巢前。你需要的，都已经学会了。）
+HINT_HOME_VOICE_0,Mew! (Jinli pulls you towards home.),Miau! (Jinli zieht dich Richtung Heimat.),喵！（锦鲤拉着你往家的方向走。）
+HINT_HOME_VOICE_1,"Mew, mew! (Back to Willowdale - fastest with an inn's wind chime.)","Miau, miau! (Zurück nach Weidendorf – am schnellsten mit dem Windspiel einer Unterkunft.)",喵喵！（回柳村——用客栈的风铃最快。）
+HINT_HOME_VOICE_2,Meeew! (Travel to Willowdale with an inn's wind chime shrine. Something waits on the festival square.),Miaaau! (Reise mit dem Windspiel-Schrein einer Unterkunft nach Weidendorf. Etwas wartet auf dem Festplatz.),喵——！（用客栈的风铃神龛回柳村。节日广场上有什么在等着。）
+HINT_LAST_GONG_0,Mew! (Jinli looks at the great stone pillars.),Miau! (Jinli schaut zu den großen Steinsäulen.),喵！（锦鲤望着巨大的石柱。）
+HINT_LAST_GONG_1,"Mew, mew! (From the Crossroads, up the stone stairs to the north.)","Miau, miau! (Vom Kreuzweg die Steintreppe nach Norden hinauf.)",喵喵！（从十字路口沿石阶往北走。）
+HINT_LAST_GONG_2,"Meeew! (Crossroads, top middle: the stairs to the Pillar Path, then to Pinecliff and right to the Qilin Plateau.)","Miaaau! (Kreuzweg, oben in der Mitte: die Treppe zum Säulenpfad, dann nach Kiefernhang und rechts zum Qilin-Plateau.)",喵——！（十字路口正上方的石阶通往石柱道，再到松崖村，往右就是麒麟台。）
+HINT_LAST_SHANG_0,Mew! (Jinli looks west.),Miau! (Jinli schaut nach Westen.),喵！（锦鲤望向西方。）
+HINT_LAST_SHANG_1,"Mew, mew! (From the Crossroads west, along the Dune Road to Moonspring.)","Miau, miau! (Vom Kreuzweg nach Westen, über den Dünenweg nach Mondquell.)",喵喵！（从十字路口往西，沿沙丘路去月泉镇。）
+HINT_LAST_SHANG_2,"Meeew! (Crossroads, far left: the Dune Road. In Moonspring the way to the Singing Crest is at the top.)","Miaaau! (Kreuzweg, ganz links: der Dünenweg. In Mondquell geht es oben zum Singenden Kamm.)",喵——！（十字路口最左边是沙丘路。月泉镇上方通往鸣沙脊。）
+HINT_LAST_TWO_0,"Mew! (Jinli looks west, then up.)","Miau! (Jinli schaut nach Westen, dann nach oben.)",喵！（锦鲤望望西边，又望望上方。）
+HINT_LAST_TWO_1,"Mew, mew! (At the Crossroads both roads are open now.)","Miau, miau! (Am Kreuzweg sind jetzt beide Wege frei.)",喵喵！（十字路口的两条路现在都通了。）
+HINT_LAST_TWO_2,"Meeew! (Crossroads: left to the dunes and Moonspring, up the stairs in the middle to the Cloud Pillars.)","Miaaau! (Kreuzweg: links zu den Dünen und nach Mondquell, die Treppe in der Mitte hinauf zu den Wolkensäulen.)",喵——！（十字路口：往左去沙丘和月泉镇，从中间石阶上去是云柱。）
 HINT_MEISTER_0,Mew! (Jinli looks at the red workshop.),Miau! (Jinli schaut zur roten Werkstatt.),喵！（锦鲤望向红色的作坊。）
 HINT_MEISTER_1,"Mew, mew! (Jinli trots towards the red workshop at the top middle of the village.)","Miau, miau! (Jinli trippelt zur roten Werkstatt oben in der Mitte des Dorfs.)",喵喵！（锦鲤朝村子上方中间的红色作坊小跑过去。）
 HINT_MEISTER_2,"Meeew! (The red workshop with the wind chime, top middle of the village. Master Lu waits at the door.)","Miaaau! (Die rote Werkstatt mit dem Windspiel, oben in der Dorfmitte. Meister Lu wartet vor der Tür.)",喵——！（村子上方中间那座挂着风铃的红色作坊，卢师傅在门口等你。）
+HINT_NIAN_0,Mew! (Jinli hisses towards the festival square.),Miau! (Jinli faucht in Richtung Festplatz.),喵！（锦鲤冲着节日广场哈气。）
+HINT_NIAN_1,"Mew, mew! (Bo is at the bottom of the square, Granny Hu lives on the right.)","Miau, miau! (Bo spielt unten am Platz, Oma Hu wohnt rechts.)",喵喵！（小波在广场下面，胡奶奶住在右边。）
+HINT_NIAN_2,"Meeew! (Drum from Bo at the bottom of the square, banner from Granny Hu at the right edge of the village. Then to the Nian in the middle!)","Miaaau! (Trommel von Bo unten am Festplatz, Banner von Oma Hu rechts am Dorfrand. Dann zum Nian in der Mitte!)",喵——！（广场下面找小波要鼓，村子右边找胡奶奶要幡。然后去中间对付年兽！）
 HINT_NONE,Mew? (Jinli rubs against your legs. All is well right now.),Miau? (Jinli streicht dir um die Beine. Gerade ist alles gut.),喵？（锦鲤蹭了蹭你的腿。现在一切都好。）
+HINT_PILLARS_1_0,Mew! (Jinli hops upwards from stone to stone.),Miau! (Jinli springt von Stein zu Stein nach oben.),喵！（锦鲤从一块石头跳到另一块，往上爬。）
+HINT_PILLARS_1_1,"Mew, mew! (The path in the middle leads up.)","Miau, miau! (Der Weg in der Mitte führt nach oben.)",喵喵！（中间的路通往上面。）
+HINT_PILLARS_1_2,Meeew! (Keep going up the path in the middle - Pinecliff is at the top.),Miaaau! (Immer den Weg in der Mitte hinauf – oben liegt Kiefernhang.),喵——！（一直沿中间的路往上——上面就是松崖村。）
+HINT_PILLARS_2_0,Mew! (Jinli looks to the right.),Miau! (Jinli schaut nach rechts.),喵！（锦鲤望向右边。）
+HINT_PILLARS_2_1,"Mew, mew! (The road out of the village to the right leads to the plateau.)","Miau, miau! (Der Weg rechts aus dem Dorf führt zum Plateau.)",喵喵！（村子右边的路通往高台。）
+HINT_PILLARS_2_2,"Meeew! (Pinecliff, middle right: the way to the Qilin Plateau.)","Miaaau! (Kiefernhang, rechts in der Mitte: der Weg zum Qilin-Plateau.)",喵——！（松崖村右边中间：去麒麟台的路。）
+HINT_PILLARS_3_0,Mew! (Jinli looks at the Qilin.),Miau! (Jinli schaut zum Qilin.),喵！（锦鲤望着麒麟。）
+HINT_PILLARS_3_1,"Mew, mew! (Up the path to the Qilin.)","Miau, miau! (Den Weg hinauf zum Qilin.)",喵喵！（沿路上去找麒麟。）
+HINT_PILLARS_3_2,Meeew! (Up on the plateau: the Qilin. Gentle ones like calm and respect.),Miaaau! (Oben auf dem Plateau: der Qilin. Sanfte mögen Ruhe und Respekt.),喵——！（高台上就是麒麟。温和的灵兽喜欢平静和尊重。）
+HINT_POST_0,Mew! (Jinli purrs happily.),Miau! (Jinli schnurrt zufrieden.),喵！（锦鲤满足地打着呼噜。）
+HINT_POST_1,Mew. (Jinli curls up in the sun. The Lingshou wait on the farm.),Miau. (Jinli rollt sich in der Sonne zusammen. Auf dem Hof warten die Lingshou.),喵。（锦鲤在阳光下蜷成一团。农庄里的灵兽在等你。）
+HINT_POST_2,Meeew. (Do you have every Lingshou in the bestiary yet? Some only hatch on the farm.),Miaaau. (Hast du schon alle Lingshou im Lexikon? Manche schlüpfen nur auf dem Hof.),喵——。（图鉴里的灵兽都集齐了吗？有些只能在农庄孵化。）
+HINT_POST_BITTER_0,"Mew. (Jinli looks west, towards the silent dunes.)","Miau. (Jinli schaut nach Westen, zu den stillen Dünen.)",喵。（锦鲤望向西边沉默的沙丘。）
+HINT_POST_BITTER_1,"Mew, mew! (To the Singing Crest behind Moonspring.)","Miau, miau! (Zum Singenden Kamm hinter Mondquell.)",喵喵！（去月泉镇后面的鸣沙脊。）
+HINT_POST_BITTER_2,Meeew! (Baihu lies grey on the crest again. Give him courage instead of defeating him.),"Miaaau! (Baihu liegt wieder grau auf dem Kamm. Sprich ihm Mut zu, statt ihn zu besiegen.)",喵——！（白虎又灰扑扑地躺在沙脊上了。给它打气，而不是打败它。）
+HINT_RIDGE_1_0,Mew! (Jinli looks down the trail.),Miau! (Jinli schaut den Pfad hinunter.),喵！（锦鲤望着小径的尽头。）
+HINT_RIDGE_1_1,"Mew, mew! (Keep south along the path in the middle.)","Miau, miau! (Immer den Weg in der Mitte nach Süden.)",喵喵！（沿着中间的路一直往南。）
+HINT_RIDGE_1_2,Meeew! (The path in the middle leads to Redrock at the very bottom.),Miaaau! (Der Weg in der Mitte führt ganz unten nach Rotfels.),喵——！（中间的路一直走到底就是赤岩镇。）
+HINT_RIDGE_2_0,Mew! (Jinli looks at the red house at the bottom left.),Miau! (Jinli schaut zum roten Haus unten links.),喵！（锦鲤望向左下方的红房子。）
+HINT_RIDGE_2_1,"Mew, mew! (The mayor lives at the bottom left.)","Miau, miau! (Die Bürgermeisterin wohnt unten links.)",喵喵！（镇长住在左下方。）
+HINT_RIDGE_2_2,"Meeew! (Redrock, bottom left: Mayor Hong. Then the way to the Fire Peak is at the bottom middle.)","Miaaau! (Rotfels, unten links: Bürgermeisterin Hong. Danach geht es unten in der Mitte zum Feuergipfel.)",喵——！（赤岩镇左下方：洪镇长。之后从正下方去火峰。）
+HINT_RIDGE_3_0,Mew! (Jinli sniffs at red clay.),Miau! (Jinli schnuppert an rotem Ton.),喵！（锦鲤嗅了嗅红陶土。）
+HINT_RIDGE_3_1,"Mew, mew! (Clay can be found in chests, from the forester and in the shop.)","Miau, miau! (Ton gibt es in Kisten, beim Förster und im Laden.)",喵喵！（箱子里、护林人那里和商店都有陶土。）
+HINT_RIDGE_3_2,"Meeew! (Three Danxia clay to the potter at the old kiln, bottom middle of Redrock.)","Miaaau! (Drei Danxia-Ton zum Töpfer am alten Ofen, unten in der Mitte von Rotfels.)",喵——！（把三块丹霞陶土交给赤岩镇中下方老窑边的陶匠。）
+HINT_RIDGE_4_0,Mew! (Jinli looks up at the peak.),Miau! (Jinli schaut zum Gipfel.),喵！（锦鲤望着山顶。）
+HINT_RIDGE_4_1,"Mew, mew! (The way up is at the bottom middle of Redrock.)","Miau, miau! (Unten in der Mitte von Rotfels geht es hinauf.)",喵喵！（赤岩镇正下方有路上山。）
+HINT_RIDGE_4_2,"Meeew! (Redrock, bottom middle: the path to the Fire Peak. Bifang waits at the very top.)","Miaaau! (Rotfels, unten in der Mitte: der Weg zum Feuergipfel. Ganz oben wartet Bifang.)",喵——！（赤岩镇正下方是去火峰的路。毕方在最高处等着。）
+HINT_RIDGE_5_0,Mew! (Jinli looks at the summit.),Miau! (Jinli schaut zur Spitze.),喵！（锦鲤望向峰顶。）
+HINT_RIDGE_5_1,"Mew, mew! (Up the path to Bifang.)","Miau, miau! (Den Weg hinauf zu Bifang.)",喵喵！（沿路上去找毕方。）
+HINT_RIDGE_5_2,Meeew! (At the very top: Bifang. The hermit heals your companions first.),Miaaau! (Ganz oben: Bifang. Der Einsiedler heilt dein Gefolge vorher.),喵——！（最上面就是毕方。先让隐士给同伴疗伤。）
 HINT_RIVER_0,Mew! (Jinli looks east.),Miau! (Jinli schaut nach Osten.),喵！（锦鲤望向东方。）
 HINT_RIVER_1,"Mew, mew! (Jinli runs to the road at the right edge of the village.)","Miau, miau! (Jinli läuft zum Weg am rechten Dorfrand.)",喵喵！（锦鲤跑到村子右边的路口。）
+HINT_RIVER_1_0,Mew! (Jinli looks upstream.),Miau! (Jinli schaut flussaufwärts.),喵！（锦鲤望向上游。）
+HINT_RIVER_1_1,"Mew, mew! (Over the wooden bridge at the top right to Misthaven.)","Miau, miau! (Über die Holzbrücke oben rechts geht es nach Nebelhafen.)",喵喵！（从右上方的木桥过去就是雾港。）
+HINT_RIVER_1_2,"Meeew! (Up the path in the middle, then right over the bridge to Misthaven.)","Miaaau! (Den Weg in der Mitte hinauf, dann rechts über die Brücke nach Nebelhafen.)",喵——！（沿中间的路往上走，再往右过桥就到雾港了。）
 HINT_RIVER_2,"Meeew! (At the right edge of the village, below Granny Hu's house, the road leads to the riverbank.)","Miaaau! (Am rechten Rand des Dorfs, unterhalb des Hauses von Oma Hu, geht es zum Flussufer.)",喵——！（村子右边、胡奶奶家下面，有条路通往河岸。）
+HINT_RIVER_2_0,Mew! (Jinli looks at the fisher's hut.),Miau! (Jinli schaut zur Fischerhütte.),喵！（锦鲤望向渔夫的小屋。）
+HINT_RIVER_2_1,"Mew, mew! (The little hut at the bottom left belongs to the fisher.)","Miau, miau! (Die kleine Hütte unten links gehört dem Fischer.)",喵喵！（左下方的小屋是渔夫的。）
+HINT_RIVER_2_2,Meeew! (Bottom left in Misthaven: Fisher Zhou. He has a boat.),Miaaau! (Unten links in Nebelhafen: Fischer Zhou. Er hat ein Boot.),喵——！（雾港左下方：周渔翁。他有船。）
+HINT_RIVER_3B_0,Mew! (Jinli trots towards Misthaven.),Miau! (Jinli trabt Richtung Nebelhafen.),喵！（锦鲤朝雾港小跑。）
+HINT_RIVER_3B_1,"Mew, mew! (Back to the fisher, bottom left in Misthaven.)","Miau, miau! (Zurück zum Fischer, unten links in Nebelhafen.)",喵喵！（回到雾港左下方找渔翁。）
+HINT_RIVER_3B_2,Meeew! (Fisher Zhou waits in his hut at the bottom left of Misthaven.),Miaaau! (Fischer Zhou wartet in seiner Hütte unten links in Nebelhafen.),喵——！（周渔翁在雾港左下方的小屋里等你。）
+HINT_RIVER_3_0,Mew. (Jinli looks back towards the Karst Bank.),Miau. (Jinli schaut zurück zum Karstufer.),喵。（锦鲤回头望向岩溶河岸。）
+HINT_RIVER_3_1,"Mew, mew! (The cormorant sits on the cliff at the top left of the Karst Bank.)","Miau, miau! (Auf der Klippe oben links im Karstufer sitzt der Kormoran.)",喵喵！（鸬鹚蹲在岩溶河岸左上方的悬崖上。）
+HINT_RIVER_3_2,"Meeew! (Karst Bank, top left by the water. Talk to it kindly - silenced ones like calm and respect.)","Miaaau! (Karstufer, oben links am Wasser. Sprich ihm gut zu – Mutige mögen Ermutigung, Verstummte Ruhe und Respekt.)",喵——！（岩溶河岸左上方的水边。好好跟它说话——失声的灵兽喜欢平静和尊重。）
+HINT_RIVER_4_0,Mew! (Jinli looks at the pier.),Miau! (Jinli schaut zum Steg.),喵！（锦鲤望向码头。）
+HINT_RIVER_4_1,"Mew, mew! (Up the long pier in the middle - the boat is waiting.)","Miau, miau! (Den langen Steg in der Mitte hinauf – das Boot wartet.)",喵喵！（沿着中间的长码头往前走——船在等着。）
+HINT_RIVER_4_2,"Meeew! (Misthaven, top middle: the pier. From there you go to Tortoise Bay.)","Miaaau! (Nebelhafen, oben in der Mitte: der Steg. Von dort geht es zur Schildkrötenbucht.)",喵——！（雾港正上方的码头。从那里去玄龟湾。）
+HINT_RIVER_5_0,Mew! (Jinli looks at the terrace.),Miau! (Jinli schaut zur Terrasse.),喵！（锦鲤望向石台。）
+HINT_RIVER_5_1,"Mew, mew! (Up the path to the great tortoise.)","Miau, miau! (Den Weg hinauf zur großen Schildkröte.)",喵喵！（沿路走上去，到大龟那里。）
+HINT_RIVER_5_2,Meeew! (Up on the terrace: Xuanwu. Rest with the shell gatherer first.),Miaaau! (Oben auf der Terrasse: Xuanwu. Ruh dich vorher bei der Muschelsammlerin aus.),喵——！（石台上就是玄武。去之前先在拾贝人那里休息一下。）
 HINT_SECOND_0,Mew. (Jinli looks at the other shy Lingshou.),Miau. (Jinli schaut zu den anderen scheuen Lingshou.),喵。（锦鲤看着其他怕生的灵兽。）
 HINT_SECOND_1,Mew! (Another Lingshou here at the river is waiting for you.),Miau! (Noch ein Lingshou hier am Fluss wartet auf dich.),喵！（河边还有一只灵兽在等你。）
 HINT_SECOND_2,"Meeew! (Playful ones like Mistape love games, brave ones love encouragement. Talk to them!)","Miaaau! (Verspielte wie der Nebelaffe mögen Spiele, Mutige mögen Ermutigung. Sprich sie an!)",喵——！（顽皮的雾猴喜欢游戏，勇敢的喜欢鼓励。去和它们说说话！）
@@ -192,36 +584,222 @@ HINT_TAME_2,"Meeew! (Walk up to a Lingshou. Anxious ones like Wailamander love q
 HINT_TEEUFER_0,Mew! (Jinli looks north.),Miau! (Jinli schaut nach Norden.),喵！（锦鲤望向北方。）
 HINT_TEEUFER_1,"Mew, mew! (The road at the top right of the village leads into the Bamboo Path.)","Miau, miau! (Der Weg oben rechts im Dorf führt in den Bambuspfad.)",喵喵！（村子右上方的路通往竹径。）
 HINT_TEEUFER_2,"Meeew! (Out of the village at the top right, through the Bamboo Path, then east to Teabank.)","Miaaau! (Oben rechts aus dem Dorf hinaus, durch den Bambuspfad und dann nach Osten bis Teeufer.)",喵——！（从村子右上方出去，穿过竹径，再往东到茶岸镇。）
+HINT_TEMPLE_0,"Mew! (Jinli looks high up, at the clouds.)","Miau! (Jinli schaut hoch hinauf, zu den Wolken.)",喵！（锦鲤抬头望向高高的云端。）
+HINT_TEMPLE_1,"Mew, mew! (In Pinecliff a cloud staircase leads upwards.)","Miau, miau! (In Kiefernhang führt eine Wolkentreppe nach oben.)",喵喵！（松崖村有一道云梯通往上方。）
+HINT_TEMPLE_2,"Meeew! (Pinecliff, top middle: the cloud stairs to the Phoenix Temple. All five tones are ringing!)","Miaaau! (Kiefernhang, ganz oben in der Mitte: die Wolkentreppe zum Phönixtempel. Alle fünf Töne klingen!)",喵——！（松崖村正上方：通往凤凰庙的云梯。五音齐鸣！）
 HINT_TERRACES_0,Mew! (Jinli looks north to the terraces.),Miau! (Jinli schaut nach Norden zu den Terrassen.),喵！（锦鲤望向北边的梯田。）
 HINT_TERRACES_1,"Mew, mew! (At the top right of Teabank, the road leads to the rice terraces.)","Miau, miau! (Rechts oben in Teeufer geht es zu den Reisterrassen.)",喵喵！（茶岸镇右上方的路通往稻田梯。）
 HINT_TERRACES_2,"Meeew! (Out of town at the top right, up the terraces. At the very top, beyond the pass, is the shrine.)","Miaaau! (Rechts oben aus der Stadt, die Terrassen hinauf. Ganz oben, hinter dem Pass, ist der Schrein.)",喵——！（从镇子右上方出去，爬上梯田。最上面，过了山口就是龙祠。）
+HINT_TWO_TONES_0,Mew! (Jinli looks south.),Miau! (Jinli schaut nach Süden.),喵！（锦鲤望向南方。）
+HINT_TWO_TONES_1,"Mew, mew! (From Teabank a road leads south to the Crossroads.)","Miau, miau! (Von Teeufer aus führt ein Weg nach Süden zum Kreuzweg.)",喵喵！（从茶岸镇有条路往南通到十字路口。）
+HINT_TWO_TONES_2,Meeew! (At the bottom left of Teabank the road leads to the Crossroads. From there north to the Misty River or south to Rainbow Ridge.),Miaaau! (Unten links in Teeufer geht es zum Kreuzweg. Von dort nach Norden zum Nebelfluss oder nach Süden zum Regenbogengrat.),喵——！（茶岸镇左下方的路通往十字路口。从那里往北去雾河，往南去彩虹岭。）
+HINT_YU_0,Mew! (Jinli looks north.),Miau! (Jinli schaut nach Norden.),喵！（锦鲤望向北方。）
+HINT_YU_1,"Mew, mew! (From the Crossroads north, left past the pillars.)","Miau, miau! (Vom Kreuzweg nach Norden, links an den Säulen vorbei.)",喵喵！（从十字路口往北，从石柱左边绕过去。）
+HINT_YU_2,"Meeew! (Crossroads, top left: the road to the Karst Bank and Misthaven.)","Miaaau! (Kreuzweg, oben links: der Weg zum Karstufer und nach Nebelhafen.)",喵——！（十字路口左上方是去岩溶河岸和雾港的路。）
+HINT_ZHI_0,Mew! (Jinli looks south.),Miau! (Jinli schaut nach Süden.),喵！（锦鲤望向南方。）
+HINT_ZHI_1,"Mew, mew! (From the Crossroads south, down the Danxia Trail.)","Miau, miau! (Vom Kreuzweg nach Süden, den Danxia-Pfad hinunter.)",喵喵！（从十字路口往南，走丹霞小径。）
+HINT_ZHI_2,"Meeew! (Crossroads, bottom middle: the Danxia Trail to Redrock. Beyond Redrock is the Fire Peak.)","Miaaau! (Kreuzweg, unten in der Mitte: der Danxia-Pfad nach Rotfels. Hinter Rotfels liegt der Feuergipfel.)",喵——！（十字路口正下方是去赤岩镇的丹霞小径。赤岩镇后面就是火峰。）
+HOME_EGGS,Eggs,Eier,蛋
+HOME_EGG_ROW,An egg of {name} - hatches in {n} nights.,Ein Ei von {name} – schlüpft in {n} Nächten.,{name}的蛋——还有{n}晚孵化。
+HOME_TITLE,Home,Zuhause,家
 INN_FARM,On the farm,Auf dem Hof,在农庄
 INN_REST,Rest (heal and save),Ausruhen (heilen und speichern),休息（恢复并存档）
 INN_RESTED,Everyone is rested. Saved.,Alle sind ausgeruht. Gespeichert.,大家都休息好了。已存档。
 INN_SHRINE,Wind chime shrine,Windspiel-Schrein,风铃神龛
 INN_SHRINE_NOTE,Swap Lingshou between your companions and the farm. Bells: {bells},Hier tauschst du Lingshou zwischen Gefolge und Hof. Glöckchen: {bells},在这里交换同伴和农庄的灵兽。铃铛：{bells}
+INN_SLEEP,Sleep until morning (heal and save),Schlafen bis zum Morgen (heilen und speichern),睡到天亮（恢复并存档）
 INN_TITLE,Lodging,Unterkunft,住处
 INN_TO_FARM,To farm,Zum Hof,送去农庄
 INN_TO_PARTY,Take along,Mitnehmen,带上
+INN_TRAVEL,Travel with the wind chime,Mit dem Windspiel reisen,乘风铃旅行
+ITEM_BAMBUS,Bamboo Poles,Bambusstangen,竹竿
+ITEM_BAMBUSREIS,Bamboo Rice,Bambusreis,竹筒饭
+ITEM_BAMBUSREIS_DESC,Taming and talking work better (until you sleep).,Zähmen und Zureden wirken stärker (bis zum Schlafen).,驯服和说话更有效（直到睡觉）。
+ITEM_BAMBUS_DESC,Building material from the Bamboo Sea.,Baumaterial aus dem Bambusmeer.,竹海出产的建材。
+ITEM_BOOT,River Boat,Flussboot,小船
+ITEM_BOOT_DESC,A small boat. Takes you across rivers and lakes.,Ein kleines Boot. Damit kommst du über Flüsse und Seen.,一条小船，可以渡河过湖。
+ITEM_CHILISCHOTEN,Chili Pods,Chilischoten,辣椒
+ITEM_CHILISCHOTEN_DESC,Food for wild Lingshou. Fire and metal spirits love it.,Futter für wilde Lingshou. Feuer- und Metallgeister lieben es.,喂给野生灵兽的食物。火灵和金灵最爱。
+ITEM_DANXIA_TON,Danxia Clay,Danxia-Ton,丹霞陶土
+ITEM_DANXIA_TON_DESC,"Red clay from Rainbow Ridge, for kilns and roofs.","Roter Ton vom Regenbogengrat, für Öfen und Dächer.",彩虹岭的红陶土，用于窑炉和屋顶。
+ITEM_DATTELTEE,Date Tea,Dattel-Tee,枣茶
+ITEM_DATTELTEE_DESC,More coins from battles (until you sleep).,Mehr Münzen aus Kämpfen (bis zum Schlafen).,战斗获得更多铜钱（直到睡觉）。
+ITEM_FAHRRAD,Bicycle,Fahrrad,自行车
+ITEM_FAHRRAD_DESC,You travel twice as fast outdoors.,Du kommst draußen doppelt so schnell voran.,在户外移动速度加倍。
+ITEM_FEUERTOPF,Fire Pot,Feuertopf,火锅
+ITEM_FEUERTOPF_DESC,Your companions hit harder (until you sleep).,Dein Gefolge greift stärker an (bis zum Schlafen).,同伴攻击更强（直到睡觉）。
+ITEM_FEUERWERK,Firecrackers,Feuerwerk,鞭炮
+ITEM_FEUERWERK_DESC,Bangs and flashes. The Nian fears it.,Knallt und leuchtet. Der Nian fürchtet es.,噼啪作响，火光闪闪。年兽最怕它。
+ITEM_FISCHSUPPE,Mist Fish Soup,Nebelfisch-Suppe,雾鱼汤
+ITEM_FISCHSUPPE_DESC,More experience from battles (until you sleep).,Mehr Erfahrung aus Kämpfen (bis zum Schlafen).,战斗获得更多经验（直到睡觉）。
+ITEM_FLUSSKIESEL,River Pebbles,Flusskiesel,河卵石
+ITEM_FLUSSKIESEL_DESC,"Smooth pebbles from the Misty River, good for ponds and paths.","Glatte Kiesel vom Nebelfluss, gut für Teiche und Wege.",雾河的光滑卵石，适合铺池塘和小路。
+ITEM_FLUSSMUSCHELN,River Clams,Flussmuscheln,河蚌
+ITEM_FLUSSMUSCHELN_DESC,Food for wild Lingshou. Water and earth spirits love it.,Futter für wilde Lingshou. Wasser- und Erdgeister lieben es.,喂给野生灵兽的食物。水灵和土灵最爱。
+ITEM_JASMINTEE,Jasmine Tea,Jasmintee,茉莉花茶
+ITEM_JASMINTEE_DESC,Restores 70% of a Lingshou's strength.,Gibt einem Lingshou 70 % Kraft zurück.,恢复灵兽70%的体力。
+ITEM_KRANICHFEDER,Silver Crane Feather,Silberne Kranichfeder,银鹤羽
+ITEM_KRANICHFEDER_DESC,A feather of Wusheng's crane. It hums softly when held to your ear.,"Eine Feder von Wushengs Kranich. Sie summt leise, wenn man sie ans Ohr hält.",无声之鹤的羽毛。贴近耳边时会轻轻作响。
+ITEM_PHOENIXFEDER,Phoenix Down Feather,Phönixdaune,凤羽
+ITEM_PHOENIXFEDER_DESC,Wakes an exhausted Lingshou at full strength.,Weckt ein erschöpftes Lingshou mit voller Kraft.,唤醒力竭的灵兽并完全恢复体力。
+ITEM_ROTES_BANNER,Red Banner,Rotes Banner,红幡
+ITEM_ROTES_BANNER_DESC,Red like luck. The Nian can't stand the colour.,Rot wie Glück. Der Nian kann die Farbe nicht ertragen.,红色象征好运。年兽受不了这种颜色。
+ITEM_TROMMEL,Festival Drum,Festtrommel,节鼓
+ITEM_TROMMEL_DESC,Loud! The Nian fears drums. Use it in battle against it.,Laut! Der Nian fürchtet Trommeln. Im Kampf gegen ihn benutzen.,响亮！年兽怕鼓声。在与它战斗时使用。
+ITEM_WOLKENBEEREN,Cloud Berries,Wolkenbeeren,云莓
+ITEM_WOLKENBEEREN_DESC,Food for wild Lingshou. Earth and wood spirits love it.,Futter für wilde Lingshou. Erd- und Holzgeister lieben es.,喂给野生灵兽的食物。土灵和木灵最爱。
+ITEM_WOLKENJADE,Cloud Jade,Wolkenjade,云玉
+ITEM_WOLKENJADE_DESC,Rare jade from the Cloud Pillars.,Seltene Jade von den Wolkensäulen.,云柱上的稀有玉石。
+ITEM_WOLKENKLOESSE,Cloud Dumplings,Wolkenklöße,云饺
+ITEM_WOLKENKLOESSE_DESC,Your companions endure more (until you sleep).,Dein Gefolge hält mehr aus (bis zum Schlafen).,同伴更耐打（直到睡觉）。
+ITEM_WUESTENDATTELN,Desert Dates,Wüstendatteln,沙枣
+ITEM_WUESTENDATTELN_DESC,Food for wild Lingshou. Metal and fire spirits love it.,Futter für wilde Lingshou. Metall- und Feuergeister lieben es.,喂给野生灵兽的食物。金灵和火灵最爱。
+ITEM_WUESTENKUPFER,Desert Copper,Wüstenkupfer,沙铜
+ITEM_WUESTENKUPFER_DESC,"Copper from the Singing Dunes, for tools and bells.","Kupfer aus den Singenden Dünen, für Werkzeug und Glocken.",鸣沙丘的铜，用来做工具和铃铛。
+LEX_BRED,Only through breeding on the farm.,Nur durch Zucht auf dem Hof.,只能在农庄繁殖获得。
+LEX_MOVES_NOTE,Tap moves: up to four are active.,Tippe Attacken an: bis zu vier sind aktiv.,点击招式：最多四个可用。
+LEX_WHERE,Found at:,Zu finden:,出没地点：
+LS_BAIHU,Baihu,Baihu,白虎
+LS_BAIHU_ANIMAL,White Tiger,Weißer Tiger,白虎
+LS_BAIHU_DESC,"Sky guardian of the west. Its fur shines like silver, its roar makes the dunes sing. Keeps the tone Shang.","Himmelswächter des Westens. Sein Fell glänzt wie Silber, sein Brüllen lässt die Dünen singen. Hütet den Ton Shang.",西方的天之守护者。毛皮如银般闪亮，它一咆哮，沙丘便会歌唱。守护着“商”音。
+LS_BAMBAER_DESC,Makes bamboo grow wherever it sits. Shares its food with everyone.,"Lässt Bambus wachsen, wo es sitzt. Teilt sein Futter mit jedem.",坐在哪里，哪里就长出竹子。愿意和大家分享食物。
+LS_BIFANG,Bifang,Bifang,毕方
+LS_BIFANG_ANIMAL,one-legged fire bird,einbeiniger Feuervogel,独足火鸟
+LS_BIFANG_DESC,"Sky guardian of the south. Stands on one leg, and where it calls, old forests blaze so new ones can grow. Keeps the tone Zhi.","Himmelswächter des Südens. Steht auf einem Bein, und wo er ruft, lodern alte Wälder auf, damit neue wachsen. Hütet den Ton Zhi.",南方的天之守护者。单足而立，它一鸣叫，旧林燃起，新林生长。守护着“徵”音。
+LS_BLATTBAER,Leafbear,Blattbär,叶翅熊
+LS_BLATTBAER_ANIMAL,hybrid of Bambear and Jadewing,Mischform aus Bambär und Jadelibelle,竹熊宝与玉蜻蜓的混种
+LS_BLATTBAER_DESC,"A little bear with dragonfly wings of bamboo leaves. Can't fly, but tries every day.","Ein Bärchen mit Libellenflügeln aus Bambusblättern. Kann nicht fliegen, versucht es aber jeden Tag.",长着竹叶蜻蜓翅膀的小熊。飞不起来，却每天都在努力尝试。
+LS_DUENENSPRINGER,Duneskip,Dünenspringer,沙跳鼠
+LS_DUENENSPRINGER_ANIMAL,long-eared jerboa,Langohr-Springmaus,长耳跳鼠
+LS_DUENENSPRINGER_DESC,With its huge ears it hears the dunes sing. Jumps three times its own length.,"Mit seinen riesigen Ohren hört er die Dünen singen. Springt dreimal so weit, wie er groß ist.",用大耳朵聆听沙丘歌唱。一跳能跳出身长的三倍远。
+LS_FELSTAKIN,Craggtakin,Felstakin,石羚牛
+LS_FELSTAKIN_ANIMAL,takin,Takin,羚牛
+LS_FELSTAKIN_DESC,"Horns of stone, fleece like gold. Climbs the steepest pillars - but only when it wants to.","Hörner aus Stein, Fell wie Gold. Klettert die steilsten Säulen hinauf, aber nur, wenn es selbst will.",石头般的角，金子般的毛。能爬上最陡的石柱——但只在它自己愿意的时候。
+LS_FENGHUANG,Fenghuang,Fenghuang,凤凰
+LS_FENGHUANG_ANIMAL,phoenix,Phönix,凤凰
+LS_FENGHUANG_DESC,The phoenix. Every five hundred years it burns and is reborn from its own song.,Der Phönix. Alle fünfhundert Jahre verbrennt er und wird aus seinem eigenen Lied neu geboren.,凤凰。每隔五百年，它便燃烧殆尽，再从自己的歌声中重生。
+LS_FIRNLEOPARD_DESC,Claws of rime and silver. Guards the high passes.,Krallen aus Raureif und Silber. Bewacht die hohen Pässe.,爪子由白霜和银打造。守护着高高的山口。
+LS_FUNKENECHSE,Sparkskink,Funkenechse,火星蜥
+LS_FUNKENECHSE_ANIMAL,crocodile lizard,Krokodilschwanzechse,鳄蜥
+LS_FUNKENECHSE_DESC,"Hides in rock crevices. When it gets a fright, sparks fly from its crested tail.","Versteckt sich in Felsspalten. Wenn sie sich erschreckt, sprühen Funken aus ihrem Schwanzkamm.",躲在岩缝里。一受惊，尾巴上的鬃冠就会迸出火星。
+LS_GLOCKENKAMEL,Bellcamel,Glockenkamel,铃驼
+LS_GLOCKENKAMEL_ANIMAL,bactrian camel,Trampeltier,双峰驼
+LS_GLOCKENKAMEL_DESC,Its humps ring like bronze bells. Caravans find each other by its sound even in a sandstorm.,Seine Höcker klingen wie Bronzeglocken. Karawanen finden durch seinen Klang auch im Sandsturm zusammen.,驼峰像铜铃一样作响。即使在沙暴中，商队也能循着铃声聚到一起。
+LS_GLOCKENLEOPARD,Bellpard,Glockenleopard,铃豹
+LS_GLOCKENLEOPARD_ANIMAL,hybrid of Frostpard and Bellcamel,Mischform aus Firnleopard und Glockenkamel,霜豹与铃驼的混种
+LS_GLOCKENLEOPARD_DESC,A snow leopard with little bronze bells in its fur. It can't sneak - you always hear it coming.,Ein Schneeleopard mit kleinen Bronzeglocken im Fell. Schleichen kann er nicht – man hört ihn immer kommen.,毛里挂着小铜铃的雪豹。它没法悄悄行动——总能听见它来了。
+LS_GLUTFALTER,Emberwing,Glutfalter,焰蝶雉
+LS_GLUTFALTER_ANIMAL,hybrid of Cinderfowl and Lanternwing,Mischform aus Glutfasan und Lampionfalter,炭雉与灯笼蝶的混种
+LS_GLUTFALTER_DESC,A little ember bird with lantern wings. Glows brighter the braver it is.,"Ein kleiner Glutvogel mit Laternenflügeln. Leuchtet umso heller, je mutiger er ist.",长着灯笼翅膀的小火鸟。越勇敢，光就越亮。
+LS_GLUTFASAN_DESC,Its tail feathers glow like coal. Faces every fight.,Seine Schwanzfedern glühen wie Kohle. Stellt sich jedem Kampf.,尾羽像炭火一样发光。从不回避任何战斗。
+LS_GLUTPANDA,Emberpanda,Glutpanda,火团团
+LS_GLUTPANDA_ANIMAL,red panda,Kleiner Panda,小熊猫
+LS_GLUTPANDA_DESC,The rings on its tail glow like coal. Loves playing tag between the rocks.,Die Ringe an seinem Schwanz glühen wie Kohle. Spielt am liebsten Fangen zwischen den Felsen.,尾巴上的环纹像炭火一样发光。最爱在岩石间玩捉迷藏。
+LS_GOLDKROETE,Goldtoad,Goldkröte,金蟾
+LS_GOLDKROETE_ANIMAL,toad,Kröte,蟾蜍
+LS_GOLDKROETE_DESC,Hops on three legs and carries a coin on its back. Greet it kindly and you sometimes find small change.,"Hüpft auf drei Beinen und trägt eine Münze auf dem Rücken. Wer sie freundlich grüßt, findet manchmal Kleingeld.",三条腿蹦蹦跳跳，背上驮着一枚铜钱。友好地打招呼，有时能捡到零钱。
+LS_JADELIBELLE_DESC,Wings like bamboo leaves. Faster than any arrow.,Flügel wie Bambusblätter. Schneller als jeder Pfeil.,翅膀像竹叶。比任何箭都快。
+LS_LAMPIONFALTER,Lanternwing,Lampionfalter,灯笼蝶
+LS_LAMPIONFALTER_ANIMAL,swallowtail butterfly,Schwalbenschwanz,凤蝶
+LS_LAMPIONFALTER_DESC,Its wings glow like red paper lanterns. Lost travellers follow it home.,Seine Flügel leuchten wie rote Papierlaternen. Verirrte Wanderer folgen ihm nach Hause.,翅膀像红纸灯笼一样发光。迷路的旅人会跟着它回家。
+LS_MESSINGADLER,Brassquill,Messingadler,铜羽鹰
+LS_MESSINGADLER_ANIMAL,golden eagle,Steinadler,金雕
+LS_MESSINGADLER_DESC,Its feathers are like polished brass blades. Circles above the dunes and sees every track in the sand.,Seine Federn sind wie polierte Messingklingen. Kreist über den Dünen und sieht jede Spur im Sand.,羽毛如同磨亮的铜刃。盘旋在沙丘上空，看得清沙上的每一道痕迹。
+LS_NEBELAFFE_DESC,Vanishes in self-made mist and pops up behind you.,Verschwindet in selbst gemachtem Nebel und taucht hinter dir wieder auf.,消失在自己造出的雾里，又从你背后冒出来。
+LS_NEBELBUEFFEL,Mistbuff,Nebelbüffel,雾水牛
+LS_NEBELBUEFFEL_ANIMAL,water buffalo,Wasserbüffel,水牛
+LS_NEBELBUEFFEL_DESC,Snorts mist from its nose. Only goes where it wants to - but then with full strength.,"Schnaubt Nebel aus der Nase. Geht nur dorthin, wo es ihm passt – aber dann mit voller Kraft.",鼻子里喷出雾气。只去它想去的地方——但一旦去了，就全力以赴。
+LS_NIAN,Nian,Nian,年
+LS_NIAN_ANIMAL,New Year beast,Neujahrsungeheuer,年兽
+LS_NIAN_DESC,The beast from the New Year legend. Grows ever stronger in silence and fears only noise and the colour red.,Das Ungeheuer aus der Neujahrslegende. Wird in der Stille immer stärker und fürchtet nur Lärm und die Farbe Rot.,新年传说中的怪兽。在寂静中越来越强，只怕响声和红色。
+LS_PERLKORMORAN,Pearlmorant,Perlkormoran,珠鸬鹚
+LS_PERLKORMORAN_ANIMAL,cormorant,Kormoran,鸬鹚
+LS_PERLKORMORAN_DESC,Dives through the river mist. Its throat pouch glows like a pearl and shows fishers the way.,Taucht durch den Flussnebel. Sein Kehlsack leuchtet wie eine Perle und zeigt Fischern den Weg.,穿过河雾潜水。它的喉囊像珍珠一样发光，为渔夫指路。
+LS_PERLLURCH,Pearlamander,Perllurch,珠鲵
+LS_PERLLURCH_ANIMAL,hybrid of Wailamander and Pearlmorant,Mischform aus Wawalurch und Perlkormoran,娃娃鲵与珠鸬鹚的混种
+LS_PERLLURCH_DESC,A salamander with a glowing pearl throat. Cries pearls when it is happy.,"Ein Lurch mit leuchtender Perlenkehle. Weint Perlen, wenn er sich freut.",长着发光珍珠喉的鲵。高兴的时候会流下珍珠般的眼泪。
+LS_QILIN,Qilin,Qilin,麒麟
+LS_QILIN_ANIMAL,Qilin,Qilin,麒麟
+LS_QILIN_DESC,Sky guardian of the centre. Walks so gently that not a blade of grass bends under its hooves. Keeps the tone Gong.,"Himmelswächter der Mitte. Geht so sanft, dass unter seinen Hufen kein Grashalm knickt. Hütet den Ton Gong.",中央的天之守护者。步履轻柔，蹄下连一根草都不会折断。守护着“宫”音。
+LS_QINGLONG_DESC,"Sky guardian of the east. Where it breathes, spring grows. Keeps the tone Jue.","Himmelswächter des Ostens. Wo er atmet, wächst der Frühling. Hütet den Ton Jue.",东方的天之守护者。它呼吸之处，春天便会生长。守护着“角”音。
+LS_REISQUAK_DESC,"Croaks the rain in. Without it, the rice fields don't grow.",Quakt den Regen herbei. Ohne ihn wachsen die Reisfelder nicht.,呱呱叫来雨水。没有它，稻田就长不好。
+LS_ROLLSCHUPP_DESC,Rolls into an iron ball and won't be pushed by anyone.,Rollt sich zur eisernen Kugel und lässt sich von niemandem drängen.,蜷成一颗铁球，谁也别想催它。
+LS_SCHATTENMOTTE_DESC,A creature of the Nian. Eats sounds and leaves silence behind.,Ein Geschöpf des Nian. Frisst Klänge und hinterlässt Stille.,年兽的爪牙。吞食声音，只留下寂静。
+LS_SILBERKRANICH_DESC,Wusheng's companion. Sings only for him - or stays silent.,Wushengs Gefährte. Singt nur für ihn – oder schweigt.,无声的伙伴。只为他歌唱——或者沉默。
+LS_STEINLOEWE,Stonelion,Steinlöwe,石狮
+LS_STEINLOEWE_ANIMAL,guardian lion,Wächterlöwe,守门石狮
+LS_STEINLOEWE_DESC,Once a gate statue that stood guard so long it came alive. Rolls a jade ball in front of it.,"Einst eine Torfigur, die so lange Wache stand, bis sie lebendig wurde. Rollt eine Jadekugel vor sich her.",曾是一尊守门石像，守得太久，便活了过来。总在身前滚着一颗玉球。
+LS_STROMDELFIN,Streamfin,Stromdelfin,流豚
+LS_STROMDELFIN_ANIMAL,river dolphin,Flussdelfin,白鳍豚
+LS_STROMDELFIN_DESC,"Sings with the waves. Where it swims, water finds its way around every rock.","Singt mit den Wellen. Wo er schwimmt, findet das Wasser seinen Weg um jeden Felsen.",随波歌唱。它游过的地方，水总能绕过每一块岩石。
+LS_WAWALURCH_DESC,Cries like a small child and redirects currents with its tears.,Weint wie ein kleines Kind und lenkt mit seinen Tränen Strömungen um.,哭起来像个小孩，用眼泪改变水流的方向。
+LS_WOLKENPFEIFER,Cloudpip,Wolkenpfeifer,云哨兔
+LS_WOLKENPFEIFER_ANIMAL,pika,Pfeifhase,鼠兔
+LS_WOLKENPFEIFER_DESC,"When it whistles, little white clouds appear. It hides inside them as soon as someone is too loud.","Wenn er pfeift, entstehen kleine weiße Wolken. Versteckt sich in ihnen, sobald jemand zu laut ist.",它一吹哨，就会冒出小小的白云。只要有人太吵，它就躲进云里。
+LS_XUANWU,Xuanwu,Xuanwu,玄武
+LS_XUANWU_ANIMAL,Black Tortoise,Schwarze Schildkröte,玄龟
+LS_XUANWU_DESC,"Sky guardian of the north. Tortoise and serpent in one, older than the river itself. Keeps the tone Yu.","Himmelswächter des Nordens. Schildkröte und Schlange in einem, älter als der Fluss selbst. Hütet den Ton Yu.",北方的天之守护者。龟蛇合一，比河流本身还要古老。守护着“羽”音。
+LS_ZIRPKROETE,Chirptoad,Zirpkröte,鸣蟾
+LS_ZIRPKROETE_ANIMAL,hybrid of Chirpo and Goldtoad,Mischform aus Zirpo und Goldkröte,唧唧与金蟾的混种
+LS_ZIRPKROETE_DESC,A golden toad with cricket antennae. Only sings if you give it a coin.,"Eine goldene Kröte mit Grillenfühlern. Singt nur, wenn man ihr eine Münze schenkt.",长着蟋蟀触角的金蟾。只有送它一枚铜钱，它才会唱歌。
+LS_ZIRPO_DESC,Its chirping strengthens allies - when it feels like it.,Sein Zirpen stärkt Verbündete – wenn es gerade Lust dazu hat.,它的鸣叫能鼓舞同伴——如果它正好有兴致的话。
 MAP_BAMBUSPFAD,Bamboo Path,Bambuspfad,竹径
+MAP_DANXIAPFAD,Danxia Trail,Danxia-Pfad,丹霞小径
 MAP_DRACHENSCHREIN,Dragon Shrine,Drachenschrein,龙祠
+MAP_DUENENWEG,Dune Road,Dünenweg,沙丘路
+MAP_FEUERGIPFEL,Fire Peak,Feuergipfel,火峰
 MAP_FLUSSUFER,Riverbank,Flussufer,河岸
+MAP_HOF,Your Farm,Dein Hof,你的农庄
+MAP_KARSTUFER,Karst Bank,Karstufer,岩溶河岸
+MAP_KIEFERNHANG,Pinecliff,Kiefernhang,松崖村
+MAP_KREUZWEG,Crossroads,Kreuzweg,十字路口
+MAP_MONDQUELL,Moonspring,Mondquell,月泉镇
+MAP_NEBELHAFEN,Misthaven,Nebelhafen,雾港
+MAP_PHOENIXTEMPEL,Phoenix Temple,Phönixtempel,凤凰庙
+MAP_QILIN_PLATEAU,Qilin Plateau,Qilin-Plateau,麒麟台
 MAP_REISTERRASSEN,Rice Terraces,Reisterrassen,稻田梯
+MAP_ROTFELS,Redrock,Rotfels,赤岩镇
+MAP_SAEULENPFAD,Pillar Path,Säulenpfad,石柱道
+MAP_SCHILDKROETENBUCHT,Tortoise Bay,Schildkrötenbucht,玄龟湾
+MAP_SINGENDER_KAMM,Singing Crest,Singender Kamm,鸣沙脊
 MAP_TEEUFER,Teabank,Teeufer,茶岸镇
 MAP_WEIDENDORF,Willowdale,Weidendorf,柳村
 MENU_BAG,Bag,Beutel,背包
 MENU_FARM_NOTE,{n} more Lingshou live on your farm in Willowdale. Swap them at the wind chime shrine of any inn.,Auf deinem Hof in Weidendorf leben {n} weitere Lingshou. Tauschen kannst du am Windspiel-Schrein jeder Unterkunft.,还有{n}只灵兽住在柳村的农庄里。可以在任何客栈的风铃神龛交换。
 MENU_FEEDBACK,Rate the beta,Beta bewerten,评价测试版
+MENU_LEXICON,Bestiary,Lexikon,图鉴
 MENU_OPTIONS,Options,Optionen,设置
 MENU_PARTY,Companions,Gefolge,同伴
 MENU_SAVE,Save,Speichern,存档
 MENU_TITLE,Menu,Menü,菜单
 MENU_TO_TITLE,To title,Zum Titel,返回标题
+MOVE_BERGBEBEN,Mountain Quake,Bergbeben,山震
+MOVE_FELSRAMME,Rock Ram,Felsramme,石撞
+MOVE_FLUTWELLE,Flood Wave,Flutwelle,洪浪
+MOVE_FUNKENREGEN,Spark Rain,Funkenregen,火星雨
+MOVE_GLOCKENSCHLAG,Bell Strike,Glockenschlag,钟击
+MOVE_GLUTRING,Ember Ring,Glutring,焰环
+MOVE_KLINGENFEDER,Blade Feather,Klingenfeder,刃羽
+MOVE_LAMPIONGLANZ,Lantern Glow,Lampionglanz,灯辉
+MOVE_MUENZREGEN,Coin Shower,Münzregen,金钱雨
+MOVE_NEUJAHRSGEBRUELL,New Year Roar,Neujahrsgebrüll,年吼
+MOVE_PANZERWACHT,Shell Ward,Panzerwacht,甲守
+MOVE_PERLENSTRAHL,Pearl Beam,Perlenstrahl,珠光
+MOVE_PHOENIXLIED,Phoenix Song,Phönixlied,凤鸣
+MOVE_QILINSEGEN,Qilin Blessing,Qilin-Segen,麒麟赐福
+MOVE_SANDSTURM,Sandstorm,Sandsturm,沙暴
+MOVE_SCHLANGENBISS,Serpent Bite,Schlangenbiss,蛇噬
+MOVE_SONNENFEUER,Sunfire,Sonnenfeuer,日炎
+MOVE_STEINHAUT,Stone Skin,Steinhaut,石肤
+MOVE_TIGERBRUELLEN,Tiger Roar,Tigerbrüllen,虎啸
+MOVE_WIEDERGEBURT,Rebirth Flame,Wiedergeburtsflamme,涅槃焰
+MOVE_WOLKENPFIFF,Cloud Whistle,Wolkenpfiff,云哨
 MSG_DEFEAT,"Everything went dark... You wake up at your lodging. {coins} coins are gone. Jinli lies beside you, purring.",Alles wurde schwarz … Du wachst in deiner Unterkunft auf. {coins} Münzen sind weg. Jinli liegt neben dir und schnurrt.,眼前一黑……你在住处醒来，丢了{coins}铜钱。锦鲤趴在你身边打着呼噜。
 MSG_FREED_JOINS,{name} has decided to follow you.,"{name} hat sich entschieden, dir zu folgen.",{name}决定跟随你。
 MSG_GOT_COINS,You receive {n} coins.,Du erhältst {n} Münzen.,获得{n}铜钱。
 MSG_GOT_ITEM,You receive {n}× {item}.,Du erhältst {n}× {item}.,获得{item}×{n}。
 MSG_JOINED,{name} follows you now!,{name} folgt dir jetzt!,{name}开始跟随你了！
+MSG_MORNING,A new morning dawns. Day {day}.,Ein neuer Morgen bricht an. Tag {day}.,新的一天开始了。第{day}天。
 MSG_NEW_BELL,A new bell hangs on the wind chime. ({n} bells),Am Windspiel hängt jetzt ein Glöckchen mehr. ({n} Glöckchen),风铃上多了一只铃铛。（共{n}只）
 MSG_SAVED,Saved.,Gespeichert.,已存档。
 MSG_SAVE_FAILED,Saving failed.,Speichern fehlgeschlagen.,存档失败。
@@ -233,23 +811,87 @@ NEW_OUTFIT,Clothes,Kleidung,衣服
 NEW_OVERWRITE,Note: this replaces your saved game.,Achtung: Der alte Spielstand wird überschrieben.,注意：旧存档将被覆盖。
 NEW_START,Let's go,Los geht's,出发
 NEW_TITLE,Who are you?,Wer bist du?,你是谁？
+NPC_BAIHU,Baihu,Baihu,白虎
+NPC_BAIHU_FREE,Baihu,Baihu,白虎
+NPC_BIFANG,Bifang,Bifang,毕方
+NPC_BIFANG_FREE,Bifang,Bifang,毕方
+NPC_BOOTSFRAU,Boatwoman Lan,Bootsfrau Lan,兰船娘
+NPC_BUERGERMEISTERIN,Mayor Hong,Bürgermeisterin Hong,洪镇长
 NPC_DORF_FRAU,Mrs Fang,Frau Fang,方大婶
 NPC_DORF_KIND,Little Bo,Kleiner Bo,小波
 NPC_DORF_OMA,Granny Hu,Oma Hu,胡奶奶
+NPC_EINSIEDLER,Hermit Feng,Einsiedler Feng,风隐士
+NPC_EREMITIN,Hermit Qing,Eremitin Qing,青隐士
+NPC_FENGHUANG,Fenghuang,Fenghuang,凤凰
+NPC_FISCHER,Fisher Zhou,Fischer Zhou,周渔翁
+NPC_FOERSTER,Forester Ah Mu,Förster Ah Mu,阿木
 NPC_HAENDLER,Merchant Gao,Händler Gao,高掌柜
+NPC_HAFEN_ALTER,Grandpa Pan,Großvater Pan,潘爷爷
+NPC_HAFEN_KIND,Xiao Yu,Xiao Yu,小鱼
 NPC_JINLI,Jinli,Jinli,锦鲤
+NPC_KARAWANE,Caravan Leader Batu,Karawanenführer Batu,巴图
+NPC_KARAWANENAELTESTE,Elder Saule,Älteste Saule,萨乌勒长老
+NPC_KIEFERNHANG_HAENDLER,Merchant Gu,Händler Gu,古掌柜
+NPC_KIEFERNHANG_KOCH,Cook Xue,Köchin Xue,雪厨娘
+NPC_KIEFERNHANG_TEEMEISTER,Tea Master Yun,Teemeister Yun,云茶师
+NPC_KIEFERNHANG_WIRT,Innkeeper Lan,Wirtin Lan,兰老板娘
+NPC_KIEFER_AELTESTE,Elder Song,Ältester Song,宋长老
+NPC_KIEFER_FRAU,Herbalist Yue,Kräuterfrau Yue,月药婆
+NPC_KIEFER_KIND,Shan Shan,Shan Shan,珊珊
+NPC_KIND_NIAN,Little Bo,Kleiner Bo,小波
+NPC_KRANICH,Silver Crane,Silberkranich,银鹤
+NPC_KREUZ_HAENDLER,Pedlar Lin,Wanderhändlerin Lin,林货郎
 NPC_MEISTER,Master Lu,Meister Lu,卢师傅
+NPC_MEISTER_FREE,Master Lu,Meister Lu,卢师傅
 NPC_MEISTER_MUTE,Master Lu,Meister Lu,卢师傅
 NPC_MEISTER_PLAZA,Master Lu,Meister Lu,卢师傅
+NPC_MEISTER_TEMPLE,Master Lu,Meister Lu,卢师傅
 NPC_MOENCH,Monk Huan,Mönch Huan,幻和尚
+NPC_MONDQUELL_HAENDLER,Merchant Wei,Händler Wei,魏掌柜
+NPC_MONDQUELL_KOCH,Cook Dawut,Koch Dawut,达吾提厨子
+NPC_MONDQUELL_TEEMEISTER,Tea Mistress Nur,Teemeisterin Nur,努尔茶娘
+NPC_MONDQUELL_WIRT,Innkeeper Arslan,Wirt Arslan,阿尔斯兰
+NPC_MUSCHELFRAU,Shell Gatherer Pei,Muschelsammlerin Pei,佩拾贝人
+NPC_NEBELHAFEN_HAENDLER,Merchant Ma,Händlerin Ma,马大姐
+NPC_NEBELHAFEN_KOCH,Cook Fu,Koch Fu,富厨子
+NPC_NEBELHAFEN_TEEMEISTER,Tea Mistress Qiu,Teemeisterin Qiu,邱茶娘
+NPC_NEBELHAFEN_WIRT,Innkeeper Tang,Wirt Tang,唐掌柜
+NPC_NIAN,Nian,Nian,年兽
+NPC_OMA_NIAN,Granny Hu,Oma Hu,胡奶奶
+NPC_ORDENSMEISTERIN,Sister Lu,Ordensschwester Lu,露师姐
+NPC_ORDER_BUCHT,Brother Mo,Bruder Mo,默师兄
+NPC_ORDER_GIPFEL,Sister Yun,Schwester Yun,云师姐
+NPC_ORDER_KAMM,Brother Shi,Bruder Shi,石师兄
+NPC_ORDER_NORTH,Sister Mei,Schwester Mei,梅师姐
+NPC_ORDER_PLATEAU,Sister Lan,Schwester Lan,岚师姐
+NPC_ORDER_WEST,Brother Kai,Bruder Kai,凯师兄
+NPC_ORDER_YING,Grand Mistress Ying,Ordensmeisterin Ying,莹大师
 NPC_PILGER,Pilgrim Wen,Pilger Wen,文香客
+NPC_QILIN,Qilin,Qilin,麒麟
+NPC_QILIN_FREE,Qilin,Qilin,麒麟
 NPC_QINGLONG_FREE,Azure Dragon,Azurdrache,青龙
+NPC_QUELL_HAENDLERIN,Merchant Gul,Händlerin Gul,古丽
+NPC_QUELL_KIND,Ayla,Ayla,艾拉
+NPC_RAST_WIRT,Monk Ruo,Mönch Ruo,若和尚
+NPC_ROTFELS_HAENDLER,Merchant Lü,Händler Lü,吕掌柜
+NPC_ROTFELS_KIND,Huo Huo,Huo Huo,火火
+NPC_ROTFELS_KOCH,Cook La,Köchin La,辣厨娘
+NPC_ROTFELS_TEEMEISTER,Tea Master Bai,Teemeister Bai,白茶师
+NPC_ROTFELS_WIRT,Innkeeper Zhu,Wirtin Zhu,朱老板娘
 NPC_STILLE_FRAU,Mrs Ning,Frau Ning,宁夫人
 NPC_TEEMEISTER,Tea Master Chen,Teemeister Chen,陈茶师
 NPC_TEEUFER_KIND,Ah Tao,Ah Tao,阿桃
+NPC_TOEPFER,Potter Shi,Töpfer Shi,石陶匠
 NPC_WIRTIN,Innkeeper Su,Wirtin Su,苏老板娘
 NPC_WUSHENG,Wusheng,Wusheng,无声
+NPC_WUSHENG_AFTER,Wusheng,Wusheng,无声
+NPC_XUANWU,Xuanwu,Xuanwu,玄武
+NPC_XUANWU_FREE,Xuanwu,Xuanwu,玄武
 NPC_YAO,Yao,Yao,尧
+NPC_YAO_ALLY,Yao,Yao,尧
+NPC_YAO_FREE,Yao,Yao,尧
+NPC_YAO_ORDER,Yao,Yao,尧
+NPC_ZIMMERMANN,Carpenter Wu,Zimmermann Wu,吴木匠
 OPT_BIG_TEXT,Large text,Große Schrift,大字体
 OPT_CAMERA,Graphics,Grafik,画面
 OPT_INSTANT,instant,sofort,立即
@@ -269,18 +911,107 @@ OPT_ON,on,an,开
 OPT_QUIET,quiet,leise,小声
 OPT_SLOW,slow,langsam,慢
 OPT_TEXT_SPEED,Text,Text,文字
+PCAT_BRIBE,an offer,ein Angebot,利诱
+PCAT_COMPASSION,empathy,Mitgefühl,表同情
+PCAT_LOGIC,an argument,ein Argument,讲道理
+PCAT_NEUTRAL,nothing special,nichts Besonderes,没什么特别
+PCAT_PROOF,proof,ein Beweis,拿证据
+PCAT_THREAT,a threat,eine Drohung,威胁
+PEN_BAMBOO,Bamboo grove,Bambushain,竹林
+PEN_BUILD_NOTE,"A pen can be built here ({coins} coins). Each element likes a different one: water the pond, wood the bamboo grove, fire the ember pit, metal the ore grotto, earth the rock garden.","Hier kann ein Gehege entstehen ({coins} Münzen). Jedes Element mag ein anderes: Wasser den Teich, Holz den Bambushain, Feuer die Glutgrube, Metall die Erzgrotte, Erde den Felsgarten.",这里可以建围栏（{coins}铜钱）。不同元素喜欢不同的围栏：水喜池塘，木喜竹林，火喜火坑，金喜矿洞，土喜石园。
+PEN_BUILD_ORDER,"Build the pens in order, starting top left.","Baue die Gehege der Reihe nach, von links oben an.",请从左上开始依次建造围栏。
+PEN_BUILT,The pen is ready!,Das Gehege steht!,围栏建好了！
+PEN_EMBER,Ember pit,Glutgrube,火坑
+PEN_EMPTY,empty,leer,空
+PEN_EMPTY_TITLE,Building plot,Baugrund,空地
+PEN_FED,{name} eats happily.,{name} frisst zufrieden.,{name}吃得很开心。
+PEN_FEED,Feed,Füttern,喂食
+PEN_HAPPY,Content,Zufriedenheit,满足度
+PEN_MOVE_IN,Let move in,Einziehen lassen,搬进来
+PEN_NOBODY,Nobody lives here. Send Lingshou from the wind chime shrine or let someone move in.,Niemand wohnt hier. Bring Lingshou vom Windspiel-Schrein her oder lass jemanden einziehen.,这里还没有住户。从风铃神龛送灵兽过来，或者让谁搬进来吧。
+PEN_ORE,Ore grotto,Erzgrotte,矿洞
+PEN_PAIR,"These two get along well. If they're content, there may soon be an egg!","Die beiden verstehen sich gut. Wenn sie zufrieden sind, gibt es vielleicht bald ein Ei!",它们相处得很好。如果它们心满意足，也许很快就会有蛋！
+PEN_POND,Pond,Teich,池塘
+PEN_REBUILD,Rebuild (50 coins),Umbauen (50 Münzen),改建（50铜钱）
+PEN_REBUILD_NOTE,Lingshou are more content in a fitting pen. A pair of the same kind or element lays eggs when they're very content.,Im passenden Gehege sind Lingshou zufriedener. Ein Paar derselben Art oder desselben Elements bekommt bei hoher Zufriedenheit Eier.,住在合适的围栏里，灵兽会更满足。同种或同元素的一对灵兽在很满足时会下蛋。
+PEN_ROCK,Rock garden,Felsgarten,石园
+PEN_TITLE,Pen,Gehege,围栏
+PEN_WRONG,Wrong pen,Falsches Gehege,围栏不合适
+PEN_YOUNG,Young,Jungtier,幼崽
+PERSUADE_CATEGORY,That was {cat}.,Das war {cat}.,这是{cat}。
+PERSUADE_GIVE_UP,Stop talking,Nicht weiterreden,不再说了
+PERSUADE_HOWTO,"Convince with words: reasons, empathy or proof work - depending on the person. Threats make it worse.","Überzeuge mit Worten: Gründe, Mitgefühl oder Beweise wirken – je nach Person. Drohungen machen es schlimmer.",用言语说服：讲道理、表同情或拿出证据——因人而异。威胁只会更糟。
+PERSUADE_LOST,Words aren't enough.,Die Worte reichen nicht.,言语不够。
+PERSUADE_PLACEHOLDER,What do you say?,Was sagst du?,你说什么？
+PERSUADE_REACT_ANGRY,Are you threatening me? Certainly not like that!,Drohst du mir etwa? So bestimmt nicht!,你在威胁我吗？这样可不行！
+PERSUADE_REACT_GOOD,... That hits home. I hadn't thought of that.,… Das trifft mich. Daran habe ich nicht gedacht.,……这话说到我心里了。我没想到这一点。
+PERSUADE_REACT_NO,That doesn't convince me.,Das überzeugt mich nicht.,这说服不了我。
+PERSUADE_REACT_NOBRIBE,You can't buy me with money.,Mit Geld kaufst du mich nicht.,钱买不动我。
+PERSUADE_REACT_NOPROOF,Proof? I see none. Everything is still silent.,Beweise? Ich sehe keine. Noch ist alles still.,证据？我没看到。一切都还很安静。
+PERSUADE_REACT_SOME,Hm. Maybe. Go on.,Hm. Vielleicht. Sprich weiter.,嗯。也许吧。接着说。
+PERSUADE_SUGGEST_BRIBE,"Here, take {coins} coins and let me pass.","Hier, nimm {coins} Münzen und lass mich durch.",给你{coins}铜钱，让我过去吧。
+PERSUADE_SUGGEST_COMPASSION,I understand your fear of farewell. I have it too.,Ich verstehe deine Angst vor dem Abschied. Ich habe sie auch.,我懂你害怕离别。我也一样。
+PERSUADE_SUGGEST_LOGIC,"If the silence stays, then rivers stand still and nothing grows anymore.","Wenn die Stille bleibt, dann stehen Flüsse still und nichts wächst mehr.",如果寂静一直持续，那么河流会停滞，万物不再生长。
+PERSUADE_SUGGEST_PROOF,Listen! The dragon sings again - I freed it.,Hör doch! Der Drache singt wieder – ich habe ihn befreit.,听！青龙又在唱歌了——是我解放了它。
+PERSUADE_SUGGEST_THREAT,"Get out of the way, or else!","Geh aus dem Weg, sonst gibt's Ärger!",让开，否则有你好看！
+PERSUADE_TITLE,Talking to {name},Mit {name} reden,与{name}交谈
+PERSUADE_WON,You did it - with words.,Du hast es geschafft – mit Worten.,你做到了——用言语。
+PER_BUCHT_INTRO,"Let the old tortoise sleep. As long as she is silent, the water stands still - no flood will ever sweep away a village again.","Lass die alte Schildkröte schlafen. Solange sie schweigt, steht das Wasser still – keine Flut wird je wieder ein Dorf fortreißen.",让老玄龟睡吧。只要她沉默，水就静止不动——再也不会有洪水冲走村庄了。
+PER_GIPFEL_INTRO,You want to bring the fire back? I saw it devour houses. In the silence nothing burns. Why would you take away people's peace?,"Du willst das Feuer zurückholen? Ich habe gesehen, wie es Häuser fraß. In der Stille brennt nichts. Warum willst du den Leuten ihre Ruhe nehmen?",你要把火带回来？我亲眼见过它吞噬房屋。寂静中什么都不会燃烧。你为什么要夺走人们的安宁？
+PER_KAMM_INTRO,"Halt. The tiger sleeps and the dunes are silent. Since they stopped singing, nobody gets lost in a sandstorm. There are no sandstorms anymore.","Halt. Der Tiger schläft, und die Dünen schweigen. Seit sie nicht mehr singen, verirrt sich niemand mehr in einem Sandsturm. Es gibt keine Sandstürme mehr.",站住。老虎在睡觉，沙丘沉默着。自从它们不再歌唱，就没人在沙暴中迷路了。根本没有沙暴了。
+PER_PLATEAU_INTRO,"Please don't go any further. My mother died last autumn. If everything stands still, nobody will ever have to go through that again.","Bitte geh nicht weiter. Meine Mutter ist letzten Herbst gestorben. Wenn alles stillsteht, muss nie wieder jemand so etwas erleben.",请别再往前走了。我母亲去年秋天去世了。如果一切都停下来，就再也没有人要经历这种事了。
 QUEST_BACK,Something is wrong in the village. Return to Willowdale.,Etwas stimmt nicht im Dorf. Kehr nach Weidendorf zurück.,村里出事了。回柳村去。
+QUEST_DUNES_1,Follow the Dune Road west to Moonspring.,Folge dem Dünenweg nach Westen bis Mondquell.,沿沙丘路往西走到月泉镇。
+QUEST_DUNES_2,"Yao is in the Hall of Silence (bottom middle). The Singing Crest lies above, behind the village.",Yao ist in der Halle der Stille (unten in der Mitte). Der Singende Kamm liegt oben hinter dem Dorf.,尧在寂静堂（下方中间）。鸣沙脊在村子后面的上方。
+QUEST_DUNES_3,Free Baihu on the crest and bring back the tone Shang.,Befreie Baihu auf dem Kamm und hol den Ton Shang zurück.,解放沙脊上的白虎，找回“商”音。
 QUEST_FESTIVAL,Bring the wind chime to the festival square.,Bring das Windspiel zum Festplatz.,把风铃带到节日广场。
-QUEST_FREE,"The first tone is back. To be continued - keep exploring, taming and freeing.","Der erste Ton ist zurück. Fortsetzung folgt – erkunde weiter, zähme und befreie.",第一个音回来了。未完待续——继续探索、驯服和解放吧。
+QUEST_FINALE,Face Wusheng in the Phoenix Temple.,Stell dich Wusheng im Phönixtempel.,在凤凰庙面对无声。
+QUEST_HOME_VOICE,Three tones are back. Jinli pricks up her ears: something has happened in Willowdale. Go home!,Drei Töne sind zurück. Jinli spitzt die Ohren: In Weidendorf ist etwas geschehen. Kehr heim!,已经找回了三个音。锦鲤竖起了耳朵：柳村出事了。快回家！
+QUEST_LAST_GONG,"One tone is still missing: Gong at the Cloud Pillars. The way leads north from the Crossroads, up the stone stairs.",Ein Ton fehlt noch: Gong bei den Wolkensäulen. Der Weg führt vom Kreuzweg nach Norden die Steintreppe hinauf.,还差一个音：云柱的“宫”。从十字路口往北，登上石阶。
+QUEST_LAST_SHANG,One tone is still missing: Shang in the Singing Dunes. The way leads west from the Crossroads.,Ein Ton fehlt noch: Shang in den Singenden Dünen. Der Weg führt vom Kreuzweg nach Westen.,还差一个音：鸣沙丘的“商”。从十字路口往西走。
+QUEST_LAST_TWO,"Two tones are missing: Shang in the Singing Dunes (Crossroads, west) and Gong at the Cloud Pillars (Crossroads, stairs). Yao is in the Hall of Silence in Moonspring.","Zwei Töne fehlen: Shang in den Singenden Dünen (Kreuzweg, Westen) und Gong bei den Wolkensäulen (Kreuzweg, Treppe). Yao ist in der Halle der Stille in Mondquell.",还差两个音：鸣沙丘的“商”（十字路口往西）和云柱的“宫”（十字路口的石阶）。尧在月泉镇的寂静堂。
 QUEST_MEISTER,Go to Master Lu's workshop.,Geh zur Werkstatt von Meister Lu.,去卢师傅的作坊。
+QUEST_NIAN,"The Nian is in Willowdale! Get Bo's drum and Granny Hu's red banner, then face it on the festival square.","Der Nian ist in Weidendorf! Hol Bos Trommel und Oma Hus rotes Banner, dann stell dich ihm auf dem Festplatz.",年兽来柳村了！拿到小波的鼓和胡奶奶的红幡，然后在节日广场上对付它。
+QUEST_PILLARS_1,Climb the Pillar Path up to Pinecliff.,Steig den Säulenpfad hinauf bis Kiefernhang.,沿石柱道往上爬到松崖村。
+QUEST_PILLARS_2,The Qilin waits on the plateau to the right of Pinecliff.,Der Qilin wartet auf dem Plateau rechts von Kiefernhang.,麒麟在松崖村右边的高台上。
+QUEST_PILLARS_3,Free the Qilin and bring back the tone Gong.,Befreie den Qilin und hol den Ton Gong zurück.,解放麒麟，找回“宫”音。
+QUEST_POST,"The Song of the Phoenix rings again. Explore Yunhai, tame and breed Lingshou, build up your farm.","Das Lied des Phönix klingt wieder. Erkunde Yunhai, zähme und züchte Lingshou, bau deinen Hof aus.",凤凰之歌再次响起。去探索云海、驯服和繁育灵兽、扩建你的农庄吧。
+QUEST_POST_BITTER,The Singing Dunes are still silent. Free Baihu at the Singing Crest a second time - this time with your heart.,Die Singenden Dünen schweigen noch. Befreie Baihu am Singenden Kamm ein zweites Mal – diesmal mit dem Herzen.,鸣沙丘依旧沉默。再去鸣沙脊解放白虎一次——这次用你的心。
+QUEST_RIDGE_1,Follow the Danxia Trail south to Redrock.,Folge dem Danxia-Pfad nach Süden bis Rotfels.,沿丹霞小径往南走到赤岩镇。
+QUEST_RIDGE_2,Talk to Mayor Hong (bottom left) before you go to the Fire Peak.,"Sprich mit Bürgermeisterin Hong (unten links), bevor du zum Feuergipfel gehst.",去火峰之前，先和洪镇长（左下方）谈谈。
+QUEST_RIDGE_3,Bring Potter Shi three Danxia clay for the firebreak - or go straight to the Fire Peak (bottom).,Bring Töpfer Shi drei Danxia-Ton für die Feuerschneise – oder geh gleich zum Feuergipfel (unten).,给石陶匠送三块丹霞陶土修防火带——或者直接去火峰（下方）。
+QUEST_RIDGE_4,Climb the Fire Peak (bottom of Redrock) and wake Bifang.,Steig zum Feuergipfel (unten in Rotfels) und wecke Bifang.,登上火峰（赤岩镇下方），唤醒毕方。
+QUEST_RIDGE_5,Wake Bifang on the peak and bring back the tone Zhi.,Wecke Bifang auf dem Gipfel und hol den Ton Zhi zurück.,唤醒峰顶的毕方，找回“徵”音。
 QUEST_RIVER,Follow Jinli to the riverbank in the east.,Folge Jinli zum Flussufer im Osten.,跟着锦鲤去东边的河岸。
+QUEST_RIVER_1,Follow the bank north to Misthaven.,Folge dem Ufer nach Norden bis Nebelhafen.,沿河岸往北走到雾港。
+QUEST_RIVER_2,You need a boat. Ask old Fisher Zhou (bottom left).,Du brauchst ein Boot. Frag den alten Fischer Zhou (unten links).,你需要一条船。去问问老渔翁周（左下方）。
+QUEST_RIVER_3,Free Fisher Zhou's cormorant on the cliff at the Karst Bank (top left).,Befreie Fischer Zhous Kormoran auf der Klippe am Karstufer (oben links).,解放岩溶河岸悬崖上（左上方）周渔翁的鸬鹚。
+QUEST_RIVER_3B,Go back to Fisher Zhou in Misthaven.,Geh zurück zu Fischer Zhou in Nebelhafen.,回雾港找周渔翁。
+QUEST_RIVER_4,Take the boat from the pier to Tortoise Bay and wake Xuanwu.,Fahr mit dem Boot vom Steg zur Schildkrötenbucht und wecke Xuanwu.,从码头乘船去玄龟湾，唤醒玄武。
+QUEST_RIVER_5,Wake Xuanwu on the terrace and bring back the tone Yu.,Wecke Xuanwu auf der Terrasse und hol den Ton Yu zurück.,唤醒石台上的玄武，找回“羽”音。
 QUEST_SECOND,Win a second Lingshou over.,Gewinne ein zweites Lingshou für dich.,再赢得一只灵兽的信任。
 QUEST_TAME,Win the trust of a shy Lingshou.,Gewinne das Vertrauen eines scheuen Lingshou.,赢得一只怕生灵兽的信任。
 QUEST_TEEUFER,Follow the Bamboo Path in the north to Teabank.,Folge dem Bambuspfad im Norden bis nach Teeufer.,沿着北边的竹径去茶岸镇。
+QUEST_TEMPLE,All five tones are back! Climb the cloud stairs in Pinecliff up to the Phoenix Temple.,Alle fünf Töne sind zurück! Steig in Kiefernhang die Wolkentreppe hinauf zum Phönixtempel.,五音全部找回了！从松崖村登上云梯，前往凤凰庙。
 QUEST_TERRACES,Climb the rice terraces in the north to the Dragon Shrine.,Steig über die Reisterrassen im Norden zum Drachenschrein.,沿北边的稻田梯登上龙祠。
+QUEST_TWO_TONES,Two tones are calling: Yu in the north (Misty River) and Zhi in the south (Rainbow Ridge). The way leads over the Crossroads south of Teabank.,Zwei Töne rufen: Yu im Norden (Nebelfluss) und Zhi im Süden (Regenbogengrat). Der Weg führt über den Kreuzweg südlich von Teeufer.,两个音在呼唤：北方的“羽”（雾河）和南方的“徵”（彩虹岭）。路经茶岸镇以南的十字路口。
+QUEST_YU,Zhi is back. Now Yu is missing in the north: from the Crossroads north to the Misty River.,Zhi ist zurück. Jetzt fehlt Yu im Norden: vom Kreuzweg nach Norden zum Nebelfluss.,“徵”回来了。现在还差北方的“羽”：从十字路口往北去雾河。
+QUEST_ZHI,Yu is back. Now Zhi is missing in the south: from the Crossroads south to Rainbow Ridge.,Yu ist zurück. Jetzt fehlt Zhi im Süden: vom Kreuzweg nach Süden zum Regenbogengrat.,“羽”回来了。现在还差南方的“徵”：从十字路口往南去彩虹岭。
 RUMOR_0,"They say the Azure Dragon above the rice terraces stopped singing. Since then, no new bamboo grows.","Man sagt, der Azurdrache über den Reisterrassen habe aufgehört zu singen. Seitdem wächst kein neuer Bambus mehr.",听说稻田梯上的青龙不再歌唱了。从那以后，竹子再也没长新芽。
 RUMOR_1,Shadow moths flutter over the rice terraces. They eat every sound - even the croaking of the paddy frogs.,Auf den Reisterrassen flattern Schattenmotten. Sie fressen jeden Klang – sogar das Quaken der Reisfrösche.,稻田梯上飞着影蛾，它们吞食一切声音——连稻田蛙的呱呱声也不放过。
 RUMOR_2,"A snow leopard sits silenced at the pass to the shrine. Whoever wants to free it needs kind words, not only strength.","Ein Schneeleopard sitzt verstummt am Pass zum Schrein. Wer ihn befreien will, braucht freundliche Worte, nicht nur Kraft.",一只失声的雪豹守在通往龙祠的山口。想解放它，需要温柔的话语，而不只是力量。
+RUMOR_KIEFERNHANG_0,The Qilin on the plateau is so gentle that not a blade of grass bends under its hooves. Now it stands grey and still.,"Der Qilin auf dem Plateau ist so sanft, dass unter seinen Hufen kein Halm knickt. Jetzt steht er grau und still.",高台上的麒麟温柔得蹄下不折一草。如今它灰扑扑地静立着。
+RUMOR_KIEFERNHANG_1,Stonelions guard the pillars. They open the way to whoever shows respect.,"Steinlöwen bewachen die Säulen. Wer Respekt zeigt, dem öffnen sie den Weg.",石狮守护着石柱。谁表现出尊重，它们就为谁让路。
+RUMOR_KIEFERNHANG_2,"Up in the temple lie the phoenix's ashes. Wusheng keeps watch beside them, day and night.","Oben im Tempel liegt die Asche des Phönix. Wusheng wacht daneben, Tag und Nacht.",庙里放着凤凰的灰烬。无声日夜守在旁边。
+RUMOR_MONDQUELL_0,"Baihu, the White Tiger, lies on the Singing Crest and doesn't move. His fur is grey as dust.","Auf dem Singenden Kamm liegt Baihu, der Weiße Tiger, und rührt sich nicht. Sein Fell ist grau wie Staub.",白虎躺在鸣沙脊上一动不动，毛色灰得像尘土。
+RUMOR_MONDQUELL_1,Bellcamels always find the way. Whoever tames one never gets lost in the sand.,"Glockenkamele finden immer den Weg. Wer eines zähmt, verirrt sich nie im Sand.",铃驼总能找到路。驯服一只，就永远不会在沙漠里迷路。
+RUMOR_MONDQUELL_2,The Grand Mistress says the Grand Chancellor waits up in the Phoenix Temple. With a crane that doesn't sing.,"Die Ordensmeisterin sagt, oben im Phönixtempel wartet der Großkanzler. Mit einem Kranich, der nicht singt.",教团大师说，大司仪在凤凰庙上面等着。身边有一只不唱歌的鹤。
+RUMOR_NEBELHAFEN_0,They say Xuanwu sleeps in Tortoise Bay and dreams of a song a crane once sang to it.,"Man sagt, Xuanwu schläft in der Schildkrötenbucht und träumt von einem Lied, das ein Kranich ihm einst sang.",听说玄武在玄龟湾沉睡，梦见一只鹤曾为它唱过的歌。
+RUMOR_NEBELHAFEN_1,Streamfins are said to swim in the mist at the Karst Bank. Whoever hears them never gets lost.,"Im Nebel am Karstufer sollen Stromdelfine schwimmen. Wer sie hört, verirrt sich nie.",听说岩溶河岸的雾里有流豚在游。听见它们的人永远不会迷路。
+RUMOR_NEBELHAFEN_2,"A man in grey was here, from the Order of Silence. He said without currents there'd be no more floods. Some liked that.","Ein Mann in Grau war hier, vom Orden der Stille. Er sagte, ohne Strömung gäbe es auch keine Fluten mehr. Manche fanden das gut.",来过一个灰衣人，是寂静教团的。他说没有水流就不会再有洪水。有些人觉得这样挺好。
+RUMOR_ROTFELS_0,"On the Fire Peak Bifang stands on one leg, staring into the ashes. A woman in grey guards the path.",Auf dem Feuergipfel steht Bifang auf einem Bein und starrt in die Asche. Eine Frau in Grau bewacht den Weg.,毕方单足立在火峰上，盯着灰烬。一个灰衣女子守着上山的路。
+RUMOR_ROTFELS_1,Emberpandas play tag on the Danxia Trail. A bit of fun wins them over.,Glutpandas spielen am Danxia-Pfad Fangen. Mit etwas Spaß gewinnt man sie für sich.,火团团在丹霞小径上玩捉人游戏。陪它们玩玩就能交上朋友。
+RUMOR_ROTFELS_2,The mayor is afraid of the fire. Who can blame her?,Die Bürgermeisterin hat Angst vor dem Feuer. Wer kann es ihr verdenken?,镇长怕火。谁能怪她呢？
 SHOP_BOUGHT,Bought {item}.,{item} gekauft.,买下了{item}。
 SHOP_NO_MONEY,You don't have enough coins.,Dafür reichen deine Münzen nicht.,铜钱不够。
 SHOP_TITLE,Shop,Laden,商店
@@ -323,11 +1054,26 @@ UI_BELLS,Bells,Glöckchen,铃铛
 UI_BOND,Bond,Bindung,羁绊
 UI_COINS,coins,Münzen,铜钱
 UI_CONTINUE,Continue,Weiter,继续
+UI_DAY_N,Day {n},Tag {n},第{n}天
 UI_HP,HP,Kraft,体力
 UI_OWNED,owned,im Beutel,持有
 UI_REPORT,Report,Melden,举报
 UI_REPORTED,"Reported, thanks","Gemeldet, danke",已举报，谢谢
+UI_SAY,Say,Sagen,说
+UI_TONES,Tones,Töne,五音
 UI_USE,Use,Benutzen,使用
 UI_XP,XP,EP,经验
+VOICE_BAIHU_FREED,My voice is back. Do you hear the dunes? They sing for you.,Meine Stimme ist zurück. Hörst du die Dünen? Sie singen für dich.,我的声音回来了。听见沙丘了吗？它们在为你歌唱。
+VOICE_BIFANG_FREED,Ha! I'm burning again! Don't be afraid - I know now where my fire belongs.,"Ha! Ich brenne wieder! Hab keine Angst – ich weiß jetzt, wo mein Feuer hingehört.",哈！我又燃起来了！别怕——我现在知道我的火该在哪里烧了。
+VOICE_FENGHUANG_FREED,I sing again - with all five tones. I owe that to you.,Ich singe wieder – mit allen fünf Tönen. Das verdanke ich dir.,我又能唱歌了——五音齐全。这都要感谢你。
 VOICE_FREED_GENERIC,I... I can speak again. Thank you.,Ich … ich kann wieder sprechen. Danke.,我……我又能说话了。谢谢你。
+VOICE_QILIN_FREED,"The grass beneath me is soft again. I thank you, child of the wind chime.","Das Gras unter mir ist wieder weich. Ich danke dir, Kind des Windspiels.",我脚下的草又变软了。谢谢你，风铃之子。
 VOICE_QINGLONG_FREED,"My song... it is in me again. I thank you, little one with the wind chime.","Mein Lied … es ist wieder in mir. Ich danke dir, kleiner Mensch mit dem Windspiel.",我的歌……又回到了我心中。谢谢你，带着风铃的小家伙。
+VOICE_XUANWU_FREED,"My water... it flows again. Thank you, little one. Slowly, but it flows.","Mein Wasser … es fließt wieder. Danke, kleiner Mensch. Langsam, aber es fließt.",我的水……又流动了。谢谢你，小家伙。很慢，但在流动。
+WEATHER_CLOUDY,Cloudy,Wolkig,多云
+WEATHER_FOG,Fog,Nebel,雾
+WEATHER_RAIN,Rain,Regen,雨
+WEATHER_SANDSTORM,Sandstorm,Sandsturm,沙暴
+WEATHER_SNOW,Snow,Schnee,雪
+WEATHER_STORM,Thunderstorm,Gewitter,雷雨
+WEATHER_SUN,Sunny,Sonne,晴

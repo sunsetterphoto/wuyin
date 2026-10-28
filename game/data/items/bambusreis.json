@@ -1,0 +1,8 @@
+{
+  "id": "bambusreis",
+  "name": "ITEM_BAMBUSREIS",
+  "desc": "ITEM_BAMBUSREIS_DESC",
+  "kind": "dish",
+  "price": 40,
+  "effect": "trust"
+}

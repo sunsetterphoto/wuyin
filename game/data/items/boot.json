@@ -1,0 +1,7 @@
+{
+  "id": "boot",
+  "name": "ITEM_BOOT",
+  "desc": "ITEM_BOOT_DESC",
+  "kind": "key",
+  "price": 1
+}

@@ -1,0 +1,30 @@
+{
+  "id": "glutfalter",
+  "name": "LS_GLUTFALTER",
+  "animal": "LS_GLUTFALTER_ANIMAL",
+  "desc": "LS_GLUTFALTER_DESC",
+  "element": "fire",
+  "temperaments": [
+    "brave"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 48,
+    "atk": 64,
+    "def": 38,
+    "spd": 66
+  },
+  "moves": [
+    "flammensprung",
+    "lampionglanz",
+    "glutfeder",
+    "funkenregen"
+  ],
+  "habitat": "ember_pit",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/glutfalter.md",
+  "hybrid": true,
+  "learn": {
+    "28": "sonnenfeuer"
+  }
+}

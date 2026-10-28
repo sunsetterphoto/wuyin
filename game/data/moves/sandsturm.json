@@ -1,0 +1,15 @@
+{
+  "id": "sandsturm",
+  "name": "MOVE_SANDSTURM",
+  "element": "earth",
+  "kind": "attack",
+  "accuracy": 95,
+  "target": "enemy",
+  "llm_hint": "a whirling sandstorm that confuses",
+  "power": 55,
+  "effect": {
+    "status": "dissonance",
+    "turns": 2,
+    "chance": 30
+  }
+}

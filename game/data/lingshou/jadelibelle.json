@@ -20,5 +20,10 @@
   ],
   "habitat": "bamboo",
   "can_breed": true,
-  "voice_card": "cards/{lang}/jadelibelle.md"
+  "voice_card": "cards/{lang}/jadelibelle.md",
+  "desc": "LS_JADELIBELLE_DESC",
+  "learn": {
+    "14": "bambusschlag",
+    "26": "fruehlingssturm"
+  }
 }

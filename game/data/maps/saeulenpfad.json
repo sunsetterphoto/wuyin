@@ -1,0 +1,165 @@
+{
+ "name": "MAP_SAEULENPFAD",
+ "region": "pillars",
+ "time": "day",
+ "music": "pillars",
+ "battle_bg": "pillars",
+ "border": "cloud",
+ "spawns": {
+  "from_crossroads": [
+   20,
+   22
+  ],
+  "from_town": [
+   20,
+   1
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    20,
+    23,
+    1,
+    1
+   ],
+   "to": "kreuzweg",
+   "spawn": "from_pillars"
+  },
+  {
+   "rect": [
+    19,
+    0,
+    2,
+    1
+   ],
+   "to": "kiefernhang",
+   "spawn": "from_route"
+  }
+ ],
+ "on_enter": {
+  "event": "saeulenpfad_arrive",
+  "unless": "saeulenpfad_arrived"
+ },
+ "lingshou": [
+  {
+   "id": "w_takin",
+   "species": "felstakin",
+   "at": [
+    27,
+    5
+   ],
+   "levels": [
+    23,
+    25
+   ],
+   "unless": "gone_w_takin"
+  },
+  {
+   "id": "w_loewe",
+   "species": "steinloewe",
+   "at": [
+    8,
+    11
+   ],
+   "levels": [
+    24,
+    25
+   ],
+   "unless": "gone_w_loewe"
+  }
+ ],
+ "objects": [
+  {
+   "id": "chest_saeulen",
+   "kind": "chest",
+   "at": [
+    5,
+    4
+   ],
+   "event": "chest_saeulen",
+   "unless": "chest_saeulen"
+  }
+ ],
+ "encounters": {
+  "rate": 0.12,
+  "table": [
+   {
+    "species": "felstakin",
+    "levels": [
+     22,
+     25
+    ],
+    "weight": 2
+   },
+   {
+    "species": "wolkenpfeifer",
+    "levels": [
+     22,
+     25
+    ],
+    "weight": 3
+   },
+   {
+    "species": "steinloewe",
+    "levels": [
+     23,
+     26
+    ],
+    "weight": 2
+   },
+   {
+    "species": "nebelaffe",
+    "levels": [
+     22,
+     24
+    ],
+    "weight": 1
+   },
+   {
+    "species": "messingadler",
+    "levels": [
+     23,
+     26
+    ],
+    "weight": 1
+   },
+   {
+    "species": "schattenmotte",
+    "levels": [
+     23,
+     25
+    ],
+    "weight": 2,
+    "night": true
+   }
+  ]
+ },
+ "id": "saeulenpfad",
+ "rows": [
+  "SSSSSSSSSSSSSSSSccc==SSSSSSSSSSSSSSSSSSS",
+  "Suuuuuuuuuuuuuuuccc==uuuuuuuuuuuuuuuuuuS",
+  "Suuuuuuuuuuuuuuuccc==uuuuuuuuuuuuuuuuuuS",
+  "Suuuccccccuuuuuuccc==cccccccccccccuuuuuS",
+  "SuuucQccccuuuuuuuuuu=cQccc,,,,cQccuuuuuS",
+  "Suuuccccccuuuuuuuuuu=ccccc,,,,ccccuuuuuS",
+  "Suuuc,,,ccuuuuuuuuuu=ccccc,,,,ccccuuuuuS",
+  "Suuuc,,,ccuuuuuuuuuu=cccccccQcccccuuuuuS",
+  "Suuuc,,,ccuuuuuuuuuu=ccccnccccccncuuuuuS",
+  "Suuucccccc,,,,cccccc=cccccccccccccuuuuuS",
+  "SuuuuucQcc,,,,cccccc=ccuuuuuuuuuuuuuuuuS",
+  "SuuuuuccccccQccccccc=ccuuuuuuuuuuuuuuuuS",
+  "Suuuuucccncccccccccc=ccuuuuuuuuuuuuuuuuS",
+  "SuuuuucccccccccccccQ=ccuuuuuuuuuuuuuuuuS",
+  "Suuuuuuuuuuuuuuuuucc=ccuuuuuuuuuuuuuuuuS",
+  "Suuuuuuuuuuuuuuuuucc=ccuuuuuuuuuuuuuuuuS",
+  "Suuuuuuuuuuuuuuuuucc=ccuuuuuuuuuuuuuuuuS",
+  "Suuuuuuuuuuuuuuuuucc=ccuuuuuuuuuuuuuuuuS",
+  "Suuuuuuuuuuuuucccccc=cccccuuuuuuuuuuuuuS",
+  "Suuuuuuuuuuuuucc,,,,=cccccuuuuuuuuuuuuuS",
+  "SuuuuuuuuuuuuucQ,,,,=cccccuuuuuuuuuuuuuS",
+  "Suuuuuuuuuuuuucc,,,,=cccQcuuuuuuuuuuuuuS",
+  "Suuuuuuuuuuuuucccccc=cccccuuuuuuuuuuuuuS",
+  "SSSSSSSSSSSSSScccccc=cccccSSSSSSSSSSSSSS"
+ ]
+}

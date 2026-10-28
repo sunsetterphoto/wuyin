@@ -1,0 +1,10 @@
+{
+  "id": "qilinsegen",
+  "name": "MOVE_QILINSEGEN",
+  "element": "earth",
+  "kind": "heal",
+  "accuracy": 95,
+  "target": "ally",
+  "llm_hint": "a blessing that heals an ally a lot",
+  "heal_pct": 60
+}

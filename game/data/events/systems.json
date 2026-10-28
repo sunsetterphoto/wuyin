@@ -1,0 +1,57 @@
+{
+ "note": "Generiert von tools/story/systems.py – dort bearbeiten.",
+ "events": {
+  "pen_sign": [
+   {
+    "farm": "pen"
+   }
+  ],
+  "hof_hut": [
+   {
+    "say": "narrator",
+    "text": "EV_HUT"
+   },
+   {
+    "set_inn": [
+     "hof",
+     "home"
+    ]
+   },
+   {
+    "farm": "hut"
+   }
+  ],
+  "hof_arrive": [
+   {
+    "set": "hof_arrived"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_HOF_1"
+   },
+   {
+    "say": "zimmermann",
+    "text": "EV_HOF_2"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_HOF_TUT"
+   }
+  ],
+  "zimmermann": [
+   {
+    "say": "zimmermann",
+    "text": "EV_ZIMMER"
+   },
+   {
+    "farm": "carpenter"
+   }
+  ],
+  "hof_sign": [
+   {
+    "say": "narrator",
+    "text": "EV_HOF_SIGN"
+   }
+  ]
+ }
+}

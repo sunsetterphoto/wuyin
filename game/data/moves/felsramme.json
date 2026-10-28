@@ -1,0 +1,10 @@
+{
+  "id": "felsramme",
+  "name": "MOVE_FELSRAMME",
+  "element": "earth",
+  "kind": "attack",
+  "accuracy": 90,
+  "target": "enemy",
+  "llm_hint": "charges with a head of stone",
+  "power": 70
+}

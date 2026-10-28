@@ -1,0 +1,123 @@
+{
+ "name": "MAP_SINGENDER_KAMM",
+ "region": "dunes",
+ "time": "dusk",
+ "music": "dunes",
+ "battle_bg": "dunes",
+ "border": "sand",
+ "spawns": {
+  "from_town": [
+   13,
+   18
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    13,
+    19,
+    2,
+    1
+   ],
+   "to": "mondquell",
+   "spawn": "from_crest"
+  }
+ ],
+ "on_enter": {
+  "event": "kamm_arrive",
+  "unless": "kamm_arrived"
+ },
+ "npcs": [
+  {
+   "id": "order_kamm",
+   "sprite": "order_a",
+   "at": [
+    13,
+    11
+   ],
+   "event": "order_kamm",
+   "unless": "order_kamm_done"
+  },
+  {
+   "id": "karawanenaelteste",
+   "sprite": "elder",
+   "at": [
+    16,
+    16
+   ],
+   "event": "karawanenaelteste"
+  },
+  {
+   "id": "baihu_free",
+   "lingshou": "baihu",
+   "at": [
+    13,
+    5
+   ],
+   "event": "baihu_free",
+   "when": "tone_shang",
+   "scale": 1.3
+  }
+ ],
+ "lingshou": [
+  {
+   "id": "boss_baihu",
+   "species": "baihu",
+   "role": "silenced",
+   "at": [
+    13,
+    5
+   ],
+   "event": "boss_baihu",
+   "unless": "tone_shang",
+   "scale": 1.3,
+   "static": true
+  }
+ ],
+ "triggers": [
+  {
+   "rect": [
+    9,
+    7,
+    10,
+    2
+   ],
+   "event": "boss_baihu",
+   "unless": "tone_shang"
+  },
+  {
+   "rect": [
+    12,
+    12,
+    4,
+    1
+   ],
+   "event": "order_kamm",
+   "unless": "order_kamm_done",
+   "once": false
+  }
+ ],
+ "id": "singender_kamm",
+ "rows": [
+  "SSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+  "SmmmmmmmmmmmmmmmmmmmmmmmmmmS",
+  "SmmmmmmmmmmmmmmmmmmmmmmmmmmS",
+  "SmmmmssssccccccccccssssmmmmS",
+  "SmmmmssssccccccccccssssmmmmS",
+  "SmmmmssssccccccccccssssmmmmS",
+  "SmmmmssssccccccccccssssmmmmS",
+  "SmmmmssssccccccccccssssmmmmS",
+  "SmmmmssssccccccccccssssmmmmS",
+  "Smmmmssssssss==ssssssssmmmmS",
+  "Smmmmssssssss==ssssssssmmmmS",
+  "Smmmmsmmmssss==ssssmmmsmmmmS",
+  "Smmmmsmmmssss==ssssmmmsmmmmS",
+  "Smmmmssssssss==ssssssssmmmmS",
+  "Smmmmssssssss==ssssssssmmmmS",
+  "Smmmmszzzzsss==ssszzzzsmmmmS",
+  "Smmmmszzzzsss==ssszzzzsmmmmS",
+  "Smmmmszzzzsss==ssszzzzsmmmmS",
+  "Smmmmssssssss==ssssssssmmmmS",
+  "SSSSSSSSSSSSS==SSSSSSSSSSSSS"
+ ]
+}

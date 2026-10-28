@@ -1,0 +1,30 @@
+{
+  "id": "goldkroete",
+  "name": "LS_GOLDKROETE",
+  "animal": "LS_GOLDKROETE_ANIMAL",
+  "desc": "LS_GOLDKROETE_DESC",
+  "element": "earth",
+  "temperaments": [
+    "moody"
+  ],
+  "alignment": "wild",
+  "base_stats": {
+    "hp": 56,
+    "atk": 42,
+    "def": 50,
+    "spd": 30
+  },
+  "moves": [
+    "muenzregen",
+    "erdstoss",
+    "schlammwand",
+    "kinderweinen"
+  ],
+  "habitat": "rock_garden",
+  "can_breed": true,
+  "voice_card": "cards/{lang}/goldkroete.md",
+  "learn": {
+    "16": "felsramme",
+    "28": "bergbeben"
+  }
+}

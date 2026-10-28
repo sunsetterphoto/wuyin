@@ -1,0 +1,28 @@
+{
+  "id": "xuanwu",
+  "name": "LS_XUANWU",
+  "animal": "LS_XUANWU_ANIMAL",
+  "desc": "LS_XUANWU_DESC",
+  "element": "water",
+  "temperaments": [
+    "stubborn"
+  ],
+  "alignment": "silenced",
+  "base_stats": {
+    "hp": 100,
+    "atk": 58,
+    "def": 78,
+    "spd": 30
+  },
+  "moves": [
+    "flutwelle",
+    "schlangenbiss",
+    "panzerwacht",
+    "eisenstille"
+  ],
+  "habitat": "shrine",
+  "can_breed": false,
+  "voice_card": "cards/{lang}/xuanwu.md",
+  "guardian": true,
+  "sprite_size": 96
+}

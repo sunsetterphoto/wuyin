@@ -14,6 +14,16 @@ const TALK_RANGE := 1.35
 const ENCOUNTER_GRACE_STEPS := 4
 const JINLI_IDLE_GUIDE_S := 6.0
 const AUTOSAVE_SLOT := 0
+## Game minutes per real second: a day of 06:00-24:00 takes about 16 minutes (GDD "Zeit").
+const CLOCK_SPEED := 1.1
+const BIKE_SPEED := 1.75
+## Ambience presets: sky, ambient, sun colour, sun energy, ambient energy, lantern energy.
+const AMBIENCE := {
+	"day": [Color("9fc3d8"), Color("c9d6e8"), Color("fff1d6"), 1.3, 0.5, 0.0],
+	"dawn": [Color("e0b0a0"), Color("c0b0c8"), Color("ffd8b0"), 0.9, 0.45, 0.6],
+	"dusk": [Color("d89a7a"), Color("b8a0b0"), Color("ffc890"), 0.9, 0.45, 1.0],
+	"night": [Color("1a2238"), Color("5a6a98"), Color("9fb0e0"), 0.5, 0.5, 1.6],
+}
 
 static var _instance: World
 
@@ -52,6 +62,11 @@ var _rng := RandomNumberGenerator.new()
 var _wander_t := {}
 var _silent := false
 var _fps_log_t := 0.0
+var _clock_acc := 0.0
+var _ambience_t := 0.0
+var _weather_fx: WeatherFx
+var _hud_time: Label
+static var _graph := {}  # map id -> [{"to", "rect", "warp"}] (Jinli's route finding)
 
 
 static func instance() -> World:
@@ -142,10 +157,21 @@ func _build_ui() -> void:
 	_hud_name.add_theme_color_override("font_outline_color", Color.BLACK)
 	_hud_name.add_theme_constant_override("outline_size", 8)
 	hud.add_child(_hud_name)
+	_hud_time = UiTheme.label("", 16, UiTheme.MUTED)
+	_hud_time.add_theme_color_override("font_outline_color", Color.BLACK)
+	_hud_time.add_theme_constant_override("outline_size", 6)
+	hud.add_child(_hud_time)
 	_hud_quest = UiTheme.label("", 18)
 	_hud_quest.add_theme_color_override("font_outline_color", Color.BLACK)
 	_hud_quest.add_theme_constant_override("outline_size", 6)
+	_hud_quest.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_hud_quest.custom_minimum_size = Vector2(560, 0)
 	hud.add_child(_hud_quest)
+	_weather_fx = WeatherFx.new()
+	var fx_layer := CanvasLayer.new()
+	fx_layer.layer = 3
+	add_child(fx_layer)
+	fx_layer.add_child(_weather_fx)
 	touch = TouchControls.new()
 	touch.interact.connect(_on_interact)
 	touch.menu.connect(open_menu)
@@ -180,6 +206,10 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 	_trail.clear()
 	map = MapData.load_map(map_id)
 	state.map = map_id
+	if map.def.get("town", false) or map_id in ["weidendorf", "kreuzweg"]:
+		state.set_flag("visited_" + map_id)
+	if map.def.has("pens"):
+		_apply_pens()
 	_map_root = Node3D.new()
 	_view.add_child(_map_root)
 	var built := MapBuilder.build(map)
@@ -189,9 +219,12 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 	state.pos = start
 	var p3 := Vector3(start.x, 0, start.y)
 	_player = Actor.make(Sprites.hero(int(state.player["hair"]), int(state.player["outfit"])), p3, "player")
+	_player.set_directions(Sprites.hero(int(state.player["hair"]), int(state.player["outfit"]), "back"),
+		Sprites.hero(int(state.player["hair"]), int(state.player["outfit"]), "side"))
 	_map_root.add_child(_player)
 	_player.add_silhouette()
 	_jinli = Actor.make(Sprites.character("jinli"), p3 + Vector3(-0.6, 0, 0.3), "jinli")
+	_jinli.set_directions(Sprites.character_view("jinli", "back"), Sprites.character_view("jinli", "side"))
 	_jinli.event = "jinli_talk"
 	_map_root.add_child(_jinli)
 	_actors["jinli"] = _jinli
@@ -201,13 +234,13 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 	_rig.bounds = Rect2(-0.5, -0.5, map.width, map.height)
 	_spawn_people()
 	_spawn_wild()
+	_spawn_farm()
 	_apply_ambience()
 	_hud_name.text = tr(map.name_key())
 	update_quest()
 	_last_tile = _tile_of(_player.position)
 	_grace = ENCOUNTER_GRACE_STEPS
-	if map.def.has("music") and not _silent_music_override():
-		Audio.play(map.def["music"])
+	_play_map_music()
 	await get_tree().process_frame
 	await fade(false)
 	busy = false
@@ -216,18 +249,26 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 		var ev: String = state.flags["_dev_event"]
 		state.flags.erase("_dev_event")
 		await events.run(ev)
-	if map.def.has("on_enter"):
-		var ev: Dictionary = map.def["on_enter"]
+	var entries = map.def.get("on_enter", [])
+	for ev in (entries if entries is Array else [entries]):
 		if MapData.condition_ok(ev, state):
 			await events.run(ev["event"])
+			break
 
 
-func _silent_music_override() -> bool:
-	# Before the first tone returns, the silence is audible everywhere outside the prologue festival.
-	if map.def.has("music_when_silent") and state.flag("silence_fell") and not state.flag("tone_jue"):
+## Map music; in silent regions the special silence track or a muffled version of the region's music.
+func _play_map_music() -> void:
+	var silent := state.region_silent(map.def.get("region", "bamboo"))
+	if silent and map.def.has("music_when_silent"):
+		Audio.set_muffled(false)
 		Audio.play(map.def["music_when_silent"])
-		return true
-	return false
+	elif map.def.has("music"):
+		Audio.set_muffled(silent)
+		Audio.play(map.def["music"])
+
+
+func region() -> String:
+	return map.def.get("region", "bamboo") if map else "bamboo"
 
 
 func _spawn_people() -> void:
@@ -248,6 +289,45 @@ func _spawn_people() -> void:
 		_map_root.add_child(a)
 		_actors[e.get("id", "obj%d" % _actors.size())] = a
 	refresh_people()
+
+
+## Farm: pen ground by type (built pens) and pen signs.
+func _apply_pens() -> void:
+	var pens: Array = map.def["pens"]
+	for i in pens.size():
+		var r: Array = pens[i]["rect"]
+		var type: String = state.home["pens"][i]["type"] if i < Farm.pen_count(state) else "empty"
+		for z in range(int(r[1]), int(r[1]) + int(r[3])):
+			for x in range(int(r[0]), int(r[0]) + int(r[2])):
+				map.overrides[Vector2i(x, z)] = MapData.PEN_TILES[type]
+		if i < Farm.pen_slots(state):
+			var sign := {"id": "pen_%d" % i, "kind": "sign", "at": pens[i]["sign"], "event": "pen_sign", "solid": false}
+			map.def["objects"] = map.def.get("objects", []) + [sign]
+
+
+func _spawn_farm() -> void:
+	if not map.def.has("pens"):
+		return
+	var pens: Array = map.def["pens"]
+	var count := {}
+	for rec in state.farm:
+		var pen := int(rec.get("pen", -1))
+		var at: Vector2
+		if pen >= 0 and pen < pens.size():
+			var r: Array = pens[pen]["rect"]
+			var n := int(count.get(pen, 0))
+			count[pen] = n + 1
+			at = Vector2(int(r[0]) + (0 if n == 0 else int(r[2]) - 1), int(r[1]) + n % 2)
+		else:
+			var n := int(count.get(-1, 0))
+			count[-1] = n + 1
+			at = Vector2(28 - n, 6)
+		var a := Actor.make(Sprites.lingshou_rec(rec), Vector3(at.x, 0, at.y), "farm_" + String(rec["uid"]))
+		a.scale = Vector3.ONE * (0.55 if rec.get("stage", "adult") == "young" else 0.75)
+		a.event = "pen_sign"
+		a.entry = {"at": [at.x, at.y], "wander": 1, "pen": pen, "solid": false}
+		_map_root.add_child(a)
+		_actors[a.actor_id] = a
 
 
 func _object_texture(kind: String) -> Texture2D:
@@ -309,26 +389,63 @@ func _update_follower() -> void:
 		_follower = null
 	if state.party.is_empty() or not _player:
 		return
-	_follower = Actor.make(Sprites.lingshou(state.party[0]["species"]), _player.position + Vector3(-1, 0, 0.5), "follower")
+	_follower = Actor.make(Sprites.lingshou_rec(state.party[0]), _player.position + Vector3(-1, 0, 0.5), "follower")
 	_follower.scale = Vector3.ONE * 0.7
 	_map_root.add_child(_follower)
 
 
+## Uses the game clock once the journey has begun; before that (and on maps
+## with "fixed_time") the map's own time of day.
+func uses_clock() -> bool:
+	return state.flag("prologue_done") and not map.def.get("fixed_time", false) and not map.def.get("indoor", false)
+
+
+func _ambience_now() -> Array:
+	if not uses_clock():
+		return AMBIENCE.get(map.def.get("time", "day"), AMBIENCE["day"])
+	var h := state.minute / 60.0
+	var keys := [[0.0, "night"], [5.0, "night"], [6.5, "dawn"], [8.0, "day"], [17.0, "day"], [19.0, "dusk"], [21.0, "night"], [24.0, "night"]]
+	for i in keys.size() - 1:
+		if h >= keys[i][0] and h < keys[i + 1][0]:
+			var a: Array = AMBIENCE[keys[i][1]]
+			var b: Array = AMBIENCE[keys[i + 1][1]]
+			var t: float = (h - keys[i][0]) / (keys[i + 1][0] - keys[i][0])
+			var out := []
+			for k in a.size():
+				out.append(a[k].lerp(b[k], t) if a[k] is Color else lerpf(a[k], b[k], t))
+			return out
+	return AMBIENCE["day"]
+
+
 func _apply_ambience() -> void:
-	var time: String = map.def.get("time", "day")
-	var ambience: Array = {
-		"day": [Color("9fc3d8"), Color("c9d6e8"), Color("fff1d6"), 1.3, 0.5, 0.0],
-		"dusk": [Color("d89a7a"), Color("b8a0b0"), Color("ffc890"), 0.9, 0.45, 1.0],
-		"night": [Color("1a2238"), Color("5a6a98"), Color("9fb0e0"), 0.5, 0.5, 1.6],
-	}.get(time, [Color("9fc3d8"), Color("c9d6e8"), Color("fff1d6"), 1.3, 0.5, 0.0])
+	var ambience := _ambience_now()
+	var w := Weather.current(state, map)
 	_env.background_color = ambience[0]
 	_env.ambient_light_color = ambience[1]
 	_sun.light_color = ambience[2]
-	_sun.set_meta("energy", ambience[3])
+	var sun_energy: float = ambience[3]
+	if w in ["cloudy", "rain", "fog", "snow"]:
+		sun_energy *= 0.7
+	elif w in ["storm", "sandstorm"]:
+		sun_energy *= 0.5
+	_sun.set_meta("energy", sun_energy)
 	_env.set_meta("ambient", ambience[4])
 	for l in _lights:
 		l.set_meta("energy", ambience[5])
-	set_silent(state.flag("silence_fell") and not state.flag("tone_jue") and map.def.get("silent", true))
+	_env.fog_enabled = w in ["fog", "sandstorm", "snow"]
+	_env.fog_light_color = {"fog": Color("c8d0d8"), "sandstorm": Color("d8b878"), "snow": Color("e8eef4")}.get(w, Color.WHITE)
+	_env.fog_density = {"fog": 0.05, "sandstorm": 0.06, "snow": 0.025}.get(w, 0.0)
+	_weather_fx.set_kind(w)
+	set_silent(state.region_silent(region()) and map.def.get("silent", true))
+	_update_time_label()
+
+
+func _update_time_label() -> void:
+	if not state.flag("prologue_done"):
+		_hud_time.text = ""
+		return
+	var w := Weather.current(state, map)
+	_hud_time.text = "%s · %02d:%02d %s" % [tr("UI_DAY_N").format({"n": state.day}), state.minute / 60, state.minute % 60, Weather.icon(w)]
 
 
 ## The stolen song drains the colour from the world until a tone returns.
@@ -361,6 +478,16 @@ func _process(delta: float) -> void:
 	for a in _map_root.get_children():
 		if a is Actor:
 			a.billboard = bb
+	if not busy and not dialog.is_open() and uses_clock():
+		_clock_acc += delta * CLOCK_SPEED
+		if _clock_acc >= 1.0:
+			var m := int(_clock_acc)
+			_clock_acc -= m
+			state.minute = (state.minute + m) % 1440
+	_ambience_t += delta
+	if _ambience_t > 1.0:
+		_ambience_t = 0.0
+		_apply_ambience()
 	_layout_screen()
 	touch.visible = not busy and not dialog.is_open()
 	if not busy:
@@ -408,7 +535,8 @@ func _move_player(delta: float) -> void:
 	if dir.length() > 1.0:
 		dir = dir.normalized()
 	_facing = dir.normalized()
-	var step := Vector3(dir.x, 0, dir.y) * MOVE_SPEED * delta
+	var speed := MOVE_SPEED * (BIKE_SPEED if state.item_count("fahrrad") > 0 and not map.def.get("indoor", false) else 1.0)
+	var step := Vector3(dir.x, 0, dir.y) * speed * delta
 	var p := _player.position
 	# Axis-separated so the player slides along walls.
 	var nx := p + Vector3(step.x, 0, 0)
@@ -418,7 +546,7 @@ func _move_player(delta: float) -> void:
 	if _free(nz):
 		p = nz
 	_player.position = p
-	_player.animate(delta, true, dir.x)
+	_player.animate(delta, true, dir.x, dir.y)
 	state.pos = Vector2(p.x, p.z)
 	_trail.append(p)
 	if _trail.size() > 60:
@@ -452,19 +580,19 @@ func _follow(delta: float) -> void:
 		var d := goal - _jinli.position
 		if d.length() > 0.05:
 			_jinli.position = _jinli.position.lerp(goal, minf(1.0, delta * 8.0))
-			_jinli.animate(delta, d.length() > 0.02, d.x)
+			_jinli.animate(delta, d.length() > 0.02, d.x, d.z)
 		else:
 			_jinli.animate(delta, false)
 	if _follower and _trail.size() > 28:
 		var goal := _trail[_trail.size() - (28 if _jinli.visible else 14)]
 		var d := goal - _follower.position
 		_follower.position = _follower.position.lerp(goal, minf(1.0, delta * 8.0))
-		_follower.animate(delta, d.length() > 0.02, d.x)
+		_follower.animate(delta, d.length() > 0.02, d.x, d.z)
 
 
 ## Jinli runs ahead towards the current goal, sits and rings her bell.
 func _guide() -> void:
-	var goal = state.flag("goal", null)
+	var goal = current_goal()
 	if not _jinli.visible or goal == null or busy:
 		return
 	var target := _goal_on_this_map(goal)
@@ -484,16 +612,50 @@ func _guide() -> void:
 		Audio.sfx("bell")
 
 
-## goal: [map, x, z] or a list of such; returns the tile on this map (or the warp leading there).
+## The goal Jinli leads to: the region's own task first, else the main one.
+func current_goal():
+	var rg: Dictionary = state.flag("rgoal", {})
+	if rg.has(region()):
+		return rg[region()]
+	return state.flag("goal", null)
+
+
+func current_quest() -> String:
+	var rq: Dictionary = state.flag("rquest", {})
+	if rq.has(region()):
+		return rq[region()]
+	return state.flag("quest", "")
+
+
+## goal: [map, x, z]; returns the tile on this map, or the warp on the shortest way there.
 func _goal_on_this_map(goal) -> Vector2i:
 	if goal is Array and goal.size() == 3 and goal[0] is String:
 		if goal[0] == map.id:
 			return Vector2i(int(goal[1]), int(goal[2]))
-		for w in map.def.get("warps", []):
-			if w.get("to") == goal[0] or (w.has("toward") and goal[0] in w["toward"]):
-				var r: Array = w["rect"]
-				return Vector2i(int(r[0]) + int(r[2]) / 2, int(r[1]) + int(r[3]) / 2)
+		var w := next_warp_toward(map.id, goal[0])
+		if not w.is_empty():
+			var r: Array = w["rect"]
+			return Vector2i(int(r[0]) + int(r[2]) / 2, int(r[1]) + int(r[3]) / 2)
 	return Vector2i(-1, -1)
+
+
+## First warp on the shortest open route from map `from` to map `to` (breadth-first over all maps).
+func next_warp_toward(from: String, to: String) -> Dictionary:
+	if _graph.is_empty():
+		for id in MapData.all_ids():
+			_graph[id] = MapData.load_map(id).def.get("warps", [])
+	var first := {from: {}}
+	var queue: Array[String] = [from]
+	while not queue.is_empty():
+		var cur: String = queue.pop_front()
+		if cur == to:
+			return first[cur]
+		for w in _graph.get(cur, []):
+			if not MapData.condition_ok(w, state) or first.has(w["to"]):
+				continue
+			first[w["to"]] = w if cur == from else first[cur]
+			queue.append(w["to"])
+	return {}
 
 
 func _wander(delta: float) -> void:
@@ -570,7 +732,8 @@ func _push_back() -> void:
 
 
 func _random_encounter(enc: Dictionary) -> void:
-	var table: Array = enc.get("table", [])
+	var night := uses_clock() and state.is_night()
+	var table: Array = enc.get("table", []).filter(func(e): return bool(e.get("night", night)) == night or not e.has("night"))
 	var total := 0
 	for e in table:
 		total += int(e.get("weight", 1))
@@ -582,7 +745,9 @@ func _random_encounter(enc: Dictionary) -> void:
 		if roll <= 0:
 			var lv: Array = e.get("levels", [3, 5])
 			_grace = ENCOUNTER_GRACE_STEPS
-			start_wild_battle(e["species"], _rng.randi_range(int(lv[0]), int(lv[1])), null)
+			# Silenced ones roam only while their region is still under the silence.
+			var silenced: bool = e.get("silenced", false) and state.region_silent(region())
+			start_wild_battle(e["species"], _rng.randi_range(int(lv[0]), int(lv[1])), null, silenced)
 			return
 
 
@@ -597,10 +762,10 @@ func _check_wild_contact() -> void:
 			return
 
 
-func start_wild_battle(species: String, level: int, actor: Actor) -> void:
+func start_wild_battle(species: String, level: int, actor: Actor, silenced := false) -> void:
 	busy = true
 	touch.release()
-	var role := "silenced" if GameData.lingshou(species)["alignment"] == "silenced" or (actor and actor.entry.get("role") == "silenced") else ""
+	var role := "silenced" if silenced or GameData.lingshou(species)["alignment"] == "silenced" or (actor and actor.entry.get("role") == "silenced") else ""
 	if role == "" and GameData.lingshou(species)["alignment"] in ["wild", "free"]:
 		role = "wild"
 	var r := await battle({"enemies": [{"id": species, "level": level, "role": role}], "active": 1})
@@ -631,6 +796,14 @@ func battle(setup: Dictionary) -> Dictionary:
 	var view := BattleView.new()
 	setup = setup.duplicate(true)
 	setup["bg"] = setup.get("bg", map.def.get("battle_bg", "river"))
+	setup["mods"] = battle_mods()
+	var avg := 0.0
+	for rec in state.party:
+		avg += int(rec["level"])
+	avg /= maxf(1.0, state.party.size())
+	for e in setup["enemies"]:
+		if e.has("scale"):
+			e["level"] = clampi(maxi(int(e.get("level", 5)), roundi(avg) + int(e["scale"])), 1, BattleUnit.MAX_LEVEL)
 	_overlay_layer.add_child(view)
 	_screen.visible = false
 	fade(false, 0.25)
@@ -659,8 +832,54 @@ func battle(setup: Dictionary) -> Dictionary:
 	return result
 
 
-## Taming scene without a battle (prologue tutorial).
-func befriend(species: String, level: int) -> Dictionary:
+## Weather and today's dish as battle modifiers (see Battle.mods).
+func battle_mods() -> Dictionary:
+	var mods := {"weather": Weather.current(state, map)}
+	match state.buff_effect():
+		"xp":
+			mods["xp_mult"] = 1.3
+		"atk":
+			mods["atk_mult"] = {0: 1.12}
+		"def":
+			mods["def_mult"] = {0: 1.12}
+		"trust":
+			mods["trust_bonus"] = 8
+		"coins":
+			mods["coin_mult"] = 1.4
+	return mods
+
+
+## Talking someone round outside of battle (see Persuader); true on success.
+func persuade(spec: Dictionary) -> bool:
+	busy = true
+	touch.release()
+	dialog.hide_box()
+	var view := PersuadeView.new()
+	_overlay_layer.add_child(view)
+	var ok: bool = await view.run(spec, state)
+	view.queue_free()
+	return ok
+
+
+## Sleeping in a bed ends the day (GDD "Zeit"): farm night, diary, new weather.
+func sleep() -> void:
+	busy = true
+	await fade(true, 0.6)
+	var diary := state.sleep()
+	Audio.sfx("heal")
+	_apply_ambience()
+	_play_map_music()
+	await get_tree().create_timer(0.4).timeout
+	await fade(false, 0.6)
+	await events.say_key("narrator", "MSG_MORNING", {"day": state.day})
+	var lines := await FarmDiary.lines(diary, state)
+	for line in lines:
+		await events.say_text("narrator", line)
+	state.save_game(AUTOSAVE_SLOT)
+
+
+## Taming scene without a battle (prologue tutorial, Wusheng's crane).
+func befriend(species: String, level: int, join := true) -> Dictionary:
 	busy = true
 	touch.release()
 	await fade(true, 0.25)
@@ -668,7 +887,7 @@ func befriend(species: String, level: int) -> Dictionary:
 	_overlay_layer.add_child(view)
 	_screen.visible = false
 	fade(false, 0.25)
-	var r: Dictionary = await view.run(species, level, state)
+	var r: Dictionary = await view.run(species, level, state, join)
 	await fade(true, 0.3)
 	view.queue_free()
 	_screen.visible = true
@@ -745,10 +964,13 @@ func show_ui(control: Control) -> void:
 		return
 	await control.closed
 	control.queue_free()
+	if has_meta("rebuild_after_menu"):
+		remove_meta("rebuild_after_menu")
+		await enter_map(map.id, "", Vector2(_player.position.x, _player.position.z))
 
 
 func update_quest() -> void:
-	var q: String = state.flag("quest", "")
+	var q: String = current_quest()
 	_hud_quest.text = ("◆ " + tr(q)) if q != "" else ""
 
 

@@ -1,0 +1,7 @@
+{
+  "id": "bambus",
+  "name": "ITEM_BAMBUS",
+  "desc": "ITEM_BAMBUS_DESC",
+  "kind": "material",
+  "price": 30
+}
