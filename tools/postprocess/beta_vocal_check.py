@@ -5,6 +5,8 @@ so a track only counts as "vocals suspected" when a segment has at least 4 disti
 not just repeats (distinct/total >= 0.4), is not a known hallucination phrase, and is time-aligned
 (0.5-20 s long). Hallucinations on music come as whole 30 s windows or zero-length segments, real
 sung lines as short aligned segments (checked against an ACE-Step song with vocals: all lines found).
+Whisper is not deterministic here and sometimes repeats one invented phrase in aligned segments, so a
+track is flagged only if two runs both find at least two different such lines.
 
   python3 tools/postprocess/beta_vocal_check.py [id ...]
 """
@@ -48,10 +50,12 @@ def main():
         name = os.path.basename(f)[:-4]
         if ids and name not in ids:
             continue
-        sus, raw = check(f)
-        print(f"{name:13s} {'VOCALS SUSPECTED' if sus else 'ok (no lyrics found)'}   whisper: {raw!r}")
-        for line in sus:
-            print("   ", line)
+        runs = [check(f) for _ in range(2)]
+        flagged = all(len({line.split(": ", 1)[1] for line in sus}) >= 2 for sus, _ in runs)
+        print(f"{name:13s} {'VOCALS SUSPECTED' if flagged else 'ok (no lyrics found)'}   whisper: {runs[0][1]!r}")
+        for sus, _ in runs:
+            for line in sus[:6]:
+                print("   ", line)
 
 
 if __name__ == "__main__":

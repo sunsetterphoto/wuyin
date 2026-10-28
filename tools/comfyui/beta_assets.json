@@ -53,13 +53,13 @@
   "music_style": "instrumental, chinese traditional folk, pentatonic melody, guzheng, erhu, dizi bamboo flute, soft chiptune bass, gentle 8-bit percussion, retro video game soundtrack, seamless loop, no vocals",
   "music": [
     {"id": "title", "seed": 601, "seconds": 80, "bpm": 72, "key": "D major", "tags": "calm, majestic, slow, wide, hopeful, guzheng arpeggios, long dizi melody, soft pads"},
-    {"id": "village", "seed": 602, "seconds": 75, "bpm": 100, "key": "G major", "tags": "warm festival evening in a lantern village, cheerful, cosy, plucked guzheng, bright dizi, small hand drums, wood blocks"},
+    {"id": "village", "seed": 612, "seconds": 75, "bpm": 100, "key": "G major", "tags": "warm festival evening in a lantern village, cheerful, cosy, plucked guzheng, bright dizi, small hand drums, wood blocks", "tried": [{"seed": 602, "why": "Whisper fand eine wiederholte Textzeile (20-28 s), Gesang nicht auszuschliessen"}]},
     {"id": "silence", "seed": 603, "seconds": 60, "bpm": 60, "key": "A minor", "tags": "sparse, muted, eerie ambient, very quiet, empty, distant single guzheng notes, low drone, slow, mysterious, no drums"},
     {"id": "route", "seed": 604, "seconds": 75, "bpm": 112, "key": "E minor", "tags": "adventurous walk through a bamboo forest, lively, dizi lead, guzheng rhythm, steady chiptune bass, light drums"},
-    {"id": "town", "seed": 605, "seconds": 75, "bpm": 90, "key": "F major", "tags": "cosy tea terrace town, relaxed, friendly, erhu melody, guzheng, soft chiptune bass, gentle percussion"},
+    {"id": "town", "seed": 615, "seconds": 75, "bpm": 90, "key": "F major", "tags": "cosy tea terrace town, relaxed, friendly, erhu melody, guzheng, soft chiptune bass, gentle percussion", "tried": [{"seed": 605, "why": "2 s Stille bei 54 s mitten im Stueck"}]},
     {"id": "battle", "seed": 606, "seconds": 60, "bpm": 150, "key": "A minor", "tags": "energetic battle theme, fast, driving chiptune bass, fast erhu and dizi melody, punchy taiko drums, exciting"},
     {"id": "boss", "seed": 607, "seconds": 80, "bpm": 132, "key": "D minor", "tags": "dramatic boss battle against a majestic dragon, epic, powerful taiko drums, intense erhu, heroic dizi, deep chiptune bass, gong"},
-    {"id": "victory", "seed": 608, "seconds": 9, "bpm": 120, "key": "C major", "tags": "short victory fanfare, triumphant, bright, dizi and guzheng fanfare, chiptune, ending on a held chord"},
+    {"id": "victory", "seed": 628, "seconds": 11, "bpm": 120, "key": "C major", "tags": "complete victory fanfare lasting ten seconds, triumphant, bright, rising dizi and guzheng fanfare melody, chiptune arpeggios, drum roll, ending on a long sustained major chord", "tried": [{"seed": 608, "tags": "short victory fanfare, triumphant, bright, dizi and guzheng fanfare, chiptune, ending on a held chord", "why": "nur 3 s Klang, danach Stille"}, {"seed": 618, "why": "nur 5,5 s"}]},
     {"id": "tone_returns", "seed": 609, "seconds": 26, "bpm": 70, "key": "E major", "tags": "emotional swell, a lost sound returns, tender then rising, erhu solo growing into full guzheng and dizi, warm, cathartic"}
   ]
 }
