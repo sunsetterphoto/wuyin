@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | M0.1 Projektgerüst | fast fertig | Godot 4.7.2, Mobile-Renderer. Tests 3/3, Boot headless (macOS) ok. Exporte Android, Linux arm64/x86_64, Windows ok. Android-Emulator (AVD `wuyin_test`, GLES3-Preset) startet. **Offen:** Start unter Linux (Fedora-VM braucht Zugang), echtes Android-Gerät (Vulkan) |
 | M0.2 Kampfkern | fertig | Kampf 1v1/2v2 nur Menü (`scripts/battle/`), Wu-Xing-Vorteil und Teambonus, Klang-Status (verstummt, Echo, Dissonanz, taub, Resonanz), Stufen 1–50 mit EP, 8 Lingshou und 20 Attacken als JSON, Texte en/de/zh-Hans. 36 Tests inkl. jedes Typvorteils und Reproduzierbarkeit per Startwert. Testkampf im Hauptmenü, auf Desktop und Emulator geprüft. |
-| M0.3 LLM-Dienst | teilweise (Laufzeit-Entscheidung gefallen) | `LlmService` mit Rollen, Streaming, Grammatik/JSON-Schema, Zeitlimit 3 s und Rückfall auf Vorlagen; läuft ohne Modell. Backend für Desktop: `llama-server` per HTTP. **Offen:** llama.cpp als GDExtension im Spiel (Android), Latenz-Abnahme auf echtem Gerät |
+| M0.3 LLM-Dienst | fast fertig: eigene GDExtension läuft auf dem S24 | `LlmService` mit Rollen, Streaming, Grammatik/JSON-Schema, Zeitlimit 3 s und Rückfall auf Vorlagen; läuft ohne Modell. Backend für Desktop: `llama-server` per HTTP. **Offen:** llama.cpp als GDExtension im Spiel (Android), Latenz-Abnahme auf echtem Gerät |
 | M0.4 Ruf | fertig (Desktop) | Ruf als Freitext oder vorgeschlagene Rufe zum Antippen, Übersetzer mit GBNF-Grammatik pro Zug, Validator, Stichwort-Vorlage als Rückfall, Gehorsamsprobe nach Bindung und Temperament, Situationsbonus vom Code geprüft (max. 15 %), Atem (3, +1 alle 3 Züge). 55 Testsätze (25 de, 25 en, 5 zh): 55/55 gültig mit Gemma 4 E2B und mit Vorlage; Absicht getroffen 53/55 (Modell) bzw. 39/55 (Vorlage). Spracheingabe fehlt noch |
 | M0.5 Stimme | fertig (Desktop) | Charakterkarten für 8 Lingshou in en/de/zh-Hans (`data/cards/`), Stimme im Kampf gestreamt, Verstummte in Fragmenten. `TextGuard` prüft Länge pro Rolle (140 bzw. 48 Zeichen), Wortfilter, KI-Floskeln und Schrift (Chinesisch vs. Latein); sonst Vorlage nach Temperament und Ereignis (`data/templates/voice.json`). Rollen-Prioritäten: Ruf unterbricht laufende Stimme. Live mit Gemma 4 E2B: 350–600 ms je Satz |
 | M0.6 Kameramodi | fertig (Desktop, Emulator) | Testkarte mit Blöcken und Billboard-Sprites (`scenes/world/test_map.tscn`), Umschaltung zur Laufzeit mit Kamerafahrt (Dolly-Zoom). HD-2D: Perspektive 38°, Tilt-Shift, Bloom, Schatten, Laternen, Glühwürmchen. Klassisch: orthografisch 60°, 640×360 ganzzahlig skaliert, Kamera auf Texel gerastert. Desktop (Mobile-Renderer) und Emulator (GLES3, ohne Tiefenunschärfe) je 60 FPS in beiden Modi. **Offen:** Messung auf echtem Gerät mit Vulkan |
@@ -56,3 +56,19 @@ Qualität Ruf-Übersetzer (Absicht getroffen; Hauptsatz 55 / neue Prüfsätze 20
 - 2026-10-28: Qwen3-1.7B ist schnell, versteht neue Formulierungen aber schlecht (10/20) – die guten Werte im Hauptsatz kamen vor allem aus den Stichwortregeln.
 - 2026-10-28: Die 20 Prüfsätze (`data/llm/eval/call_sentences_holdout.json`) wurden einmal zur Ergänzung allgemeiner Synonyme (Freund/buddy, ausruhen/rest) genutzt; für künftige ehrliche Messungen einen neuen Satz schreiben.
 - 2026-10-28: Thermik: Am Ladekabel kühlt das S24 kaum unter 37 °C; ab 38 °C Gehäuse drosselt Samsung. Akkutest ohne Kabel steht aus.
+
+## M0.3 Ergebnis mit eigener GDExtension (S24 Ultra, Gemma 4 E2B QAT, 28.10. ~01:20)
+
+| | NobodyWho (Start der Nacht) | WuyinLlama (eigene Extension) |
+| --- | --- | --- |
+| Ruf typisch | ~8 s | 0,9–1,2 s (Prompt 0,25 s aus Cache, 12–14 Antwort-Tokens 0,65–0,9 s) |
+| Ruf Median / p90 (55 Sätze, Gerät heizt 39→43 °C) | 8,0 / 15 s | 1,32 / 1,69 s |
+| Ruf gültig / richtig gedeutet | 55 / 52 | 55 / 54 |
+| Stimme erstes Token | 10–13 s | 1,6–2,2 s |
+| Bibliothek / APK | 140 MB / 180 MB | 8,8 MB / 40 MB |
+
+- 2026-10-28: Abnahme „Antwort unter 1 s“ auf dem S24 knapp verfehlt bzw. im kühlen Zustand erreicht; am Ladekabel heizt das Gerät auf 43 °C und drosselt. Messung ohne Kabel (Akku, Wärme nach 30 Minuten) steht aus.
+- 2026-10-28: Schnelle Grammatikprüfung (nur gewähltes Token prüfen): 135 → 53 ms pro Token auf dem Gerät.
+- 2026-10-28: Ruf-Antwort ohne `fits`; der Code prüft den Situationsbonus allein anhand der Fakten. Abweichung vom GDD-Beispiel, mit Samuel zu bestätigen.
+- 2026-10-28: Stimmen: Sprachanweisung zusätzlich in Zielsprache am Ende, Sprachprüfung Deutsch/Englisch über Funktionswörter (auf dem S24 kam einmal Englisch im deutschen Spiel).
+- Offen in M0.3: Messung ohne Ladekabel; Build-Optionen für ältere ARM-Kerne (aktuell `armv8.7-a`, ab Snapdragon 8 Gen 1); MTP-Entwurfsmodell für schnellere Generierung.

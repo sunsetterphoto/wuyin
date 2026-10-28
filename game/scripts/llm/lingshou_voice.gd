@@ -12,6 +12,8 @@ const EVENTS: Array[String] = ["attack", "hit", "low_hp", "win", "obey", "disobe
 ## Hard limits per role (characters); token limits live in data/llm/roles.json.
 const MAX_CHARS := {"lingshou_voice": 140, "silenced_voice": 48}
 const LANGUAGE_NAMES := {"en": "English", "de": "German", "zh_Hans": "Simplified Chinese"}
+## Repeated in the target language at the end: small models follow this far better.
+const ANSWER_IN := {"en": "Answer in English.", "de": "Antworte auf Deutsch.", "zh_Hans": "请用中文回答。"}
 
 ## English descriptions of events for the prompt (facts, filled from the battle).
 const EVENT_FACTS := {
@@ -45,7 +47,7 @@ static func messages(unit: BattleUnit, event: String, facts: Dictionary, locale:
 		system = "You are %s, a spirit animal in a family-friendly fantasy game. Stay in character.\n%s\nAnswer in %s with one or two short sentences, at most 20 words. No quotes, no emojis, no narration." % [
 			_name_in(unit.name_key(), locale), card(unit, locale), lang]
 	var fact := String(EVENT_FACTS.get(event, event)).format(facts)
-	return [{"role": "system", "content": system}, {"role": "user", "content": fact}]
+	return [{"role": "system", "content": system}, {"role": "user", "content": "%s %s" % [fact, ANSWER_IN.get(locale, "")]}]
 
 
 ## on_token: optional Callable(text_so_far) for streaming into the UI (capped at the role limit).

@@ -51,8 +51,12 @@ static func limit(t: String, max_chars: int) -> String:
 	return cut.substr(0, max_chars - 1) + "…"
 
 
-const DE_WORDS := ["ich", "du", "der", "die", "das", "und", "nicht", "ist", "bin", "bitte", "mir", "mich", "war", "es", "ein", "eine", "wir", "hab", "so", "auf"]
-const EN_WORDS := ["i", "you", "the", "and", "not", "is", "am", "please", "me", "my", "was", "it", "a", "an", "we", "that", "so", "on", "are", "be"]
+const DE_WORDS := ["ich", "du", "der", "die", "das", "und", "nicht", "ist", "bin", "bitte", "mir", "mich", "war", "es", "ein", "eine",
+	"wir", "hab", "auf", "danach", "jetzt", "ruhig", "mit", "uns", "werden", "wird", "dich", "dir", "kann", "noch", "nur", "auch",
+	"aber", "zu", "von", "für", "ganz", "schon", "gut", "mal", "doch", "hier", "nach", "dem", "den", "sind", "habe"]
+const EN_WORDS := ["i", "you", "the", "and", "not", "is", "am", "please", "me", "my", "was", "it", "a", "an", "we", "that",
+	"on", "are", "be", "will", "this", "after", "now", "with", "to", "of", "in", "can", "just", "us", "your", "it's", "i'm",
+	"don't", "for", "but", "all", "here", "have", "what", "easy", "too", "very"]
 
 
 ## German vs. English by common function words; short or unclear text passes.

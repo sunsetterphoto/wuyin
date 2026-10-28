@@ -111,6 +111,8 @@ func test_wrong_latin_language_uses_template() -> void:
 	assert_true(TextGuard.language_matches("I-I'm sorry. That was loud.", "en"))
 	assert_false(TextGuard.language_matches("Das war gruselig, bitte bleib bei mir.", "en"))
 	assert_true(TextGuard.language_matches("Hmpf.", "de"), "too short to judge")
+	assert_false(TextGuard.language_matches("Easy now we will rest after this.", "de"), "seen on the S24")
+	assert_true(TextGuard.language_matches("Ganz ruhig, danach ruhen wir uns aus.", "de"))
 	var u := BattleUnit.create("wawalurch", 5)
 	var r := await LingshouVoice.comment(u, "hit", {}, "de", _service(["I am sorry that it was scary. Was I good?"] as Array[String]))
 	assert_eq(r["source"], "template")
