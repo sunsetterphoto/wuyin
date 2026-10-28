@@ -26,8 +26,8 @@ static func instance() -> LlmService:
 		_instance = LlmService.new()
 		_instance.enabled = ProjectSettings.get_setting(SETTING_ENABLED, true)
 		# In-process model first (shipping path), llama-server second (desktop development).
-		if NobodyWhoBackend.extension_loaded():
-			_instance.backends.append(NobodyWhoBackend.new())
+		if LlamaBackend.extension_loaded():
+			_instance.backends.append(LlamaBackend.new())
 		_instance.backends.append(HttpLlamaBackend.new(
 			OS.get_environment("WUYIN_LLM_HOST") if OS.has_environment("WUYIN_LLM_HOST") else "127.0.0.1",
 			int(OS.get_environment("WUYIN_LLM_PORT")) if OS.has_environment("WUYIN_LLM_PORT") else 8090))

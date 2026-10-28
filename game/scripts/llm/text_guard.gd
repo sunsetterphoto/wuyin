@@ -30,7 +30,7 @@ static func clean(text: String, locale: String, max_chars: int, extra_forbidden:
 	for w in block.get("words", []) + block.get("meta", []) + extra_forbidden:
 		if String(w).to_lower() in lower:
 			return ""
-	if not script_matches(t, locale):
+	if not script_matches(t, locale) or not language_matches(t, locale):
 		return ""
 	return limit(t, max_chars)
 
@@ -49,6 +49,29 @@ static func limit(t: String, max_chars: int) -> String:
 	if space >= max_chars / 3:
 		return cut.substr(0, space) + "…"
 	return cut.substr(0, max_chars - 1) + "…"
+
+
+const DE_WORDS := ["ich", "du", "der", "die", "das", "und", "nicht", "ist", "bin", "bitte", "mir", "mich", "war", "es", "ein", "eine", "wir", "hab", "so", "auf"]
+const EN_WORDS := ["i", "you", "the", "and", "not", "is", "am", "please", "me", "my", "was", "it", "a", "an", "we", "that", "so", "on", "are", "be"]
+
+
+## German vs. English by common function words; short or unclear text passes.
+static func language_matches(t: String, locale: String) -> bool:
+	if not (locale.begins_with("de") or locale.begins_with("en")):
+		return true
+	var words := t.to_lower().replace("…", " ").replace("...", " ")
+	for c in [".", ",", "!", "?", ":", ";", "-", "'", "\""]:
+		words = words.replace(c, " ")
+	var de := 0
+	var en := 0
+	for w in words.split(" ", false):
+		if w in DE_WORDS:
+			de += 1
+		if w in EN_WORDS:
+			en += 1
+	if de + en < 2:
+		return true
+	return de >= en if locale.begins_with("de") else en >= de
 
 
 ## Chinese output must contain Han characters; German/English must not.

@@ -65,6 +65,6 @@ static func run(mode: String, service: LlmService = null) -> Dictionary:
 			out["ms"].append(res["ms"])
 		out["rows"].append({"text": s["text"], "move": action["move"], "target": res.get("target_id", ""),
 			"stance": res.get("stance", ""), "intent": intent, "valid": ok, "error": err, "source": src,
-			"reason": res.get("reason", "")})
+			"reason": res.get("reason", ""), "stats": res.get("stats", {}), "ms": res.get("ms", 0)})
 	TranslationServer.set_locale(previous_locale)
 	return out

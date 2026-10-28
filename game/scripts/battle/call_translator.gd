@@ -1,7 +1,7 @@
 class_name CallTranslator
 extends RefCounted
 ## Turns a free-text call ("Bambär, schütz Glutfasan!") into a battle action.
-## The model proposes {action, target, stance, fits_situation}; the validator
+## The model proposes {action, target, stance} (the situation bonus is checked by code); the validator
 ## only lets through actions the unit can do right now; without a model (or on
 ## timeout / invalid output) a keyword matcher produces the action instead.
 ##
@@ -67,10 +67,9 @@ static func grammar(ctx: Dictionary, limits := {}) -> String:
 	for kind in by_kind:
 		all_moves.append_array(by_kind[kind])
 	lines.push_front("move ::= " + alt.call(all_moves))
-	lines.push_front('root ::= "action=" move " target=" target " stance=" stance " fits=" fit')
+	lines.push_front('root ::= "action=" move " target=" target " stance=" stance')
 	lines.append("target ::= " + alt.call(limits.get("targets", ctx["targets"].keys())))
 	lines.append("stance ::= " + alt.call(STANCES))
-	lines.append('fit ::= "yes" | "no"')
 	return "\n".join(lines)
 
 
@@ -81,15 +80,14 @@ Pick the action that matches the call. Attacks target an enemy; heal and guard t
 Protect, cover, shield or stand in front of the partner: guard with target partner. Heal or help the partner: heal with target partner.
 Spirits may be named by name or animal (e.g. pangolin, fire bird). No name given: attack the enemy the player most likely means.
 stance: offensive (attack), defensive (hold back), protective (shield someone).
-fits_situation: true only if the call is clever for the battle facts (type advantage, protecting a hurt ally).
 Phases: wood beats earth, earth beats water, water beats fire, fire beats metal, metal beats wood.
-Answer with one line: action=<action> target=<target> stance=<stance> fits=<yes/no>.
+Answer with one line: action=<action> target=<target> stance=<stance>.
 Examples (action names differ per battle):
-"Heal yourself!" -> action=<a heal action> target=self stance=protective fits=no
-"Stand in front of <partner> and hold on!" -> action=<a guard action> target=partner stance=protective fits=yes
-"<move name> on <enemy>!" -> action=<that move> target=<that enemy> stance=offensive fits=no
-"Hit the <animal>!" -> action=<strongest fitting attack> target=<enemy with that animal> stance=offensive fits=yes
-"Make them confused!" -> action=<the status action> target=<an enemy> stance=offensive fits=no"""
+"Heal yourself!" -> action=<a heal action> target=self stance=protective
+"Stand in front of <partner> and hold on!" -> action=<a guard action> target=partner stance=protective
+"<move name> on <enemy>!" -> action=<that move> target=<that enemy> stance=offensive
+"Hit the <animal>!" -> action=<strongest fitting attack> target=<enemy with that animal> stance=offensive
+"Make them confused!" -> action=<the status action> target=<an enemy> stance=offensive"""
 
 
 ## Prompt layout for cache reuse: [static rules][this spirit, its actions and
@@ -154,6 +152,7 @@ static func translate(ctx: Dictionary, call_text: String, service: LlmService = 
 		if parsed["valid"]:
 			parsed["source"] = "model"
 			parsed["ms"] = r["total_ms"]
+			parsed["stats"] = job.get_meta("stats", {})
 			parsed["raw"] = r["text"]
 			return parsed
 		r["reason"] = "invalid: " + parsed["reason"]
@@ -279,8 +278,10 @@ static func parse_answer(text: String) -> Dictionary:
 		var json := JSON.new()  # instance parse: no engine error log for garbage input
 		return json.data if json.parse(t) == OK and json.data is Dictionary else {}
 	var parts := t.split(" ", false)
-	if parts.size() == 4 and parts[0].begins_with("action="):
+	if parts.size() >= 3 and parts[0].begins_with("action="):
 		parts = PackedStringArray(Array(parts).map(func(p): return p.get_slice("=", 1)))
+		if parts.size() == 3:
+			parts.append("yes")  # the code checks the battle facts for the situation bonus
 	if parts.size() == 5:
 		parts.remove_at(0)  # leading kind
 	if parts.size() != 4:

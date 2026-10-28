@@ -16,3 +16,6 @@ __pycache__/
 
 # Generated from data/i18n/*.csv on import
 *.translation
+
+# llama.cpp/godot-cpp build trees
+/build/llama-*/

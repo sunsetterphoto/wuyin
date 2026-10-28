@@ -103,3 +103,14 @@ func test_live_voice_in_three_languages() -> void:
 	var s := await LingshouVoice.comment(u, "hit", {}, "de", service)
 	print("    silenced [%s]: %s" % [s["source"], s["text"]])
 	assert_true(s["text"].length() <= LingshouVoice.MAX_CHARS["silenced_voice"])
+
+
+func test_wrong_latin_language_uses_template() -> void:
+	assert_false(TextGuard.language_matches("I am sorry that it was scary. Was I good?", "de"))
+	assert_true(TextGuard.language_matches("Ich versuche es. Bleib bitte in der Nähe.", "de"))
+	assert_true(TextGuard.language_matches("I-I'm sorry. That was loud.", "en"))
+	assert_false(TextGuard.language_matches("Das war gruselig, bitte bleib bei mir.", "en"))
+	assert_true(TextGuard.language_matches("Hmpf.", "de"), "too short to judge")
+	var u := BattleUnit.create("wawalurch", 5)
+	var r := await LingshouVoice.comment(u, "hit", {}, "de", _service(["I am sorry that it was scary. Was I good?"] as Array[String]))
+	assert_eq(r["source"], "template")

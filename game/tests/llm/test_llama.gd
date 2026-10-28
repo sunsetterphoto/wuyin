@@ -7,12 +7,12 @@ const CallEval := preload("res://scripts/dev/call_eval.gd")
 func _service() -> LlmService:
 	var s := LlmService.new()
 	s.backends.clear()
-	s.backends.append(NobodyWhoBackend.new())
+	s.backends.append(LlamaBackend.new())
 	return s
 
 
 func test_extension_loads() -> void:
-	assert_true(NobodyWhoBackend.extension_loaded(), "addons/nobodywho registered its classes")
+	assert_true(LlamaBackend.extension_loaded(), "addons/wuyin_llama registered its classes")
 
 
 func test_streaming_and_grammar_switch() -> void:
@@ -54,6 +54,6 @@ func test_call_sentences_in_process() -> void:
 	var r := await CallEval.run("model", s)
 	var ms: Array = r["ms"]
 	ms.sort()
-	print("    nobodywho: valid %d/%d, intent %d/%d, sources %s, median %d ms" % [
+	print("    wuyin_llama: valid %d/%d, intent %d/%d, sources %s, median %d ms" % [
 		r["valid"], r["total"], r["intent_ok"], r["total"], r["by_source"], ms[ms.size() / 2]])
 	assert_eq(r["valid"], r["total"])

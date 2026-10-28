@@ -50,6 +50,9 @@ func _run() -> void:
 	var res := await CallEval.run("model", service)
 	var ms: Array = res["ms"]
 	ms.sort()
+	for i in mini(8, res["rows"].size()):
+		var row: Dictionary = res["rows"][i]
+		_log("  call %d: %d ms %s" % [i, row["ms"], JSON.stringify(row["stats"])])
 	for row in res["rows"]:
 		if not row["intent"]:
 			_log("  miss: %s -> %s %s (%s)" % [row["text"], row["move"], row["target"], row["source"]])

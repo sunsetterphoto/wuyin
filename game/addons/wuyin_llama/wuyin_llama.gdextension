@@ -1,0 +1,10 @@
+[configuration]
+entry_symbol = "wuyin_llama_init"
+compatibility_minimum = "4.7"
+reloadable = false
+
+[libraries]
+macos.debug.arm64 = "res://addons/wuyin_llama/bin/libwuyin_llama.macos.dylib"
+macos.release.arm64 = "res://addons/wuyin_llama/bin/libwuyin_llama.macos.dylib"
+android.debug.arm64 = "res://addons/wuyin_llama/bin/libwuyin_llama.android.arm64.so"
+android.release.arm64 = "res://addons/wuyin_llama/bin/libwuyin_llama.android.arm64.so"
