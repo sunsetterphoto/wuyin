@@ -1382,6 +1382,7 @@ func open_menu() -> void:
 	menu.queue_free()
 	_update_follower()
 	_rig.set_mode(Settings.get_value("camera"))
+	_sound_key = ""  # options may have switched the nature sounds
 	update_quest()
 	busy = false
 
