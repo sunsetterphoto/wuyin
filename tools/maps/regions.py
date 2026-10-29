@@ -326,7 +326,7 @@ save("mondquell", g, {
     ],
     "on_enter": {"event": "mondquell_arrive", "unless": "mondquell_arrived"},
     "npcs": npcs + [
-        {"id": "ordensmeisterin", "sprite": "order_b", "at": [23, 18], "event": "halle_tuer", "unless": "yao_hall_done"},
+        {"id": "ordensmeisterin", "sprite": "order_b", "at": [23, 18], "event": "hall_greet"},
         {"id": "quell_haendlerin", "sprite": "trader", "at": [14, 15], "event": "quell_haendlerin"},
         {"id": "quell_kind", "sprite": "girl_c", "at": [9, 9], "event": "quell_kind", "wander": 2},
         {"id": "yao_free", "sprite": "yao", "at": [20, 19], "event": "yao_after", "when": "yao_returned"},

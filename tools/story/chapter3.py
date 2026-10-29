@@ -194,6 +194,10 @@ E["halle_tuer"] = [
           "lose": [say("yao_order", "EV_HALL_LOSE", "Siehst du? Die Stille ist stärker.", "See? The silence is stronger.", "看吧？寂静更强大。")]},
      ]},
 ]
+E["hall_greet"] = [
+    {"if": "yao_hall_done", "then": [say("ordensmeisterin", "EV_HALL_GREET_2", "Die Halle ist leer geworden. Viele sind nach Hause gegangen – zu ihren lauten Familien.", "The hall has become empty. Many have gone home - to their noisy families.", "大殿空了。很多人都回家了——回到他们吵吵闹闹的家人身边。")],
+     "else": [say("ordensmeisterin", "EV_HALL_GREET_1", "Tritt ein, wenn du die Stille suchst. Yao wartet drinnen auf dich.", "Step inside if you seek the silence. Yao is waiting for you inside.", "若你寻求寂静，请进吧。尧在里面等你。")]},
+]
 E["quell_haendlerin"] = [
     {"if": "tone_shang", "then": [say("quell_haendlerin", "EV_GUL_2", "Hörst du die Dünen? Sie summen wieder! Die Kunden kommen zurück.", "Do you hear the dunes? They're humming again! The customers are coming back.", "听见沙丘了吗？它们又在哼歌了！客人们都回来了。")],
      "else": [say("quell_haendlerin", "EV_GUL_1", "Die halbe Stadt ist in die Halle gezogen. Sie sagen, dort ist es friedlich. Ich finde es nur … leer.", "Half the town has moved into the hall. They say it's peaceful there. I just find it... empty.", "半个镇子的人都搬进了大殿。他们说那里很安宁。我只觉得……空荡荡的。")]},

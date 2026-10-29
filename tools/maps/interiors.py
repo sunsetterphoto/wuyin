@@ -58,12 +58,20 @@ template("fisher", 10, 8,
          [("bed", 7, 1, 2, 2), ("table", 2, 3, 2, 1), ("stove", 1, 1, 2, 1)],
          [("fishing_net", 4.5, 1.2), ("barrel", 8.4, 5.4), ("jars_group", 1.2, 5.8), ("crate", 3.0, 6.2)])
 
+template("hall", 15, 11,
+         [("bells", 2, 1, 11, 1), ("cushion", 3, 4, 1, 1), ("cushion", 5, 4, 1, 1), ("cushion", 9, 4, 1, 1), ("cushion", 11, 4, 1, 1),
+          ("cushion", 3, 6, 1, 1), ("cushion", 5, 6, 1, 1), ("cushion", 9, 6, 1, 1), ("cushion", 11, 6, 1, 1), ("pillar_grey", 1, 3, 1, 1),
+          ("pillar_grey", 13, 3, 1, 1), ("pillar_grey", 1, 7, 1, 1), ("pillar_grey", 13, 7, 1, 1)],
+         [("incense_burner", 7.0, 2.4), ("banner_white", 2.0, 1.3), ("banner_white", 12.0, 1.3), ("lantern_stone", 6.0, 8.6, 0.8),
+          ("lantern_stone", 8.0, 8.6, 0.8)],
+         lights=((4, 2), (-5, 2)))
+
 # Map door object event -> template. Doors without an object get a plain house.
 DOOR_KIND = {"hof_hut": "home", "home_door": "home", "work_door": "workshop", "inn_door": "inn", "shop_door": "shop",
-             "teahouse": "teahouse", "kreuzweg_inn": "inn", "fischer": "fisher", "buergermeisterin": "house"}
+             "teahouse": "teahouse", "kreuzweg_inn": "inn", "fischer": "fisher", "buergermeisterin": "house", "halle_tuer": "hall"}
 # Keepers standing outside the service doors (they move inside).
 KEEPERS = {"inn_door": "wirtin", "shop_door": "haendler", "teahouse": "teemeister", "kreuzweg_inn": "rast_wirt"}
-NO_INTERIOR = {"halle_tuer"}
+NO_INTERIOR = set()
 TOWN_MUSIC = {"hof": "farm", "weidendorf": "village"}
 # People living in the houses (events in tools/story/systems.py).
 RESIDENTS = {
@@ -73,7 +81,10 @@ RESIDENTS = {
     "teeufer_house4": {"id": "opa_liu", "sprite": "elder", "at": [4, 5], "event": "res_opa_liu"},
     "rotfels_house": {"id": "hong_jun", "sprite": "villager_b", "at": [5, 5], "event": "res_hong_jun"},
     "nebelhafen_fisher": {"id": "frau_zhou", "sprite": "villager_a", "at": [5, 4], "event": "res_frau_zhou"},
+    "mondquell_hall": {"id": "yao_order", "sprite": "yao_order", "at": [7, 5], "event": "halle_tuer", "unless": "yao_hall_done"},
 }
+# Rooms with an arrival scene.
+ON_ENTER = {"mondquell_hall": {"event": "halle_tuer", "unless": "yao_hall_done"}}
 
 
 def _kind_for(event):
@@ -143,6 +154,7 @@ def build_room(room_id, kind, parent, out_spawn, event, keeper_npc, region, musi
         "spawns": {"door": [door_x, h - 2]},
         "warps": [{"rect": [door_x, h - 1, 1, 1], "to": parent, "spawn": out_spawn}],
         "furniture": furniture, "decor": decor, "npcs": npcs, "objects": objects, "lights": lights,
+        "on_enter": ON_ENTER.get(room_id, []),
     })
 
 

@@ -1,0 +1,226 @@
+{
+ "name": "MAP_ROOM_HALL",
+ "region": "dunes",
+ "indoor": true,
+ "fixed_time": true,
+ "time": "indoor",
+ "music": "dunes",
+ "parent": "mondquell",
+ "spawns": {
+  "door": [
+   7,
+   9
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    7,
+    10,
+    1,
+    1
+   ],
+   "to": "mondquell",
+   "spawn": "mondquell_hall_out"
+  }
+ ],
+ "furniture": [
+  {
+   "kind": "bells",
+   "rect": [
+    2,
+    1,
+    11,
+    1
+   ]
+  },
+  {
+   "kind": "cushion",
+   "rect": [
+    3,
+    4,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "cushion",
+   "rect": [
+    5,
+    4,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "cushion",
+   "rect": [
+    9,
+    4,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "cushion",
+   "rect": [
+    11,
+    4,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "cushion",
+   "rect": [
+    3,
+    6,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "cushion",
+   "rect": [
+    5,
+    6,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "cushion",
+   "rect": [
+    9,
+    6,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "cushion",
+   "rect": [
+    11,
+    6,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "pillar_grey",
+   "rect": [
+    1,
+    3,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "pillar_grey",
+   "rect": [
+    13,
+    3,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "pillar_grey",
+   "rect": [
+    1,
+    7,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "pillar_grey",
+   "rect": [
+    13,
+    7,
+    1,
+    1
+   ]
+  }
+ ],
+ "decor": [
+  {
+   "prop": "incense_burner",
+   "at": [
+    7.0,
+    2.4
+   ]
+  },
+  {
+   "prop": "banner_white",
+   "at": [
+    2.0,
+    1.3
+   ]
+  },
+  {
+   "prop": "banner_white",
+   "at": [
+    12.0,
+    1.3
+   ]
+  },
+  {
+   "prop": "lantern_stone",
+   "at": [
+    6.0,
+    8.6
+   ],
+   "scale": 0.8
+  },
+  {
+   "prop": "lantern_stone",
+   "at": [
+    8.0,
+    8.6
+   ],
+   "scale": 0.8
+  }
+ ],
+ "npcs": [
+  {
+   "id": "yao_order",
+   "sprite": "yao_order",
+   "at": [
+    7,
+    5
+   ],
+   "event": "halle_tuer",
+   "unless": "yao_hall_done"
+  }
+ ],
+ "objects": [],
+ "lights": [
+  [
+   4,
+   2
+  ],
+  [
+   10,
+   2
+  ]
+ ],
+ "on_enter": {
+  "event": "halle_tuer",
+  "unless": "yao_hall_done"
+ },
+ "id": "mondquell_hall",
+ "rows": [
+  "SSSSSSSSSSSSSSS",
+  "SwYYYYYYYYYYYwS",
+  "SwwwwwwwwwwwwwS",
+  "SYwwwwwwwwwwwYS",
+  "SwwwwwwwwwwwwwS",
+  "SwwwwwwwwwwwwwS",
+  "SwwwwwwwwwwwwwS",
+  "SYwwwwwwwwwwwYS",
+  "SwwwwwwwwwwwwwS",
+  "SwwwwwwwwwwwwwS",
+  "SSSSSSSwSSSSSSS"
+ ]
+}

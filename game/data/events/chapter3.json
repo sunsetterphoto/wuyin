@@ -524,6 +524,23 @@
     ]
    }
   ],
+  "hall_greet": [
+   {
+    "if": "yao_hall_done",
+    "then": [
+     {
+      "say": "ordensmeisterin",
+      "text": "EV_HALL_GREET_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "ordensmeisterin",
+      "text": "EV_HALL_GREET_1"
+     }
+    ]
+   }
+  ],
   "quell_haendlerin": [
    {
     "if": "tone_shang",

@@ -87,11 +87,13 @@ def keep_main_blob(rgba, min_share=0.2):
     return Image.fromarray(a, "RGBA")
 
 
-def sprite(img, size, cols, outline=True, height=None):
+def sprite(img, size, cols, outline=True, height=None, bg_thresh=70):
     """size = width; height defaults to size (square). Non-square sprites (32x48 overworld
-    characters) are scaled to fit the canvas, centred horizontally, feet at the bottom."""
+    characters) are scaled to fit the canvas, centred horizontally, feet at the bottom.
+    bg_thresh: flood-fill tolerance for the white background; lower it for white creatures whose
+    outline has gaps (otherwise the fill leaks into a white face)."""
     width, height = size, height or size
-    rgba = remove_white_background(img)
+    rgba = remove_white_background(img, bg_thresh)
     small_work = rgba.resize((rgba.width // 4, rgba.height // 4), Image.NEAREST)  # blob analysis on a quarter
     cleaned_small = keep_main_blob(small_work)
     keep_mask = np.array(cleaned_small.resize(rgba.size, Image.NEAREST))[:, :, 3] > 0

@@ -39,6 +39,10 @@
   "mondquell_restaurant_out": [
    27,
    16
+  ],
+  "mondquell_hall_out": [
+   21,
+   18
   ]
  },
  "warps": [
@@ -75,8 +79,7 @@
     23,
     18
    ],
-   "event": "halle_tuer",
-   "unless": "yao_hall_done"
+   "event": "hall_greet"
   },
   {
    "id": "quell_haendlerin",
@@ -165,7 +168,8 @@
     21,
     17
    ],
-   "event": "halle_tuer"
+   "event": "enter_room",
+   "enter": "mondquell_hall"
   }
  ],
  "id": "mondquell",

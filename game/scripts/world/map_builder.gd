@@ -532,7 +532,27 @@ static func _furniture(c: Ctx, f: Dictionary) -> void:
 			_fbox(c, ctr + Vector3(0, 0.012, 0), Vector3(w - 0.1, 0.02, d - 0.1), Materials.flat_color(Color("e0b04a")))
 			_fbox(c, ctr + Vector3(0, 0.02, 0), Vector3(w - 0.3, 0.02, d - 0.3), Materials.flat_color(Color("a8302a")))
 		"cushion":
-			_fbox(c, ctr + Vector3(0, 0.06, 0), Vector3(0.6, 0.12, 0.6), Materials.flat_color(Color("c8302a")))
+			_fbox(c, ctr + Vector3(0, 0.06, 0), Vector3(0.6, 0.12, 0.6), Materials.flat_color(Color("c8302a") if not c.m.id.ends_with("_hall") else Color("8c8a94")))
+		"pillar_grey":
+			_fbox(c, ctr + Vector3(0, 1.15, 0), Vector3(0.4, 2.3, 0.4), Materials.flat_color(Color("6e6a74")))
+		"bells":
+			# A beam with a row of silent bronze bells.
+			_fbox(c, Vector3(ctr.x, 1.9, ctr.z + 0.2), Vector3(w, 0.12, 0.12), dark)
+			var i := 0.0
+			while i < w - 0.2:
+				var bx := x0 + 0.5 + i
+				_fbox(c, Vector3(bx, 1.75, ctr.z + 0.2), Vector3(0.03, 0.3, 0.03), dark)
+				var bell := MeshInstance3D.new()
+				var cm := CylinderMesh.new()
+				cm.top_radius = 0.1
+				cm.bottom_radius = 0.2
+				cm.height = 0.34
+				cm.radial_segments = 10
+				bell.mesh = cm
+				bell.material_override = Materials.flat_color(Color("8a6a3a"))
+				bell.position = Vector3(bx, 1.45, ctr.z + 0.2)
+				c.root.add_child(bell)
+				i += 1.0
 		"scroll":
 			var img := Image.create(12, 24, false, Image.FORMAT_RGBA8)
 			img.fill(Color("f4ead0"))

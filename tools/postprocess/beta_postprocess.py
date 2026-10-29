@@ -120,14 +120,20 @@ def ashes(src):
     glow = np.array((0xf0, 0x8a, 0x3a), dtype=np.uint8)    # lantern orange
     core = np.array((0xf6, 0xc4, 0x53), dtype=np.uint8)    # imperial gold
     body = alpha & ~outline
-    q = np.quantile(t[body], [0.80, 0.93])
-    out[body & (t >= q[0])] = ember
-    out[body & (t >= q[1])] = glow
-    # sparse glowing speckles (fixed pattern, reproducible)
-    h, w = alpha.shape
-    yy, xx = np.mgrid[0:h, 0:w]
-    speck = body & (((xx * 7 + yy * 13) % 23) == 0) & (t > 0.35)
-    out[speck] = core
+    # rim: body pixels next to the outline or the transparent edge glow where the original was lit
+    edge = np.zeros_like(alpha)
+    nb = ~alpha | outline
+    edge[1:, :] |= nb[:-1, :]
+    edge[:-1, :] |= nb[1:, :]
+    edge[:, 1:] |= nb[:, :-1]
+    edge[:, :-1] |= nb[:, 1:]
+    rim = body & edge & (t > 0.55)
+    out[rim] = ember
+    out[body & (t > 0.9)] = ember
+    # sparse glowing embers, fixed random pattern (reproducible)
+    rnd = np.random.default_rng(7).random(alpha.shape)
+    out[body & (t > 0.35) & (rnd < 0.05)] = glow
+    out[body & (t > 0.35) & (rnd < 0.012)] = core
     res = np.dstack([out, (alpha * 255).astype(np.uint8)])
     return Image.fromarray(res, "RGBA")
 
@@ -213,7 +219,7 @@ def main():
                 continue
             if sec == "lingshou":
                 size = item.get("size", 48)
-                img = sprite(raw(sec, item), size, cols)
+                img = sprite(raw(sec, item), size, cols, bg_thresh=item.get("bg_thresh", 70))
                 if item.get("glow_eyes"):
                     img = glow_eyes(img)
                 save(img, "sprites", "lingshou", item["id"] + ".png")
