@@ -796,10 +796,12 @@ MAP_SCHILDKROETENBUCHT,Tortoise Bay,Schildkrötenbucht,玄龟湾
 MAP_SINGENDER_KAMM,Singing Crest,Singender Kamm,鸣沙脊
 MAP_TEEUFER,Teabank,Teeufer,茶岸镇
 MAP_WEIDENDORF,Willowdale,Weidendorf,柳村
+MAP_YOU_ARE,You are here,Du bist hier,你在这里
 MENU_BAG,Bag,Beutel,背包
 MENU_FARM_NOTE,{n} more Lingshou live on your farm in Willowdale. Swap them at the wind chime shrine of any inn.,Auf deinem Hof in Weidendorf leben {n} weitere Lingshou. Tauschen kannst du am Windspiel-Schrein jeder Unterkunft.,还有{n}只灵兽住在柳村的农庄里。可以在任何客栈的风铃神龛交换。
 MENU_FEEDBACK,Rate the game,Spiel bewerten,评价游戏
 MENU_LEXICON,Bestiary,Lexikon,图鉴
+MENU_MAP,Map,Karte,地图
 MENU_OPTIONS,Options,Optionen,设置
 MENU_PARTY,Companions,Gefolge,同伴
 MENU_SAVE,Save,Speichern,存档

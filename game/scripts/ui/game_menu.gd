@@ -28,7 +28,7 @@ func _main() -> void:
 	grid.add_theme_constant_override("h_separation", 10)
 	grid.add_theme_constant_override("v_separation", 10)
 	body.add_child(grid)
-	for entry in [["MENU_PARTY", _party], ["MENU_BAG", _bag], ["MENU_LEXICON", _lexicon], ["MENU_OPTIONS", _options],
+	for entry in [["MENU_PARTY", _party], ["MENU_BAG", _bag], ["MENU_MAP", _map], ["MENU_LEXICON", _lexicon], ["MENU_OPTIONS", _options],
 			["MENU_SAVE", _save], ["MENU_FEEDBACK", _feedback], ["MENU_TO_TITLE", _to_title]]:
 		var b := UiTheme.button(tr(entry[0]), entry[1])
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -157,6 +157,14 @@ func _lex_entry(id: String) -> void:
 	elif sp.get("hybrid", false):
 		v.add_child(UiTheme.para(tr("LEX_BRED"), 18, UiTheme.MUTED))
 	body.add_child(UiTheme.button(tr("MENU_BACK"), _lexicon))
+
+
+func _map() -> void:
+	var m := WorldMap.new()
+	add_child(m)
+	await m.closed
+	m.queue_free()
+	_main()
 
 
 func _move_up(i: int) -> void:

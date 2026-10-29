@@ -82,6 +82,12 @@ func _run() -> void:
 	await _shot("full_lexicon")
 	menu._lex_entry("xuanwu")
 	await _shot("full_lexicon_entry")
+	menu._map()
+	await _shot("full_worldmap")
+	for ch in menu.get_children():
+		if ch is WorldMap:
+			ch.close()
+	await process_frame
 	menu._details(s.party[0])
 	await _shot("full_moves")
 	menu.queue_free()

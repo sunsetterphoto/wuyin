@@ -242,3 +242,5 @@ for nid, names, tone, style, octave, flag, silent_line, free_line in [
     person(nid, *names, tone, style, octave)
     E["res_" + nid.replace("pflueckerin_mei", "pflueckerin")] = [
         {"if": flag, "then": [say(nid, f"EV_RES_{nid.upper()}_2", *free_line)], "else": [say(nid, f"EV_RES_{nid.upper()}_1", *silent_line)]}]
+t("MENU_MAP", "Karte", "Map", "地图")
+t("MAP_YOU_ARE", "Du bist hier", "You are here", "你在这里")
