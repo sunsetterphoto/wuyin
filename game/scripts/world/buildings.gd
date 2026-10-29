@@ -96,6 +96,9 @@ static func build(b: Dictionary, parent: Node3D, lights: Array[OmniLight3D], max
 		_quad(root, Vector3(wx, PLINTH_H + WALL_H * 0.55, front + 0.075), Vector2(0.52, 0.42), lattice)
 	# Roof.
 	_roof(root, x0 - OVERHANG, z0 - OVERHANG * 0.7, w + OVERHANG * 2.0, d + OVERHANG * 1.7, PLINTH_H + WALL_H, st)
+	# A string of little lanterns along the front eave of bigger houses.
+	if b["kind"] != "O" and w >= 4:
+		root.add_child(_prop_sprite("lantern_string", Vector3(cx, PLINTH_H + WALL_H - 0.2, front + 0.36), minf(1.4, (w - 1.0) / 2.0)))
 	# Lanterns under the front eaves.
 	if st["lanterns"] or b["kind"] == "H" and w >= 5:
 		for lx in [x0 + 0.45, x0 + w - 0.45]:

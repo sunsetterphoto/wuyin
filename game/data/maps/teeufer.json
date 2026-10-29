@@ -249,22 +249,6 @@
    ]
   },
   {
-   "prop": "lantern_string",
-   "at": [
-    12.5,
-    6.9
-   ],
-   "y": 1.3
-  },
-  {
-   "prop": "lantern_string",
-   "at": [
-    18.5,
-    6.9
-   ],
-   "y": 1.3
-  },
-  {
    "prop": "basket_veg",
    "at": [
     9.6,
