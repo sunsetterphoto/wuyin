@@ -36,7 +36,11 @@ def raw_dir(batch_path):
 
 
 def raw(section, item, seed=None):
-    return Image.open(os.path.join(RAW, section, f'{item["id"]}_s{seed or item["seed"]}.png'))
+    img = Image.open(os.path.join(RAW, section, f'{item["id"]}_s{seed or item["seed"]}.png'))
+    if "tint" in item:  # per-channel multipliers, e.g. warm up a cool grey robe so it maps to stone, not mist blue
+        a = np.array(img.convert("RGB")).astype(np.float32) * np.array(item["tint"], dtype=np.float32)
+        img = Image.fromarray(a.clip(0, 255).astype(np.uint8), "RGB")
+    return img
 
 
 def save(img, *parts):
@@ -243,7 +247,7 @@ def main():
                     # fill < 1: smaller figure (child) standing on the same baseline.
                     h = round(48 * item.get("fill", 1.0))
                     img = Image.new("RGBA", (32, 48), (0, 0, 0, 0))
-                    img.paste(sprite(raw(sec, item), 32, cols, True, h), (0, 48 - h))
+                    img.paste(sprite(raw(sec, item), 32, cols, True, h, trim_shadow=item.get("trim_shadow", False)), (0, 48 - h))
                 save(img, "sprites", "chars", item["id"] + ".png")
             elif sec == "backgrounds":
                 save(pixel_scene(raw(sec, item), 640, 360, BG_GRID, BG_COLORS), "backgrounds", item["id"] + ".png")

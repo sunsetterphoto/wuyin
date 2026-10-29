@@ -39,6 +39,55 @@ def measure(path):
     return float(i), tp
 
 
+def quiet_runs(data, sr, db=-45.0, win=0.05):
+    """(start, end) sample ranges where the 50 ms RMS stays below `db` dBFS."""
+    w = int(win * sr)
+    n = len(data) // w
+    rms = np.sqrt((data[:n * w].reshape(n, w, -1) ** 2).mean(axis=(1, 2)) + 1e-12)
+    quiet = 20 * np.log10(rms) < db
+    runs, start = [], None
+    for i, q in enumerate(list(quiet) + [False]):
+        if q and start is None:
+            start = i
+        elif not q and start is not None:
+            runs.append((start * w, i * w))
+            start = None
+    return runs
+
+
+def cut_quiet(data, sr, name, min_len=1.5, keep=0.25, xf=0.15):
+    """Removes near-silent stretches (ACE-Step sometimes leaves gaps): leading/trailing ones completely,
+    inner ones >= min_len s down to `keep` s on each side, joined with an equal-power crossfade of `xf` s."""
+    runs = quiet_runs(data, sr)
+    if runs and runs[0][0] == 0:
+        data = data[runs[0][1]:]
+        print(f"  {name}: cut {runs[0][1] / sr:.1f} s quiet start")
+        runs = quiet_runs(data, sr)
+    if runs and runs[-1][1] >= len(data) - int(0.05 * sr):
+        print(f"  {name}: cut {(len(data) - runs[-1][0]) / sr:.1f} s quiet end")
+        data = data[:runs[-1][0]]
+        runs = quiet_runs(data, sr)
+    k, x = int(keep * sr), int(xf * sr)
+    t = np.linspace(0, np.pi / 2, x, dtype=np.float32)[:, None]
+    fade_in, fade_out = np.sin(t), np.cos(t)
+    for a, b in reversed([r for r in runs if r[1] - r[0] >= min_len * sr]):
+        head, tail = data[:a + k], data[b - k:]
+        joint = head[-x:] * fade_out + tail[:x] * fade_in
+        data = np.concatenate([head[:-x], joint, tail[x:]])
+        print(f"  {name}: cut {(b - a - 2 * k) / sr:.1f} s quiet at {a / sr:.1f} s")
+    return data
+
+
+def loop_crossfade(data, sr, xf=0.5):
+    """The first `xf` s are blended into the last `xf` s so the track loops without a click or gap:
+    playback ...end -> start continues exactly where the blended-in opening left off."""
+    x = int(xf * sr)
+    t = np.linspace(0, np.pi / 2, x, dtype=np.float32)[:, None]
+    out = data[x:].copy()
+    out[-x:] = data[-x:] * np.cos(t) + data[:x] * np.sin(t)
+    return out
+
+
 def process(item, src):
     target = TARGET.get(item["id"], TARGET["default"])
     with tempfile.TemporaryDirectory() as tmp:
@@ -51,10 +100,14 @@ def process(item, src):
               f"measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true")
         ff(["-i", trimmed, "-af", ln, "-ar", "44100", "-ac", "2", "-c:a", "pcm_f32le", norm])
         data, sr = sf.read(norm, dtype="float32")
-        n = int(0.01 * sr)
-        ramp = np.linspace(0, 1, n, dtype=np.float32)[:, None]
-        data[:n] *= ramp
-        data[-n:] *= ramp[::-1]
+        if item.get("cut_quiet"):
+            data = cut_quiet(data, sr, item["id"])
+            data = loop_crossfade(data, sr)
+        else:
+            n = int(0.01 * sr)
+            ramp = np.linspace(0, 1, n, dtype=np.float32)[:, None]
+            data[:n] *= ramp
+            data[-n:] *= ramp[::-1]
         peak = float(np.abs(data).max())
         if peak > 0.84:  # keep about -1.5 dBFS headroom (Vorbis adds a little overshoot)
             data *= 0.84 / peak

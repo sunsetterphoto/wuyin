@@ -56,3 +56,23 @@ $PY tools/postprocess/env_preview.py scene                   # build/env_preview
   transparent; Herunterskalieren mit vormultipliziertem Alpha (kein weißer Saum); k Cluster (Median-Cut) je Bild,
   jeder Cluster auf die nächste Palettenfarbe (CIE Lab, Helligkeit stärker gewichtet); Einzelpixel bekommen die
   häufigste Nachbarfarbe; 1-px-Umriss in Tinte (`1a1620`). Weiße Objekte werden auf blauem Grund erzeugt (`prop_key`).
+
+## Voll-Assets (2026-10-29)
+
+Batch: `tools/comfyui/full_assets.json` (gleiches Format, gleiche Stil-Strings wie die Beta). Bericht: `tools/comfyui/FULL_ASSETS.md`.
+Die Beta-Skripte nehmen `--batch`; der Rohordner folgt dem Dateinamen (`full_assets.json` → `build/full_raw/`).
+
+```bash
+PY=~/Documents/ComfyUI/.venv/bin/python
+B=tools/comfyui/full_assets.json
+python3 tools/comfyui/beta_generate.py --batch $B lingshou chars backgrounds music
+$PY tools/postprocess/beta_postprocess.py --batch $B lingshou derived chars backgrounds
+~/.unsloth/studio/unsloth_studio/bin/python tools/postprocess/beta_music.py --batch $B
+python3 tools/postprocess/beta_vocal_check.py river ridge dunes pillars order nian finale ending farm
+$PY tools/postprocess/full_preview.py lingshou|chars|backgrounds     # build/full_preview_*.png
+```
+
+Neue Optionen pro Eintrag: `trim_shadow` (blassen Bodenschatten unter der Figur entfernen), `bg_thresh`
+(Toleranz der Hintergrund-Füllung), `tint` (Kanal-Faktoren vor der Palette, z. B. kühles Grau → Stein statt Nebelblau).
+Abgeleitete Sprites (`derived`) haben `dir` und `op`: `silence` (wie qinglong_silenced), `ashes` (Asche mit Glut,
+fenghuang_ashes), `order_robe` (yao → yao_order).
