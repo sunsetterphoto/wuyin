@@ -860,7 +860,8 @@ func battle(setup: Dictionary) -> Dictionary:
 	busy = true
 	touch.release()
 	Audio.sfx("encounter")
-	await fade(true, 0.25)
+	await _exclaim()
+	await _wipe(true)
 	var prev_music := Audio.current()
 	Audio.play(setup.get("music", "battle"))
 	var view := BattleView.new()
@@ -876,7 +877,7 @@ func battle(setup: Dictionary) -> Dictionary:
 			e["level"] = clampi(maxi(int(e.get("level", 5)), roundi(avg) + int(e["scale"])), 1, BattleUnit.MAX_LEVEL)
 	_overlay_layer.add_child(view)
 	_screen.visible = false
-	fade(false, 0.25)
+	_wipe(false)
 	var result: Dictionary = await view.run(setup, state)
 	await fade(true, 0.3)
 	view.queue_free()
@@ -1248,6 +1249,54 @@ func actor(id: String) -> Actor:
 
 func player_name() -> String:
 	return String(state.player.get("name", ""))
+
+
+## "!" over the hero's head when a battle begins.
+func _exclaim() -> void:
+	if DialogBox.autopilot:
+		return
+	var img := Image.create(6, 12, false, Image.FORMAT_RGBA8)
+	img.fill(Color(0, 0, 0, 0))
+	img.fill_rect(Rect2i(1, 0, 4, 8), Color("2a2230"))
+	img.fill_rect(Rect2i(2, 1, 2, 6), Color("ffd040"))
+	img.fill_rect(Rect2i(1, 9, 4, 3), Color("2a2230"))
+	img.fill_rect(Rect2i(2, 10, 2, 1), Color("ffd040"))
+	var s := Sprite3D.new()
+	s.texture = ImageTexture.create_from_image(img)
+	s.pixel_size = 1.6 / CameraRig.PIXELS_PER_UNIT
+	s.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	s.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	s.no_depth_test = true
+	s.shaded = false
+	s.position = _player.position + Vector3(0, 1.9, 0)
+	_map_root.add_child(s)
+	var tw := s.create_tween()
+	tw.tween_property(s, "position:y", s.position.y + 0.25, 0.12)
+	tw.tween_property(s, "position:y", s.position.y, 0.12)
+	await get_tree().create_timer(0.45).timeout
+	s.queue_free()
+
+
+var _wipe_rect: ColorRect
+
+
+## Diamond wipe in (to_black) or out of a battle.
+func _wipe(to_black: bool) -> void:
+	if _wipe_rect == null:
+		_wipe_rect = ColorRect.new()
+		_wipe_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		_wipe_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var mat := ShaderMaterial.new()
+		mat.shader = load("res://shaders/diamond_wipe.gdshader")
+		_wipe_rect.material = mat
+		_fade.get_parent().add_child(_wipe_rect)
+	_wipe_rect.visible = true
+	var mat := _wipe_rect.material as ShaderMaterial
+	var tw := create_tween()
+	tw.tween_method(func(v): mat.set_shader_parameter("progress", v), 0.0 if to_black else 1.0, 1.0 if to_black else 0.0, 0.45)
+	await tw.finished
+	if not to_black:
+		_wipe_rect.visible = false
 
 
 func fade(to_black: bool, seconds := 0.35) -> void:
