@@ -125,7 +125,7 @@ func _run() -> void:
 	DialogBox.autopilot = true
 	DialogBox.autopilot_last_choice = ending != "reconcile"
 	BattleView.autopilot = true
-	BattleView.autopilot_no_free = ending == "bitter"
+	BattleView.autopilot_no_free = false
 	BefriendView.autopilot = true
 	PersuadeView.autopilot = true
 	PlaytestLog.path = "user://autoplay_playtest.jsonl"
@@ -297,10 +297,22 @@ func _run() -> void:
 	await _step(15, 0)
 	_expect_map("phoenixtempel")
 	_expect("temple_arrived")
+	if ending == "bitter":
+		# A player who defeated the silenced instead of freeing them (counted over the whole game).
+		st.stats["defeated_silenced"] = int(st.stats["freed"]) + 4
 	await _boss("finale", "finale_done", "phoenixtempel", "from_town", 5)
 	_expect("finale_done")
 	_expect("phoenix_reborn")
 	_expect("ending_" + ending)
+	if ending == "bitter":
+		_expect("bitter_dunes")
+		await _go("singender_kamm", "from_town")
+		await _event("baihu_free")
+		if st.flag("bitter_dunes"):
+			ok = false
+			printerr("AUTOPLAY: the dunes stayed silent after the post-game battle")
+		else:
+			print("  ✓ dunes freed after the credits")
 	_section("end")
 
 	print("== stats ", st.stats, " coins ", st.coins, " day ", st.day, " lexicon ", st.seen.size(), "/", GameData.lingshou_ids().size())
