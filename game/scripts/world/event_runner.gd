@@ -207,6 +207,8 @@ func _step(s: Dictionary) -> void:
 				await world.show_ui(CarpenterMenu.new())
 			"hut":
 				await _inn(true)
+	elif s.has("emote"):
+		world.emote(world.actor(s.get("who", "jinli")), s["emote"])
 	elif s.has("count"):
 		st.count(s["count"], int(s.get("n", 1)))
 	elif s.has("time"):

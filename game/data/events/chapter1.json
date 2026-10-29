@@ -1246,7 +1246,69 @@
   ],
   "jinli_talk": [
    {
-    "hint": true
+    "choice": [
+     "CH_JINLI_HINT",
+     "CH_JINLI_PET"
+    ],
+    "then": [
+     [
+      {
+       "hint": true
+      }
+     ],
+     [
+      {
+       "sfx": "meow"
+      },
+      {
+       "emote": "heart",
+       "who": "jinli"
+      },
+      {
+       "run": "jinli_pet"
+      }
+     ]
+    ]
+   }
+  ],
+  "jinli_pet": [
+   {
+    "if": "_pet_a",
+    "then": [
+     {
+      "clear": "_pet_a"
+     },
+     {
+      "if": "_pet_b",
+      "then": [
+       {
+        "clear": "_pet_b"
+       },
+       {
+        "say": "jinli",
+        "text": "EV_PET_3"
+       }
+      ],
+      "else": [
+       {
+        "set": "_pet_b"
+       },
+       {
+        "say": "jinli",
+        "text": "EV_PET_2"
+       }
+      ]
+     }
+    ],
+    "else": [
+     {
+      "set": "_pet_a"
+     },
+     {
+      "say": "jinli",
+      "text": "EV_PET_1"
+     }
+    ]
    }
   ]
  }

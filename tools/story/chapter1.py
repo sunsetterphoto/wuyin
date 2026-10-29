@@ -615,4 +615,13 @@ E["qinglong_free"] = [
 E["blocked_south_teeufer"] = [say("jinli", "EV_BLOCK_SOUTH", "Miau. (Jinli setzt sich auf den Weg nach Süden. Erst muss der Drache wieder singen.)", "Mew. (Jinli sits down on the road south. First the dragon must sing again.)", "喵。（锦鲤坐在往南的路上。得先让青龙重新歌唱。）")]
 
 # Jinli: hint on request (the event runner asks the model with the quest's templates).
-E["jinli_talk"] = [{"hint": True}]
+E["jinli_talk"] = [
+    choice([("CH_JINLI_HINT", "Wohin jetzt, Jinli?", "Where to now, Jinli?", "锦鲤，现在去哪儿？"),
+            ("CH_JINLI_PET", "Jinli streicheln", "Pet Jinli", "摸摸锦鲤")],
+           [[{"hint": True}],
+            [{"sfx": "meow"}, {"emote": "heart", "who": "jinli"}, {"run": "jinli_pet"}]]),
+]
+E["jinli_pet"] = [{"if": "_pet_a", "then": [{"clear": "_pet_a"}, {"if": "_pet_b",
+     "then": [{"clear": "_pet_b"}, say("jinli", "EV_PET_3", "Mrrrau! (Jinli rollt sich auf den Rücken. Ihr Koi-Glöckchen bimmelt leise.)", "Mrrrow! (Jinli rolls onto her back. Her koi bell jingles softly.)", "喵呜！（锦鲤翻过身来露出肚皮，锦鲤铃轻轻地响。）")],
+     "else": [{"set": "_pet_b"}, say("jinli", "EV_PET_2", "Prrr … (Jinli drückt ihren Kopf in deine Hand und schnurrt wie ein kleiner Motor.)", "Prrr... (Jinli presses her head into your hand and purrs like a little engine.)", "呼噜噜……（锦鲤把头蹭进你的手心，像个小马达一样呼噜。）")]}],
+    "else": [{"set": "_pet_a"}, say("jinli", "EV_PET_1", "Miau~ (Jinli schließt die Augen und blinzelt dich langsam an. Katzen sagen so: Ich hab dich lieb.)", "Mew~ (Jinli closes her eyes and blinks slowly at you. That's how cats say: I love you.)", "喵~（锦鲤眯起眼睛，慢慢地冲你眨了眨。猫咪就是这样说“我爱你”的。）")]}]

@@ -1061,7 +1061,13 @@ func _emotes(delta: float) -> void:
 	if near.is_empty():
 		return
 	var who: Actor = near[_rng.randi_range(0, near.size() - 1)]
-	var kind := "dots" if _silent else ("heart" if String(who.actor_id).begins_with("farm_") else "note")
+	emote(who, "dots" if _silent else ("heart" if String(who.actor_id).begins_with("farm_") else "note"))
+
+
+## A small floating emote over someone (note, heart, dots).
+func emote(who: Actor, kind: String) -> void:
+	if who == null:
+		return
 	var l := Sprite3D.new()
 	l.texture = _emote_texture(kind)
 	l.pixel_size = 1.0 / CameraRig.PIXELS_PER_UNIT

@@ -67,6 +67,8 @@ CH_HALL_B,I'm afraid of goodbyes too. But I don't want everything to stand still
 CH_HALL_C,"You're just running away, Yao. Coward.","Du läufst nur weg, Yao. Feigling.",你只是在逃避，尧。胆小鬼。
 CH_HONG_A,I'll help you build a firebreak. Then the village is safe when Bifang calls again.,"Ich helfe euch, eine Feuerschneise zu bauen. Dann ist das Dorf sicher, wenn Bifang wieder ruft.",我帮你们修一条防火带。这样等毕方再叫的时候，村子也安全。
 CH_HONG_B,Without fire nothing new grows. I'm going anyway.,Ohne Feuer wächst nichts Neues. Ich gehe trotzdem.,没有火，就长不出新东西。我还是要去。
+CH_JINLI_HINT,"Where to now, Jinli?","Wohin jetzt, Jinli?",锦鲤，现在去哪儿？
+CH_JINLI_PET,Pet Jinli,Jinli streicheln,摸摸锦鲤
 CH_YAO_A,I understand you. But without an end there is no spring either.,Ich verstehe dich. Aber ohne Ende gibt es auch keinen Frühling.,我懂你。但没有终结，也就没有春天。
 CH_YAO_B,Wusheng takes everyone's voice. That isn't peace.,Wusheng nimmt allen ihre Stimme. Das ist kein Frieden.,无声夺走了所有人的声音，这不是安宁。
 CH_YAO_ND_A,"Yao, come home. We'll find another way.","Yao, komm nach Hause. Wir finden einen anderen Weg.",尧，回家吧。我们会找到别的办法。
@@ -344,6 +346,9 @@ EV_PAN_1,"When I was young, a temple keeper came here with a silver crane. The c
 EV_PAN_2,The keeper's name was Wusheng. Back then he still laughed.,Der Hüter hieß Wusheng. Damals lachte er noch.,那个庙祝叫无声。那时候他还会笑。
 EV_PEI,You want to go to the tortoise? Then rest first. She's old and stubborn - and strong.,Du willst zur Schildkröte? Dann ruh dich erst aus. Sie ist alt und stur – und stark.,你要去找玄龟？那先歇歇吧。她又老又倔——还很强。
 EV_PEI_2,Your companions are healed. Saved.,Dein Gefolge ist geheilt. Gespeichert.,同伴已恢复。已存档。
+EV_PET_1,Mew~ (Jinli closes her eyes and blinks slowly at you. That's how cats say: I love you.),Miau~ (Jinli schließt die Augen und blinzelt dich langsam an. Katzen sagen so: Ich hab dich lieb.),喵~（锦鲤眯起眼睛，慢慢地冲你眨了眨。猫咪就是这样说“我爱你”的。）
+EV_PET_2,Prrr... (Jinli presses her head into your hand and purrs like a little engine.),Prrr … (Jinli drückt ihren Kopf in deine Hand und schnurrt wie ein kleiner Motor.),呼噜噜……（锦鲤把头蹭进你的手心，像个小马达一样呼噜。）
+EV_PET_3,Mrrrow! (Jinli rolls onto her back. Her koi bell jingles softly.),Mrrrau! (Jinli rollt sich auf den Rücken. Ihr Koi-Glöckchen bimmelt leise.),喵呜！（锦鲤翻过身来露出肚皮，锦鲤铃轻轻地响。）
 EV_PJ_1,"Every ending is a song that begins anew. I thank you, {player}. Let me be the twelfth bell on your wind chime.","Jedes Ende ist ein Lied, das neu beginnt. Ich danke dir, {player}. Lass mich das zwölfte Glöckchen an deinem Windspiel sein.",每一次结束，都是一首重新开始的歌。谢谢你，{player}。让我成为你风铃上的第十二只铃铛吧。
 EV_PJ_2,{player}! I climbed the stairs as fast as my old legs could. Just listen - the whole land is singing.,"{player}! Ich bin die Treppe hinaufgestiegen, so schnell meine alten Beine konnten. Hör nur – das ganze Land singt.",{player}！我拼了这把老骨头，尽快爬上了云梯。听啊——整片大地都在歌唱。
 EV_PL_1,"The Qilin Plateau. Between the pillars stands a creature like a deer with scales and a single horn. Grey, motionless - as if made of stone.","Das Qilin-Plateau. Zwischen den Säulen steht ein Wesen wie ein Hirsch mit Schuppen und einem einzelnen Horn. Grau, reglos – wie aus Stein.",麒麟台。石柱间站着一头像鹿一样、身披鳞片、头生独角的生灵。灰扑扑的，一动不动——像石头雕成的。

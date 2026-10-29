@@ -8,7 +8,7 @@ const STEP_KEYS: Array[String] = ["say", "choice", "if", "if_item", "if_party_mi
 	"quest", "goal", "give_item", "coins", "heal", "bells", "give_lingshou", "befriend", "battle", "warp", "music", "sfx",
 	"wait", "fade", "move", "teleport", "place", "refresh", "save", "set_inn", "silence", "shop", "inn", "rumor",
 	"hint", "voice", "run", "end_beta", "if_tones", "if_stat", "if_any", "if_count", "if_items", "clear_region", "tone",
-	"persuade", "crane", "sleep", "restaurant", "farm", "time", "take_item", "ending", "credits", "count"]
+	"persuade", "crane", "sleep", "restaurant", "farm", "time", "take_item", "ending", "credits", "count", "emote"]
 
 
 func _scripts(dir: String, out: Array[String]) -> void:
