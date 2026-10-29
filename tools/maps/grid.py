@@ -41,11 +41,13 @@ class Grid:
 
 
 def save(mid, grid, data):
-    from decor import DECOR, CRITTERS
+    from decor import DECOR, CRITTERS, HEIGHTS
     data = dict(data)
     data["id"] = mid
     if mid in DECOR:
         data["decor"] = DECOR[mid]
+    if mid in HEIGHTS:
+        data["heights"] = HEIGHTS[mid]
     if mid in CRITTERS:
         data["npcs"] = data.get("npcs", []) + [dict(c, id="critter_%d" % i, solid=False) for i, c in enumerate(CRITTERS[mid])]
     data["rows"] = grid.rows()

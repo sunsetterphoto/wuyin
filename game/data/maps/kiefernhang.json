@@ -239,6 +239,38 @@
    "y": 0.95
   }
  ],
+ "heights": [
+  {
+   "rect": [
+    3,
+    3,
+    28,
+    5
+   ],
+   "h": 0.7
+  },
+  {
+   "rect": [
+    14,
+    8,
+    6,
+    2
+   ],
+   "h": 0.7,
+   "ramp": "n"
+  },
+  {
+   "rect": [
+    14,
+    0,
+    6,
+    3
+   ],
+   "h": 1.6,
+   "from": 0.7,
+   "ramp": "n"
+  }
+ ],
  "rows": [
   "SSSSSSSSSSSSSSSccccSSSSSSSSSSSSSSS",
   "SuuuuuuuuuuuuuQccccQuuuuuuuuuuuuuS",

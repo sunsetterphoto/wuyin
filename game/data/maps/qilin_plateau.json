@@ -128,6 +128,27 @@
    ]
   }
  ],
+ "heights": [
+  {
+   "rect": [
+    9,
+    4,
+    10,
+    4
+   ],
+   "h": 0.6
+  },
+  {
+   "rect": [
+    9,
+    8,
+    10,
+    2
+   ],
+   "h": 0.6,
+   "ramp": "n"
+  }
+ ],
  "rows": [
   "SSSSSSSSSSSSSSSSSSSSSSSSSSSS",
   "SuuuuuuuuuuuuuuuuuuuuuuuuuuS",

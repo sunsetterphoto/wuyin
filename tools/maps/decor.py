@@ -80,3 +80,17 @@ CRITTERS = {
     "rotfels": [{"prop": "chicken", "at": [15, 15], "wander": 2}],
     "kiefernhang": [{"prop": "chicken", "at": [8, 10], "wander": 2}],
 }
+
+# Terraces, platforms and stairs (MapData.height_at): rect [x, z, w, h], "h" top height,
+# "ramp" side that is highest, "from" height at the low end of a ramp.
+HEIGHTS = {
+    "teeufer": [{"rect": [29, 9, 4, 4], "h": 0.5}, {"rect": [29, 6, 4, 3], "h": 1.0}, {"rect": [29, 3, 4, 3], "h": 1.5},
+                {"rect": [28, 3, 1, 10], "h": 1.5, "ramp": "n"}],
+    "kiefernhang": [{"rect": [3, 3, 28, 5], "h": 0.7}, {"rect": [14, 8, 6, 2], "h": 0.7, "ramp": "n"},
+                    {"rect": [14, 0, 6, 3], "h": 1.6, "from": 0.7, "ramp": "n"}],
+    "drachenschrein": [{"rect": [8, 2, 11, 5], "h": 0.6}, {"rect": [10, 7, 7, 2], "h": 0.6, "ramp": "n"}],
+    "phoenixtempel": [{"rect": [9, 3, 12, 5], "h": 0.6}, {"rect": [11, 8, 8, 2], "h": 0.6, "ramp": "n"}],
+    "rotfels": [{"rect": [3, 3, 28, 6], "h": 0.6}, {"rect": [12, 9, 11, 1], "h": 0.6, "ramp": "n"}, {"rect": [16, 0, 2, 3], "h": 0.6}],
+    "qilin_plateau": [{"rect": [9, 4, 10, 4], "h": 0.6}, {"rect": [9, 8, 10, 2], "h": 0.6, "ramp": "n"}],
+    "mondquell": [{"rect": [18, 14, 6, 4], "h": 0.3}],
+}

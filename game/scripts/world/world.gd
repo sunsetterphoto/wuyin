@@ -541,6 +541,7 @@ func _process(delta: float) -> void:
 		_player.animate(delta, _player.moving)
 	_follow(delta)
 	_wander(delta)
+	_settle_heights(delta)
 	if _ambient:
 		_ambient.position = _player.position
 	if _cloud_shadows:
@@ -558,6 +559,21 @@ func _process(delta: float) -> void:
 		_dust.position = _player.position + Vector3(0, 0.05, 0.1)
 		_dust.emitting = not busy and (Input.get_vector("move_left", "move_right", "move_up", "move_down") != Vector2.ZERO \
 			or touch.direction != Vector2.ZERO) and ground in ["path", "sand", "redrock", "plaza", "cloudstone"]
+
+
+## Everyone stands on the ground of their tile (terraces, stairs); smooth steps.
+func _settle_heights(delta: float) -> void:
+	if map.def.get("heights", []).is_empty():
+		return
+	var k := minf(1.0, delta * 14.0)
+	for a in [_player, _jinli, _follower]:
+		if a:
+			a.position.y = lerpf(a.position.y, map.height_at(roundi(a.position.x), roundi(a.position.z)), k)
+	for id in _actors:
+		var a: Actor = _actors[id]
+		a.position.y = lerpf(a.position.y, map.height_at(roundi(a.position.x), roundi(a.position.z)), k)
+	for a in _wild:
+		a.position.y = lerpf(a.position.y, map.height_at(roundi(a.position.x), roundi(a.position.z)), k)
 
 
 func _layout_screen() -> void:
@@ -629,10 +645,14 @@ func _move_player(delta: float) -> void:
 
 
 func _free(p: Vector3) -> bool:
+	var here := map.height_at(roundi(_player.position.x), roundi(_player.position.z))
 	for off in [Vector2(-PLAYER_RADIUS, -PLAYER_RADIUS * 0.5), Vector2(PLAYER_RADIUS, -PLAYER_RADIUS * 0.5),
 			Vector2(-PLAYER_RADIUS, PLAYER_RADIUS * 0.6), Vector2(PLAYER_RADIUS, PLAYER_RADIUS * 0.6)]:
 		var t := Vector2i(roundi(p.x + off.x), roundi(p.z + off.y))
 		if not map.walkable(t.x, t.y):
+			return false
+		# Cliffs: only small steps up or down (stairs and ramps are built in small steps).
+		if absf(map.height_at(t.x, t.y) - here) > 0.36:
 			return false
 	for id in _actors:
 		var a: Actor = _actors[id]

@@ -66,6 +66,7 @@ static func build(b: Dictionary, parent: Node3D, lights: Array[OmniLight3D], max
 	var cz := z0 + d / 2.0
 	var root := Node3D.new()
 	root.name = "Building"
+	root.position.y = float(b.get("height", 0.0))
 	parent.add_child(root)
 	# Plinth and walls.
 	_box(root, Vector3(cx, PLINTH_H / 2.0, cz), Vector3(w + 0.16, PLINTH_H, d + 0.16), Materials.surface("stone"))

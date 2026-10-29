@@ -118,6 +118,8 @@ static func build(m: MapData, silent := false) -> Dictionary:
 		_flush(c, false)
 		return {"root": c.root, "lights": c.lights}
 	for b in Buildings.find(m):
+		var r: Rect2i = b["rect"]
+		b["height"] = m.height_at(r.position.x, r.position.y + r.size.y - 1)
 		Buildings.build(b, c.root, c.lights, MAX_LIGHTS, 0.0 if silent else 1.0)
 	for z in m.height:
 		for x in m.width:
@@ -125,7 +127,8 @@ static func build(m: MapData, silent := false) -> Dictionary:
 	# Hand-placed decoration of the map (towns, farm, temple): {"prop", "at": [x, z], "scale", "y"}.
 	for d in m.def.get("decor", []):
 		var at: Array = d["at"]
-		c.prop(d["prop"], Vector3(float(at[0]), float(d.get("y", 0.0)), float(at[1])), float(d.get("scale", 1.0)), float(d.get("shadow", 0.5)))
+		var gy := m.height_at(roundi(float(at[0])), roundi(float(at[1])))
+		c.prop(d["prop"], Vector3(float(at[0]), gy + float(d.get("y", 0.0)), float(at[1])), float(d.get("scale", 1.0)), float(d.get("shadow", 0.5)))
 	_outside(c)
 	_flush(c, silent)
 	return {"root": c.root, "lights": c.lights}
@@ -167,11 +170,16 @@ static func _near(c: Ctx, x: int, z: int, chars: String, diag := true) -> bool:
 static func _tile(c: Ctx, x: int, z: int) -> void:
 	var ch := c.m.tile(x, z)
 	var inf: Array = MapData.LEGEND.get(ch, MapData.LEGEND["X"])
-	var p := Vector3(x, 0, z)
+	var hgt := c.m.height_at(x, z)
+	var p := Vector3(x, hgt, z)
 	var ground: String = inf[0]
 	if ch == "S":
 		ground = REGION_GROUND.get(c.region, "grass")
 	var shade := c.rng.randf_range(0.93, 1.05)
+	if hgt > 0.01 and ground not in ["water", "pond", "cloud"]:
+		# Raised ground: a cliff of stone under a thin top of the surface.
+		var cliff := "karst" if c.region in ["river", "pillars", "temple"] else ("danxia" if c.region == "ridge" else ("sand" if c.region == "dunes" else "stone"))
+		c.box(cliff, Vector3(x, (hgt - 0.6) / 2.0 - 0.05, z), Vector3(1, hgt + 0.4, 1), shade * 0.9)
 	match ground:
 		"water", "pond":
 			c.water.append(Transform3D(Basis.from_scale(Vector3(1, 0.3, 1)), p + Vector3(0, -0.4, 0)))
@@ -303,7 +311,7 @@ static func _tile(c: Ctx, x: int, z: int) -> void:
 
 ## Walkable plain tiles: flowers, grass tufts, bushes at the edges, village things near houses.
 static func _decorate(c: Ctx, x: int, z: int, ch: String) -> void:
-	var p := Vector3(x, 0, z)
+	var p := Vector3(x, c.m.height_at(x, z), z)
 	var free: bool = not c.occupied.has(Vector2i(x, z))
 	var town: bool = c.m.def.get("town", false) or c.m.id in ["weidendorf", "teeufer", "kreuzweg", "hof"]
 	match ch:

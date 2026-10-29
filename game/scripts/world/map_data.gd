@@ -66,6 +66,9 @@ var width := 0
 var height := 0
 ## Tiles changed at runtime (farm pens): Vector2i -> character.
 var overrides := {}
+## Ground height per tile in world units (terraces, ramps); built lazily from def "heights".
+var _heights := {}
+var _heights_built := false
 
 
 static func exists(map_id: String) -> bool:
@@ -106,6 +109,31 @@ func tile(x: int, z: int) -> String:
 
 func info(x: int, z: int) -> Array:
 	return LEGEND.get(tile(x, z), LEGEND["X"])
+
+
+## Height of the ground on a tile: {"rect": [x, z, w, h], "h": units} raises a block,
+## {"rect", "h", "ramp": "n"|"s"|"e"|"w"} rises towards that side (stairs, slopes).
+func height_at(x: int, z: int) -> float:
+	if not _heights_built:
+		_heights_built = true
+		for e in def.get("heights", []):
+			var r: Array = e["rect"]
+			var top := float(e.get("h", 0.5))
+			var base := float(e.get("from", 0.0))
+			for zz in range(int(r[1]), int(r[1]) + int(r[3])):
+				for xx in range(int(r[0]), int(r[0]) + int(r[2])):
+					var v := top
+					match e.get("ramp", ""):
+						"n":
+							v = lerpf(base, top, float(int(r[1]) + int(r[3]) - zz) / (float(r[3]) + 1.0))
+						"s":
+							v = lerpf(base, top, float(zz - int(r[1]) + 1) / (float(r[3]) + 1.0))
+						"e":
+							v = lerpf(base, top, float(xx - int(r[0]) + 1) / (float(r[2]) + 1.0))
+						"w":
+							v = lerpf(base, top, float(int(r[0]) + int(r[2]) - xx) / (float(r[2]) + 1.0))
+					_heights[Vector2i(xx, zz)] = v
+	return float(_heights.get(Vector2i(x, z), 0.0))
 
 
 func walkable(x: int, z: int) -> bool:
@@ -161,7 +189,7 @@ func path(a: Vector2i, b: Vector2i, max_nodes := 4000) -> Array[Vector2i]:
 			break
 		for d in [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]:
 			var n: Vector2i = c + d
-			if not prev.has(n) and walkable(n.x, n.y):
+			if not prev.has(n) and walkable(n.x, n.y) and absf(height_at(n.x, n.y) - height_at(c.x, c.y)) <= 0.36:
 				prev[n] = c
 				queue.append(n)
 	if not prev.has(b):

@@ -329,6 +329,9 @@ def main():
                     else:
                         img = make_tile(raw(sec, item), item)
                     save(img, "tiles", item["id"] + ".png")
+                elif sec == "props" and item.get("hand"):
+                    from env_handmade import handmade
+                    save(handmade(item["id"]), "props", item["id"] + ".png")
                 elif sec == "props":
                     k = max(10, min(22, item["w"] * item["h"] // 450))   # more colours for big props
                     save(make_sprite(raw(sec, item), item["w"], item["h"], item, k), "props", item["id"] + ".png")
