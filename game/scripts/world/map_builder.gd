@@ -340,7 +340,7 @@ static func _decorate(c: Ctx, x: int, z: int, ch: String) -> void:
 				c.prop(c.pick(["jar", "jars_group", "basket_veg", "crate"]), p + c.jitter() * 0.5, 1.0, 0.4)
 		"~":
 			if _near(c, x, z, ".,=_shcfTB", false) and c.rng.randf() < P_REEDS:
-				c.prop("reeds" if c.region != "dunes" or c.rng.randf() < 0.6 else "tree_datepalm", p + c.jitter() * 0.6, c.rng.randf_range(0.8, 1.1))
+				c.prop("reeds" if c.region != "dunes" or c.rng.randf() < 0.8 else "tree_datepalm", p + c.jitter() * 0.6, c.rng.randf_range(0.8, 1.1))
 			elif not _near(c, x, z, "#") and c.rng.randf() < P_LOTUS and c.region in ["bamboo", "river", "hub"]:
 				c.prop("lotus_pads", p + Vector3(0, -0.24, 0) + c.jitter(), 1.0)
 				if c.rng.randf() < 0.4:
