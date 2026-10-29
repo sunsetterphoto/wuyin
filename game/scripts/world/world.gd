@@ -70,6 +70,7 @@ var _weather_fx: WeatherFx
 var _ambient: AmbientFx
 var _cloud_shadows: Decal
 var _sounds: Ambience
+var _color_tween: Tween
 var _sound_key := ""
 var _bubble: Sprite3D
 var _emote_t := 4.0
@@ -519,9 +520,12 @@ func _update_time_label() -> void:
 func set_silent(on: bool) -> void:
 	var was := _silent
 	_silent = on
+	if _color_tween and _color_tween.is_running():
+		return
 	if was and not on and is_inside_tree() and not DialogBox.autopilot:
 		# A tone returns: colour flows back into the world, with a soft glow.
 		var tw := create_tween().set_parallel(true)
+		_color_tween = tw
 		tw.tween_property(_env, "adjustment_saturation", 1.0, 3.0).set_trans(Tween.TRANS_SINE)
 		tw.tween_property(_env, "adjustment_brightness", 1.18, 1.2).set_trans(Tween.TRANS_SINE)
 		tw.chain().tween_property(_env, "adjustment_brightness", 1.0, 1.8).set_trans(Tween.TRANS_SINE)
