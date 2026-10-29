@@ -45,4 +45,4 @@ Etwa 6 bis 10 Stunden Spielzeit, je nachdem, wie viel du zähmst, züchtest und 
 - Figuren nur von vorn, keine echten Laufbilder (Wackel-Gang als Ersatz).
 - Wandlung ist als Leuchten in der Elementfarbe plus 12 % Werte umgesetzt, nicht mit eigenen Bildern. Werkstatt und Möbel des Hofs fehlen noch.
 - Chinesisch ist maschinennah formuliert und braucht eine Muttersprachler-Prüfung.
-- Auf dem Mac fehlen chinesische Schriftzeichen in der Systemschrift (Handy: in Ordnung); für Steam braucht es eine Pixelschrift mit CJK.
+- Chinesische Zeichen kommen aus einer eingebetteten Teilmenge von Noto Sans CJK (benutzte Zeichen plus die 3.755 häufigsten). Seltene Zeichen in Texten des Sprachmodells können als Kästchen erscheinen. Für Steam wäre eine Pixelschrift mit CJK schöner.

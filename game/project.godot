@@ -20,6 +20,7 @@ config/quit_on_go_back=false
 
 [autoload]
 
+Fonts="*res://scripts/core/fonts.gd"
 DevStandby="*res://scripts/core/dev_standby.gd"
 Music="*res://scripts/audio/music.gd"
 
