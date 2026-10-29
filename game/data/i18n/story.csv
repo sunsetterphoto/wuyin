@@ -15,7 +15,7 @@ BATTLE_INTRO_GUARDIAN,The {name} rises - mute and grey.,Der {name} erhebt sich �
 BATTLE_INTRO_MOTH,"A {name} flutters close, eating the last sounds!",Eine {name} flattert heran und frisst die letzten Klänge!,{name}扑了过来，吞食着最后的声音！
 BATTLE_INTRO_NIAN,The Nian rears up before you! Hold up noise and red against it!,Der Nian baut sich vor dir auf! Halte ihm Lärm und Rot entgegen!,年兽在你面前立起身来！用响声和红色对付它！
 BATTLE_INTRO_SILENCED,A silenced {name} blocks the way. Fill its heartsong!,Ein verstummtes {name} versperrt den Weg. Fülle seinen Herzklang!,失声的{name}挡住了去路。唤醒它的心音！
-BATTLE_INTRO_WILD,A wild {name} appears!,Ein wildes {name} taucht auf!,野生的{name}出现了！
+BATTLE_INTRO_WILD,{name} comes closer - shy and untamed!,{name} kommt näher – scheu und ungezähmt!,{name}靠了过来——又怕生又不驯！
 BATTLE_ITEM,{item} for {target}.,{item} für {target}.,给{target}使用了{item}。
 BATTLE_LEARNED,{target} learned {move}!,{target} kann jetzt {move}!,{target}学会了{move}！
 BATTLE_LEARNED_SWAP,{target} learned {move}! (Swap it in from the companions menu.),{target} kann jetzt {move}! (Im Gefolge-Menü gegen eine andere Attacke tauschen.),{target}学会了{move}！（可在同伴菜单中替换招式。）

@@ -182,7 +182,7 @@ for k, de, en, zh in [
     ("BATTLE_WATCHES", "{user} beobachtet dich neugierig.", "{user} watches you curiously.", "{user}好奇地看着你。"),
     ("BATTLE_COINS", "Du findest {n} Münzen.", "You find {n} coins.", "你找到了{n}铜钱。"),
     ("BATTLE_NOT_POSSIBLE", "Das geht gerade nicht.", "That doesn't work right now.", "现在做不到。"),
-    ("BATTLE_INTRO_WILD", "Ein wildes {name} taucht auf!", "A wild {name} appears!", "野生的{name}出现了！"),
+    ("BATTLE_INTRO_WILD", "{name} kommt näher – scheu und ungezähmt!", "{name} comes closer - shy and untamed!", "{name}靠了过来——又怕生又不驯！"),
     ("BATTLE_INTRO_SILENCED", "Ein verstummtes {name} versperrt den Weg. Fülle seinen Herzklang!", "A silenced {name} blocks the way. Fill its heartsong!", "失声的{name}挡住了去路。唤醒它的心音！"),
     ("BATTLE_INTRO_GUARDIAN", "Der {name} erhebt sich – stumm und grau.", "The {name} rises - mute and grey.", "{name}缓缓升起——无声而灰暗。"),
     ("BATTLE_INTRO_MOTH", "Eine {name} flattert heran und frisst die letzten Klänge!", "A {name} flutters close, eating the last sounds!", "{name}扑了过来，吞食着最后的声音！"),
