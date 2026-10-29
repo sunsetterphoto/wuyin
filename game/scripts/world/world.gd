@@ -1123,6 +1123,67 @@ func _emotes(delta: float) -> void:
 	emote(who, "dots" if _silent else ("heart" if String(who.actor_id).begins_with("farm_") else "note"))
 
 
+## The finale: the phoenix rises out of the nest in a rain of sparks.
+func phoenix_rise(at: Vector3) -> void:
+	var bird := Sprite3D.new()
+	bird.texture = Sprites.lingshou("fenghuang")
+	bird.pixel_size = 1.0 / CameraRig.PIXELS_PER_UNIT
+	bird.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	bird.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	bird.shaded = false
+	bird.offset = Vector2(0, bird.texture.get_height() / 2.0)
+	bird.position = at + Vector3(0, 0.4, 0)
+	bird.scale = Vector3.ONE * 0.2
+	bird.modulate = Color(2.5, 1.6, 0.8)
+	_map_root.add_child(bird)
+	var sparks := CPUParticles3D.new()
+	sparks.amount = 90
+	sparks.lifetime = 2.2
+	sparks.direction = Vector3(0, 1, 0)
+	sparks.spread = 50.0
+	sparks.initial_velocity_min = 1.0
+	sparks.initial_velocity_max = 3.2
+	sparks.gravity = Vector3(0, -0.8, 0)
+	var q := QuadMesh.new()
+	q.size = Vector2(0.08, 0.08)
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	mat.vertex_color_use_as_albedo = true
+	mat.emission_enabled = true
+	mat.emission = Color("ffb040")
+	mat.emission_energy_multiplier = 3.0
+	q.material = mat
+	sparks.mesh = q
+	sparks.color = Color("ffc860")
+	sparks.position = at + Vector3(0, 0.5, 0)
+	_map_root.add_child(sparks)
+	var light := OmniLight3D.new()
+	light.light_color = Color("ffb040")
+	light.omni_range = 9.0
+	light.light_energy = 0.0
+	light.position = at + Vector3(0, 1.5, 0.5)
+	_map_root.add_child(light)
+	Audio.sfx("bell")
+	var tw := create_tween().set_parallel(true)
+	tw.tween_property(bird, "scale", Vector3.ONE * 1.4, 2.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(bird, "position:y", at.y + 1.6, 2.4).set_trans(Tween.TRANS_SINE)
+	tw.tween_property(bird, "modulate", Color.WHITE, 2.4)
+	tw.tween_property(light, "light_energy", 4.0, 1.2)
+	tw.chain().tween_property(light, "light_energy", 1.2, 1.5)
+	await tw.finished
+	Audio.sfx("level")
+	await get_tree().create_timer(1.2).timeout
+	sparks.emitting = false
+	var out := create_tween().set_parallel(true)
+	out.tween_property(bird, "modulate:a", 0.0, 1.0)
+	out.tween_property(light, "light_energy", 0.0, 1.0)
+	await out.finished
+	bird.queue_free()
+	light.queue_free()
+	sparks.queue_free()
+
+
 ## A small floating emote over someone (note, heart, dots).
 func emote(who: Actor, kind: String) -> void:
 	if who == null:

@@ -638,6 +638,12 @@
   ],
   "phoenix_joins": [
    {
+    "phoenix_rise": [
+     14.5,
+     4
+    ]
+   },
+   {
     "set": "phoenix_reborn"
    },
    {

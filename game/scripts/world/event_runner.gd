@@ -209,6 +209,8 @@ func _step(s: Dictionary) -> void:
 				await world.show_ui(GardenMenu.new())
 			"hut":
 				await _inn(true)
+	elif s.has("phoenix_rise"):
+		await world.phoenix_rise(Vector3(float(s["phoenix_rise"][0]), 0, float(s["phoenix_rise"][1])))
 	elif s.has("emote"):
 		world.emote(world.actor(s.get("who", "jinli")), s["emote"])
 	elif s.has("count"):

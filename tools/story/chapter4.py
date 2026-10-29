@@ -167,6 +167,7 @@ for kind, lines in [
         steps.append({"set": "bitter_dunes"})
     E["ending_" + kind] = steps + [{"run": "phoenix_joins"}]
 E["phoenix_joins"] = [
+    {"phoenix_rise": [14.5, 4]},
     {"set": "phoenix_reborn"},
     {"refresh": True},
     {"voice": "fenghuang", "event": "freed"},

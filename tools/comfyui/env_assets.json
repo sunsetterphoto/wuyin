@@ -90,7 +90,7 @@
     {"id": "duck", "w": 24, "h": 20, "style": "prop", "seed": 2065, "prompt": "a cute round brown mallard duck, standing"},
     {"id": "drum", "w": 32, "h": 36, "style": "prop", "seed": 2066, "prompt": "a red chinese festival drum with brass studs on a wooden stand"},
     {"id": "tent_yurt", "w": 80, "h": 64, "style": "prop", "seed": 2071, "prompt": "a round caravan felt tent yurt, cream felt with red and blue patterned bands, wooden door, domed roof"},
-    {"id": "camel_saddle_pile", "w": 40, "h": 24, "style": "prop", "seed": 2172, "prompt": "a neat small pile of travel goods: two big rolled rugs in red and blue with stripes and one brown leather saddle bag on top, simple big shapes, wide low composition", "tried": [{"seed": 2072, "why": "too many tiny bundles, turned into brown mush at 40x24"}]},
+    {"id": "camel_saddle_pile", "w": 40, "h": 24, "style": "prop", "seed": 2172, "prompt": "a neat small pile of travel goods: two big rolled rugs in red and blue with stripes and one brown leather saddle bag on top, simple big shapes, wide low composition", "tried": [{"seed": 2072, "why": "too many tiny bundles, turned into brown mush at 40x24"}], "colors": 16, "bright": 1.3, "sat": 0.9},
     {"id": "cloud_wisp", "w": 64, "h": 32, "style": "prop_key", "seed": 2073, "prompt": "a soft fluffy white cloud puff, wide flat cloud, pale lavender shading", "soft_alpha": true, "colors": 6},
     {"id": "brazier", "w": 32, "h": 40, "style": "prop", "seed": 2074, "prompt": "a bronze temple fire bowl brazier on a stand with bright orange flames"},
     {"id": "banner_green", "w": 24, "h": 64, "style": "prop", "seed": 2075, "prompt": "a tall narrow green temple banner hanging from a wooden pole, cloth with a plain border, no writing"},
