@@ -467,9 +467,24 @@ func _apply_ambience() -> void:
 	_env.set_meta("ambient", ambience[4])
 	for l in _lights:
 		l.set_meta("energy", ambience[5])
-	_env.fog_enabled = w in ["fog", "sandstorm", "snow"]
-	_env.fog_light_color = {"fog": Color("c8d0d8"), "sandstorm": Color("d8b878"), "snow": Color("e8eef4")}.get(w, Color.WHITE)
-	_env.fog_density = {"fog": 0.05, "sandstorm": 0.06, "snow": 0.025}.get(w, 0.0)
+	# Light haze in the region's colour for depth (aerial perspective); weather makes it thicker.
+	var haze: Array = {"bamboo": [Color("cfe0c8"), 0.006], "hub": [Color("dde0d0"), 0.005], "river": [Color("d0dce4"), 0.014],
+		"ridge": [Color("f0d0b0"), 0.005], "dunes": [Color("f0dcb0"), 0.008], "pillars": [Color("e8eef4"), 0.012],
+		"temple": [Color("f8e8d0"), 0.01]}.get(region(), [Color.WHITE, 0.0])
+	var night_dim := 0.35 if uses_clock() and state.is_night() else 1.0
+	_env.fog_enabled = not map.def.get("indoor", false)
+	_env.fog_light_color = {"fog": Color("c8d0d8"), "sandstorm": Color("d8b878"), "snow": Color("e8eef4")}.get(w, haze[0]) * night_dim
+	_env.fog_sky_affect = 0.0
+	if w in ["fog", "sandstorm", "snow"]:
+		_env.fog_mode = Environment.FOG_MODE_EXPONENTIAL
+		_env.fog_density = {"fog": 0.05, "sandstorm": 0.06, "snow": 0.025}[w]
+	else:
+		# Depth haze: clear up to the player, fading towards the far edge of the view.
+		_env.fog_mode = Environment.FOG_MODE_DEPTH
+		_env.fog_depth_begin = 17.0
+		_env.fog_depth_end = 42.0
+		_env.fog_depth_curve = 1.4
+		_env.fog_density = clampf(float(haze[1]) * 40.0, 0.0, 0.55)
 	_weather_fx.set_kind(w)
 	set_silent(state.region_silent(region()) and map.def.get("silent", true))
 	if _sounds:

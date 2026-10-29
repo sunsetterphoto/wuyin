@@ -191,7 +191,7 @@ static func _tile(c: Ctx, x: int, z: int) -> void:
 		"paddy":
 			c.box("paddy", p + Vector3(0, -0.3, 0), Vector3(1, 0.4, 1), shade)
 		"cloud":
-			c.box("cloud", p + Vector3(0, -1.6, 0), Vector3(1, 0.4, 1), shade)
+			c.box("cloud", p + Vector3(0, -2.5, 0), Vector3(1, 0.4, 1), shade)
 		_:
 			c.box(ground, p + Vector3(0, -0.25, 0), Vector3(1, 0.5, 1), shade)
 	if ch == "S":
@@ -199,9 +199,11 @@ static func _tile(c: Ctx, x: int, z: int) -> void:
 		return
 	# Platforms above the cloud sea get a rocky underside where they meet the clouds.
 	if ground != "cloud" and c.region in ["pillars", "temple"] and _near(c, x, z, "uS", false):
-		var depth := 1.4 + c.rng.randf() * 1.2
+		var depth := 1.7 + c.rng.randf() * 0.6
 		c.box("karst", p + Vector3(0, -0.5 - depth / 2.0, 0), Vector3(1, depth, 1), 0.8)
-		c.box("karst", p + Vector3(0, -0.5 - depth - 0.4, 0), Vector3(0.6, 0.8, 0.6), 0.7)
+		c.box("karst", p + Vector3(0, -0.5 - depth - 0.3, 0), Vector3(0.6, 0.6, 0.6), 0.7)
+		if c.rng.randf() < 0.3:
+			c.prop("fern", p + Vector3(0, -0.9, 0.52), 0.8)
 	# Grass fringe where paths and plazas meet grass.
 	if ch in ".fc" and _near(c, x, z, "=_", false) and c.rng.randf() < 0.55:
 		for d in [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]:
@@ -329,7 +331,7 @@ static func _decorate(c: Ctx, x: int, z: int, ch: String) -> void:
 			if free and town and _near(c, x, z, "HRO", false) and not _near(c, x, z, "D") and c.rng.randf() < P_VILLAGE:
 				c.prop(c.pick(VILLAGE_PROPS), p + Vector3(c.rng.randf_range(-0.25, 0.25), 0, -0.25), 1.0, 0.4)
 			if ch == "c" and _near(c, x, z, "u") and c.rng.randf() < 0.15:
-				c.prop("cloud_wisp", p + Vector3(0, -0.8, 0) + c.jitter(), c.rng.randf_range(0.8, 1.2))
+				c.prop("cloud_wisp", p + Vector3(0, -2.0, 0) + c.jitter(), c.rng.randf_range(0.8, 1.2))
 		"=":
 			if c.rng.randf() < 0.05:
 				c.prop("rock_small", p + c.jitter(), 0.5)
@@ -351,9 +353,9 @@ static func _border(c: Ctx, x: int, z: int) -> void:
 	match c.region:
 		"pillars", "temple":
 			c.boxes["cloudstone"].pop_back()
-			c.box("cloud", p + Vector3(0, -1.6, 0), Vector3(1, 0.4, 1), 1.0)
+			c.box("cloud", p + Vector3(0, -2.5, 0), Vector3(1, 0.4, 1), 1.0)
 			if c.rng.randf() < 0.35:
-				c.prop("cloud_wisp", p + Vector3(0, -0.9, 0) + c.jitter(), c.rng.randf_range(1.0, 1.6))
+				c.prop("cloud_wisp", p + Vector3(0, -2.2, 0) + c.jitter(), c.rng.randf_range(1.0, 1.6))
 		"dunes":
 			var h := (0.4 if c.south(z) else 0.7) + c.height01(x, z) * (0.4 if c.south(z) else 1.2)
 			c.dune(p, h)
@@ -389,9 +391,9 @@ static func _outside(c: Ctx) -> void:
 				continue
 			var p := Vector3(x, 0, z)
 			if c.region in ["pillars", "temple"]:
-				c.box("cloud", p + Vector3(0, -1.6, 0), Vector3(1, 0.4, 1), 1.0)
+				c.box("cloud", p + Vector3(0, -2.5, 0), Vector3(1, 0.4, 1), 1.0)
 				if c.rng.randf() < 0.12:
-					c.prop("cloud_wisp", p + Vector3(0, -1.0, 0) + c.jitter(), c.rng.randf_range(1.2, 2.0))
+					c.prop("cloud_wisp", p + Vector3(0, -2.2, 0) + c.jitter(), c.rng.randf_range(1.2, 2.0))
 				continue
 			var near_edge := x >= -2 and z >= -2 and x <= c.m.width + 1 and z <= c.m.height + 1
 			c.box(ground, p + Vector3(0, -0.25, 0), Vector3(1, 0.5, 1), c.rng.randf_range(0.7, 0.85))
@@ -614,7 +616,7 @@ static func _far_land(c: Ctx) -> void:
 	var ground: String = REGION_GROUND.get(c.region, "grass")
 	plane.material = Materials.surface("cloud" if c.region in ["pillars", "temple"] else ground, Color(0.62, 0.66, 0.62))
 	far.mesh = plane
-	far.position = Vector3(c.m.width / 2.0 - 0.5, -1.9 if c.region in ["pillars", "temple"] else -0.52, c.m.height / 2.0 - 0.5)
+	far.position = Vector3(c.m.width / 2.0 - 0.5, -2.75 if c.region in ["pillars", "temple"] else -0.52, c.m.height / 2.0 - 0.5)
 	far.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	c.root.add_child(far)
 
