@@ -25,7 +25,7 @@ const THEMES := {
 		"rocks": ["rock_sand", "rock_small"], "border": ["rock_sand", "shrub_desert", "tree_datepalm"], "water": ["reeds", "tree_datepalm"]},
 	"pillars": {"trees": ["tree_cloudpine", "tree_pine"], "bushes": ["fern", "bush_round"], "flowers": ["flowers_white", "flowers_purple"],
 		"rocks": ["rock_moss", "rock_big"], "border": ["cloud_wisp", "tree_cloudpine"], "water": ["reeds"]},
-	"temple": {"trees": ["tree_cloudpine"], "bushes": ["fern"], "flowers": ["flowers_white"], "rocks": ["rock_moss"],
+	"temple": {"trees": ["tree_cloudpine"], "bushes": ["fern"], "flowers": [], "rocks": [],
 		"border": ["cloud_wisp"], "water": []},
 }
 ## Wind sway per prop (world units at the top).

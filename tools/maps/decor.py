@@ -61,6 +61,13 @@ DECOR = {
         d("banner_green", 6.6, 6.6), d("banner_red", 23.4, 6.6), d("banner_yellow", 6.6, 13.6), d("banner_white", 23.4, 13.6),
         d("banner_black", 17.6, 15.6), d("brazier", 11.4, 3.5), d("brazier", 18.6, 3.5), d("brazier", 12.0, 10.6), d("brazier", 17.0, 10.6),
         d("incense_burner", 15.0, 11.0),
+        # The processional way: stone lions at the foot, red lanterns on both sides, plum trees in the corners.
+        d("stone_lion", 12.7, 21.4, 1.1), d("stone_lion", 17.3, 21.4, 1.1),
+        *[d("lantern_stone", x, z) for z in (14.5, 17.5, 20.5) for x in (12.4, 17.6)],
+        d("tree_plum", 5.0, 3.4, 1.2), d("tree_plum", 25.0, 3.4, 1.2), d("tree_plum", 5.0, 21.0, 1.1), d("tree_plum", 25.0, 21.0, 1.1),
+        d("prayer_flags", 10.5, 11.2, 1.0, 1.4), d("prayer_flags", 19.5, 11.2, 1.0, 1.4),
+        d("drum", 8.2, 9.0), d("wind_chime", 21.6, 4.4, 1.0, 0.95), d("tea_table", 22.4, 17.6),
+        d("incense_burner", 7.5, 3.6), d("incense_burner", 22.5, 3.6),
     ],
     "hof": [
         d("haystack", 10.5, 4.2), d("firewood", 8.6, 5.6), d("laundry_line", 11.6, 3.3), d("cart", 13.6, 5.5), d("chicken", 14.0, 6.6),

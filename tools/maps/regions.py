@@ -457,7 +457,7 @@ for x, y in [(6, 6), (23, 6), (6, 13), (23, 13), (14, 19)]:
     g.set(x, y, "P")
 g.set(14, 19, "c")
 g.dots([(9, 3), (20, 3), (9, 10), (20, 10)], "L")
-g.vl(14, 11, 23); g.vl(15, 11, 23)
+g.vl(14, 11, 23, "_"); g.vl(15, 11, 23, "_")
 save("phoenixtempel", g, {
     "name": "MAP_PHOENIXTEMPEL", "region": "temple", "time": "dusk", "music": "order", "battle_bg": "phoenix_temple", "border": "cloud",
     "spawns": {"from_town": [14, 22], "nest": [14, 8]},

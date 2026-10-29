@@ -319,14 +319,14 @@ static func _decorate(c: Ctx, x: int, z: int, ch: String) -> void:
 	match ch:
 		".", "c", "h", "s":
 			var flowers: Array = c.theme["flowers"]
-			if ch in ["." , "c"] and c.rng.randf() < P_FLOWERS:
+			if ch in ["." , "c"] and not flowers.is_empty() and c.rng.randf() < P_FLOWERS:
 				c.prop(c.pick(flowers), p + c.jitter(), c.rng.randf_range(0.8, 1.1))
 			elif c.rng.randf() < P_TUFT:
 				c.tuft("drygrass" if ch in ["h", "s"] else "tallgrass", p + c.jitter(), 0.55)
 			if free and _near(c, x, z, "^BTkyQSmHRO", false) and c.rng.randf() < P_BUSH_EDGE:
 				var list: Array = c.theme["bushes"] if ch != "s" else ["shrub_desert", "rock_sand"]
 				c.prop(c.pick(list), p + c.jitter() * 0.6, c.rng.randf_range(0.75, 1.0), 0.5)
-			elif free and c.rng.randf() < 0.025:
+			elif free and not c.theme["rocks"].is_empty() and c.rng.randf() < 0.025:
 				c.prop(c.pick(c.theme["rocks"]), p + c.jitter(), 0.8)
 			if free and town and _near(c, x, z, "HRO", false) and not _near(c, x, z, "D") and c.rng.randf() < P_VILLAGE:
 				c.prop(c.pick(VILLAGE_PROPS), p + Vector3(c.rng.randf_range(-0.25, 0.25), 0, -0.25), 1.0, 0.4)
@@ -645,6 +645,9 @@ static func _meshes(c: Ctx, silent: bool) -> void:
 	for kind in c.boxes:
 		var mesh := BoxMesh.new()
 		mesh.material = Materials.surface(kind)
+		if c.region == "temple" and kind in ["cloudstone", "plaza"]:
+			# The phoenix's courtyard: warm sandstone and a rose-red processional way.
+			mesh.material = Materials.surface(kind, Color("f0d2b4") if kind == "cloudstone" else Color("e0a888"))
 		if kind == "cloud":
 			var mat := Materials.surface("cloud").duplicate() as StandardMaterial3D
 			mat.emission_enabled = true
