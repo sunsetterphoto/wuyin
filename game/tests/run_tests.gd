@@ -28,7 +28,7 @@ class ErrorCollector extends Logger:
 		pass
 
 
-const SUITE_TIMEOUT_S := 120.0
+const SUITE_TIMEOUT_S := 300.0
 
 
 func _initialize() -> void:

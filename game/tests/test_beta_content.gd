@@ -152,12 +152,16 @@ func test_tame_keywords_cover_the_tones() -> void:
 func test_every_map_loads_in_the_world() -> void:
 	# Arrival scenes play by themselves (their dialog would otherwise wait for a tap).
 	DialogBox.autopilot = true
+	BattleView.autopilot = true
+	BefriendView.autopilot = true
+	PersuadeView.autopilot = true
 	GameState.current = GameState.new_game("Test")
 	GameState.current.set_flag("intro_done")
 	GameState.current.set_flag("river_arrived")
 	GameState.current.set_flag("teeufer_arrived")
 	GameState.current.set_flag("terraces_arrived")
 	GameState.current.set_flag("shrine_arrived")
+	GameState.current.set_flag("yao_hall_done")
 	GameState.current.add_lingshou("bambaer", 5)
 	var tree := Engine.get_main_loop() as SceneTree
 	var world: World = load("res://scenes/world/world.tscn").instantiate()
@@ -174,4 +178,7 @@ func test_every_map_loads_in_the_world() -> void:
 	world.queue_free()
 	await tree.process_frame
 	DialogBox.autopilot = false
+	BattleView.autopilot = false
+	BefriendView.autopilot = false
+	PersuadeView.autopilot = false
 	GameState.delete_save(World.AUTOSAVE_SLOT)

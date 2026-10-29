@@ -198,7 +198,8 @@ t("BATTLE_INTRO_NIAN", "Der Nian baut sich vor dir auf! Halte ihm Lärm und Rot 
 # --- interiors (tools/maps/interiors.py) -------------------------------------------------
 for k, de, en, zh in [("INN", "Gasthaus", "Inn", "客栈"), ("SHOP", "Laden", "Shop", "商店"), ("TEAHOUSE", "Teehaus", "Teahouse", "茶馆"),
                       ("RESTAURANT", "Restaurant", "Restaurant", "饭馆"), ("HOME", "Zuhause", "Home", "家"), ("WORKSHOP", "Werkstatt", "Workshop", "作坊"),
-                      ("HOUSE", "Wohnhaus", "House", "民宅"), ("FISHER", "Fischerhütte", "Fisher's hut", "渔家")]:
+                      ("HOUSE", "Wohnhaus", "House", "民宅"), ("FISHER", "Fischerhütte", "Fisher's hut", "渔家"),
+                      ("HALL", "Halle der Stille", "Hall of Silence", "寂静堂")]:
     t("MAP_ROOM_" + k, de, en, zh)
 E["enter_room"] = []
 E["furn_house"] = [say("narrator", "EV_FURN_HOUSE", "Niemand zu Hause. Auf dem Tisch dampft noch eine Schale Tee.", "Nobody home. A bowl of tea is still steaming on the table.", "没人在家。桌上的一碗茶还冒着热气。")]
