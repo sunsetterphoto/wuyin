@@ -15,7 +15,18 @@
 
 Auf Samuels Wunsch („komplett spielbare Beta zum Testen und Bewerten auf dem S24“) vorgezogen; Umfang, Messungen und Bedienung in [BETA.md](BETA.md). Prolog in Weidendorf, Bambusmeer bis zum Azurdrachen, Zähmen, Befreien (Herzklang), Ruf, Stimmen, Shop, Unterkunft, Speichern, Optionen, Bewertungsbogen. Grafik (Lingshou, Figuren, Kampfhintergründe, Titelbild) und Musik mit ComfyUI erzeugt, siehe `tools/comfyui/BETA_ASSETS.md`.
 
+## Version 0.9 „Vollversion zum Testen“ (2026-10-29)
+
+Auf Samuels Wunsch („ein fertiges Spiel testen“, „Welten cute und richtig detailliert“) in einer Nacht gebaut; Inhalt und Bedienung in [SPIEL.md](SPIEL.md). Ganze Geschichte bis zu drei Enden, fünf Regionen, 51 Karten (davon 30 Innenräume), 36 Lingshou, Hof mit Zucht, Spieluhr, Wetter, Überreden, Weltkarte. Grafik-Umbau auf HD-2D mit chinesischen Gebäuden, Requisiten im Wind, Höhenstufen, Partikeln und Geräuschkulisse. Generierte Kunst: `tools/comfyui/FULL_ASSETS.md` und `ENV_ASSETS.md`.
+
 ## Entscheidungen
+
+- 2026-10-29: Erfahrungskurve ab Stufe 10 linear (70 × Stufe), damit das lange Mittelspiel nicht zur Mühle wird; Autoplay: rund 120 Kämpfe bis zum Ende, Stufe ~35.
+- 2026-10-29: Regionen 2/3 und 4/5 in beliebiger Reihenfolge; Bosse skalieren mit dem Gefolge (`scale`: Stufe mindestens Durchschnitt + n).
+- 2026-10-29: Wandlung ohne eigene Sprites: Leuchtrand in Elementfarbe, +12 % Werte, ab Bindung 70 und Stufe 20 am Windspiel-Schrein.
+- 2026-10-29: Festgegenstände (Trommel, Feuerwerk, rotes Banner) werden im Kampf nicht verbraucht; dreimal Angst = der Nian flieht.
+- 2026-10-29: Ende Bittere Stille betrifft die Singenden Dünen; nach dem Abspann lässt sich Baihu erneut befreien.
+- 2026-10-29: Innenräume im Schnitt (hohe Rück- und Seitenwände, niedrige Vorderwand); Wirtsleute stehen drinnen.
 
 - 2026-10-27: Erst Emulator, echtes Testgerät später (Samuel). Latenz-Abnahme von M0.3 bleibt bis dahin offen.
 - 2026-10-27: Eigener Testrunner (`game/tests/run_tests.gd`) statt Add-on, keine Fremdabhängigkeit.
