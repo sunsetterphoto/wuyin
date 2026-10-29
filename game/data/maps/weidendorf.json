@@ -249,6 +249,26 @@
    ],
    "event": "dorf_oma",
    "unless": "nian_here"
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    3,
+    7
+   ],
+   "wander": 2,
+   "id": "critter_0",
+   "solid": false
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    22,
+    15
+   ],
+   "wander": 3,
+   "id": "critter_1",
+   "solid": false
   }
  ],
  "objects": [

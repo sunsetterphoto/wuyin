@@ -50,7 +50,8 @@ const SIZE := {"tree_willow": Vector2i(96, 112), "tree_plum": Vector2i(80, 96), 
 	"rock_red": Vector2i(40, 32), "rock_sand": Vector2i(32, 20), "rock_karst": Vector2i(32, 40), "lantern_red": Vector2i(16, 24),
 	"lantern_stone": Vector2i(24, 40), "barrel": Vector2i(24, 28), "crate": Vector2i(24, 24), "jar": Vector2i(20, 24),
 	"jars_group": Vector2i(40, 28), "basket_veg": Vector2i(28, 20), "cloud_wisp": Vector2i(64, 32), "haystack": Vector2i(40, 36),
-	"firewood": Vector2i(40, 24), "banner_red": Vector2i(24, 56), "stall": Vector2i(64, 64), "drum": Vector2i(32, 36)}
+	"firewood": Vector2i(40, 24), "banner_red": Vector2i(24, 56), "stall": Vector2i(64, 64), "drum": Vector2i(32, 36),
+	"chicken": Vector2i(20, 20), "duck": Vector2i(24, 20), "wind_chime": Vector2i(16, 32), "lantern_string": Vector2i(64, 24)}
 
 static var _cache := {}
 
@@ -252,6 +253,37 @@ static func _procedural(id: String) -> Texture2D:
 			img.fill_rect(Rect2i(55, 24, 3, 34), Color("553520"))
 			for i in 6:
 				_blob(img, Vector2(14 + i * 7, 33), 3, [Color("c8502c"), Color("e8902c"), Color("ffd070")])
+		"chicken":
+			_blob(img, Vector2(10, 12), 6.5, [Color("c8c0b0"), Color("f4efe6"), Color("ffffff")])
+			_blob(img, Vector2(14, 7), 3.5, [Color("c8c0b0"), Color("f4efe6"), Color("ffffff")])
+			img.fill_rect(Rect2i(13, 2, 3, 2), Color("d8302a"))
+			img.fill_rect(Rect2i(17, 7, 2, 1), Color("f0a020"))
+			img.set_pixel(15, 6, Color("1a1620"))
+			img.fill_rect(Rect2i(8, 18, 1, 2), Color("f0a020"))
+			img.fill_rect(Rect2i(11, 18, 1, 2), Color("f0a020"))
+		"duck":
+			_blob(img, Vector2(11, 13), 7.0, [Color("a08050"), Color("c8a070"), Color("e8d0a0")])
+			_blob(img, Vector2(17, 7), 3.8, [Color("2f6b47"), Color("3d8549"), Color("6aa84f")])
+			img.fill_rect(Rect2i(20, 7, 3, 2), Color("f0a020"))
+			img.set_pixel(18, 6, Color("1a1620"))
+		"wind_chime":
+			img.fill_rect(Rect2i(7, 0, 2, 4), Color("553520"))
+			img.fill_rect(Rect2i(2, 4, 12, 2), Color("8a5b36"))
+			for i in 4:
+				var x := 3 + i * 3
+				img.fill_rect(Rect2i(x, 6, 1, 4 + i), Color("c9c0a8"))
+				img.fill_rect(Rect2i(x - 1, 10 + i, 3, 8 - i), Color("e0b04a") if i % 2 else Color("8fc2a8"))
+			img.fill_rect(Rect2i(7, 6, 1, 18), Color("c9c0a8"))
+			img.fill_rect(Rect2i(5, 24, 5, 6), Color("c8302a"))
+		"lantern_string":
+			for x in s.x:
+				img.set_pixel(x, 3 + int(sin(x / float(s.x) * PI) * 5.0), Color("553520"))
+			for i in 3:
+				var cx := 12 + i * 20
+				var cy := 6 + int(sin(cx / float(s.x) * PI) * 5.0)
+				_blob(img, Vector2(cx, cy + 6), 5, [Color("a8382b"), Color("e8452f"), Color("ffb070")])
+				img.fill_rect(Rect2i(cx - 3, cy + 1, 6, 1), Color("e0b04a"))
+				img.fill_rect(Rect2i(cx - 3, cy + 11, 6, 1), Color("e0b04a"))
 		"drum":
 			img.fill_rect(Rect2i(4, 24, 3, 12), Color("553520"))
 			img.fill_rect(Rect2i(25, 24, 3, 12), Color("553520"))

@@ -239,6 +239,46 @@
     7
    ],
    "event": "zimmermann"
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    14,
+    7
+   ],
+   "wander": 3,
+   "id": "critter_0",
+   "solid": false
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    20,
+    7
+   ],
+   "wander": 3,
+   "id": "critter_1",
+   "solid": false
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    26,
+    8
+   ],
+   "wander": 2,
+   "id": "critter_2",
+   "solid": false
+  },
+  {
+   "prop": "duck",
+   "at": [
+    12,
+    13
+   ],
+   "wander": 2,
+   "id": "critter_3",
+   "solid": false
   }
  ],
  "objects": [

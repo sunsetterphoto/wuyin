@@ -95,6 +95,16 @@
    ],
    "event": "rotfels_kind",
    "wander": 2
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    15,
+    15
+   ],
+   "wander": 2,
+   "id": "critter_0",
+   "solid": false
   }
  ],
  "objects": [

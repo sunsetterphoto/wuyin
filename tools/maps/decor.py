@@ -68,3 +68,15 @@ DECOR = {
         d("well_bucket", 3.4, 7.0), d("wind_chime", 6.0, 6.8, 1.0, 0.95), d("tree_plum", 31.0, 3.6),
     ],
 }
+
+
+# Small animals that walk around (no events): {"prop", "at", "wander"}.
+CRITTERS = {
+    "hof": [{"prop": "chicken", "at": [14, 7], "wander": 3}, {"prop": "chicken", "at": [20, 7], "wander": 3},
+            {"prop": "chicken", "at": [26, 8], "wander": 2}, {"prop": "duck", "at": [12, 13], "wander": 2}],
+    "weidendorf": [{"prop": "chicken", "at": [3, 7], "wander": 2}, {"prop": "chicken", "at": [22, 15], "wander": 3}],
+    "teeufer": [{"prop": "chicken", "at": [8, 13], "wander": 2}],
+    "nebelhafen": [{"prop": "duck", "at": [20, 7], "wander": 3}, {"prop": "duck", "at": [9, 7], "wander": 3}],
+    "rotfels": [{"prop": "chicken", "at": [15, 15], "wander": 2}],
+    "kiefernhang": [{"prop": "chicken", "at": [8, 10], "wander": 2}],
+}

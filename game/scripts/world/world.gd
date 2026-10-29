@@ -291,7 +291,9 @@ func region() -> String:
 
 func _spawn_people() -> void:
 	for e in map.def.get("npcs", []):
-		var tex := Sprites.lingshou(e["lingshou"]) if e.has("lingshou") else Sprites.character(e.get("sprite", e["id"]))
+		if e.has("prop") and Props.texture(e["prop"]) == null:
+			continue  # critter art not there yet
+		var tex := Sprites.lingshou(e["lingshou"]) if e.has("lingshou") else (Props.texture(e["prop"]) if e.has("prop") else Sprites.character(e.get("sprite", e["id"])))
 		var a := Actor.make(tex, _v3(e["at"]), e["id"])
 		a.event = e.get("event", "")
 		a.entry = e

@@ -47,17 +47,42 @@ func _build(version: String) -> void:
 		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		add_child(art)
+		# Slow drift over the picture, like a camera breathing.
+		art.pivot_offset = Vector2(780, 360)
+		var tw := art.create_tween().set_loops()
+		tw.tween_property(art, "scale", Vector2(1.06, 1.06), 14.0).set_trans(Tween.TRANS_SINE)
+		tw.tween_property(art, "scale", Vector2(1.0, 1.0), 14.0).set_trans(Tween.TRANS_SINE)
+	add_child(_petals())
 	var col := VBoxContainer.new()
 	col.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	col.offset_top = 150
 	col.alignment = BoxContainer.ALIGNMENT_CENTER
 	col.add_theme_constant_override("separation", 10)
 	add_child(col)
+	# Red seal stamp with the Chinese title, like on a painted scroll.
+	var seal_row := HBoxContainer.new()
+	seal_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	col.add_child(seal_row)
+	var seal := PanelContainer.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color("b8352a")
+	sb.border_color = Color("f4e0c0")
+	sb.set_border_width_all(3)
+	sb.set_corner_radius_all(6)
+	sb.set_content_margin_all(6)
+	seal.add_theme_stylebox_override("panel", sb)
+	seal.rotation_degrees = -4.0
+	var glyphs := UiTheme.label("五音", 34, Color("fff4e0"))
+	seal.add_child(glyphs)
+	seal_row.add_child(seal)
 	var title := UiTheme.label("Wuyin", 84, UiTheme.GOLD)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_color_override("font_outline_color", Color("1a1620"))
 	title.add_theme_constant_override("outline_size", 16)
 	col.add_child(title)
+	var glow := title.create_tween().set_loops()
+	glow.tween_property(title, "theme_override_colors/font_color", Color("f8dc8a"), 2.2).set_trans(Tween.TRANS_SINE)
+	glow.tween_property(title, "theme_override_colors/font_color", UiTheme.GOLD, 2.2).set_trans(Tween.TRANS_SINE)
 	var sub := UiTheme.label(tr("TITLE_SUBTITLE"), 30)
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	sub.add_theme_color_override("font_outline_color", Color("1a1620"))
@@ -101,6 +126,28 @@ func _build(version: String) -> void:
 	_info.offset_top = -40
 	_info.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	add_child(_info)
+
+
+## Plum petals drifting across the title picture.
+func _petals() -> CPUParticles2D:
+	var p := CPUParticles2D.new()
+	p.amount = 34
+	p.lifetime = 12.0
+	p.preprocess = 12.0
+	p.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	p.emission_rect_extents = Vector2(900, 50)
+	p.position = Vector2(700, -40)
+	p.direction = Vector2(0.4, 1)
+	p.spread = 20.0
+	p.initial_velocity_min = 30.0
+	p.initial_velocity_max = 60.0
+	p.gravity = Vector2(8, 10)
+	p.angular_velocity_min = -80.0
+	p.angular_velocity_max = 80.0
+	p.scale_amount_min = 4.0
+	p.scale_amount_max = 7.0
+	p.color = Color("f8b8d0")
+	return p
 
 
 func _add(text: String, cb: Callable) -> Button:

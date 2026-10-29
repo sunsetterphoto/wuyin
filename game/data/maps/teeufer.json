@@ -110,6 +110,16 @@
     3
    ],
    "event": "pilger"
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    8,
+    13
+   ],
+   "wander": 2,
+   "id": "critter_0",
+   "solid": false
   }
  ],
  "objects": [

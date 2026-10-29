@@ -106,6 +106,26 @@
     15
    ],
    "event": "hafen_alter"
+  },
+  {
+   "prop": "duck",
+   "at": [
+    20,
+    7
+   ],
+   "wander": 3,
+   "id": "critter_0",
+   "solid": false
+  },
+  {
+   "prop": "duck",
+   "at": [
+    9,
+    7
+   ],
+   "wander": 3,
+   "id": "critter_1",
+   "solid": false
   }
  ],
  "objects": [

@@ -25,11 +25,14 @@ static func kinds_for(region: String, night: bool, silent: bool, weather: String
 			out.append("leaves")
 			if not night:
 				out.append("petals")
+				out.append("butterflies")
 		"river":
 			out.append("mist")
 			out.append("leaves")
 		"ridge":
 			out.append("embers" if night else "dust_warm")
+			if not night:
+				out.append("butterflies")
 		"dunes":
 			out.append("sand")
 		"pillars", "temple":
@@ -94,6 +97,25 @@ func _make(kind: String) -> GPUParticles3D:
 			color = {"leaves": Color("6aa84f"), "petals": Color("f4a0c0"), "petals_white": Color("f4f0f8")}[kind]
 			size = 0.09
 			mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+			_fade(pm, color)
+		"butterflies":
+			p.amount = 8
+			p.lifetime = 10.0
+			pm.gravity = Vector3(0, 0, 0)
+			pm.emission_box_extents = Vector3(AREA.x / 2.0, 0.4, AREA.z / 2.0)
+			pm.initial_velocity_min = 0.2
+			pm.initial_velocity_max = 0.5
+			pm.direction = Vector3(1, 0.2, 0)
+			pm.spread = 180.0
+			pm.turbulence_enabled = true
+			pm.turbulence_noise_strength = 2.5
+			pm.turbulence_noise_scale = 1.5
+			pm.hue_variation_min = -0.5
+			pm.hue_variation_max = 0.5
+			color = Color("f8e070")
+			size = 0.12
+			mat.albedo_texture = _butterfly()
+			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
 			_fade(pm, color)
 		"mist":
 			p.amount = 10
@@ -162,6 +184,23 @@ static func _fade(pm: ParticleProcessMaterial, c: Color) -> void:
 	var gt := GradientTexture1D.new()
 	gt.gradient = g
 	pm.color_ramp = gt
+
+
+static var _wing: Texture2D
+
+
+## Tiny two-winged butterfly (4x3 px look, stretched by the quad).
+static func _butterfly() -> Texture2D:
+	if _wing == null:
+		var img := Image.create(5, 4, false, Image.FORMAT_RGBA8)
+		img.fill(Color(0, 0, 0, 0))
+		for p in [Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(3, 0), Vector2i(4, 0), Vector2i(3, 1), Vector2i(4, 1),
+				Vector2i(1, 2), Vector2i(3, 2)]:
+			img.set_pixelv(p, Color.WHITE)
+		img.set_pixel(2, 1, Color(0.2, 0.15, 0.2))
+		img.set_pixel(2, 2, Color(0.2, 0.15, 0.2))
+		_wing = ImageTexture.create_from_image(img)
+	return _wing
 
 
 static var _dot: Texture2D

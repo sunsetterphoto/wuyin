@@ -107,6 +107,16 @@
     15
    ],
    "event": "kiefer_frau"
+  },
+  {
+   "prop": "chicken",
+   "at": [
+    8,
+    10
+   ],
+   "wander": 2,
+   "id": "critter_0",
+   "solid": false
   }
  ],
  "objects": [
