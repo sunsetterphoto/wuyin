@@ -13,11 +13,12 @@ replaced by their most common neighbour, so shapes stay clustered and readable.
 Per-item options in tools/comfyui/env_assets.json:
   tiles:  crop (share of the 1024 image that becomes one tile, default 0.5), colors (default 10),
           sat / bright / contrast (tone tweaks before reduction), proc (procedural, see env_tiles_proc.py)
-  props / portraits: colors (props: 10..22 by area / portraits 26), alpha (cut threshold 0..1, default 0.5),
+  props / portraits: colors (props: 10..22 by area / portraits 32), alpha (cut threshold 0..1, default 0.5),
           min_share (keep blobs >= share of the biggest, default 0.08), soft_alpha (keep 50 % alpha
           on edge pixels, for clouds), bg_thresh (background distance, default 60),
           sat / bright / contrast (tone tweaks before the palette), holes (also
-          remove enclosed background pockets, for nets)
+          remove enclosed background pockets, for nets), raw_box [x0,y0,x1,y1] (crop the raw
+          image first, e.g. above a generated frame)
 """
 import argparse
 import json
@@ -240,6 +241,9 @@ def keep_blobs(alpha, min_share):
 
 
 def make_sprite(img, w, h, item, default_colors=14, flush_bottom=False):
+    if item.get("raw_box"):
+        # cut the raw first, e.g. a portrait above a generated frame / text box
+        img = img.crop(tuple(item["raw_box"]))
     a, alpha, bg, dist = cut_background(img, item.get("bg_thresh", 60), item.get("holes", False))
     if item.get("soft_alpha"):
         # clouds: alpha from the distance to the background colour (soft, semi-transparent edges)
@@ -342,7 +346,7 @@ def main():
                     k = max(10, min(22, item["w"] * item["h"] // 450))   # more colours for big props
                     save(make_sprite(raw(sec, item), item["w"], item["h"], item, k), "props", item["id"] + ".png")
                 elif sec == "portraits":
-                    save(make_sprite(raw(sec, item), 96, 96, item, 26, flush_bottom=True), "portraits", item["id"] + ".png")
+                    save(make_sprite(raw(sec, item), 96, 96, item, 32, flush_bottom=True), "portraits", item["id"] + ".png")
             except FileNotFoundError as e:
                 print("missing raw", item["id"], e)
 

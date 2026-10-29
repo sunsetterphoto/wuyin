@@ -6,7 +6,7 @@
     "tile_front": "seamless tileable texture, flat orthographic front view, no perspective, even soft daylight, the pattern fills the entire frame edge to edge, 16-bit SNES RPG pixel art texture, chunky clustered pixel shapes, cozy cute warm soft saturated colors, no text",
     "prop": "pixel art game prop sprite, 16-bit SNES RPG style, cute cozy chinese fantasy, three-quarter top-down front view, clean dark outline, flat cel colors, soft shading, lovingly detailed, single isolated object, centered, plain pure white background, no shadow, no ground, no text",
     "prop_key": "pixel art game prop sprite, 16-bit SNES RPG style, cute cozy chinese fantasy, three-quarter top-down front view, clean dark outline, flat cel colors, soft shading, lovingly detailed, single isolated object, centered, plain solid flat medium blue background, no shadow, no ground, no text",
-    "portrait": "pixel art character portrait for a 16-bit SNES RPG dialog box, bust shot showing head and shoulders, three-quarter view, the character turns slightly to the right side of the image, cute expressive anime style face, big expressive eyes, clean dark outline, flat cel colors, soft shading, detailed, single character, centered, plain pure white background, no text, no frame, no border"
+    "portrait": "pixel art character bust portrait, 16-bit SNES RPG style, head and shoulders only, three-quarter view, the character turns slightly to the right side of the image, cute expressive anime style face, big expressive eyes, clean dark outline, flat cel colors, soft shading, detailed, single character, centered, plain pure white background, no text, no frame, no border, no box, no user interface"
   },
   "tiles": [
     {"id": "grass", "style": "tile", "seed": 1001, "prompt": "lush meadow grass seen from above, two shades of fresh green, small tufts of grass blades in clusters, tiny clover leaf clusters", "proc": true, "tried": [{"seed": 1001, "how": "Z-Image 1024 + min-cut wrap + palette", "why": "at 64 px the tufts and clovers dissolved into blotchy camouflage; replaced by the procedural painter (env_tiles_proc.py)"}]},
@@ -98,23 +98,23 @@
     {"id": "banner_yellow", "w": 24, "h": 64, "style": "prop", "seed": 2077, "prompt": "a tall narrow yellow temple banner hanging from a wooden pole, cloth with a plain border, no writing", "from": "banner_yellow", "recolor": "yellow"},
     {"id": "banner_white", "w": 24, "h": 64, "style": "prop_key", "seed": 2078, "prompt": "a tall narrow white temple banner hanging from a wooden pole, cloth with a plain border, no writing", "tried": [{"seed": 2078, "why": "own generation kept as raw only: the five banners came out with different shapes; all five now share the banner_yellow silhouette (seed 2077) and are recoloured (env_handmade.banner_recolor)"}], "from": "banner_yellow", "recolor": "white"},
     {"id": "banner_black", "w": 24, "h": 64, "style": "prop", "seed": 2079, "prompt": "a tall narrow black temple banner hanging from a wooden pole, cloth with a plain grey border, no writing", "tried": [{"seed": 2079, "why": "own generation kept as raw only: the five banners came out with different shapes; all five now share the banner_yellow silhouette (seed 2077) and are recoloured (env_handmade.banner_recolor)"}], "from": "banner_yellow", "recolor": "black"},
-    {"id": "prayer_flags", "w": 64, "h": 24, "style": "prop", "seed": 2080, "prompt": "a sagging string of small colorful square flags, blue, white, red, green and yellow, wide horizontal composition, no writing"}
+    {"id": "prayer_flags", "w": 64, "h": 24, "style": "prop", "seed": 2080, "prompt": "a sagging string of small colorful square flags, blue, white, red, green and yellow, wide horizontal composition, no writing", "hand": true, "tried": [{"seed": 2080, "why": "flags merged into a white-brown sausage at 64x24 (white flag against the white background); drawn procedurally instead (env_handmade.prayer_flags)"}]}
   ],
   "portraits": [
-    {"id": "hero", "seed": 3001, "prompt": "a young adult hero about 20 years old, short dark hair, friendly determined face, sleeveless teal tunic over a white shirt, brown belt strap"},
-    {"id": "jinli", "seed": 3002, "prompt": "a cute small tortoiseshell cat with black, red-orange and white patches, big green eyes, a tiny red collar with a small golden bell, curious happy face"},
-    {"id": "meister", "seed": 3003, "prompt": "a kind old wind chime maker, bald head, long white beard, bushy white eyebrows, warm smile, simple brown robe"},
-    {"id": "yao", "seed": 3004, "prompt": "a young man about 20 years old, spiky black hair, slightly sad brooding expression, red jacket over a black shirt"},
-    {"id": "wusheng", "seed": 3005, "prompt": "a tall slender grand chancellor, pale face, calm cold expression, narrow eyes, black hair in a top knot, grey layered court robes with a high stiff collar"},
-    {"id": "innkeeper", "seed": 3006, "prompt": "a friendly older woman innkeeper, grey hair in a bun, warm smile, plum purple chinese dress"},
-    {"id": "shopkeeper", "seed": 3007, "prompt": "a round chubby merchant man, small round blue cap, black mustache, cheerful big smile, blue clothes with a white apron"},
-    {"id": "teahouse", "seed": 3008, "prompt": "a calm tea master man, neat black hair, gentle half smile, dark green robe"},
-    {"id": "monk", "seed": 3009, "prompt": "a gentle shaved head shrine keeper monk, peaceful closed-eye smile, simple ochre yellow robe, wooden prayer beads"},
-    {"id": "villager_a", "seed": 3010, "prompt": "a young village woman, black hair in a bun, kind smile, light green chinese dress"},
-    {"id": "villager_b", "seed": 3011, "prompt": "a small happy village child with two black hair buns, big grin, orange simple chinese clothes"},
-    {"id": "order_a", "seed": 3012, "prompt": "a calm young man, member of a quiet secret order, pale grey robe with the hood up over his head, peaceful expressionless face, a white sash"},
-    {"id": "order_b", "seed": 3013, "prompt": "a calm young woman, member of a quiet secret order, black hair in a low bun, a white cloth veil covering her mouth and nose, pale grey robe"},
-    {"id": "fisher", "seed": 3014, "prompt": "an old fisherman with a wide conical straw hat, grey stubble beard, friendly crinkled eyes, faded blue shirt"},
-    {"id": "elder", "seed": 3015, "prompt": "an old village elder with a very long flowing white beard and long white eyebrows, small black cap, kind wise face, dark blue robe"}
+    {"id": "hero", "seed": 3001, "prompt": "a young adult hero about 20 years old, short dark hair, friendly determined face, sleeveless teal tunic over a white shirt, brown belt strap", "tried": [], "raw_box": [0, 0, 1024, 962], "note": "raw has a generated bracket frame (old prompt mentioned a dialog box): cut above its bottom bar, the loose bracket pieces are dropped as small blobs"},
+    {"id": "jinli", "seed": 3002, "prompt": "a cute small tortoiseshell cat with black, red-orange and white patches, big green eyes, a tiny red collar with a small golden bell, curious happy face", "tried": [], "raw_box": [0, 0, 1024, 752], "note": "raw has a generated dark text box under the cat (old prompt mentioned a dialog box): cut above it", "colors": 40, "sat": 1.15},
+    {"id": "meister", "seed": 3103, "prompt": "a kind old wind chime maker, bald head, long white beard, bushy white eyebrows, warm smile, simple brown robe"},
+    {"id": "yao", "seed": 3104, "prompt": "a young man about 20 years old, spiky black hair, slightly sad brooding expression, red jacket over a black shirt"},
+    {"id": "wusheng", "seed": 3105, "prompt": "a tall slender grand chancellor, pale face, calm cold expression, narrow eyes, black hair in a top knot, grey layered court robes with a high stiff collar"},
+    {"id": "innkeeper", "seed": 3106, "prompt": "a friendly older woman innkeeper, grey hair in a bun, warm smile, plum purple chinese dress"},
+    {"id": "shopkeeper", "seed": 3107, "prompt": "a round chubby merchant man, small round blue cap, black mustache, cheerful big smile, blue clothes with a white apron"},
+    {"id": "teahouse", "seed": 3108, "prompt": "a calm tea master man, neat black hair, gentle half smile, dark green robe"},
+    {"id": "monk", "seed": 3109, "prompt": "a gentle shaved head shrine keeper monk, peaceful closed-eye smile, simple ochre yellow robe, wooden prayer beads"},
+    {"id": "villager_a", "seed": 3110, "prompt": "a young village woman, black hair in a bun, kind smile, light green chinese dress"},
+    {"id": "villager_b", "seed": 3111, "prompt": "a small happy village child with two black hair buns, big grin, orange simple chinese clothes"},
+    {"id": "order_a", "seed": 3112, "prompt": "a calm young man, member of a quiet secret order, pale grey robe with the hood up over his head, peaceful expressionless face, a white sash"},
+    {"id": "order_b", "seed": 3113, "prompt": "a calm young woman, member of a quiet secret order, black hair in a low bun, a white cloth veil covering her mouth and nose, pale grey robe"},
+    {"id": "fisher", "seed": 3114, "prompt": "an old fisherman with a wide conical straw hat, grey stubble beard, friendly crinkled eyes, faded blue shirt"},
+    {"id": "elder", "seed": 3115, "prompt": "an old village elder with a very long flowing white beard and long white eyebrows, small black cap, kind wise face, dark blue robe"}
   ]
 }

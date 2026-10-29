@@ -10,6 +10,7 @@ const DEFAULTS := {
 	"text_speed": 2,  # 1 slow, 2 normal, 3 instant
 	"music_db": -6.0,
 	"sfx_db": 0.0,
+	"ambience": true,
 	"big_text": false,
 }
 

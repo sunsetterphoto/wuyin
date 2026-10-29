@@ -20,6 +20,7 @@ func _build() -> void:
 	_choice("OPT_CAMERA", ["hd2d", "classic"], ["CAM_MODE_HD2D", "CAM_MODE_CLASSIC"], "camera")
 	_choice("OPT_TEXT_SPEED", [1, 2, 3], ["OPT_SLOW", "OPT_NORMAL", "OPT_INSTANT"], "text_speed")
 	_choice("OPT_MUSIC", [-60.0, -14.0, -6.0, 0.0], ["OPT_OFF", "OPT_QUIET", "OPT_NORMAL", "OPT_LOUD"], "music_db")
+	_choice("OPT_AMBIENCE", [true, false], ["OPT_ON", "OPT_OFF"], "ambience")
 	_choice("OPT_BIG_TEXT", [false, true], ["OPT_OFF", "OPT_ON"], "big_text")
 
 

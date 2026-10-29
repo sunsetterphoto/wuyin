@@ -951,6 +951,7 @@ NPC_YAO_ALLY,Yao,Yao,尧
 NPC_YAO_FREE,Yao,Yao,尧
 NPC_YAO_ORDER,Yao,Yao,尧
 NPC_ZIMMERMANN,Carpenter Wu,Zimmermann Wu,吴木匠
+OPT_AMBIENCE,Nature sounds,Geräusche der Natur,自然音效
 OPT_BIG_TEXT,Large text,Große Schrift,大字体
 OPT_CAMERA,Graphics,Grafik,画面
 OPT_INSTANT,instant,sofort,立即

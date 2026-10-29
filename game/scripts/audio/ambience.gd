@@ -49,9 +49,10 @@ static func mix(region: String, town: bool, indoor: bool, night: bool, silent: b
 
 
 func apply(target: Dictionary) -> void:
+	var on: bool = Settings.get_value("ambience")
 	for l in _players:
 		var p: AudioStreamPlayer = _players[l]
-		create_tween().tween_property(p, "volume_db", float(target.get(l, -60.0)), 1.5)
+		create_tween().tween_property(p, "volume_db", float(target.get(l, -60.0)) if on else -60.0, 1.5)
 
 
 static func _stream(layer: String) -> AudioStreamWAV:

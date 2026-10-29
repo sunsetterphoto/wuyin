@@ -265,3 +265,4 @@ for k, de, en, zh in [("BAMBOO", "Bambusmeer", "Bamboo Sea", "竹海"), ("RIVER"
                       ("TEMPLE", "Phönixtempel", "Phoenix Temple", "凤凰庙")]:
     t("REGION_" + k, de, en, zh)
 t("REGION_SILENT", "– verstummt –", "- silenced -", "——失声——")
+t("OPT_AMBIENCE", "Geräusche der Natur", "Nature sounds", "自然音效")

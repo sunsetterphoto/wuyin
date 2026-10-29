@@ -62,11 +62,50 @@ def draw(rows, cmap=CMAP):
     return Image.fromarray(a, "RGBA")
 
 
-SPRITES = {"wind_chime": WIND_CHIME}
+def prayer_flags(w=64, h=24):
+    """A sagging cord with eight small square flags in the five colours (blue, white, red, green,
+    yellow), each with a light left edge, a dark right edge and a tiny emblem dot; cord loops on the
+    ends so it can hang between two posts."""
+    a = np.zeros((h, w, 4), np.uint8)
+
+    def put(x, y, hx):
+        if 0 <= x < w and 0 <= y < h:
+            a[y, x] = (int(hx[0:2], 16), int(hx[2:4], 16), int(hx[4:6], 16), 255)
+
+    sag = 8.0
+    cord = lambda x: 2 + sag * (1 - ((x - (w - 1) / 2) / ((w - 1) / 2)) ** 2)
+    for x in range(w):
+        put(x, int(round(cord(x))), "5e584c")
+    for x, y in ((0, 1), (0, 2), (1, 1), (w - 1, 1), (w - 1, 2), (w - 2, 1)):
+        put(x, y, "3e2a1c")
+    flags = [("6fa3d6", "b9dcf2", "3b6ea5"), ("f2ede0", "ffffff", "bfb6a4"), ("d8562f", "f08a3a", "a8382b"),
+             ("5f9c46", "9cc26a", "3f7232"), ("f6c453", "fff2a8", "f08a3a")]
+    n = 8
+    for i in range(n):
+        x0 = 3 + i * 7 + (1 if i >= n // 2 else 0)
+        fw, fh = 6, 8
+        fill, light, dark = flags[i % 5]
+        top = int(round(cord(x0 + fw / 2))) + 1
+        for yy in range(fh):
+            for xx in range(fw):
+                edge = xx in (0, fw - 1) or yy == fh - 1
+                col = "1a1620" if edge else (light if xx == 1 else dark if xx == fw - 2 else fill)
+                put(x0 + xx, top + yy, col)
+        put(x0 + 2, top + 3, dark)
+        put(x0 + 3, top + 3, dark)
+        put(x0 + 2, top + 4, dark)
+        put(x0 + 3, top + 4, dark)
+        put(x0 + 1, top - 1, "1a1620")
+        put(x0 + fw - 2, top - 1, "1a1620")
+    return Image.fromarray(a, "RGBA")
+
+
+SPRITES = {"wind_chime": WIND_CHIME, "prayer_flags": prayer_flags}
 
 
 def handmade(pid):
-    return draw(SPRITES[pid])
+    s = SPRITES[pid]
+    return s() if callable(s) else draw(s)
 
 
 # Five temple banners as one matching set: the silhouette of banner_yellow (side pole, swallowtail)
