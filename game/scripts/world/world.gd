@@ -427,10 +427,12 @@ func _update_follower() -> void:
 	if state.party.is_empty() or not _player:
 		return
 	_follower = Actor.make(Sprites.lingshou_rec(state.party[0]), _player.position + Vector3(-1, 0, 0.5), "follower")
+	_follower.faces_right = String(state.party[0]["species"]) in Sprites.FACES_RIGHT
 	_follower.scale = Vector3.ONE * 0.7
 	_map_root.add_child(_follower)
 	if state.party.size() > 1 and not map.def.get("indoor", false):
 		_follower2 = Actor.make(Sprites.lingshou_rec(state.party[1]), _player.position + Vector3(-1.6, 0, 0.8), "follower2")
+		_follower2.faces_right = String(state.party[1]["species"]) in Sprites.FACES_RIGHT
 		_follower2.scale = Vector3.ONE * 0.62
 		_map_root.add_child(_follower2)
 

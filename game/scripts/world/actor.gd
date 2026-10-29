@@ -13,6 +13,8 @@ var actor_id := ""
 var event := ""
 var entry: Dictionary = {}
 var moving := false
+## The art looks right instead of left (see Sprites.FACES_RIGHT).
+var faces_right := false
 var _walk_t := 0.0
 var _base_offset := Vector2.ZERO
 var _target := Vector3.ZERO
@@ -88,17 +90,17 @@ func set_directions(back: Texture2D, side: Texture2D) -> void:
 func _face(dir_x: float, dir_z: float) -> void:
 	if _front == null:
 		if dir_x != 0.0:
-			flip_h = dir_x > 0.0
+			flip_h = (dir_x > 0.0) != faces_right
 		return
 	var tex := _front
 	if absf(dir_x) > absf(dir_z) * 1.2 and _side:
 		tex = _side
-		flip_h = dir_x > 0.0
+		flip_h = (dir_x > 0.0) != faces_right
 	elif dir_z < -0.1 and _back:
 		tex = _back
 		flip_h = false
 	else:
-		flip_h = dir_x > 0.0 if absf(dir_x) > 0.1 else flip_h
+		flip_h = (dir_x > 0.0) != faces_right if absf(dir_x) > 0.1 else flip_h
 	if tex != texture:
 		texture = tex
 		var sil := get_node_or_null("Silhouette") as Sprite3D

@@ -239,7 +239,8 @@ func _add_sprite(u: BattleUnit, feet: Vector2, own: bool) -> void:
 	s.texture = tex
 	s.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	s.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	s.flip_h = own
+	# Sprites look left (towards your side); the phoenix art looks right.
+	s.flip_h = own != (u.species["id"] in Sprites.FACES_RIGHT)
 	var px := 4 if tex.get_width() <= 48 else 3
 	s.size = Vector2(tex.get_width(), tex.get_height()) * px
 	s.position = feet - Vector2(s.size.x / 2.0, s.size.y)
