@@ -20,6 +20,11 @@ func _main() -> void:
 	var main_q: String = s.flag("quest", "")
 	if main_q != "" and main_q != q:
 		body.add_child(UiTheme.para("◇ " + tr(main_q), 18, UiTheme.MUTED))
+	# Open tasks in the other regions (Act 2 and 3 can be played in any order).
+	var rq: Dictionary = s.flag("rquest", {})
+	for reg in rq:
+		if rq[reg] != q:
+			body.add_child(UiTheme.para("◇ %s: %s" % [tr("REGION_" + String(reg).to_upper()), tr(rq[reg])], 17, UiTheme.MUTED))
 	if s.flag("prologue_done"):
 		body.add_child(UiTheme.label("%s · %02d:%02d   ·   %s %d/5" % [tr("UI_DAY_N").format({"n": s.day}), s.minute / 60, s.minute % 60,
 			tr("UI_TONES"), s.tones_count()], 18, UiTheme.MUTED))

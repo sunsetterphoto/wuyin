@@ -260,3 +260,7 @@ for k, de, en, zh in [
 ]:
     t(k, de, en, zh)
 E["hof_garden"] = [{"farm": "garden"}]
+for k, de, en, zh in [("BAMBOO", "Bambusmeer", "Bamboo Sea", "竹海"), ("RIVER", "Nebelfluss", "Misty River", "雾河"), ("RIDGE", "Regenbogengrat", "Rainbow Ridge", "彩虹岭"),
+                      ("DUNES", "Singende Dünen", "Singing Dunes", "鸣沙丘"), ("PILLARS", "Wolkensäulen", "Cloud Pillars", "云柱"), ("HUB", "Kreuzweg", "Crossroads", "十字路口"),
+                      ("TEMPLE", "Phönixtempel", "Phoenix Temple", "凤凰庙")]:
+    t("REGION_" + k, de, en, zh)

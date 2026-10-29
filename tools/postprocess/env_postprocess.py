@@ -332,6 +332,12 @@ def main():
                 elif sec == "props" and item.get("hand"):
                     from env_handmade import handmade
                     save(handmade(item["id"]), "props", item["id"] + ".png")
+                elif sec == "props" and item.get("recolor"):
+                    from env_handmade import banner_recolor
+                    src = next(i for i in batch["props"] if i["id"] == item["from"])
+                    k = max(10, min(22, src["w"] * src["h"] // 450))
+                    base = make_sprite(raw(sec, src), src["w"], src["h"], src, src.get("colors", k))
+                    save(banner_recolor(base, item["recolor"]), "props", item["id"] + ".png")
                 elif sec == "props":
                     k = max(10, min(22, item["w"] * item["h"] // 450))   # more colours for big props
                     save(make_sprite(raw(sec, item), item["w"], item["h"], item, k), "props", item["id"] + ".png")

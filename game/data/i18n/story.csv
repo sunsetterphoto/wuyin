@@ -1056,6 +1056,13 @@ QUEST_TERRACES,Climb the rice terraces in the north to the Dragon Shrine.,Steig 
 QUEST_TWO_TONES,Two tones are calling: Yu in the north (Misty River) and Zhi in the south (Rainbow Ridge). The way leads over the Crossroads south of Teabank.,Zwei Töne rufen: Yu im Norden (Nebelfluss) und Zhi im Süden (Regenbogengrat). Der Weg führt über den Kreuzweg südlich von Teeufer.,两个音在呼唤：北方的“羽”（雾河）和南方的“徵”（彩虹岭）。路经茶岸镇以南的十字路口。
 QUEST_YU,Zhi is back. Now Yu is missing in the north: from the Crossroads north to the Misty River.,Zhi ist zurück. Jetzt fehlt Yu im Norden: vom Kreuzweg nach Norden zum Nebelfluss.,“徵”回来了。现在还差北方的“羽”：从十字路口往北去雾河。
 QUEST_ZHI,Yu is back. Now Zhi is missing in the south: from the Crossroads south to Rainbow Ridge.,Yu ist zurück. Jetzt fehlt Zhi im Süden: vom Kreuzweg nach Süden zum Regenbogengrat.,“羽”回来了。现在还差南方的“徵”：从十字路口往南去彩虹岭。
+REGION_BAMBOO,Bamboo Sea,Bambusmeer,竹海
+REGION_DUNES,Singing Dunes,Singende Dünen,鸣沙丘
+REGION_HUB,Crossroads,Kreuzweg,十字路口
+REGION_PILLARS,Cloud Pillars,Wolkensäulen,云柱
+REGION_RIDGE,Rainbow Ridge,Regenbogengrat,彩虹岭
+REGION_RIVER,Misty River,Nebelfluss,雾河
+REGION_TEMPLE,Phoenix Temple,Phönixtempel,凤凰庙
 RUMOR_0,"They say the Azure Dragon above the rice terraces stopped singing. Since then, no new bamboo grows.","Man sagt, der Azurdrache über den Reisterrassen habe aufgehört zu singen. Seitdem wächst kein neuer Bambus mehr.",听说稻田梯上的青龙不再歌唱了。从那以后，竹子再也没长新芽。
 RUMOR_1,Shadow moths flutter over the rice terraces. They eat every sound - even the croaking of the paddy frogs.,Auf den Reisterrassen flattern Schattenmotten. Sie fressen jeden Klang – sogar das Quaken der Reisfrösche.,稻田梯上飞着影蛾，它们吞食一切声音——连稻田蛙的呱呱声也不放过。
 RUMOR_2,"A snow leopard sits silenced at the pass to the shrine. Whoever wants to free it needs kind words, not only strength.","Ein Schneeleopard sitzt verstummt am Pass zum Schrein. Wer ihn befreien will, braucht freundliche Worte, nicht nur Kraft.",一只失声的雪豹守在通往龙祠的山口。想解放它，需要温柔的话语，而不只是力量。
