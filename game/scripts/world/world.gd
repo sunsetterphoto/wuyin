@@ -69,6 +69,8 @@ var _weather_fx: WeatherFx
 var _ambient: AmbientFx
 var _cloud_shadows: Decal
 var _bubble: Sprite3D
+var _emote_t := 4.0
+var _dust: CPUParticles3D
 var _hud_time: Label
 static var _graph := {}  # map id -> [{"to", "rect", "warp"}] (Jinli's route finding)
 
@@ -250,6 +252,8 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 	_map_root.add_child(_cloud_shadows)
 	_bubble = _make_bubble()
 	_map_root.add_child(_bubble)
+	_dust = _make_dust()
+	_map_root.add_child(_dust)
 	_spawn_people()
 	_spawn_wild()
 	_spawn_farm()
@@ -530,6 +534,13 @@ func _process(delta: float) -> void:
 		_cloud_shadows.visible = uses_clock() and not state.is_night() and w in ["sun", "cloudy", ""] and not map.def.get("indoor", false) \
 			and region() not in ["pillars", "temple"]
 	_update_bubble()
+	_emotes(delta)
+	if _dust:
+		var tile := _tile_of(_player.position)
+		var ground: String = map.info(tile.x, tile.y)[0]
+		_dust.position = _player.position + Vector3(0, 0.05, 0.1)
+		_dust.emitting = not busy and (Input.get_vector("move_left", "move_right", "move_up", "move_down") != Vector2.ZERO \
+			or touch.direction != Vector2.ZERO) and ground in ["path", "sand", "redrock", "plaza", "cloudstone"]
 
 
 func _layout_screen() -> void:
@@ -949,6 +960,105 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_interact()
 	elif event.is_action_pressed("menu"):
 		open_menu()
+
+
+static var _emote_tex := {}
+
+
+## Pixel emotes: a gold note, a pink heart, grey dots (silence).
+static func _emote_texture(kind: String) -> Texture2D:
+	if _emote_tex.has(kind):
+		return _emote_tex[kind]
+	var img := Image.create(12, 12, false, Image.FORMAT_RGBA8)
+	img.fill(Color(0, 0, 0, 0))
+	var o := Color("2a2230")
+	match kind:
+		"note":
+			var c := Color("f0c050")
+			img.fill_rect(Rect2i(6, 1, 2, 8), o)
+			img.fill_rect(Rect2i(7, 1, 3, 2), o)
+			img.fill_rect(Rect2i(3, 7, 5, 4), o)
+			img.fill_rect(Rect2i(4, 8, 3, 2), c)
+			img.fill_rect(Rect2i(7, 2, 2, 1), c)
+		"heart":
+			var c := Color("e8607a")
+			for y in 12:
+				for x in 12:
+					var px := (x - 5.5) / 5.0
+					var py := (y - 4.5) / 5.0
+					var v := pow(px * px + py * py - 0.6, 3.0) - px * px * py * py * py
+					if v <= 0.0:
+						img.set_pixel(x, 11 - y, c)
+			img.set_pixel(3, 4, Color("ffd0d8"))
+		"dots":
+			for x in [2, 5, 8]:
+				img.fill_rect(Rect2i(x, 6, 2, 2), Color("9a9fa8"))
+	_emote_tex[kind] = ImageTexture.create_from_image(img)
+	return _emote_tex[kind]
+
+
+## Little puffs of dust under the feet on paths and sand.
+func _make_dust() -> CPUParticles3D:
+	var p := CPUParticles3D.new()
+	p.amount = 10
+	p.lifetime = 0.6
+	p.emitting = false
+	p.direction = Vector3(0, 1, 0)
+	p.spread = 70.0
+	p.initial_velocity_min = 0.3
+	p.initial_velocity_max = 0.7
+	p.gravity = Vector3(0, -0.6, 0)
+	p.scale_amount_min = 0.6
+	p.scale_amount_max = 1.2
+	var q := QuadMesh.new()
+	q.size = Vector2(0.09, 0.09)
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.vertex_color_use_as_albedo = true
+	q.material = mat
+	p.mesh = q
+	var g := Gradient.new()
+	g.set_color(0, Color(0.85, 0.78, 0.62, 0.7))
+	g.set_color(1, Color(0.85, 0.78, 0.62, 0.0))
+	p.color_ramp = g
+	return p
+
+
+## Now and then someone nearby shows how they feel: a note where the song is
+## back, three dots where it is still silent, a heart from Lingshou on the farm.
+func _emotes(delta: float) -> void:
+	_emote_t -= delta
+	if _emote_t > 0.0 or busy:
+		return
+	_emote_t = _rng.randf_range(3.0, 7.0)
+	var near: Array[Actor] = []
+	for id in _actors:
+		var a: Actor = _actors[id]
+		if a == _jinli or not a.visible or a.entry.get("kind", "") != "" or a.entry.has("enter"):
+			continue
+		if a.position.distance_to(_player.position) < 7.0:
+			near.append(a)
+	if near.is_empty():
+		return
+	var who: Actor = near[_rng.randi_range(0, near.size() - 1)]
+	var kind := "dots" if _silent else ("heart" if String(who.actor_id).begins_with("farm_") else "note")
+	var l := Sprite3D.new()
+	l.texture = _emote_texture(kind)
+	l.pixel_size = 1.0 / CameraRig.PIXELS_PER_UNIT
+	l.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	l.no_depth_test = true
+	l.shaded = false
+	l.render_priority = 2
+	var h := who.texture.get_height() / CameraRig.PIXELS_PER_UNIT * who.scale.y if who.texture else 1.0
+	l.position = who.position + Vector3(0.2, h + 0.2, 0)
+	_map_root.add_child(l)
+	var tw := l.create_tween()
+	tw.tween_property(l, "position:y", l.position.y + 0.45, 1.6).set_trans(Tween.TRANS_SINE)
+	tw.parallel().tween_property(l, "modulate:a", 0.0, 1.6).set_delay(0.6)
+	tw.tween_callback(l.queue_free)
 
 
 func _make_cloud_shadows() -> Decal:
