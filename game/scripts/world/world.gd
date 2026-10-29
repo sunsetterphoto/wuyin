@@ -517,7 +517,15 @@ func _update_time_label() -> void:
 
 ## The stolen song drains the colour from the world until a tone returns.
 func set_silent(on: bool) -> void:
+	var was := _silent
 	_silent = on
+	if was and not on and is_inside_tree() and not DialogBox.autopilot:
+		# A tone returns: colour flows back into the world, with a soft glow.
+		var tw := create_tween().set_parallel(true)
+		tw.tween_property(_env, "adjustment_saturation", 1.0, 3.0).set_trans(Tween.TRANS_SINE)
+		tw.tween_property(_env, "adjustment_brightness", 1.18, 1.2).set_trans(Tween.TRANS_SINE)
+		tw.chain().tween_property(_env, "adjustment_brightness", 1.0, 1.8).set_trans(Tween.TRANS_SINE)
+		return
 	_env.adjustment_saturation = 0.45 if on else 1.0
 	_env.adjustment_brightness = 0.92 if on else 1.0
 
