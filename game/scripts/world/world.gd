@@ -71,6 +71,7 @@ var _ambient: AmbientFx
 var _cloud_shadows: Decal
 var _sounds: Ambience
 var _color_tween: Tween
+var _last_region := ""
 var _sound_key := ""
 var _bubble: Sprite3D
 var _emote_t := 4.0
@@ -273,6 +274,10 @@ func enter_map(map_id: String, spawn := "", pos := Vector2(-1, -1), fade_out := 
 	await fade(false)
 	busy = false
 	state.save_game(AUTOSAVE_SLOT)
+	if not map.def.get("indoor", false) and region() != _last_region:
+		if _last_region != "" and not DialogBox.autopilot:
+			_region_banner()
+		_last_region = region()
 	if state.flags.has("_dev_event"):
 		var ev: String = state.flags["_dev_event"]
 		state.flags.erase("_dev_event")
@@ -1121,6 +1126,46 @@ func _emotes(delta: float) -> void:
 		return
 	var who: Actor = near[_rng.randi_range(0, near.size() - 1)]
 	emote(who, "dots" if _silent else ("heart" if String(who.actor_id).begins_with("farm_") else "note"))
+
+
+## Title card when entering another region: its name and the character of its tone.
+func _region_banner() -> void:
+	var glyph: String = {"bamboo": "角", "river": "羽", "ridge": "徵", "dunes": "商", "pillars": "宫", "temple": "凤", "hub": "道"}.get(region(), "")
+	var box := VBoxContainer.new()
+	box.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
+	box.offset_top = 90
+	box.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	box.alignment = BoxContainer.ALIGNMENT_CENTER
+	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var seal := UiTheme.label(glyph, 40, Color("fff4e0"))
+	seal.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color("b8352a") if not _silent else Color("6e6a74")
+	sb.set_corner_radius_all(8)
+	sb.set_content_margin_all(6)
+	var seal_box := PanelContainer.new()
+	seal_box.add_theme_stylebox_override("panel", sb)
+	seal_box.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	seal_box.add_child(seal)
+	box.add_child(seal_box)
+	var name := UiTheme.label(tr("REGION_" + region().to_upper()), 44, UiTheme.GOLD)
+	name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	name.add_theme_color_override("font_outline_color", Color("1a1620"))
+	name.add_theme_constant_override("outline_size", 12)
+	box.add_child(name)
+	if _silent:
+		var sub := UiTheme.label(tr("REGION_SILENT"), 22, Color("c8c8d0"))
+		sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		sub.add_theme_color_override("font_outline_color", Color("1a1620"))
+		sub.add_theme_constant_override("outline_size", 8)
+		box.add_child(sub)
+	box.modulate.a = 0.0
+	_ui_layer.add_child(box)
+	var tw := box.create_tween()
+	tw.tween_property(box, "modulate:a", 1.0, 0.6)
+	tw.tween_interval(2.2)
+	tw.tween_property(box, "modulate:a", 0.0, 0.9)
+	tw.tween_callback(box.queue_free)
 
 
 ## The finale: the phoenix rises out of the nest in a rain of sparks.

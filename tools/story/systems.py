@@ -264,3 +264,4 @@ for k, de, en, zh in [("BAMBOO", "Bambusmeer", "Bamboo Sea", "竹海"), ("RIVER"
                       ("DUNES", "Singende Dünen", "Singing Dunes", "鸣沙丘"), ("PILLARS", "Wolkensäulen", "Cloud Pillars", "云柱"), ("HUB", "Kreuzweg", "Crossroads", "十字路口"),
                       ("TEMPLE", "Phönixtempel", "Phoenix Temple", "凤凰庙")]:
     t("REGION_" + k, de, en, zh)
+t("REGION_SILENT", "– verstummt –", "- silenced -", "——失声——")

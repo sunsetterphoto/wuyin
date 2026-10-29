@@ -1062,6 +1062,7 @@ REGION_HUB,Crossroads,Kreuzweg,十字路口
 REGION_PILLARS,Cloud Pillars,Wolkensäulen,云柱
 REGION_RIDGE,Rainbow Ridge,Regenbogengrat,彩虹岭
 REGION_RIVER,Misty River,Nebelfluss,雾河
+REGION_SILENT,- silenced -,– verstummt –,——失声——
 REGION_TEMPLE,Phoenix Temple,Phönixtempel,凤凰庙
 RUMOR_0,"They say the Azure Dragon above the rice terraces stopped singing. Since then, no new bamboo grows.","Man sagt, der Azurdrache über den Reisterrassen habe aufgehört zu singen. Seitdem wächst kein neuer Bambus mehr.",听说稻田梯上的青龙不再歌唱了。从那以后，竹子再也没长新芽。
 RUMOR_1,Shadow moths flutter over the rice terraces. They eat every sound - even the croaking of the paddy frogs.,Auf den Reisterrassen flattern Schattenmotten. Sie fressen jeden Klang – sogar das Quaken der Reisfrösche.,稻田梯上飞着影蛾，它们吞食一切声音——连稻田蛙的呱呱声也不放过。
