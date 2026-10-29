@@ -186,6 +186,40 @@ static func child_species(a: Dictionary, b: Dictionary) -> String:
 	return h if h != "" and GameData.lingshou_ids().has(h) else a["species"]
 
 
+# --- feed garden (GDD "Hofarbeit") ------------------------------------------------
+
+const GARDEN_STAGE := 2
+const GARDEN_NIGHTS := 2
+const GARDEN_CROPS: Array[String] = ["bambussprossen", "suessreis", "silbertau", "flussmuscheln", "chilischoten", "wuestendatteln", "wolkenbeeren"]
+
+
+static func garden_open(state: GameState) -> bool:
+	return stage(state) >= GARDEN_STAGE
+
+
+## Plants a crop; it can be harvested after GARDEN_NIGHTS nights.
+static func plant(state: GameState, crop: String) -> bool:
+	if not garden_open(state) or crop not in GARDEN_CROPS or state.home.has("garden"):
+		return false
+	state.home["garden"] = {"crop": crop, "nights": 0}
+	return true
+
+
+static func garden_ready(state: GameState) -> bool:
+	return state.home.has("garden") and int(state.home["garden"]["nights"]) >= GARDEN_NIGHTS
+
+
+## Harvest: 3 of the crop, +1 for each water and wood Lingshou on the farm helping (watering, growing), at most 6.
+static func harvest(state: GameState) -> int:
+	if not garden_ready(state):
+		return 0
+	var helpers := state.farm.filter(func(r): return GameData.lingshou(r["species"])["element"] in ["water", "wood"]).size()
+	var n := mini(6, 3 + helpers)
+	state.give_item(state.home["garden"]["crop"], n)
+	state.home.erase("garden")
+	return n
+
+
 # --- the night -------------------------------------------------------------------
 
 ## Advances the farm by one night. Returns diary entries (dictionaries with "type").
@@ -193,6 +227,10 @@ static func daily(state: GameState) -> Array:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = hash([state.seed, state.day, "farm"])
 	var diary := []
+	if state.home.has("garden"):
+		state.home["garden"]["nights"] = int(state.home["garden"]["nights"]) + 1
+		if int(state.home["garden"]["nights"]) == GARDEN_NIGHTS:
+			diary.append({"type": "garden"})
 	# Young ones grow, eggs hatch.
 	for rec in state.farm:
 		if rec.get("stage", "adult") == "young":

@@ -248,3 +248,15 @@ t("MAP_YOU_ARE", "Du bist hier", "You are here", "你在这里")
 t("INN_AWAKEN", "Wandlung ✦", "Change ✦", "蜕变 ✦")
 t("INN_AWAKENED", "Das Windspiel klingt hell – {name} zeigt seine wahre Gestalt! (stärker, Kennzeichen ✦)", "The wind chime rings brightly - {name} shows its true form! (stronger, marked ✦)", "风铃清脆作响——{name}展现出了真正的样子！（更强，标记✦）")
 t("INN_AWAKEN_NOTE", "Lingshou mit Bindung ab 70 und Stufe 20 können sich hier wandeln.", "Lingshou with bond 70 and level 20 or more can change here.", "羁绊达到70、等级达到20的灵兽可以在这里蜕变。")
+for k, de, en, zh in [
+    ("GARDEN_TITLE", "Futtergarten", "Feed garden", "饲料园"),
+    ("GARDEN_CLOSED", "Hier könnte ein Futtergarten entstehen. Der Zimmermann legt ihn an, sobald dein Hof zum „Hof“ ausgebaut ist.", "A feed garden could grow here. The carpenter lays it out once your farm is upgraded to a farmstead.", "这里可以开一块饲料园。等农庄扩建成农院，木匠就会帮你开垦。"),
+    ("GARDEN_PLANT_NOTE", "Was möchtest du pflanzen? Nach zwei Nächten kannst du ernten. Wasser- und Holz-Lingshou auf dem Hof helfen mit.", "What would you like to plant? You can harvest after two nights. Water and wood Lingshou on the farm help out.", "你想种什么？两晚之后就能收获。农庄里的水灵和木灵会帮忙。"),
+    ("GARDEN_PLANTED", "Gepflanzt! Jetzt heißt es warten – und schlafen.", "Planted! Now it's waiting - and sleeping.", "种好了！现在就等着——睡觉吧。"),
+    ("GARDEN_GROWING", "{item} wächst. Noch {n} Nächte.", "{item} is growing. {n} more nights.", "{item}正在生长，还要{n}晚。"),
+    ("GARDEN_READY", "{item} ist reif!", "{item} is ripe!", "{item}成熟了！"),
+    ("GARDEN_HARVEST", "Ernten", "Harvest", "收获"),
+    ("DIARY_GARDEN", "Hoftagebuch: Im Futtergarten ist alles reif.", "Farm diary: everything in the feed garden is ripe.", "农庄日记：饲料园里的作物都熟了。"),
+]:
+    t(k, de, en, zh)
+E["hof_garden"] = [{"farm": "garden"}]

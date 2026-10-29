@@ -205,6 +205,8 @@ func _step(s: Dictionary) -> void:
 				await world.show_ui(PenMenu.make(_pen_index()))
 			"carpenter":
 				await world.show_ui(CarpenterMenu.new())
+			"garden":
+				await world.show_ui(GardenMenu.new())
 			"hut":
 				await _inn(true)
 	elif s.has("emote"):

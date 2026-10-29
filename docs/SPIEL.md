@@ -10,7 +10,7 @@ Stand 29.10.2026. Das ganze Spiel ist von Anfang bis Ende spielbar: Prolog, vier
 | Enden | Versöhnung (Wusheng überzeugt und der Kranich singt), Sieg (Wusheng besiegt), Bittere Stille (mehr Verstummte besiegt als befreit; die Dünen bleiben still und lassen sich nach dem Abspann befreien) |
 | Orte | 21 Außenkarten, 30 begehbare Innenräume (Gasthäuser, Läden, Teehäuser, Restaurants, Zuhause, Werkstatt, Wohnhäuser, Halle der Stille), Hof mit bis zu 16 Gehegen |
 | Lingshou | 36 Arten: 5 Himmelswächter, Phönix, Nian, Schattenmotte, Silberkranich, 5 Mischformen nur aus der Zucht |
-| Systeme | Zähmen, Befreien, Ruf (Freitext), Überreden (Logik, Mitgefühl, Beweis, Bestechung, Drohung), Spieluhr mit Tag und Nacht, Wetter pro Region, Schnellreise mit dem Windspiel, Restaurant-Gerichte, Hof mit Ausbau, Gehegen, Zufriedenheit, Zucht, Farbvarianten, Hoftagebuch, Lexikon, Weltkarte, neue Attacken per Stufe, Fahrrad, Boot |
+| Systeme | Zähmen, Befreien, Ruf (Freitext), Überreden (Logik, Mitgefühl, Beweis, Bestechung, Drohung), Spieluhr mit Tag und Nacht, Wetter pro Region, Schnellreise mit dem Windspiel, Restaurant-Gerichte, Hof mit Ausbau, Gehegen, Zufriedenheit, Zucht, Futtergarten, Wandlung, Farbvarianten, Hoftagebuch, Lexikon, Weltkarte, neue Attacken per Stufe, Fahrrad, Boot |
 | Grafik | HD-2D: chinesische Häuser mit geschwungenen Dächern, Terrassen und Treppen, Pflanzen im Wind, Wasser mit Uferschaum, Wolkenschatten, Glühwürmchen, Blätter, Blüten, Nebel, Glut; klassischer 2D-Modus in den Optionen |
 | Klang | Musik pro Region (gedämpft, solange die Region verstummt ist), Geräuschkulisse aus Wind, Vögeln, Wasser und Grillen (in stillen Regionen: nichts), Brabbel-Stimmen |
 | Sprachmodell | Gemma 4 E2B auf dem Handy: Rufe, Stimmen der Lingshou, Jinlis Hinweise, Gerüchte, Zureden, Überreden, Hoftagebuch. Alles hat Vorlagen, das Spiel läuft auch ohne Modell |
@@ -43,6 +43,6 @@ Etwa 6 bis 10 Stunden Spielzeit, je nachdem, wie viel du zähmst, züchtest und 
 ## Bekannte Grenzen
 
 - Figuren nur von vorn, keine echten Laufbilder (Wackel-Gang als Ersatz).
-- Wandlung ist als Leuchten in der Elementfarbe plus 12 % Werte umgesetzt, nicht mit eigenen Bildern. Futtergarten, Werkstatt und Möbel des Hofs fehlen noch.
+- Wandlung ist als Leuchten in der Elementfarbe plus 12 % Werte umgesetzt, nicht mit eigenen Bildern. Werkstatt und Möbel des Hofs fehlen noch.
 - Chinesisch ist maschinennah formuliert und braucht eine Muttersprachler-Prüfung.
 - Auf dem Mac fehlen chinesische Schriftzeichen in der Systemschrift (Handy: in Ordnung); für Steam braucht es eine Pixelschrift mit CJK.

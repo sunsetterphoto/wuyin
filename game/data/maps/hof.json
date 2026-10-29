@@ -310,6 +310,16 @@
    ],
    "event": "hof_sign",
    "solid": false
+  },
+  {
+   "id": "garden_sign",
+   "kind": "sign",
+   "at": [
+    20,
+    6
+   ],
+   "event": "hof_garden",
+   "solid": false
   }
  ],
  "id": "hof",

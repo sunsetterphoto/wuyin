@@ -18,6 +18,8 @@ static func lines(diary: Array, state: GameState) -> Array[String]:
 				out.append(TranslationServer.translate("DIARY_EGG").format({"a": _name(e["a"]), "b": _name(e["b"])}))
 			"hatched":
 				out.append(TranslationServer.translate("DIARY_HATCHED_RARE" if int(e.get("variant", 0)) > 0 else "DIARY_HATCHED").format({"a": _name(e["a"])}))
+			"garden":
+				out.append(TranslationServer.translate("DIARY_GARDEN"))
 			"grown":
 				out.append(TranslationServer.translate("DIARY_GROWN").format({"a": _name(e["a"])}))
 			"chat":

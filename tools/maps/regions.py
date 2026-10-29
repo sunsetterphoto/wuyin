@@ -508,5 +508,6 @@ save("hof", g, {
         {"id": "hut_door", "kind": "invisible", "at": [6, 6], "event": "hof_hut"},
         {"id": "farm_chime", "kind": "chime", "at": [9, 6], "event": "hof_hut"},
         {"id": "farm_sign", "kind": "sign", "at": [31, 9], "event": "hof_sign", "solid": False},
+        {"id": "garden_sign", "kind": "sign", "at": [20, 6], "event": "hof_garden", "solid": False},
     ],
 })

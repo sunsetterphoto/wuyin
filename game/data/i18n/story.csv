@@ -81,6 +81,7 @@ DIARY_CHAT_1,{a} and {b} argued over the last bit of food - and then shared it.,
 DIARY_CHAT_2,{b} laughed at {a} for snoring.,{b} hat {a} beim Schnarchen ausgelacht.,{b}笑话{a}打呼噜。
 DIARY_CHAT_3,{a} and {b} counted the stars together.,{a} und {b} haben zusammen die Sterne gezählt.,{a}和{b}一起数星星。
 DIARY_EGG,Farm diary: {a} and {b} have laid an egg!,Hoftagebuch: {a} und {b} haben ein Ei gelegt!,农庄日记：{a}和{b}下了一个蛋！
+DIARY_GARDEN,Farm diary: everything in the feed garden is ripe.,Hoftagebuch: Im Futtergarten ist alles reif.,农庄日记：饲料园里的作物都熟了。
 DIARY_GROWN,Farm diary: {a} has grown up.,Hoftagebuch: {a} ist erwachsen geworden.,农庄日记：{a}长大了。
 DIARY_HATCHED,Farm diary: A little {a} has hatched!,Hoftagebuch: Ein kleines {a} ist geschlüpft!,农庄日记：一只小{a}孵出来了！
 DIARY_HATCHED_RARE,Farm diary: A little {a} has hatched - in very rare colours!,Hoftagebuch: Ein kleines {a} ist geschlüpft – in ganz seltenen Farben!,农庄日记：一只小{a}孵出来了——颜色非常罕见！
@@ -518,6 +519,13 @@ FB_TITLE,Rate the game,Spiel bewerten,评价游戏
 FOOD_ACTIVE,You already ate {dish} today. A new dish replaces its effect.,Du hast heute schon {dish} gegessen. Ein neues Gericht ersetzt die Wirkung.,你今天已经吃过{dish}了。点新菜会替换效果。
 FOOD_EATEN,Mmm! {dish} works until you sleep.,Mmh! {dish} wirkt bis zum Schlafen.,嗯！{dish}的效果持续到睡觉。
 FOOD_TITLE,Restaurant,Restaurant,饭馆
+GARDEN_CLOSED,A feed garden could grow here. The carpenter lays it out once your farm is upgraded to a farmstead.,"Hier könnte ein Futtergarten entstehen. Der Zimmermann legt ihn an, sobald dein Hof zum „Hof“ ausgebaut ist.",这里可以开一块饲料园。等农庄扩建成农院，木匠就会帮你开垦。
+GARDEN_GROWING,{item} is growing. {n} more nights.,{item} wächst. Noch {n} Nächte.,{item}正在生长，还要{n}晚。
+GARDEN_HARVEST,Harvest,Ernten,收获
+GARDEN_PLANTED,Planted! Now it's waiting - and sleeping.,Gepflanzt! Jetzt heißt es warten – und schlafen.,种好了！现在就等着——睡觉吧。
+GARDEN_PLANT_NOTE,What would you like to plant? You can harvest after two nights. Water and wood Lingshou on the farm help out.,Was möchtest du pflanzen? Nach zwei Nächten kannst du ernten. Wasser- und Holz-Lingshou auf dem Hof helfen mit.,你想种什么？两晚之后就能收获。农庄里的水灵和木灵会帮忙。
+GARDEN_READY,{item} is ripe!,{item} ist reif!,{item}成熟了！
+GARDEN_TITLE,Feed garden,Futtergarten,饲料园
 HINT_BACK_0,Mew! (Jinli pulls you west.),Miau! (Jinli zieht dich nach Westen.),喵！（锦鲤拉着你往西走。）
 HINT_BACK_1,"Mew, mew! (Back to Willowdale, the road on the left by the river.)","Miau, miau! (Zurück nach Weidendorf, der Weg links am Fluss.)",喵喵！（回柳村，沿着河岸左边的路。）
 HINT_BACK_2,Meeew! (The road on the far left leads back to the village. Hurry!),Miaaau! (Der Weg ganz links führt zurück ins Dorf. Schnell!),喵——！（最左边的路通回村子，快！）

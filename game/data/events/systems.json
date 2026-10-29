@@ -227,6 +227,11 @@
      }
     ]
    }
+  ],
+  "hof_garden": [
+   {
+    "farm": "garden"
+   }
   ]
  }
 }
