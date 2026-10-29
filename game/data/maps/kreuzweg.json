@@ -3,7 +3,7 @@
  "region": "hub",
  "time": "day",
  "music": "route",
- "battle_bg": "pillars",
+ "battle_bg": "village_day",
  "border": "grass",
  "inn_spawn": "inn",
  "spawns": {

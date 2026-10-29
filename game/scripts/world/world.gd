@@ -930,7 +930,10 @@ func battle(setup: Dictionary) -> Dictionary:
 	Audio.play(setup.get("music", "battle"))
 	var view := BattleView.new()
 	setup = setup.duplicate(true)
-	setup["bg"] = setup.get("bg", map.def.get("battle_bg", "river"))
+	if not setup.has("bg"):
+		setup["bg"] = map.def.get("battle_bg", "river")
+		if setup["bg"] == "village_night" and not (uses_clock() and state.is_night()):
+			setup["bg"] = "village_day"
 	setup["mods"] = battle_mods()
 	var avg := 0.0
 	for rec in state.party:

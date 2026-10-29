@@ -43,7 +43,7 @@ g.dots([(3, 17), (14, 21), (30, 14), (11, 23), (22, 23)], "T")
 g.dots([(2, 15), (20, 16), (33, 18), (13, 9), (28, 11)], "f")
 g.dots([(16, 11), (19, 11)], "L")
 save("kreuzweg", g, {
-    "name": "MAP_KREUZWEG", "region": "hub", "time": "day", "music": "route", "battle_bg": "pillars", "border": "grass",
+    "name": "MAP_KREUZWEG", "region": "hub", "time": "day", "music": "route", "battle_bg": "village_day", "border": "grass",
     "inn_spawn": "inn",
     "spawns": {"from_teeufer": [34, 12], "inn": [23, 10], "from_river": [5, 1], "from_ridge": [17, 24],
                "from_dunes": [1, 13], "from_pillars": [17, 4]},
