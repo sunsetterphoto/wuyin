@@ -110,8 +110,9 @@ def ashes(src):
     lum = rgb @ np.array([0.299, 0.587, 0.114])
     hexes = ("3a3046", "5e584c", "8c8577")  # ink violet .. stone: dim ash
     greys = np.array([tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) for h in hexes], dtype=np.uint8)
-    lo, hi = lum[alpha].min(), lum[alpha].max()
-    t = np.clip((lum - lo) / max(1, hi - lo), 0, 1)
+    # rank-based brightness (0..1, ties share the lower rank) so bright and dark sprites get the same share of glow
+    vals = np.sort(lum[alpha])
+    t = np.searchsorted(vals, lum, "left") / max(1, len(vals))
     out = greys[np.clip((t * len(greys)).astype(int), 0, len(greys) - 1)]
     cols = load_palette()
     outline = alpha & (lum < 40)
@@ -127,12 +128,12 @@ def ashes(src):
     edge[:-1, :] |= nb[1:, :]
     edge[:, 1:] |= nb[:, :-1]
     edge[:, :-1] |= nb[:, 1:]
-    rim = body & edge & (t > 0.55)
+    rim = body & edge & (t > 0.45)
     out[rim] = ember
-    out[body & (t > 0.9)] = ember
+    out[body & (t > 0.96)] = ember
     # sparse glowing embers, fixed random pattern (reproducible)
     rnd = np.random.default_rng(7).random(alpha.shape)
-    out[body & (t > 0.35) & (rnd < 0.05)] = glow
+    out[body & (t > 0.35) & (rnd < 0.07)] = glow
     out[body & (t > 0.35) & (rnd < 0.012)] = core
     res = np.dstack([out, (alpha * 255).astype(np.uint8)])
     return Image.fromarray(res, "RGBA")
@@ -219,7 +220,7 @@ def main():
                 continue
             if sec == "lingshou":
                 size = item.get("size", 48)
-                img = sprite(raw(sec, item), size, cols, bg_thresh=item.get("bg_thresh", 70))
+                img = sprite(raw(sec, item), size, cols, bg_thresh=item.get("bg_thresh", 70), trim_shadow=item.get("trim_shadow", False))
                 if item.get("glow_eyes"):
                     img = glow_eyes(img)
                 save(img, "sprites", "lingshou", item["id"] + ".png")

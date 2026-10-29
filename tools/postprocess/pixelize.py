@@ -87,11 +87,30 @@ def keep_main_blob(rgba, min_share=0.2):
     return Image.fromarray(a, "RGBA")
 
 
-def sprite(img, size, cols, outline=True, height=None, bg_thresh=70):
+def _trim_ground_shadow(a, band=0.15):
+    """Pale, unsaturated pixels in the lowest `band` of the opaque area become transparent
+    (the soft grey ground shadow), then everything connected only through them stays as is."""
+    alpha = a[:, :, 3] > 0
+    ys = np.where(alpha.any(1))[0]
+    if not len(ys):
+        return a
+    top, bottom = ys.min(), ys.max()
+    rgb = a[:, :, :3].astype(int)
+    sat = rgb.max(2) - rgb.min(2)
+    lum = rgb @ np.array([299, 587, 114]) // 1000
+    rows = np.arange(a.shape[0])[:, None] >= bottom - (bottom - top) * band
+    shadow = alpha & rows & (lum > 150) & (sat < 40)
+    a = a.copy()
+    a[shadow, 3] = 0
+    return a
+
+
+def sprite(img, size, cols, outline=True, height=None, bg_thresh=70, trim_shadow=False):
     """size = width; height defaults to size (square). Non-square sprites (32x48 overworld
     characters) are scaled to fit the canvas, centred horizontally, feet at the bottom.
     bg_thresh: flood-fill tolerance for the white background; lower it for white creatures whose
-    outline has gaps (otherwise the fill leaks into a white face)."""
+    outline has gaps (otherwise the fill leaks into a white face).
+    trim_shadow: drop a pale grey ground-shadow ellipse the model sometimes paints under the creature."""
     width, height = size, height or size
     rgba = remove_white_background(img, bg_thresh)
     small_work = rgba.resize((rgba.width // 4, rgba.height // 4), Image.NEAREST)  # blob analysis on a quarter
@@ -99,6 +118,8 @@ def sprite(img, size, cols, outline=True, height=None, bg_thresh=70):
     keep_mask = np.array(cleaned_small.resize(rgba.size, Image.NEAREST))[:, :, 3] > 0
     a = np.array(rgba)
     a[:, :, 3] = np.where(keep_mask, a[:, :, 3], 0)
+    if trim_shadow:
+        a = _trim_ground_shadow(a)
     rgba = Image.fromarray(a, "RGBA")
     bbox = rgba.getbbox()
     rgba = rgba.crop(bbox)

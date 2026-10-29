@@ -107,7 +107,7 @@
     {"id": "yao", "seed": 3104, "prompt": "a young man about 20 years old, spiky black hair, slightly sad brooding expression, red jacket over a black shirt"},
     {"id": "wusheng", "seed": 3105, "prompt": "a tall slender grand chancellor, pale face, calm cold expression, narrow eyes, black hair in a top knot, grey layered court robes with a high stiff collar"},
     {"id": "innkeeper", "seed": 3106, "prompt": "a friendly older woman innkeeper, grey hair in a bun, warm smile, plum purple chinese dress"},
-    {"id": "shopkeeper", "seed": 3107, "prompt": "a round chubby merchant man, small round blue cap, black mustache, cheerful big smile, blue clothes with a white apron"},
+    {"id": "shopkeeper", "seed": 3307, "prompt": "a round chubby friendly chinese merchant man, small round black skullcap, round rosy cheeks, a thin neat black mustache, very happy wide smile with closed smiling eyes, blue clothes with a white apron", "tried": [{"seed": 3107, "why": "blue cap plus big bushy mustache looked too much like a famous game plumber; prompt changed"}, {"seed": 3207, "why": "grumpy frown instead of a cheerful smile, speckled noise on the face"}]},
     {"id": "teahouse", "seed": 3108, "prompt": "a calm tea master man, neat black hair, gentle half smile, dark green robe"},
     {"id": "monk", "seed": 3109, "prompt": "a gentle shaved head shrine keeper monk, peaceful closed-eye smile, simple ochre yellow robe, wooden prayer beads"},
     {"id": "villager_a", "seed": 3110, "prompt": "a young village woman, black hair in a bun, kind smile, light green chinese dress"},
