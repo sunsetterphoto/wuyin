@@ -54,6 +54,7 @@ const LEGEND := {
 	"g": ["ore", "", true, false],
 	"a": ["gravel", "", true, false],
 	"w": ["floor", "", true, false],
+	"Y": ["floor", "", false, false],
 }
 ## Pen type -> ground character (see LEGEND).
 const PEN_TILES := {"pond": "p", "bamboo": "b", "ember": "e", "ore": "g", "rock": "a", "empty": "."}

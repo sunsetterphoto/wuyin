@@ -23,6 +23,22 @@
   "hall": [
    21,
    18
+  ],
+  "mondquell_inn_out": [
+   5,
+   7
+  ],
+  "mondquell_teahouse_out": [
+   22,
+   7
+  ],
+  "mondquell_shop_out": [
+   5,
+   16
+  ],
+  "mondquell_restaurant_out": [
+   27,
+   16
   ]
  },
  "warps": [
@@ -52,42 +68,6 @@
   "unless": "mondquell_arrived"
  },
  "npcs": [
-  {
-   "id": "mondquell_wirt",
-   "sprite": "innkeeper",
-   "at": [
-    7,
-    7
-   ],
-   "event": "mondquell_inn"
-  },
-  {
-   "id": "mondquell_haendler",
-   "sprite": "shopkeeper",
-   "at": [
-    7,
-    16
-   ],
-   "event": "mondquell_shop"
-  },
-  {
-   "id": "mondquell_teemeister",
-   "sprite": "teahouse",
-   "at": [
-    24,
-    7
-   ],
-   "event": "mondquell_tea"
-  },
-  {
-   "id": "mondquell_koch",
-   "sprite": "cook",
-   "at": [
-    29,
-    16
-   ],
-   "event": "mondquell_food"
-  },
   {
    "id": "ordensmeisterin",
    "sprite": "order_b",
@@ -136,7 +116,8 @@
     5,
     6
    ],
-   "event": "mondquell_inn"
+   "event": "enter_room",
+   "enter": "mondquell_inn"
   },
   {
    "id": "mondquell_shop_door",
@@ -145,7 +126,8 @@
     5,
     15
    ],
-   "event": "mondquell_shop"
+   "event": "enter_room",
+   "enter": "mondquell_shop"
   },
   {
    "id": "mondquell_tea_door",
@@ -154,7 +136,8 @@
     22,
     6
    ],
-   "event": "mondquell_tea"
+   "event": "enter_room",
+   "enter": "mondquell_teahouse"
   },
   {
    "id": "mondquell_food_door",
@@ -163,7 +146,8 @@
     27,
     15
    ],
-   "event": "mondquell_food"
+   "event": "enter_room",
+   "enter": "mondquell_restaurant"
   },
   {
    "id": "mondquell_chime",

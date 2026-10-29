@@ -19,6 +19,26 @@
   "dock": [
    16,
    7
+  ],
+  "nebelhafen_inn_out": [
+   5,
+   12
+  ],
+  "nebelhafen_shop_out": [
+   13,
+   12
+  ],
+  "nebelhafen_teahouse_out": [
+   25,
+   12
+  ],
+  "nebelhafen_fisher_out": [
+   5,
+   18
+  ],
+  "nebelhafen_restaurant_out": [
+   30,
+   18
   ]
  },
  "warps": [
@@ -50,42 +70,6 @@
   "unless": "nebelhafen_arrived"
  },
  "npcs": [
-  {
-   "id": "nebelhafen_wirt",
-   "sprite": "innkeeper",
-   "at": [
-    7,
-    12
-   ],
-   "event": "nebelhafen_inn"
-  },
-  {
-   "id": "nebelhafen_haendler",
-   "sprite": "shopkeeper",
-   "at": [
-    15,
-    12
-   ],
-   "event": "nebelhafen_shop"
-  },
-  {
-   "id": "nebelhafen_teemeister",
-   "sprite": "teahouse",
-   "at": [
-    27,
-    12
-   ],
-   "event": "nebelhafen_tea"
-  },
-  {
-   "id": "nebelhafen_koch",
-   "sprite": "cook",
-   "at": [
-    32,
-    18
-   ],
-   "event": "nebelhafen_food"
-  },
   {
    "id": "fischer",
    "sprite": "fisher",
@@ -132,7 +116,8 @@
     5,
     11
    ],
-   "event": "nebelhafen_inn"
+   "event": "enter_room",
+   "enter": "nebelhafen_inn"
   },
   {
    "id": "nebelhafen_shop_door",
@@ -141,7 +126,8 @@
     13,
     11
    ],
-   "event": "nebelhafen_shop"
+   "event": "enter_room",
+   "enter": "nebelhafen_shop"
   },
   {
    "id": "nebelhafen_tea_door",
@@ -150,7 +136,8 @@
     25,
     11
    ],
-   "event": "nebelhafen_tea"
+   "event": "enter_room",
+   "enter": "nebelhafen_teahouse"
   },
   {
    "id": "nebelhafen_food_door",
@@ -159,7 +146,8 @@
     30,
     17
    ],
-   "event": "nebelhafen_food"
+   "event": "enter_room",
+   "enter": "nebelhafen_restaurant"
   },
   {
    "id": "nebelhafen_chime",
@@ -177,7 +165,8 @@
     5,
     17
    ],
-   "event": "fischer"
+   "event": "enter_room",
+   "enter": "nebelhafen_fisher"
   }
  ],
  "id": "nebelhafen",

@@ -30,6 +30,10 @@
   "from_pillars": [
    17,
    4
+  ],
+  "kreuzweg_inn_out": [
+   23,
+   10
   ]
  },
  "warps": [
@@ -94,15 +98,6 @@
  },
  "npcs": [
   {
-   "id": "rast_wirt",
-   "sprite": "monk",
-   "at": [
-    25,
-    10
-   ],
-   "event": "kreuzweg_inn"
-  },
-  {
    "id": "order_west",
    "sprite": "order_a",
    "at": [
@@ -141,7 +136,8 @@
     23,
     9
    ],
-   "event": "kreuzweg_inn"
+   "event": "enter_room",
+   "enter": "kreuzweg_inn"
   },
   {
    "id": "kreuz_chime",

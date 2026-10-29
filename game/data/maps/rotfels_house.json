@@ -1,0 +1,122 @@
+{
+ "name": "MAP_ROOM_HOUSE",
+ "region": "ridge",
+ "indoor": true,
+ "fixed_time": true,
+ "time": "indoor",
+ "music": "town",
+ "parent": "rotfels",
+ "spawns": {
+  "door": [
+   5,
+   6
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    5,
+    7,
+    1,
+    1
+   ],
+   "to": "rotfels",
+   "spawn": "rotfels_house_out"
+  }
+ ],
+ "furniture": [
+  {
+   "kind": "bed",
+   "rect": [
+    7,
+    1,
+    2,
+    2
+   ]
+  },
+  {
+   "kind": "table",
+   "rect": [
+    2,
+    3,
+    2,
+    1
+   ]
+  },
+  {
+   "kind": "shelf",
+   "rect": [
+    1,
+    1,
+    2,
+    1
+   ]
+  },
+  {
+   "kind": "stove",
+   "rect": [
+    4,
+    1,
+    2,
+    1
+   ]
+  }
+ ],
+ "decor": [
+  {
+   "prop": "bush_round",
+   "at": [
+    8.4,
+    5.6
+   ],
+   "scale": 0.7
+  },
+  {
+   "prop": "jar",
+   "at": [
+    1.0,
+    5.8
+   ]
+  },
+  {
+   "prop": "basket_veg",
+   "at": [
+    2.0,
+    5.8
+   ]
+  }
+ ],
+ "npcs": [],
+ "objects": [
+  {
+   "id": "rotfels_house_shelf_1",
+   "kind": "invisible",
+   "at": [
+    1,
+    1
+   ],
+   "event": "furn_shelf_house"
+  }
+ ],
+ "lights": [
+  [
+   2,
+   1
+  ],
+  [
+   7,
+   1
+  ]
+ ],
+ "id": "rotfels_house",
+ "rows": [
+  "SSSSSSSSSS",
+  "SYYwYYwYYS",
+  "SwwwwwwYYS",
+  "SwYYwwwwwS",
+  "SwwwwwwwwS",
+  "SwwwwwwwwS",
+  "SwwwwwwwwS",
+  "SSSSSwSSSS"
+ ]
+}

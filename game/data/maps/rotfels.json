@@ -19,6 +19,26 @@
   "from_peak": [
    16,
    20
+  ],
+  "rotfels_inn_out": [
+   6,
+   7
+  ],
+  "rotfels_shop_out": [
+   13,
+   7
+  ],
+  "rotfels_teahouse_out": [
+   23,
+   7
+  ],
+  "rotfels_restaurant_out": [
+   27,
+   15
+  ],
+  "rotfels_house_out": [
+   6,
+   16
   ]
  },
  "warps": [
@@ -48,42 +68,6 @@
   "unless": "rotfels_arrived"
  },
  "npcs": [
-  {
-   "id": "rotfels_wirt",
-   "sprite": "innkeeper",
-   "at": [
-    8,
-    7
-   ],
-   "event": "rotfels_inn"
-  },
-  {
-   "id": "rotfels_haendler",
-   "sprite": "shopkeeper",
-   "at": [
-    15,
-    7
-   ],
-   "event": "rotfels_shop"
-  },
-  {
-   "id": "rotfels_teemeister",
-   "sprite": "teahouse",
-   "at": [
-    25,
-    7
-   ],
-   "event": "rotfels_tea"
-  },
-  {
-   "id": "rotfels_koch",
-   "sprite": "cook",
-   "at": [
-    29,
-    15
-   ],
-   "event": "rotfels_food"
-  },
   {
    "id": "buergermeisterin",
    "sprite": "villager_a",
@@ -121,7 +105,8 @@
     6,
     6
    ],
-   "event": "rotfels_inn"
+   "event": "enter_room",
+   "enter": "rotfels_inn"
   },
   {
    "id": "rotfels_shop_door",
@@ -130,7 +115,8 @@
     13,
     6
    ],
-   "event": "rotfels_shop"
+   "event": "enter_room",
+   "enter": "rotfels_shop"
   },
   {
    "id": "rotfels_tea_door",
@@ -139,7 +125,8 @@
     23,
     6
    ],
-   "event": "rotfels_tea"
+   "event": "enter_room",
+   "enter": "rotfels_teahouse"
   },
   {
    "id": "rotfels_food_door",
@@ -148,7 +135,8 @@
     27,
     14
    ],
-   "event": "rotfels_food"
+   "event": "enter_room",
+   "enter": "rotfels_restaurant"
   },
   {
    "id": "rotfels_chime",
@@ -166,7 +154,8 @@
     6,
     15
    ],
-   "event": "buergermeisterin"
+   "event": "enter_room",
+   "enter": "rotfels_house"
   }
  ],
  "id": "rotfels",

@@ -194,3 +194,26 @@ for sp, de, en, zh in [
 ]:
     t(f"VOICE_{sp}_FREED", de, en, zh)
 t("BATTLE_INTRO_NIAN", "Der Nian baut sich vor dir auf! Halte ihm Lärm und Rot entgegen!", "The Nian rears up before you! Hold up noise and red against it!", "年兽在你面前立起身来！用响声和红色对付它！")
+
+# --- interiors (tools/maps/interiors.py) -------------------------------------------------
+for k, de, en, zh in [("INN", "Gasthaus", "Inn", "客栈"), ("SHOP", "Laden", "Shop", "商店"), ("TEAHOUSE", "Teehaus", "Teahouse", "茶馆"),
+                      ("RESTAURANT", "Restaurant", "Restaurant", "饭馆"), ("HOME", "Zuhause", "Home", "家"), ("WORKSHOP", "Werkstatt", "Workshop", "作坊"),
+                      ("HOUSE", "Wohnhaus", "House", "民宅"), ("FISHER", "Fischerhütte", "Fisher's hut", "渔家")]:
+    t("MAP_ROOM_" + k, de, en, zh)
+E["enter_room"] = []
+E["furn_house"] = [say("narrator", "EV_FURN_HOUSE", "Niemand zu Hause. Auf dem Tisch dampft noch eine Schale Tee.", "Nobody home. A bowl of tea is still steaming on the table.", "没人在家。桌上的一碗茶还冒着热气。")]
+E["furn_cushion"] = [{"sfx": "meow"}, say("jinli", "EV_FURN_CUSHION", "Mrrr … (Jinlis Lieblingskissen. Es ist noch warm.)", "Mrrr... (Jinli's favourite cushion. It's still warm.)", "呼噜……（锦鲤最爱的垫子，还是暖的。）")]
+E["furn_chimes"] = [{"sfx": "bell"}, say("narrator", "EV_FURN_CHIMES", "Hunderte Windspiele aus Bambus, Bronze und Muscheln. Wenn der Wind durch die Tür kommt, singt die ganze Werkstatt.",
+                                         "Hundreds of wind chimes of bamboo, bronze and shells. When the wind comes through the door, the whole workshop sings.",
+                                         "几百只竹子、青铜和贝壳做的风铃。风从门口吹进来时，整个作坊都在歌唱。")]
+for kind, de, en, zh in [
+    ("inn", "Gästebücher mit Grüßen aus allen fünf Regionen. Jemand hat einen Glutpanda hineingemalt.", "Guest books with greetings from all five regions. Someone has drawn an Emberpanda in one.", "留言簿上写满了来自五个地区的问候。有人在里面画了一只火团团。"),
+    ("shop", "Säcke mit Reis, Körbe mit Futter, ein Abakus mit abgegriffenen Perlen.", "Sacks of rice, baskets of food, an abacus with worn beads.", "一袋袋米、一筐筐饲料，还有一把珠子都磨亮了的算盘。"),
+    ("teahouse", "Dutzende Teedosen: Drachenbrunnen, Wolkennebel, Silbernadel … Es duftet herrlich.", "Dozens of tea tins: Dragon Well, Cloud Mist, Silver Needle... It smells wonderful.", "几十个茶罐：龙井、云雾、银针……香气扑鼻。"),
+    ("restaurant", "Gläser mit eingelegtem Gemüse und getrockneten Pilzen. Dir knurrt der Magen.", "Jars of pickled vegetables and dried mushrooms. Your stomach growls.", "一罐罐腌菜和干蘑菇。你的肚子咕咕叫了。"),
+    ("home", "Deine Bücher über Windspiele – und ein Bild von dir und Meister Lu beim letzten Laternenfest.", "Your books about wind chimes - and a picture of you and Master Lu at the last Lantern Festival.", "你那些关于风铃的书——还有一张你和卢师傅在上次元宵灯会的画。"),
+    ("workshop", "Werkzeuge, Bambusröhren und Bronzeplättchen, sorgfältig sortiert.", "Tools, bamboo tubes and bronze plates, carefully sorted.", "工具、竹管和铜片，分门别类，整整齐齐。"),
+    ("house", "Ein Regal mit Familienandenken und einer kleinen Glücksfigur aus Ton.", "A shelf with family keepsakes and a little clay lucky charm.", "架子上摆着家传的纪念品和一个小小的陶土吉祥物。"),
+    ("fisher", "Angelhaken, Netznadeln und ein Bild von einem Kormoran.", "Fish hooks, netting needles and a picture of a cormorant.", "鱼钩、织网针，还有一张鸬鹚的画。"),
+]:
+    E["furn_shelf_" + kind] = [say("narrator", "EV_FURN_SHELF_" + kind.upper(), de, en, zh)]

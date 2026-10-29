@@ -23,6 +23,22 @@
   "from_plateau": [
    32,
    10
+  ],
+  "kiefernhang_inn_out": [
+   6,
+   7
+  ],
+  "kiefernhang_shop_out": [
+   13,
+   7
+  ],
+  "kiefernhang_teahouse_out": [
+   23,
+   7
+  ],
+  "kiefernhang_restaurant_out": [
+   26,
+   16
   ]
  },
  "warps": [
@@ -65,42 +81,6 @@
  },
  "npcs": [
   {
-   "id": "kiefernhang_wirt",
-   "sprite": "innkeeper",
-   "at": [
-    8,
-    7
-   ],
-   "event": "kiefernhang_inn"
-  },
-  {
-   "id": "kiefernhang_haendler",
-   "sprite": "shopkeeper",
-   "at": [
-    15,
-    7
-   ],
-   "event": "kiefernhang_shop"
-  },
-  {
-   "id": "kiefernhang_teemeister",
-   "sprite": "teahouse",
-   "at": [
-    25,
-    7
-   ],
-   "event": "kiefernhang_tea"
-  },
-  {
-   "id": "kiefernhang_koch",
-   "sprite": "cook",
-   "at": [
-    28,
-    16
-   ],
-   "event": "kiefernhang_food"
-  },
-  {
    "id": "kiefer_aelteste",
    "sprite": "elder",
    "at": [
@@ -137,7 +117,8 @@
     6,
     6
    ],
-   "event": "kiefernhang_inn"
+   "event": "enter_room",
+   "enter": "kiefernhang_inn"
   },
   {
    "id": "kiefernhang_shop_door",
@@ -146,7 +127,8 @@
     13,
     6
    ],
-   "event": "kiefernhang_shop"
+   "event": "enter_room",
+   "enter": "kiefernhang_shop"
   },
   {
    "id": "kiefernhang_tea_door",
@@ -155,7 +137,8 @@
     23,
     6
    ],
-   "event": "kiefernhang_tea"
+   "event": "enter_room",
+   "enter": "kiefernhang_teahouse"
   },
   {
    "id": "kiefernhang_food_door",
@@ -164,7 +147,8 @@
     26,
     15
    ],
-   "event": "kiefernhang_food"
+   "event": "enter_room",
+   "enter": "kiefernhang_restaurant"
   },
   {
    "id": "kiefernhang_chime",

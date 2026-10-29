@@ -113,6 +113,10 @@ static func build(m: MapData, silent := false) -> Dictionary:
 	c.noise.seed = hash(m.id)
 	c.noise.frequency = 0.012
 	_mark_occupied(c)
+	if m.def.get("indoor", false):
+		_room(c)
+		_flush(c, false)
+		return {"root": c.root, "lights": c.lights}
 	for b in Buildings.find(m):
 		Buildings.build(b, c.root, c.lights, MAX_LIGHTS, 0.0 if silent else 1.0)
 	for z in m.height:
@@ -400,6 +404,144 @@ static func _outside(c: Ctx) -> void:
 				c.prop(c.pick(c.theme["border"]), p + c.jitter(), c.rng.randf_range(1.0, 1.4))
 
 
+# --- interiors -------------------------------------------------------------------
+
+const WALL_H := 2.3
+
+
+## A room in cut-away view: wooden floor, plastered back and side walls with
+## posts, beams, lattice windows and scrolls, a low front wall, furniture,
+## props and warm lamps.
+static func _room(c: Ctx) -> void:
+	var m := c.m
+	for z in m.height:
+		for x in m.width:
+			var p := Vector3(x, 0, z)
+			var ch := m.tile(x, z)
+			c.box("floor", p + Vector3(0, -0.25, 0), Vector3(1, 0.5, 1), c.rng.randf_range(0.94, 1.03))
+			if ch != "S":
+				continue
+			if z == m.height - 1:
+				c.box("wood", p + Vector3(0, 0.15, 0), Vector3(1, 0.3, 0.3), 0.8)
+			elif z == 0 or x == 0 or x == m.width - 1:
+				c.box("plaster", p + Vector3(0, WALL_H / 2.0, 0), Vector3(1, WALL_H, 1), 1.0)
+				c.box("wood", p + Vector3(0, 0.12, 0.505 if z == 0 else 0.0), Vector3(1.0, 0.24, 0.02 if z == 0 else 1.02), 0.75)
+	# Posts and a beam along the back wall, windows and a scroll painting.
+	for x in range(1, m.width - 1, 3):
+		c.box("wood", Vector3(x - 0.5, WALL_H / 2.0, 0.52), Vector3(0.14, WALL_H, 0.06), 0.7)
+	c.box("wood", Vector3(m.width / 2.0 - 0.5, WALL_H - 0.12, 0.53), Vector3(m.width - 2, 0.16, 0.08), 0.7)
+	var lattice := Buildings._lattice_material("H")
+	for x in [2, m.width - 3]:
+		Buildings._quad(c.root, Vector3(x, 1.35, 0.55), Vector2(0.9, 0.7), lattice)
+	for f in m.def.get("furniture", []):
+		_furniture(c, f)
+	for l in m.def.get("lights", []):
+		var lamp := OmniLight3D.new()
+		lamp.position = Vector3(float(l[0]), 1.7, float(l[1]) + 0.6)
+		lamp.light_color = Color("ffc070")
+		lamp.light_energy = 1.4
+		lamp.omni_range = 6.0
+		c.root.add_child(lamp)
+		c.lights.append(lamp)
+		c.prop("lantern_red", Vector3(float(l[0]), 1.55, float(l[1]) - 0.2), 1.1)
+	for d in m.def.get("decor", []):
+		var at: Array = d["at"]
+		c.prop(d["prop"], Vector3(float(at[0]), float(d.get("y", 0.0)), float(at[1])), float(d.get("scale", 1.0)), 0.4)
+
+
+static func _furniture(c: Ctx, f: Dictionary) -> void:
+	var r: Array = f["rect"]
+	var x0 := float(r[0]) - 0.5
+	var z0 := float(r[1]) - 0.5
+	var w := float(r[2])
+	var d := float(r[3])
+	var ctr := Vector3(x0 + w / 2.0, 0, z0 + d / 2.0)
+	var wood := Materials.flat_color(Color("8a5b36"))
+	var dark := Materials.flat_color(Color("5a3a22"))
+	match f["kind"]:
+		"bed":
+			_fbox(c, ctr + Vector3(0, 0.18, 0), Vector3(w - 0.1, 0.36, d - 0.1), dark)
+			_fbox(c, ctr + Vector3(0, 0.42, 0), Vector3(w - 0.2, 0.14, d - 0.2), Materials.flat_color(Color("f4efe6")))
+			_fbox(c, ctr + Vector3(0, 0.5, d * 0.12), Vector3(w - 0.16, 0.1, d * 0.62), Materials.flat_color(Color("c8302a")))
+			_fbox(c, ctr + Vector3(0, 0.53, d * 0.12), Vector3(w * 0.5, 0.11, d * 0.5), Materials.flat_color(Color("e0b04a")))
+			_fbox(c, ctr + Vector3(0, 0.52, -d / 2.0 + 0.3), Vector3(w * 0.6, 0.12, 0.3), Materials.flat_color(Color("fff8e8")))
+			_fbox(c, ctr + Vector3(0, 0.55, -d / 2.0 + 0.08), Vector3(w - 0.1, 0.9, 0.12), dark)
+		"counter", "workbench":
+			_fbox(c, ctr + Vector3(0, 0.42, 0), Vector3(w - 0.06, 0.84, d - 0.2), wood)
+			_fbox(c, ctr + Vector3(0, 0.87, 0), Vector3(w + 0.04, 0.08, d - 0.08), dark)
+			_fbox(c, ctr + Vector3(0, 0.42, d / 2.0 - 0.08), Vector3(w - 0.3, 0.6, 0.02), Materials.flat_color(Color("a8302a")))
+			if f["kind"] == "workbench":
+				for i in 3:
+					_fbox(c, ctr + Vector3(-w / 2.0 + 0.6 + i * 0.9, 0.98, 0), Vector3(0.3, 0.14, 0.2), Materials.flat_color(Color("a9b1bb")))
+		"shelf":
+			# Open shelf against the back wall: back panel, sides, three boards with jars and boxes.
+			var back := z0 + 0.12
+			_fbox(c, Vector3(ctr.x, 0.88, back), Vector3(w - 0.06, 1.76, 0.06), dark)
+			for sx in [x0 + 0.06, x0 + w - 0.06]:
+				_fbox(c, Vector3(sx, 0.88, back + 0.2), Vector3(0.08, 1.76, 0.42), dark)
+			var cols := [Color("3b7e8f"), Color("c8502c"), Color("e0b04a"), Color("7a5a80"), Color("5fae8a"), Color("f4efe6"), Color("8e2e23")]
+			for row in 3:
+				var by := 0.3 + row * 0.55
+				_fbox(c, Vector3(ctr.x, by, back + 0.2), Vector3(w - 0.14, 0.05, 0.4), wood)
+				var cx := x0 + 0.22
+				while cx < x0 + w - 0.2:
+					var hh := c.rng.randf_range(0.14, 0.32)
+					var ww := c.rng.randf_range(0.12, 0.2)
+					if c.rng.randf() < 0.85:
+						_fbox(c, Vector3(cx, by + 0.03 + hh / 2.0, back + 0.22), Vector3(ww, hh, 0.16),
+							Materials.flat_color(cols[c.rng.randi_range(0, cols.size() - 1)]))
+					cx += ww + c.rng.randf_range(0.04, 0.12)
+		"stove":
+			_fbox(c, ctr + Vector3(0, 0.38, 0), Vector3(w - 0.1, 0.76, d - 0.15), Materials.surface("stone"))
+			_fbox(c, ctr + Vector3(0, 0.25, d / 2.0 - 0.05), Vector3(0.4, 0.25, 0.05), Materials.flat_color(Color("ff8a3a"), 2.0))
+			var pot := MeshInstance3D.new()
+			var sm := SphereMesh.new()
+			sm.radius = 0.24
+			sm.height = 0.36
+			pot.mesh = sm
+			pot.material_override = Materials.flat_color(Color("2a2230"))
+			pot.position = ctr + Vector3(-w / 4.0, 0.92, 0)
+			c.root.add_child(pot)
+			if c.lights.size() < MAX_LIGHTS:
+				var glow := OmniLight3D.new()
+				glow.position = ctr + Vector3(0, 0.35, d / 2.0 + 0.2)
+				glow.light_color = Color("ff8a3a")
+				glow.light_energy = 0.8
+				glow.omni_range = 2.5
+				c.root.add_child(glow)
+				c.lights.append(glow)
+		"table":
+			_fbox(c, ctr + Vector3(0, 0.5, 0), Vector3(w - 0.15, 0.08, d - 0.15), wood)
+			for sx in [-1, 1]:
+				for sz in [-1, 1]:
+					_fbox(c, ctr + Vector3(sx * (w / 2.0 - 0.15), 0.25, sz * (d / 2.0 - 0.15)), Vector3(0.07, 0.5, 0.07), dark)
+		"chest":
+			_fbox(c, ctr + Vector3(0, 0.25, 0), Vector3(0.8, 0.5, 0.6), Materials.flat_color(Color("a8302a")))
+			_fbox(c, ctr + Vector3(0, 0.52, 0), Vector3(0.84, 0.06, 0.64), Materials.flat_color(Color("e0b04a"), 0.2))
+		"rug":
+			_fbox(c, ctr + Vector3(0, 0.012, 0), Vector3(w - 0.1, 0.02, d - 0.1), Materials.flat_color(Color("e0b04a")))
+			_fbox(c, ctr + Vector3(0, 0.02, 0), Vector3(w - 0.3, 0.02, d - 0.3), Materials.flat_color(Color("a8302a")))
+		"cushion":
+			_fbox(c, ctr + Vector3(0, 0.06, 0), Vector3(0.6, 0.12, 0.6), Materials.flat_color(Color("c8302a")))
+		"scroll":
+			var img := Image.create(12, 24, false, Image.FORMAT_RGBA8)
+			img.fill(Color("f4ead0"))
+			img.fill_rect(Rect2i(0, 0, 12, 2), Color("5a3a22"))
+			img.fill_rect(Rect2i(0, 22, 12, 2), Color("5a3a22"))
+			for i in 9:
+				img.set_pixel(2 + i, 16 - int(sin(i * 0.9) * 4.0 + i * 0.3), Color("3a3046"))
+				img.set_pixel(2 + i, 17 - int(sin(i * 0.9) * 4.0 + i * 0.3), Color("6a6478"))
+			img.fill_rect(Rect2i(8, 4, 2, 2), Color("c8302a"))
+			var mat := StandardMaterial3D.new()
+			mat.albedo_texture = ImageTexture.create_from_image(img)
+			mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+			Buildings._quad(c.root, Vector3(ctr.x, 1.3, 0.56), Vector2(0.5, 1.0), mat)
+
+
+static func _fbox(c: Ctx, pos: Vector3, size: Vector3, mat: Material) -> void:
+	Buildings._box(c.root, pos, size, mat)
+
+
 ## Danxia sandstone: terraces of striped rock, heights coherent across neighbours,
 ## narrowing a little towards the top, with dry grass and the odd tree on top.
 static func _danxia(c: Ctx, x: int, z: int, lo: float, span: float) -> void:
@@ -451,7 +593,13 @@ static func _well(c: Ctx, p: Vector3) -> void:
 # --- meshes -------------------------------------------------------------------
 
 static func _flush(c: Ctx, silent: bool) -> void:
-	# Far land under everything, for views past the decorated ring.
+	if not c.m.def.get("indoor", false):
+		_far_land(c)
+	_meshes(c, silent)
+
+
+## Far land under everything, for views past the decorated ring.
+static func _far_land(c: Ctx) -> void:
 	var far := MeshInstance3D.new()
 	var plane := PlaneMesh.new()
 	plane.size = Vector2(c.m.width + 80, c.m.height + 80)
@@ -461,6 +609,9 @@ static func _flush(c: Ctx, silent: bool) -> void:
 	far.position = Vector3(c.m.width / 2.0 - 0.5, -1.9 if c.region in ["pillars", "temple"] else -0.52, c.m.height / 2.0 - 0.5)
 	far.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	c.root.add_child(far)
+
+
+static func _meshes(c: Ctx, silent: bool) -> void:
 	for kind in c.boxes:
 		var mesh := BoxMesh.new()
 		mesh.material = Materials.surface(kind)

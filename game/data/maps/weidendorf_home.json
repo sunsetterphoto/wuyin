@@ -1,0 +1,168 @@
+{
+ "name": "MAP_ROOM_HOME",
+ "region": "bamboo",
+ "indoor": true,
+ "fixed_time": true,
+ "time": "indoor",
+ "music": "village",
+ "parent": "weidendorf",
+ "spawns": {
+  "door": [
+   5,
+   6
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    5,
+    7,
+    1,
+    1
+   ],
+   "to": "weidendorf",
+   "spawn": "weidendorf_home_out"
+  }
+ ],
+ "furniture": [
+  {
+   "kind": "bed",
+   "rect": [
+    8,
+    1,
+    2,
+    2
+   ]
+  },
+  {
+   "kind": "stove",
+   "rect": [
+    1,
+    1,
+    2,
+    1
+   ]
+  },
+  {
+   "kind": "chest",
+   "rect": [
+    4,
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "shelf",
+   "rect": [
+    5,
+    1,
+    2,
+    1
+   ]
+  },
+  {
+   "kind": "table",
+   "rect": [
+    2,
+    4,
+    2,
+    1
+   ]
+  },
+  {
+   "kind": "rug",
+   "rect": [
+    4,
+    3,
+    3,
+    3
+   ]
+  }
+ ],
+ "decor": [
+  {
+   "prop": "bush_flowering",
+   "at": [
+    9.5,
+    5.6
+   ],
+   "scale": 0.8
+  },
+  {
+   "prop": "jar",
+   "at": [
+    1.0,
+    5.8
+   ]
+  },
+  {
+   "prop": "wind_chime",
+   "at": [
+    3.2,
+    1.2
+   ],
+   "scale": 1.0,
+   "y": 1.15
+  },
+  {
+   "prop": "cushion_jinli",
+   "at": [
+    6.6,
+    2.3
+   ]
+  }
+ ],
+ "npcs": [],
+ "objects": [
+  {
+   "id": "weidendorf_home_bed",
+   "kind": "invisible",
+   "at": [
+    8,
+    2
+   ],
+   "event": "home_door"
+  },
+  {
+   "id": "weidendorf_home_shelf_5",
+   "kind": "invisible",
+   "at": [
+    5,
+    1
+   ],
+   "event": "furn_shelf_home"
+  },
+  {
+   "id": "weidendorf_home_cushion",
+   "kind": "invisible",
+   "at": [
+    6,
+    2
+   ],
+   "event": "furn_cushion",
+   "solid": false
+  }
+ ],
+ "lights": [
+  [
+   2,
+   1
+  ],
+  [
+   8,
+   1
+  ]
+ ],
+ "id": "weidendorf_home",
+ "rows": [
+  "SSSSSSSSSSS",
+  "SYYwYYYwYYS",
+  "SwwwwwwwYYS",
+  "SwwwwwwwwwS",
+  "SwYYwwwwwwS",
+  "SwwwwwwwwwS",
+  "SwwwwwwwwwS",
+  "SSSSSwSSSSS"
+ ]
+}

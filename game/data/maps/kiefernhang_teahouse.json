@@ -1,0 +1,207 @@
+{
+ "name": "MAP_ROOM_TEAHOUSE",
+ "region": "pillars",
+ "indoor": true,
+ "fixed_time": true,
+ "time": "indoor",
+ "music": "pillars",
+ "parent": "kiefernhang",
+ "spawns": {
+  "door": [
+   6,
+   7
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    6,
+    8,
+    1,
+    1
+   ],
+   "to": "kiefernhang",
+   "spawn": "kiefernhang_teahouse_out"
+  }
+ ],
+ "furniture": [
+  {
+   "kind": "counter",
+   "rect": [
+    1,
+    2,
+    4,
+    1
+   ]
+  },
+  {
+   "kind": "shelf",
+   "rect": [
+    1,
+    1,
+    4,
+    1
+   ]
+  },
+  {
+   "kind": "table",
+   "rect": [
+    7,
+    3,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "table",
+   "rect": [
+    10,
+    3,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "table",
+   "rect": [
+    7,
+    6,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "table",
+   "rect": [
+    10,
+    6,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "scroll",
+   "rect": [
+    7,
+    0,
+    1,
+    1
+   ]
+  },
+  {
+   "kind": "scroll",
+   "rect": [
+    10,
+    0,
+    1,
+    1
+   ]
+  }
+ ],
+ "decor": [
+  {
+   "prop": "tea_table",
+   "at": [
+    7.0,
+    3.0
+   ],
+   "scale": 1.0,
+   "y": 0.55
+  },
+  {
+   "prop": "tea_table",
+   "at": [
+    10.0,
+    3.0
+   ],
+   "scale": 1.0,
+   "y": 0.55
+  },
+  {
+   "prop": "tea_table",
+   "at": [
+    7.0,
+    6.0
+   ],
+   "scale": 1.0,
+   "y": 0.55
+  },
+  {
+   "prop": "tea_table",
+   "at": [
+    10.0,
+    6.0
+   ],
+   "scale": 1.0,
+   "y": 0.55
+  },
+  {
+   "prop": "bush_tea",
+   "at": [
+    1.0,
+    6.5
+   ]
+  },
+  {
+   "prop": "bush_flowering",
+   "at": [
+    11.5,
+    1.4
+   ],
+   "scale": 0.8
+  },
+  {
+   "prop": "jars_group",
+   "at": [
+    3.0,
+    1.3
+   ],
+   "scale": 0.7,
+   "y": 0.95
+  }
+ ],
+ "npcs": [
+  {
+   "id": "kiefernhang_teemeister",
+   "sprite": "teahouse",
+   "at": [
+    2,
+    1
+   ],
+   "event": "kiefernhang_tea"
+  }
+ ],
+ "objects": [
+  {
+   "id": "kiefernhang_teahouse_shelf_1",
+   "kind": "invisible",
+   "at": [
+    1,
+    1
+   ],
+   "event": "furn_shelf_teahouse"
+  }
+ ],
+ "lights": [
+  [
+   2,
+   1
+  ],
+  [
+   10,
+   1
+  ]
+ ],
+ "id": "kiefernhang_teahouse",
+ "rows": [
+  "SSSSSSSSSSSSS",
+  "SYYYYwwwwwwwS",
+  "SYYYYwwwwwwwS",
+  "SwwwwwwYwwYwS",
+  "SwwwwwwwwwwwS",
+  "SwwwwwwwwwwwS",
+  "SwwwwwwYwwYwS",
+  "SwwwwwwwwwwwS",
+  "SSSSSSwSSSSSS"
+ ]
+}

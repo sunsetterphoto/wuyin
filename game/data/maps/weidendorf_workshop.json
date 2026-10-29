@@ -1,0 +1,186 @@
+{
+ "name": "MAP_ROOM_WORKSHOP",
+ "region": "bamboo",
+ "indoor": true,
+ "fixed_time": true,
+ "time": "indoor",
+ "music": "village",
+ "parent": "weidendorf",
+ "spawns": {
+  "door": [
+   6,
+   7
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    6,
+    8,
+    1,
+    1
+   ],
+   "to": "weidendorf",
+   "spawn": "weidendorf_workshop_out"
+  }
+ ],
+ "furniture": [
+  {
+   "kind": "workbench",
+   "rect": [
+    2,
+    2,
+    4,
+    1
+   ]
+  },
+  {
+   "kind": "shelf",
+   "rect": [
+    1,
+    1,
+    4,
+    1
+   ]
+  },
+  {
+   "kind": "shelf",
+   "rect": [
+    8,
+    1,
+    4,
+    1
+   ]
+  },
+  {
+   "kind": "table",
+   "rect": [
+    9,
+    4,
+    2,
+    1
+   ]
+  }
+ ],
+ "decor": [
+  {
+   "prop": "wind_chime",
+   "at": [
+    3.0,
+    1.1
+   ],
+   "scale": 1.0,
+   "y": 1.4
+  },
+  {
+   "prop": "wind_chime",
+   "at": [
+    5.0,
+    1.1
+   ],
+   "scale": 1.0,
+   "y": 1.4
+  },
+  {
+   "prop": "wind_chime",
+   "at": [
+    7.0,
+    1.1
+   ],
+   "scale": 1.0,
+   "y": 1.4
+  },
+  {
+   "prop": "wind_chime",
+   "at": [
+    9.5,
+    1.1
+   ],
+   "scale": 1.0,
+   "y": 1.4
+  },
+  {
+   "prop": "wind_chime",
+   "at": [
+    2.2,
+    5.0
+   ],
+   "scale": 1.0,
+   "y": 1.3
+  },
+  {
+   "prop": "wind_chime",
+   "at": [
+    11.0,
+    5.5
+   ],
+   "scale": 1.0,
+   "y": 1.3
+  },
+  {
+   "prop": "firewood",
+   "at": [
+    1.4,
+    6.5
+   ]
+  },
+  {
+   "prop": "crate",
+   "at": [
+    11.2,
+    6.6
+   ]
+  },
+  {
+   "prop": "drum",
+   "at": [
+    6.0,
+    6.0
+   ],
+   "scale": 0.8
+  }
+ ],
+ "npcs": [],
+ "objects": [
+  {
+   "id": "weidendorf_workshop_chimes",
+   "kind": "invisible",
+   "at": [
+    4,
+    2
+   ],
+   "event": "furn_chimes"
+  },
+  {
+   "id": "weidendorf_workshop_shelf_1",
+   "kind": "invisible",
+   "at": [
+    1,
+    1
+   ],
+   "event": "furn_shelf_workshop"
+  }
+ ],
+ "lights": [
+  [
+   2,
+   1
+  ],
+  [
+   10,
+   1
+  ]
+ ],
+ "id": "weidendorf_workshop",
+ "rows": [
+  "SSSSSSSSSSSSS",
+  "SYYYYwwwYYYYS",
+  "SwYYYYwwwwwwS",
+  "SwwwwwwwwwwwS",
+  "SwwwwwwwwYYwS",
+  "SwwwwwwwwwwwS",
+  "SwwwwwwwwwwwS",
+  "SwwwwwwwwwwwS",
+  "SSSSSSwSSSSSS"
+ ]
+}

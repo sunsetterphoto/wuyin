@@ -1,0 +1,147 @@
+{
+ "name": "MAP_ROOM_SHOP",
+ "region": "bamboo",
+ "indoor": true,
+ "fixed_time": true,
+ "time": "indoor",
+ "music": "town",
+ "parent": "teeufer",
+ "spawns": {
+  "door": [
+   5,
+   6
+  ]
+ },
+ "warps": [
+  {
+   "rect": [
+    5,
+    7,
+    1,
+    1
+   ],
+   "to": "teeufer",
+   "spawn": "teeufer_shop_out"
+  }
+ ],
+ "furniture": [
+  {
+   "kind": "shelf",
+   "rect": [
+    1,
+    1,
+    3,
+    1
+   ]
+  },
+  {
+   "kind": "shelf",
+   "rect": [
+    6,
+    1,
+    4,
+    1
+   ]
+  },
+  {
+   "kind": "counter",
+   "rect": [
+    2,
+    3,
+    7,
+    1
+   ]
+  }
+ ],
+ "decor": [
+  {
+   "prop": "barrel",
+   "at": [
+    1.0,
+    5.5
+   ]
+  },
+  {
+   "prop": "crate",
+   "at": [
+    9.0,
+    5.5
+   ]
+  },
+  {
+   "prop": "jars_group",
+   "at": [
+    9.0,
+    6.4
+   ]
+  },
+  {
+   "prop": "basket_veg",
+   "at": [
+    1.4,
+    6.4
+   ]
+  },
+  {
+   "prop": "jar",
+   "at": [
+    4.5,
+    1.2
+   ],
+   "scale": 0.8,
+   "y": 0.9
+  },
+  {
+   "prop": "basket_veg",
+   "at": [
+    2.5,
+    1.3
+   ],
+   "scale": 0.8,
+   "y": 0.9
+  }
+ ],
+ "npcs": [
+  {
+   "id": "haendler",
+   "sprite": "shopkeeper",
+   "at": [
+    5,
+    2
+   ],
+   "event": "shop_door"
+  }
+ ],
+ "objects": [
+  {
+   "id": "teeufer_shop_shelf_1",
+   "kind": "invisible",
+   "at": [
+    1,
+    1
+   ],
+   "event": "furn_shelf_shop"
+  }
+ ],
+ "lights": [
+  [
+   2,
+   1
+  ],
+  [
+   8,
+   1
+  ]
+ ],
+ "id": "teeufer_shop",
+ "rows": [
+  "SSSSSSSSSSS",
+  "SYYYwwYYYYS",
+  "SwwwwwwwwwS",
+  "SwYYYYYYYwS",
+  "SwwwwwwwwwS",
+  "SwwwwwwwwwS",
+  "SwwwwwwwwwS",
+  "SSSSSwSSSSS"
+ ]
+}

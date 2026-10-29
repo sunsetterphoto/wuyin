@@ -60,6 +60,9 @@ func _run() -> void:
 		await world.enter_map(p[0], "", Vector2(-1, -1), false)
 		await _shot("full_map_%s" % p[0])
 	s.weather.clear()
+	for room in ["teeufer_inn", "weidendorf_home", "weidendorf_workshop", "nebelhafen_restaurant", "rotfels_teahouse", "teeufer_shop"]:
+		await world.enter_map(room, "door", Vector2(-1, -1), false)
+		await _shot("full_room_" + room)
 	await world.enter_map("hof", "", Vector2(-1, -1), false)
 	for entry in [["full_pen", PenMenu.make(0)], ["full_carpenter", CarpenterMenu.new()], ["full_food", RestaurantMenu.make(["fischsuppe", "feuertopf"])],
 			["full_inn", InnMenu.make(true)]]:

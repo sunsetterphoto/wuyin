@@ -204,6 +204,17 @@ EV_FN_YAO,"Drums, {player}! I brought mine!","Trommeln, {player}! Ich hab meine 
 EV_FRAU_1,"Can you smell the mooncakes? When the song is over, there's one for everyone!","Riechst du die Mondkuchen? Wenn das Lied vorbei ist, gibt es für jeden einen!",闻到月饼的香味了吗？歌唱完了每人一个！
 EV_FRAU_2,I can't even hear my own heart anymore... What happened?,Ich höre nicht einmal mehr mein eigenes Herz … Was ist nur passiert?,我连自己的心跳都听不见了……到底发生了什么？
 EV_FRAU_3,"Master Lu just sits in front of his workshop, staring at his hands. Bring back his song, {player}.","Meister Lu sitzt nur noch vor seiner Werkstatt und starrt auf seine Hände. Bring ihm sein Lied zurück, {player}.",卢师傅只是坐在作坊前，盯着自己的手。{player}，把他的歌找回来吧。
+EV_FURN_CHIMES,"Hundreds of wind chimes of bamboo, bronze and shells. When the wind comes through the door, the whole workshop sings.","Hunderte Windspiele aus Bambus, Bronze und Muscheln. Wenn der Wind durch die Tür kommt, singt die ganze Werkstatt.",几百只竹子、青铜和贝壳做的风铃。风从门口吹进来时，整个作坊都在歌唱。
+EV_FURN_CUSHION,Mrrr... (Jinli's favourite cushion. It's still warm.),Mrrr … (Jinlis Lieblingskissen. Es ist noch warm.),呼噜……（锦鲤最爱的垫子，还是暖的。）
+EV_FURN_HOUSE,Nobody home. A bowl of tea is still steaming on the table.,Niemand zu Hause. Auf dem Tisch dampft noch eine Schale Tee.,没人在家。桌上的一碗茶还冒着热气。
+EV_FURN_SHELF_FISHER,"Fish hooks, netting needles and a picture of a cormorant.","Angelhaken, Netznadeln und ein Bild von einem Kormoran.",鱼钩、织网针，还有一张鸬鹚的画。
+EV_FURN_SHELF_HOME,Your books about wind chimes - and a picture of you and Master Lu at the last Lantern Festival.,Deine Bücher über Windspiele – und ein Bild von dir und Meister Lu beim letzten Laternenfest.,你那些关于风铃的书——还有一张你和卢师傅在上次元宵灯会的画。
+EV_FURN_SHELF_HOUSE,A shelf with family keepsakes and a little clay lucky charm.,Ein Regal mit Familienandenken und einer kleinen Glücksfigur aus Ton.,架子上摆着家传的纪念品和一个小小的陶土吉祥物。
+EV_FURN_SHELF_INN,Guest books with greetings from all five regions. Someone has drawn an Emberpanda in one.,Gästebücher mit Grüßen aus allen fünf Regionen. Jemand hat einen Glutpanda hineingemalt.,留言簿上写满了来自五个地区的问候。有人在里面画了一只火团团。
+EV_FURN_SHELF_RESTAURANT,Jars of pickled vegetables and dried mushrooms. Your stomach growls.,Gläser mit eingelegtem Gemüse und getrockneten Pilzen. Dir knurrt der Magen.,一罐罐腌菜和干蘑菇。你的肚子咕咕叫了。
+EV_FURN_SHELF_SHOP,"Sacks of rice, baskets of food, an abacus with worn beads.","Säcke mit Reis, Körbe mit Futter, ein Abakus mit abgegriffenen Perlen.",一袋袋米、一筐筐饲料，还有一把珠子都磨亮了的算盘。
+EV_FURN_SHELF_TEAHOUSE,"Dozens of tea tins: Dragon Well, Cloud Mist, Silver Needle... It smells wonderful.","Dutzende Teedosen: Drachenbrunnen, Wolkennebel, Silbernadel … Es duftet herrlich.",几十个茶罐：龙井、云雾、银针……香气扑鼻。
+EV_FURN_SHELF_WORKSHOP,"Tools, bamboo tubes and bronze plates, carefully sorted.","Werkzeuge, Bambusröhren und Bronzeplättchen, sorgfältig sortiert.",工具、竹管和铜片，分门别类，整整齐齐。
 EV_GIFT_1,Tonight we hang the wind chime of the Phoenix Temple on the festival square. I'm too old to carry it. You take it.,"Heute Nacht hängen wir das Windspiel des Phönixtempels am Festplatz auf. Ich bin zu alt, es zu tragen. Nimm du es.",今晚我们要把凤凰庙的风铃挂到节日广场上。我老了，拿不动了。你来拿吧。
 EV_GIFT_2,You receive the wind chime. Two small bells hang from it.,Du erhältst das Windspiel. Zwei kleine Glöckchen hängen daran.,你得到了风铃，上面挂着两只小铃铛。
 EV_GIFT_3,Each bell allows one Lingshou to follow you. Not because you catch it - because it trusts you. Never forget that.,"Jedes Glöckchen erlaubt einem Lingshou, dir zu folgen. Nicht weil du es fängst – weil es dir vertraut. Vergiss das nie.",每只铃铛都能让一只灵兽跟随你。不是因为你抓住了它，而是因为它信任你。永远别忘了。
@@ -759,6 +770,14 @@ MAP_NEBELHAFEN,Misthaven,Nebelhafen,雾港
 MAP_PHOENIXTEMPEL,Phoenix Temple,Phönixtempel,凤凰庙
 MAP_QILIN_PLATEAU,Qilin Plateau,Qilin-Plateau,麒麟台
 MAP_REISTERRASSEN,Rice Terraces,Reisterrassen,稻田梯
+MAP_ROOM_FISHER,Fisher's hut,Fischerhütte,渔家
+MAP_ROOM_HOME,Home,Zuhause,家
+MAP_ROOM_HOUSE,House,Wohnhaus,民宅
+MAP_ROOM_INN,Inn,Gasthaus,客栈
+MAP_ROOM_RESTAURANT,Restaurant,Restaurant,饭馆
+MAP_ROOM_SHOP,Shop,Laden,商店
+MAP_ROOM_TEAHOUSE,Teahouse,Teehaus,茶馆
+MAP_ROOM_WORKSHOP,Workshop,Werkstatt,作坊
 MAP_ROTFELS,Redrock,Rotfels,赤岩镇
 MAP_SAEULENPFAD,Pillar Path,Säulenpfad,石柱道
 MAP_SCHILDKROETENBUCHT,Tortoise Bay,Schildkrötenbucht,玄龟湾

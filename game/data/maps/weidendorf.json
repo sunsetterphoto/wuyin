@@ -30,6 +30,22 @@
   "from_farm": [
    1,
    10
+  ],
+  "weidendorf_home_out": [
+   6,
+   5
+  ],
+  "weidendorf_workshop_out": [
+   15,
+   5
+  ],
+  "weidendorf_house2_out": [
+   28,
+   12
+  ],
+  "weidendorf_house3_out": [
+   4,
+   16
   ]
  },
  "warps": [
@@ -243,7 +259,8 @@
     6,
     4
    ],
-   "event": "home_door"
+   "event": "enter_room",
+   "enter": "weidendorf_home"
   },
   {
    "id": "work_door",
@@ -252,7 +269,8 @@
     15,
     4
    ],
-   "event": "work_door"
+   "event": "enter_room",
+   "enter": "weidendorf_workshop"
   },
   {
    "id": "sign_north",
@@ -272,6 +290,26 @@
     9
    ],
    "event": "festival_chime"
+  },
+  {
+   "id": "door_28_11",
+   "kind": "invisible",
+   "at": [
+    28,
+    11
+   ],
+   "enter": "weidendorf_house2",
+   "event": "enter_room"
+  },
+  {
+   "id": "door_4_15",
+   "kind": "invisible",
+   "at": [
+    4,
+    15
+   ],
+   "enter": "weidendorf_house3",
+   "event": "enter_room"
   }
  ],
  "triggers": [

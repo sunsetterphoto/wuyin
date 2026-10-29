@@ -15,6 +15,8 @@ var _key := ""
 static func kinds_for(region: String, night: bool, silent: bool, weather: String) -> Array[String]:
 	if silent:
 		return ["dust"]
+	if region == "indoor":
+		return ["dust_warm"]
 	var out: Array[String] = []
 	if night and weather not in ["rain", "storm", "snow", "sandstorm"]:
 		out.append("fireflies")

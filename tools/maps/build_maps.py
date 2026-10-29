@@ -267,4 +267,6 @@ save("drachenschrein", g, {
     ],
 })
 import regions  # noqa: E402,F401  (all maps after the Bamboo Sea)
+import interiors  # noqa: E402
+interiors.apply()
 print("maps written to", os.path.normpath(OUT))

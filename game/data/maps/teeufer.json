@@ -22,6 +22,26 @@
   "from_crossroads": [
    9,
    20
+  ],
+  "teeufer_inn_out": [
+   6,
+   5
+  ],
+  "teeufer_shop_out": [
+   17,
+   5
+  ],
+  "teeufer_teahouse_out": [
+   26,
+   12
+  ],
+  "teeufer_house3_out": [
+   4,
+   17
+  ],
+  "teeufer_house4_out": [
+   14,
+   18
   ]
  },
  "warps": [
@@ -64,33 +84,6 @@
  },
  "npcs": [
   {
-   "id": "wirtin",
-   "sprite": "innkeeper",
-   "at": [
-    8,
-    5
-   ],
-   "event": "inn_door"
-  },
-  {
-   "id": "haendler",
-   "sprite": "shopkeeper",
-   "at": [
-    19,
-    5
-   ],
-   "event": "shop_door"
-  },
-  {
-   "id": "teemeister",
-   "sprite": "teahouse",
-   "at": [
-    23,
-    11
-   ],
-   "event": "teahouse"
-  },
-  {
    "id": "stille_frau",
    "sprite": "villager_a",
    "at": [
@@ -127,7 +120,8 @@
     6,
     4
    ],
-   "event": "inn_door"
+   "event": "enter_room",
+   "enter": "teeufer_inn"
   },
   {
    "id": "shop_door_obj",
@@ -136,7 +130,8 @@
     17,
     4
    ],
-   "event": "shop_door"
+   "event": "enter_room",
+   "enter": "teeufer_shop"
   },
   {
    "id": "tea_door_obj",
@@ -145,7 +140,8 @@
     26,
     11
    ],
-   "event": "teahouse"
+   "event": "enter_room",
+   "enter": "teeufer_teahouse"
   },
   {
    "id": "shrine_chime",
@@ -155,6 +151,26 @@
     5
    ],
    "event": "inn_door"
+  },
+  {
+   "id": "door_4_16",
+   "kind": "invisible",
+   "at": [
+    4,
+    16
+   ],
+   "enter": "teeufer_house3",
+   "event": "enter_room"
+  },
+  {
+   "id": "door_14_17",
+   "kind": "invisible",
+   "at": [
+    14,
+    17
+   ],
+   "enter": "teeufer_house4",
+   "event": "enter_room"
   }
  ],
  "id": "teeufer",

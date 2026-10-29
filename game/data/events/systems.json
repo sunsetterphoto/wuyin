@@ -52,6 +52,79 @@
     "say": "narrator",
     "text": "EV_HOF_SIGN"
    }
+  ],
+  "enter_room": [],
+  "furn_house": [
+   {
+    "say": "narrator",
+    "text": "EV_FURN_HOUSE"
+   }
+  ],
+  "furn_cushion": [
+   {
+    "sfx": "meow"
+   },
+   {
+    "say": "jinli",
+    "text": "EV_FURN_CUSHION"
+   }
+  ],
+  "furn_chimes": [
+   {
+    "sfx": "bell"
+   },
+   {
+    "say": "narrator",
+    "text": "EV_FURN_CHIMES"
+   }
+  ],
+  "furn_shelf_inn": [
+   {
+    "say": "narrator",
+    "text": "EV_FURN_SHELF_INN"
+   }
+  ],
+  "furn_shelf_shop": [
+   {
+    "say": "narrator",
+    "text": "EV_FURN_SHELF_SHOP"
+   }
+  ],
+  "furn_shelf_teahouse": [
+   {
+    "say": "narrator",
+    "text": "EV_FURN_SHELF_TEAHOUSE"
+   }
+  ],
+  "furn_shelf_restaurant": [
+   {
+    "say": "narrator",
+    "text": "EV_FURN_SHELF_RESTAURANT"
+   }
+  ],
+  "furn_shelf_home": [
+   {
+    "say": "narrator",
+    "text": "EV_FURN_SHELF_HOME"
+   }
+  ],
+  "furn_shelf_workshop": [
+   {
+    "say": "narrator",
+    "text": "EV_FURN_SHELF_WORKSHOP"
+   }
+  ],
+  "furn_shelf_house": [
+   {
+    "say": "narrator",
+    "text": "EV_FURN_SHELF_HOUSE"
+   }
+  ],
+  "furn_shelf_fisher": [
+   {
+    "say": "narrator",
+    "text": "EV_FURN_SHELF_FISHER"
+   }
   ]
  }
 }

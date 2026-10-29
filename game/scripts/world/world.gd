@@ -23,6 +23,7 @@ const AMBIENCE := {
 	"dawn": [Color("e0b0a0"), Color("c0b0c8"), Color("ffd8b0"), 0.9, 0.45, 0.6],
 	"dusk": [Color("d89a7a"), Color("b8a0b0"), Color("ffc890"), 0.9, 0.45, 1.0],
 	"night": [Color("1a2238"), Color("5a6a98"), Color("9fb0e0"), 0.5, 0.5, 1.6],
+	"indoor": [Color("120e18"), Color("e0c8a8"), Color("ffe0b0"), 0.35, 0.8, 1.4],
 }
 
 static var _instance: World
@@ -456,7 +457,7 @@ func _apply_ambience() -> void:
 	set_silent(state.region_silent(region()) and map.def.get("silent", true))
 	if _ambient:
 		var h: float = state.minute / 60.0 if uses_clock() else {"night": 23.0, "dusk": 19.5}.get(map.def.get("time", "day"), 12.0)
-		_ambient.configure(region(), h >= 20.0 or h < 5.0, _silent, w)
+		_ambient.configure("indoor" if map.def.get("indoor", false) else region(), h >= 20.0 or h < 5.0, _silent, w)
 	_update_time_label()
 
 
@@ -577,6 +578,14 @@ func _move_player(delta: float) -> void:
 	if _free(nz):
 		p = nz
 	_player.position = p
+	if dir.y < -0.6 and absf(dir.x) < 0.5 and not _free(_player.position + Vector3(0, 0, -0.12)):
+		var door_tile := Vector2i(roundi(p.x), roundi(p.z - 0.7))
+		if map.tile(door_tile.x, door_tile.y) == "D":
+			for id in _actors:
+				var a: Actor = _actors[id]
+				if a.entry.has("enter") and Vector2i(roundi(a.position.x), roundi(a.position.z)) == door_tile:
+					_enter_door(a)
+					return
 	_player.animate(delta, true, dir.x, dir.y)
 	state.pos = Vector2(p.x, p.z)
 	_trail.append(p)
@@ -1041,12 +1050,24 @@ func _on_interact() -> void:
 		if score < best_score:
 			best_score = score
 			best = a
+	if best and best.entry.has("enter"):
+		_enter_door(best)
+		return
 	if best:
 		_idle_s = 0.0
 		touch.release()
 		if best.entry.has("face") or best == _jinli:
 			best.flip_h = best.position.x < _player.position.x
 		events.run(best.event, best.actor_id)
+
+
+## Doors lead into rooms (interiors); a little knock and the room fades in.
+func _enter_door(door: Actor) -> void:
+	if busy:
+		return
+	touch.release()
+	Audio.sfx("select")
+	await enter_map(door.entry["enter"], "door")
 
 
 func open_menu() -> void:
