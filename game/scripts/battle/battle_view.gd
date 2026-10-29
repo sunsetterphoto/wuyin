@@ -48,7 +48,8 @@ var _skip := false
 var _babble: Babble
 var _talk_mode := "call"
 var _voice_speaker := ""
-var _voice_shown := 0  # what the text row does: "call" or "talk" (befriending)
+var _voice_shown := 0
+var _last_element := "neutral"  # what the text row does: "call" or "talk" (befriending)
 
 
 func run(battle_setup: Dictionary, game_state: GameState) -> Dictionary:
@@ -703,6 +704,7 @@ func _play_events(events: Array[Dictionary]) -> void:
 			"uses":
 				_lunge(e["user"])
 				Audio.sfx("select")
+				_last_element = GameData.move(e["move"])["element"]
 			"damage":
 				Audio.sfx("hit")
 				_hit(e["target"], e["amount"], e["effectiveness"])
@@ -785,6 +787,41 @@ func _hit(uid: String, amount: int, effectiveness: float) -> void:
 	tw.tween_property(s, "position", home, 0.04)
 	var c := UiTheme.TEXT if effectiveness == 1.0 else (UiTheme.GOLD if effectiveness > 1.0 else UiTheme.MUTED)
 	_float_text(uid, str(amount), c)
+	_burst(s.position + s.size * Vector2(0.5, 0.55), _last_element, effectiveness > 1.0)
+	if effectiveness > 1.0 and not autopilot:
+		var st := create_tween()
+		for i in 4:
+			st.tween_property(_stage, "position", Vector2(randf_range(-10, 10), randf_range(-6, 6)), 0.04)
+		st.tween_property(_stage, "position", Vector2.ZERO, 0.05)
+
+
+## A puff of the attack's element where it hits: leaves, embers, droplets, pebbles or sparks.
+func _burst(at: Vector2, element: String, strong: bool) -> void:
+	var p := CPUParticles2D.new()
+	p.one_shot = true
+	p.explosiveness = 0.9
+	p.amount = 26 if strong else 14
+	p.lifetime = 0.7
+	p.position = at
+	p.spread = 180.0
+	p.scale_amount_min = 4.0
+	p.scale_amount_max = 9.0 if strong else 6.0
+	var look: Array = {"wood": [Color("6aa84f"), Vector2(0, 120), 160.0], "fire": [Color("ff8a3a"), Vector2(0, -220), 200.0],
+		"water": [Color("6ab0e8"), Vector2(0, 420), 220.0], "earth": [Color("a07a4a"), Vector2(0, 600), 240.0],
+		"metal": [Color("e8eef4"), Vector2(0, 80), 380.0]}.get(element, [Color("f4efe6"), Vector2(0, 100), 180.0])
+	p.color = look[0]
+	p.gravity = look[1]
+	p.initial_velocity_min = float(look[2]) * 0.5
+	p.initial_velocity_max = float(look[2])
+	p.angular_velocity_min = -300.0
+	p.angular_velocity_max = 300.0
+	var g := Gradient.new()
+	g.set_color(0, Color(1, 1, 1, 1))
+	g.set_color(1, Color(1, 1, 1, 0))
+	p.color_ramp = g
+	_stage.add_child(p)
+	p.emitting = true
+	get_tree().create_timer(1.2).timeout.connect(p.queue_free)
 
 
 func _faint(uid: String) -> void:
