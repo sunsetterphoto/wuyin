@@ -234,7 +234,7 @@ func _add_sprite(u: BattleUnit, feet: Vector2, own: bool) -> void:
 	if not u.is_alive():
 		return
 	var grey := u.role == "silenced" and not u.freed
-	var tex := Sprites.lingshou(u.species["id"], grey)
+	var tex := Sprites.awakened(u.species["id"]) if u.awakened else Sprites.lingshou(u.species["id"], grey)
 	var s := TextureRect.new()
 	s.texture = tex
 	s.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -374,7 +374,7 @@ func _refresh() -> void:
 		var u: BattleUnit = p["unit"]
 		var st := " ".join(u.statuses.keys().map(func(s): return "[%s]" % BattleText.status_name(s)))
 		if u.side == PLAYER:
-			p["name"].text = "%s  %s %s" % [tr(u.name_key()), tr("BATTLE_LEVEL").format({"level": u.level}), st]
+			p["name"].text = "%s%s  %s %s" % [tr(u.name_key()), " ✦" if u.awakened else "", tr("BATTLE_LEVEL").format({"level": u.level}), st]
 		else:
 			p["name"].text = "%s  %s %s" % [tr(u.name_key()), tr("BATTLE_LEVEL").format({"level": u.level}), st]
 		p["bar"].max_value = u.max_hp

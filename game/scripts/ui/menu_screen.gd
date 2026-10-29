@@ -71,7 +71,7 @@ static func lingshou_row(rec: Dictionary, extra: Array[Control] = []) -> Control
 	h.add_theme_constant_override("separation", 14)
 	row.add_child(h)
 	var icon := TextureRect.new()
-	icon.texture = Sprites.lingshou(rec["species"])
+	icon.texture = Sprites.lingshou_rec(rec)
 	icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
@@ -81,7 +81,7 @@ static func lingshou_row(rec: Dictionary, extra: Array[Control] = []) -> Control
 	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	h.add_child(v)
 	var sp := u.species
-	v.add_child(UiTheme.label("%s   %s   %s · %s" % [TranslationServer.translate(sp["name"]),
+	v.add_child(UiTheme.label("%s%s   %s   %s · %s" % [TranslationServer.translate(sp["name"]), " ✦" if u.awakened else "",
 		TranslationServer.translate("BATTLE_LEVEL").format({"level": u.level}), BattleText.element_name(u.element()),
 		TranslationServer.translate("TEMPERAMENT_" + String(sp["temperaments"][0]).to_upper())], 22))
 	var bar := UiTheme.bar(UiTheme.JADE if u.hp > 0 else UiTheme.VERMILION, 14)

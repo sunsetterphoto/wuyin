@@ -633,6 +633,9 @@ HINT_ZHI_2,"Meeew! (Crossroads, bottom middle: the Danxia Trail to Redrock. Beyo
 HOME_EGGS,Eggs,Eier,蛋
 HOME_EGG_ROW,An egg of {name} - hatches in {n} nights.,Ein Ei von {name} – schlüpft in {n} Nächten.,{name}的蛋——还有{n}晚孵化。
 HOME_TITLE,Home,Zuhause,家
+INN_AWAKEN,Change ✦,Wandlung ✦,蜕变 ✦
+INN_AWAKENED,"The wind chime rings brightly - {name} shows its true form! (stronger, marked ✦)","Das Windspiel klingt hell – {name} zeigt seine wahre Gestalt! (stärker, Kennzeichen ✦)",风铃清脆作响——{name}展现出了真正的样子！（更强，标记✦）
+INN_AWAKEN_NOTE,Lingshou with bond 70 and level 20 or more can change here.,Lingshou mit Bindung ab 70 und Stufe 20 können sich hier wandeln.,羁绊达到70、等级达到20的灵兽可以在这里蜕变。
 INN_FARM,On the farm,Auf dem Hof,在农庄
 INN_REST,Rest (heal and save),Ausruhen (heilen und speichern),休息（恢复并存档）
 INN_RESTED,Everyone is rested. Saved.,Alle sind ausgeruht. Gespeichert.,大家都休息好了。已存档。

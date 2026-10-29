@@ -245,3 +245,6 @@ for nid, names, tone, style, octave, flag, silent_line, free_line in [
         {"if": flag, "then": [say(nid, f"EV_RES_{nid.upper()}_2", *free_line)], "else": [say(nid, f"EV_RES_{nid.upper()}_1", *silent_line)]}]
 t("MENU_MAP", "Karte", "Map", "地图")
 t("MAP_YOU_ARE", "Du bist hier", "You are here", "你在这里")
+t("INN_AWAKEN", "Wandlung ✦", "Change ✦", "蜕变 ✦")
+t("INN_AWAKENED", "Das Windspiel klingt hell – {name} zeigt seine wahre Gestalt! (stärker, Kennzeichen ✦)", "The wind chime rings brightly - {name} shows its true form! (stronger, marked ✦)", "风铃清脆作响——{name}展现出了真正的样子！（更强，标记✦）")
+t("INN_AWAKEN_NOTE", "Lingshou mit Bindung ab 70 und Stufe 20 können sich hier wandeln.", "Lingshou with bond 70 and level 20 or more can change here.", "羁绊达到70、等级达到20的灵兽可以在这里蜕变。")

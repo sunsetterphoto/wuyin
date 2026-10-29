@@ -53,9 +53,13 @@ func _build(note := "") -> void:
 			body.add_child(row)
 	if not s.farm.is_empty() or s.party.size() > 1:
 		body.add_child(UiTheme.label(tr("INN_SHRINE"), 24, UiTheme.GOLD))
-		body.add_child(UiTheme.para(tr("INN_SHRINE_NOTE").format({"bells": s.bells}), 17, UiTheme.MUTED))
+		body.add_child(UiTheme.para(tr("INN_SHRINE_NOTE").format({"bells": s.bells}) + " " + tr("INN_AWAKEN_NOTE"), 17, UiTheme.MUTED))
 		for i in s.party.size():
 			var extra: Array[Control] = []
+			if BattleUnit.can_awaken(s.party[i]):
+				var b := UiTheme.button(tr("INN_AWAKEN"), func(): _awaken(i), 170)
+				b.add_theme_color_override("font_color", UiTheme.GOLD)
+				extra.append(b)
 			if s.party.size() > 1:
 				extra.append(UiTheme.button(tr("INN_TO_FARM"), func(): s.move_to_farm(i); _build(), 170))
 			body.add_child(MenuScreen.lingshou_row(s.party[i], extra))
@@ -67,6 +71,25 @@ func _build(note := "") -> void:
 			b.disabled = s.party.size() >= s.bells
 			extra.append(b)
 			body.add_child(MenuScreen.lingshou_row(s.farm[i], extra))
+
+
+## Wandlung: the bond is deep enough, the wind chime rings, and the Lingshou shows its true form.
+func _awaken(i: int) -> void:
+	var s := GameState.current
+	var rec: Dictionary = s.party[i]
+	var u := BattleUnit.from_record(rec)
+	u.awakened = true
+	u.recalc_stats()
+	u.hp = u.max_hp
+	var keep := rec.duplicate()
+	s.party[i] = u.to_record()
+	for k in ["sex", "temperament", "parents"]:
+		if keep.has(k):
+			s.party[i][k] = keep[k]
+	s.count("awakened")
+	Audio.sfx("bell")
+	Audio.sfx("level")
+	_build(tr("INN_AWAKENED").format({"name": tr(GameData.lingshou(rec["species"])["name"])}))
 
 
 func _act(what: String) -> void:

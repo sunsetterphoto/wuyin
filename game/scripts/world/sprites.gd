@@ -30,6 +30,8 @@ static func lingshou(id: String, silenced := false) -> Texture2D:
 
 ## A Lingshou record's look: rare colour variants are hue-shifted (GDD "Zucht").
 static func lingshou_rec(rec: Dictionary) -> Texture2D:
+	if rec.get("awakened", false):
+		return awakened(rec["species"])
 	var base := lingshou(rec["species"])
 	if int(rec.get("variant", 0)) == 0:
 		return base
@@ -68,6 +70,40 @@ static func portrait(id: String, hair := -1, outfit := -1) -> Texture2D:
 		tex = character(id)
 	_cache[key] = tex
 	return tex
+
+
+## The changed form: the sprite with a glowing rim in its element colour and a few sparkles.
+static func awakened(species: String) -> Texture2D:
+	var key := "aw:" + species
+	if _cache.has(key):
+		return _cache[key]
+	var src := lingshou(species).get_image()
+	src.decompress()
+	var w := src.get_width() + 4
+	var h := src.get_height() + 4
+	var img := Image.create(w, h, false, Image.FORMAT_RGBA8)
+	img.fill(Color(0, 0, 0, 0))
+	img.blit_rect(src, Rect2i(0, 0, src.get_width(), src.get_height()), Vector2i(2, 2))
+	var col := element_color(GameData.lingshou(species)["element"]).lightened(0.35)
+	var out := img.duplicate() as Image
+	for y in h:
+		for x in w:
+			if img.get_pixel(x, y).a > 0.5:
+				continue
+			for d in [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1), Vector2i(2, 0), Vector2i(-2, 0), Vector2i(0, -2)]:
+				var q: Vector2i = Vector2i(x, y) + d
+				if q.x >= 0 and q.y >= 0 and q.x < w and q.y < h and img.get_pixelv(q).a > 0.5:
+					out.set_pixel(x, y, Color(col, 0.85 if absi(d.x) + absi(d.y) == 1 else 0.45))
+					break
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(species)
+	for i in 6:
+		var p := Vector2i(rng.randi_range(2, w - 3), rng.randi_range(2, h / 2))
+		if out.get_pixelv(p).a < 0.1:
+			for d in [Vector2i(0, 0), Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]:
+				out.set_pixelv(p + d, Color("fff4c0"))
+	_cache[key] = ImageTexture.create_from_image(out)
+	return _cache[key]
 
 
 ## Back or side view of a character if the art has one (<id>_back.png), else null.

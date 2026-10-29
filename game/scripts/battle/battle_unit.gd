@@ -5,6 +5,16 @@ extends RefCounted
 
 const MAX_LEVEL := 50
 const BASIC_MOVE := "grundangriff"
+const AWAKENED_BOOST := 1.12
+## Wandlung: from this bond and level on, at a wind chime shrine.
+const AWAKEN_BOND := 70
+const AWAKEN_LEVEL := 20
+
+
+static func can_awaken(rec: Dictionary) -> bool:
+	var sp := GameData.lingshou(rec["species"])
+	return not rec.get("awakened", false) and int(rec.get("bond", 0)) >= AWAKEN_BOND and int(rec.get("level", 1)) >= AWAKEN_LEVEL \
+		and not sp.get("guardian", false) and sp["alignment"] != "nian" and rec.get("stage", "adult") == "adult"
 
 var uid: String
 var species: Dictionary
@@ -28,6 +38,8 @@ var variant := 0
 var stage := "adult"
 ## Moves learned by the last gain_xp() call (for the battle log).
 var learned_new: Array[String] = []
+## Changed into its stronger form (GDD "Wandlung"): a little stronger, glows in its element.
+var awakened := false
 ## Nian only: how often it was frightened by drums, firecrackers or red banners.
 var fear := 0
 ## status name -> {"turns": int, "applied_turn": int}
@@ -83,7 +95,8 @@ static func from_record(rec: Dictionary) -> BattleUnit:
 	u.sex = rec.get("sex", "")
 	u.variant = int(rec.get("variant", 0))
 	u.stage = rec.get("stage", "adult")
-	if not u.iv.is_empty():
+	u.awakened = bool(rec.get("awakened", false))
+	if not u.iv.is_empty() or u.awakened:
 		u.recalc_stats()
 		u.hp = u.max_hp
 	u.hp = clampi(int(rec.get("hp", u.max_hp)), 0, u.max_hp)
@@ -101,6 +114,8 @@ func to_record() -> Dictionary:
 		rec["variant"] = variant
 	if stage != "adult":
 		rec["stage"] = stage
+	if awakened:
+		rec["awakened"] = true
 	if species["temperaments"][0] != GameData.lingshou(species["id"])["temperaments"][0]:
 		rec["temperament"] = species["temperaments"][0]
 	return rec
@@ -132,6 +147,11 @@ func recalc_stats() -> void:
 	atk = stat_for(int(b["atk"]) + int(iv.get("atk", 0)), level)
 	def = stat_for(int(b["def"]) + int(iv.get("def", 0)), level)
 	spd = stat_for(int(b["spd"]) + int(iv.get("spd", 0)), level)
+	if awakened:
+		max_hp = roundi(max_hp * AWAKENED_BOOST)
+		atk = roundi(atk * AWAKENED_BOOST)
+		def = roundi(def * AWAKENED_BOOST)
+		spd = roundi(spd * AWAKENED_BOOST)
 	if old_max > 0:
 		hp = mini(max_hp, hp + max_hp - old_max)
 
