@@ -19,6 +19,8 @@ Auf Samuels Wunsch („komplett spielbare Beta zum Testen und Bewerten auf dem S
 
 Auf Samuels Wunsch („ein fertiges Spiel testen“, „Welten cute und richtig detailliert“) in einer Nacht gebaut; Inhalt und Bedienung in [SPIEL.md](SPIEL.md). Ganze Geschichte bis zu drei Enden, fünf Regionen, 51 Karten (davon 30 Innenräume), 36 Lingshou, Hof mit Zucht, Spieluhr, Wetter, Überreden, Weltkarte. Grafik-Umbau auf HD-2D mit chinesischen Gebäuden, Requisiten im Wind, Höhenstufen, Partikeln und Geräuschkulisse. Generierte Kunst: `tools/comfyui/FULL_ASSETS.md` und `ENV_ASSETS.md`.
 
+Stand am Morgen: 108 Tests grün (3 übersprungen), alle drei Enden per Autoplay erreicht, S24 58–61 FPS auf allen geprüften Karten bei etwa 30 °C, APK 60 MB. Chinesische Zeichen kommen jetzt aus einer eingebetteten Noto-Sans-CJK-Teilmenge (vorher Kästchen auf Android). Bericht: [BERICHT-2026-10-29.md](BERICHT-2026-10-29.md).
+
 ## Entscheidungen
 
 - 2026-10-29: Erfahrungskurve ab Stufe 10 linear (70 × Stufe), damit das lange Mittelspiel nicht zur Mühle wird; Autoplay: rund 120 Kämpfe bis zum Ende, Stufe ~35.
