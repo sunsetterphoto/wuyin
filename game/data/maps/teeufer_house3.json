@@ -86,7 +86,17 @@
    ]
   }
  ],
- "npcs": [],
+ "npcs": [
+  {
+   "id": "pflueckerin_mei",
+   "sprite": "girl_c",
+   "at": [
+    5,
+    4
+   ],
+   "event": "res_pflueckerin"
+  }
+ ],
  "objects": [
   {
    "id": "teeufer_house3_shelf_1",

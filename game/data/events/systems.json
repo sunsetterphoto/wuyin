@@ -125,6 +125,108 @@
     "say": "narrator",
     "text": "EV_FURN_SHELF_FISHER"
    }
+  ],
+  "res_opa_hu": [
+   {
+    "if": "tone_jue",
+    "then": [
+     {
+      "say": "opa_hu",
+      "text": "EV_RES_OPA_HU_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "opa_hu",
+      "text": "EV_RES_OPA_HU_1"
+     }
+    ]
+   }
+  ],
+  "res_herr_fang": [
+   {
+    "if": "tone_jue",
+    "then": [
+     {
+      "say": "herr_fang",
+      "text": "EV_RES_HERR_FANG_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "herr_fang",
+      "text": "EV_RES_HERR_FANG_1"
+     }
+    ]
+   }
+  ],
+  "res_pflueckerin": [
+   {
+    "if": "tone_jue",
+    "then": [
+     {
+      "say": "pflueckerin_mei",
+      "text": "EV_RES_PFLUECKERIN_MEI_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "pflueckerin_mei",
+      "text": "EV_RES_PFLUECKERIN_MEI_1"
+     }
+    ]
+   }
+  ],
+  "res_opa_liu": [
+   {
+    "if": "tone_jue",
+    "then": [
+     {
+      "say": "opa_liu",
+      "text": "EV_RES_OPA_LIU_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "opa_liu",
+      "text": "EV_RES_OPA_LIU_1"
+     }
+    ]
+   }
+  ],
+  "res_hong_jun": [
+   {
+    "if": "tone_zhi",
+    "then": [
+     {
+      "say": "hong_jun",
+      "text": "EV_RES_HONG_JUN_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "hong_jun",
+      "text": "EV_RES_HONG_JUN_1"
+     }
+    ]
+   }
+  ],
+  "res_frau_zhou": [
+   {
+    "if": "tone_yu",
+    "then": [
+     {
+      "say": "frau_zhou",
+      "text": "EV_RES_FRAU_ZHOU_2"
+     }
+    ],
+    "else": [
+     {
+      "say": "frau_zhou",
+      "text": "EV_RES_FRAU_ZHOU_1"
+     }
+    ]
+   }
   ]
  }
 }

@@ -1,0 +1,68 @@
+# Wuyin environment palette (tiles, props, portraits), 2026-10-29.
+# First 32 entries = palette_wuyin32.hex unchanged; then a turquoise/jade ramp,
+# extra grass/moss greens, earth and danxia reds, cool slate greys, water teals,
+# soft pastels and snow shades. Every env asset is reduced to this palette.
+1a1620  ink black
+3a3046  ink violet
+5e584c  dark stone
+8c8577  stone
+bfb6a4  light stone
+f2ede0  rice paper
+2b4a2f  deep bamboo
+3f7232  forest
+5f9c46  jade green
+9cc26a  young leaf
+d6e29a  pale leaf
+1f3f66  deep river
+3b6ea5  river blue
+6fa3d6  sky blue
+b9dcf2  mist
+6a2a22  dark lacquer
+a8382b  vermilion
+d8562f  ember orange
+f08a3a  lantern orange
+f6c453  imperial gold
+fff2a8  candle light
+553520  dark wood
+7a4e2d  wood
+b8865a  sand dark
+d9b98a  sand
+f1c9a5  skin light
+c98f6b  skin mid
+8a5a44  skin dark
+5c2f5e  plum
+9a5ea8  orchid
+e8a3b5  peach blossom
+ffffff  white
+1d4f4a  deep teal
+2a7d6f  teal
+3fa894  jade turquoise
+7fd1b9  pale jade
+c4ecd9  mint
+4e8b3a  mid grass
+7db24e  bright grass
+6b7a3a  olive moss
+9aa05a  sage moss
+7f8f7a  karst sage grey
+a9b59c  pale sage
+3e2a1c  very dark wood
+9b6b40  earth
+a07a52  packed earth
+e8d2a8  pale sand
+b5583c  red rock
+e07a4e  terracotta
+f2b27a  apricot
+f7dcae  cream
+4a5560  slate
+6e7a86  blue grey
+9aa4ab  light slate
+d0d6d6  pale grey
+2f6f8a  teal water
+4f9bb0  lagoon
+f7c9d4  pale pink
+cd5f86  plum pink
+c9b2e0  lavender
+fbe9b7  butter
+e4eef4  snow light
+c6d4e4  snow shadow
+8f4632  roof brown

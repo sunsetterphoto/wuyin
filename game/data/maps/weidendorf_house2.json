@@ -86,7 +86,17 @@
    ]
   }
  ],
- "npcs": [],
+ "npcs": [
+  {
+   "id": "opa_hu",
+   "sprite": "elder",
+   "at": [
+    3,
+    3
+   ],
+   "event": "res_opa_hu"
+  }
+ ],
  "objects": [
   {
    "id": "weidendorf_house2_shelf_1",

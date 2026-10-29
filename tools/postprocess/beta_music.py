@@ -7,6 +7,7 @@ Steps: trim leading/trailing silence (-50 dB), two-pass EBU R128 loudnorm to TAR
 
 Needs ffmpeg and a Python with soundfile + numpy (the brew ffmpeg here has no libvorbis):
   ~/.unsloth/studio/unsloth_studio/bin/python tools/postprocess/beta_music.py [--only id,id]
+  ... beta_music.py --batch tools/comfyui/full_assets.json   # full batch, raw files from build/full_raw/music
 """
 import argparse
 import json
@@ -74,8 +75,11 @@ def process(item, src):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="")
+    ap.add_argument("--batch", default=os.path.join(ROOT, "tools", "comfyui", "beta_assets.json"))
     args = ap.parse_args()
-    batch = json.load(open(os.path.join(ROOT, "tools", "comfyui", "beta_assets.json")))
+    global RAW
+    RAW = os.path.join(ROOT, "build", os.path.basename(args.batch).split("_assets")[0] + "_raw", "music")
+    batch = json.load(open(args.batch))
     only = set(filter(None, args.only.split(",")))
     for item in batch["music"]:
         if only and item["id"] not in only:

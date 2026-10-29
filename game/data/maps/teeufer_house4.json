@@ -86,7 +86,17 @@
    ]
   }
  ],
- "npcs": [],
+ "npcs": [
+  {
+   "id": "opa_liu",
+   "sprite": "elder",
+   "at": [
+    4,
+    5
+   ],
+   "event": "res_opa_liu"
+  }
+ ],
  "objects": [
   {
    "id": "teeufer_house4_shelf_1",

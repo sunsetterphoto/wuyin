@@ -5,6 +5,9 @@
   python3 tools/comfyui/beta_generate.py lingshou chars        # some sections
   python3 tools/comfyui/beta_generate.py chars --only hero,yao # some ids
   python3 tools/comfyui/beta_generate.py chars --only hero --seed 351   # try another seed
+  python3 tools/comfyui/beta_generate.py --batch tools/comfyui/full_assets.json lingshou   # other batch file
+
+Raw dir follows the batch name: beta_assets.json -> build/beta_raw, full_assets.json -> build/full_raw.
 
 Raw files land in build/beta_raw/<section>/<id>_s<seed>.(png|flac); existing files are skipped
 (--force regenerates). Post-processing: tools/postprocess/beta_postprocess.py and beta_music.py.
@@ -25,6 +28,12 @@ RAW = os.path.join(ROOT, "build", "beta_raw")
 SECTIONS = ["lingshou", "chars", "backgrounds", "ui", "music"]
 
 
+def raw_dir(batch_path):
+    """beta_assets.json -> build/beta_raw, full_assets.json -> build/full_raw."""
+    name = os.path.basename(batch_path).split("_assets")[0]
+    return os.path.join(ROOT, "build", f"{name}_raw")
+
+
 def comfy_run(workflow, sets, dst, timeout=1800):
     tmp = os.path.join(RAW, "_tmp")
     cmd = ["python3", COMFY, "run", workflow, "--out", tmp, "--timeout", str(timeout)]
@@ -43,7 +52,7 @@ def comfy_run(workflow, sets, dst, timeout=1800):
 
 def image(prompt, seed, w, h, dst):
     return comfy_run(IMG_WF, {"5.text": prompt, "8.seed": seed, "7.width": w, "7.height": h,
-                              "10.filename_prefix": "wuyin/beta"}, dst)
+                              "10.filename_prefix": "wuyin/" + os.path.basename(RAW)}, dst)
 
 
 def music(batch, m, seed, dst):
@@ -62,6 +71,8 @@ def main():
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--batch", default=os.path.join(HERE, "beta_assets.json"))
     args = ap.parse_args()
+    global RAW
+    RAW = raw_dir(args.batch)
     batch = json.load(open(args.batch))
     only = set(filter(None, args.only.split(",")))
     for sec in args.sections:
@@ -74,6 +85,8 @@ def main():
             if os.path.exists(dst) and not args.force:
                 print("exists", os.path.relpath(dst, ROOT))
                 continue
+            if sec == "derived":
+                continue  # post-process only
             if sec == "music":
                 music(batch, item, seed, dst)
                 continue

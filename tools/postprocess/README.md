@@ -33,3 +33,26 @@ $PY tools/postprocess/beta_preview.py backgrounds         # build/beta_preview_b
 - `pixelize.py sprite ... --size 32 --height 48` erzeugt nicht-quadratische Figuren (Füße unten).
 - Hintergründe: 320x180 mit eigener 64-Farben-Palette (leicht zur Wuyin-Palette gezogen), dann 2x Nearest auf 640x360.
 - Die brew-ffmpeg hier hat kein libvorbis; OGG schreibt libsndfile (soundfile im Unsloth-venv), blockweise (ein großer Schreibaufruf stürzt ab).
+
+## Umgebungs-Assets (2026-10-29)
+
+Batch: `tools/comfyui/env_assets.json`, Bericht: `tools/comfyui/ENV_ASSETS.md`. Palette: `palette_env64.hex`
+(die 32 Wuyin-Farben plus Türkis/Jade-Rampe, Gras- und Moosgrün, Erd- und Danxia-Rot, Schiefergrau, Wasser-Türkis,
+Pastell, Schnee; 64 Farben).
+
+```bash
+PY=~/Documents/ComfyUI/.venv/bin/python
+python3 tools/comfyui/env_generate.py props portraits       # Rohbilder nach build/env_raw/ (Tiles brauchen keine)
+$PY tools/postprocess/env_postprocess.py                     # tiles, props, portraits nach game/assets/
+$PY tools/postprocess/env_preview.py tiles                   # build/env_preview_tiles.png (3x3 gekachelt)
+$PY tools/postprocess/env_preview.py props                   # build/env_preview_props.png (3x und 1x)
+$PY tools/postprocess/env_preview.py portraits               # build/env_preview_portraits.png (mit Overworld-Sprite)
+$PY tools/postprocess/env_preview.py scene                   # build/env_preview_scene.png (Probedorf)
+```
+
+- **Tiles** (64x64) malt `env_tiles_proc.py` prozedural: alle Rauschfelder, Voronoi-Zellen, Stempel und Reihen
+  laufen über den Rand, daher nahtlos ohne Überblendung. Fester Seed je Tile.
+- **Props und Porträts**: Hintergrund = Medianfarbe des Bildrands, alles Ähnliche mit Randkontakt wird
+  transparent; Herunterskalieren mit vormultipliziertem Alpha (kein weißer Saum); k Cluster (Median-Cut) je Bild,
+  jeder Cluster auf die nächste Palettenfarbe (CIE Lab, Helligkeit stärker gewichtet); Einzelpixel bekommen die
+  häufigste Nachbarfarbe; 1-px-Umriss in Tinte (`1a1620`). Weiße Objekte werden auf blauem Grund erzeugt (`prop_key`).

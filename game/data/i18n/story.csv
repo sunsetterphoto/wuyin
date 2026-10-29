@@ -358,6 +358,18 @@ EV_QL_LOSE,The earth is patient. Be patient too. Try again.,Die Erde ist geduldi
 EV_QL_TUT,Two against two! Gentle ones listen to calm and respect.,Zwei gegen zwei! Sanfte hören auf Ruhe und Respekt.,二对二！温和的灵兽听得进平静和尊重。
 EV_RB_1,The Nian flees howling into the clouds. Silence - but a different silence. One that waits.,"Der Nian flieht heulend in die Wolken. Stille – aber eine andere Stille. Eine, die wartet.",年兽嚎叫着逃进了云里。寂静——但这是另一种寂静。一种在等待的寂静。
 EV_RB_2,"Mew! (Jinli's koi bell rings. And then, one after another, the five tones sound: Jue, Yu, Zhi, Shang, Gong.)","Miau! (Jinlis Koi-Glöckchen klingt. Und dann, eins nach dem anderen, erklingen die fünf Töne: Jue, Yu, Zhi, Shang, Gong.)",喵！（锦鲤的锦鲤铃响了。接着，五音一个接一个地响起：角、羽、徵、商、宫。）
+EV_RES_FRAU_ZHOU_1,"My husband just sits there staring at the water. He raised Bai for a year, you know.","Mein Mann sitzt nur da und starrt aufs Wasser. Er hat Bai seit einem Jahr großgezogen, weißt du.",我老伴就坐在那儿盯着水看。小白是他一手养大的，你知道吗。
+EV_RES_FRAU_ZHOU_2,"The river carries the boats again. Fish tonight - for you too, child.","Der Fluss trägt die Boote wieder. Heute Abend gibt es Fisch – für dich auch, Kind.",河水又能载船了。今晚吃鱼——也给你留一份，孩子。
+EV_RES_HERR_FANG_1,"My wife is thinking of joining the Order. I'm baking her mooncakes so she stays. That'll help, surely.","Meine Frau überlegt, zum Orden zu gehen. Ich backe ihr Mondkuchen, damit sie bleibt. Hilft bestimmt.",我老婆想去入教团。我给她烤月饼，好让她留下。肯定有用。
+EV_RES_HERR_FANG_2,"She stayed! The mooncakes were burnt, but she laughed.","Sie ist geblieben! Die Mondkuchen waren angebrannt, aber sie hat gelacht.",她留下了！月饼烤糊了，可她笑了。
+EV_RES_HONG_JUN_1,Mum says fire is evil. But without fire there are no lanterns. And no noodles.,"Mama sagt, Feuer ist böse. Aber ohne Feuer gibt es keine Laternen. Und keine Nudeln.",妈妈说火是坏的。可没有火就没有灯笼，也没有面条。
+EV_RES_HONG_JUN_2,Noodles today! Cooked with fire! Mum even sang along.,Heute gibt es Nudeln! Mit Feuer gekocht! Mama hat sogar mitgesungen.,今天吃面条！用火煮的！妈妈还跟着唱了歌。
+EV_RES_OPA_HU_1,"My wife is outside gossiping. I stay here and listen - to nothing. Strange, isn't it?","Meine Frau ist draußen und tratscht. Ich bleibe hier und lausche – auf nichts. Seltsam, oder?",我老伴在外面聊天。我待在这儿听——什么都听不见。怪吧？
+EV_RES_OPA_HU_2,Do you hear the sparrows on the roof? I've never been so glad to hear them.,Hörst du die Spatzen auf dem Dach? Ich habe sie noch nie so gern gehört.,听见屋顶上的麻雀了吗？我从没这么喜欢听它们叫。
+EV_RES_OPA_LIU_1,"I've missed three rebirths of the phoenix. Well, one. But it feels like three.","Ich habe drei Wiedergeburten des Phönix verpasst. Na ja, eine. Aber es fühlt sich wie drei an.",我错过了三次凤凰重生。嗯，一次。可感觉像三次。
+EV_RES_OPA_LIU_2,"When I hear the whole song, I may go. Not before. Tell the phoenix that.","Wenn ich das Lied ganz höre, darf ich gehen. Vorher nicht. Sag das dem Phönix.",等我听完整首歌，我就可以走了。之前可不行。替我告诉凤凰。
+EV_RES_PFLUECKERIN_MEI_1,"We sing while picking, or the leaves turn bitter. Without a song... everything tastes of dust.","Wir singen beim Pflücken, sonst werden die Blätter bitter. Ohne Lied … schmeckt alles nach Staub.",我们边唱边采，不然茶叶会苦。没有歌……什么都像灰尘的味道。
+EV_RES_PFLUECKERIN_MEI_2,Try it! The first tea since the festival - we sang at the top of our voices while picking.,Probier! Der erste Tee seit dem Fest – wir haben beim Pflücken aus voller Kehle gesungen.,尝尝！节后的第一道茶——我们采茶时放声高歌。
 EV_RF_1,"Redrock, a village of red stone. The kilns are cold. The people eye you suspiciously - nobody here misses the fire.","Rotfels, ein Dorf aus rotem Stein. Die Brennöfen sind kalt. Die Leute schauen dich misstrauisch an – niemand hier vermisst das Feuer.",赤岩镇，一座红石砌成的村子。窑炉都冷了。人们疑惑地打量着你——这里没有人怀念那火。
 EV_RIVER_1,"At the river, the water stands still as glass. Shy Lingshou crouch between reeds and bamboo.",Am Fluss steht das Wasser still wie Glas. Zwischen Schilf und Bambus kauern scheue Lingshou.,河水静止如镜。芦苇和竹林之间蜷缩着怕生的灵兽。
 EV_RIVER_2,You're here too? ... The silence. Do you hear that? Nothing at all. Isn't it... peaceful?,Du auch hier? … Die Stille. Hörst du das? Gar nichts. Ist das nicht … friedlich?,你也来了？……这寂静，你听，什么都没有。不觉得……很安宁吗？
@@ -845,9 +857,12 @@ NPC_EREMITIN,Hermit Qing,Eremitin Qing,青隐士
 NPC_FENGHUANG,Fenghuang,Fenghuang,凤凰
 NPC_FISCHER,Fisher Zhou,Fischer Zhou,周渔翁
 NPC_FOERSTER,Forester Ah Mu,Förster Ah Mu,阿木
+NPC_FRAU_ZHOU,Mrs Zhou,Frau Zhou,周大娘
 NPC_HAENDLER,Merchant Gao,Händler Gao,高掌柜
 NPC_HAFEN_ALTER,Grandpa Pan,Großvater Pan,潘爷爷
 NPC_HAFEN_KIND,Xiao Yu,Xiao Yu,小鱼
+NPC_HERR_FANG,Mr Fang,Herr Fang,方大叔
+NPC_HONG_JUN,Hong Jun,Hong Jun,洪军
 NPC_JINLI,Jinli,Jinli,锦鲤
 NPC_KARAWANE,Caravan Leader Batu,Karawanenführer Batu,巴图
 NPC_KARAWANENAELTESTE,Elder Saule,Älteste Saule,萨乌勒长老
@@ -878,6 +893,8 @@ NPC_NEBELHAFEN_TEEMEISTER,Tea Mistress Qiu,Teemeisterin Qiu,邱茶娘
 NPC_NEBELHAFEN_WIRT,Innkeeper Tang,Wirt Tang,唐掌柜
 NPC_NIAN,Nian,Nian,年兽
 NPC_OMA_NIAN,Granny Hu,Oma Hu,胡奶奶
+NPC_OPA_HU,Grandpa Hu,Opa Hu,胡爷爷
+NPC_OPA_LIU,Grandpa Liu,Großvater Liu,刘爷爷
 NPC_ORDENSMEISTERIN,Sister Lu,Ordensschwester Lu,露师姐
 NPC_ORDER_BUCHT,Brother Mo,Bruder Mo,默师兄
 NPC_ORDER_GIPFEL,Sister Yun,Schwester Yun,云师姐
@@ -886,6 +903,7 @@ NPC_ORDER_NORTH,Sister Mei,Schwester Mei,梅师姐
 NPC_ORDER_PLATEAU,Sister Lan,Schwester Lan,岚师姐
 NPC_ORDER_WEST,Brother Kai,Bruder Kai,凯师兄
 NPC_ORDER_YING,Grand Mistress Ying,Ordensmeisterin Ying,莹大师
+NPC_PFLUECKERIN_MEI,Tea Picker Mei,Pflückerin Mei,采茶女小梅
 NPC_PILGER,Pilgrim Wen,Pilger Wen,文香客
 NPC_QILIN,Qilin,Qilin,麒麟
 NPC_QILIN_FREE,Qilin,Qilin,麒麟

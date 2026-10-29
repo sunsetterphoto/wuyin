@@ -7,6 +7,54 @@
    "octave": -1
   }
  },
+ "opa_hu": {
+  "name": "NPC_OPA_HU",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "herr_fang": {
+  "name": "NPC_HERR_FANG",
+  "voice": {
+   "tone": "jue",
+   "style": "stubborn",
+   "octave": -1
+  }
+ },
+ "pflueckerin_mei": {
+  "name": "NPC_PFLUECKERIN_MEI",
+  "voice": {
+   "tone": "jue",
+   "style": "playful",
+   "octave": 1
+  }
+ },
+ "opa_liu": {
+  "name": "NPC_OPA_LIU",
+  "voice": {
+   "tone": "gong",
+   "style": "gentle",
+   "octave": -1
+  }
+ },
+ "hong_jun": {
+  "name": "NPC_HONG_JUN",
+  "voice": {
+   "tone": "zhi",
+   "style": "brave",
+   "octave": 1
+  }
+ },
+ "frau_zhou": {
+  "name": "NPC_FRAU_ZHOU",
+  "voice": {
+   "tone": "yu",
+   "style": "gentle",
+   "octave": 0
+  }
+ },
  "meister": {
   "name": "NPC_MEISTER",
   "voice": {

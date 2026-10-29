@@ -83,7 +83,17 @@
    ]
   }
  ],
- "npcs": [],
+ "npcs": [
+  {
+   "id": "frau_zhou",
+   "sprite": "villager_a",
+   "at": [
+    5,
+    4
+   ],
+   "event": "res_frau_zhou"
+  }
+ ],
  "objects": [],
  "lights": [
   [

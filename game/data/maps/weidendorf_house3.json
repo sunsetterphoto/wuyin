@@ -86,7 +86,17 @@
    ]
   }
  ],
- "npcs": [],
+ "npcs": [
+  {
+   "id": "herr_fang",
+   "sprite": "man_c",
+   "at": [
+    5,
+    4
+   ],
+   "event": "res_herr_fang"
+  }
+ ],
  "objects": [
   {
    "id": "weidendorf_house3_shelf_1",

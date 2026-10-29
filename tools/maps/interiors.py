@@ -65,6 +65,15 @@ DOOR_KIND = {"hof_hut": "home", "home_door": "home", "work_door": "workshop", "i
 KEEPERS = {"inn_door": "wirtin", "shop_door": "haendler", "teahouse": "teemeister", "kreuzweg_inn": "rast_wirt"}
 NO_INTERIOR = {"halle_tuer"}
 TOWN_MUSIC = {"hof": "farm", "weidendorf": "village"}
+# People living in the houses (events in tools/story/systems.py).
+RESIDENTS = {
+    "weidendorf_house2": {"id": "opa_hu", "sprite": "elder", "at": [3, 3], "event": "res_opa_hu"},
+    "weidendorf_house3": {"id": "herr_fang", "sprite": "man_c", "at": [5, 4], "event": "res_herr_fang"},
+    "teeufer_house3": {"id": "pflueckerin_mei", "sprite": "girl_c", "at": [5, 4], "event": "res_pflueckerin"},
+    "teeufer_house4": {"id": "opa_liu", "sprite": "elder", "at": [4, 5], "event": "res_opa_liu"},
+    "rotfels_house": {"id": "hong_jun", "sprite": "villager_b", "at": [5, 5], "event": "res_hong_jun"},
+    "nebelhafen_fisher": {"id": "frau_zhou", "sprite": "villager_a", "at": [5, 4], "event": "res_frau_zhou"},
+}
 
 
 def _kind_for(event):
@@ -123,6 +132,8 @@ def build_room(room_id, kind, parent, out_spawn, event, keeper_npc, region, musi
             break
     if kind == "home":
         objects.append({"id": room_id + "_cushion", "kind": "invisible", "at": [6, 2], "event": "furn_cushion", "solid": False})
+    if room_id in RESIDENTS:
+        npcs.append(dict(RESIDENTS[room_id]))
     lights = []
     for lx, lz in tp["lights"]:
         lights.append([lx if lx >= 0 else w + lx, lz])

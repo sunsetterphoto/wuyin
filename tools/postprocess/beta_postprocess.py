@@ -9,6 +9,8 @@
   backgrounds  -> game/assets/backgrounds/<id>.png       (320x180 pixel grid, 2x nearest -> 640x360)
   ui           -> game/assets/ui/title.png (640x360), icon.png (512x512)
 Uses the seed from tools/comfyui/beta_assets.json to pick the raw file.
+--batch tools/comfyui/full_assets.json: same steps for the full batch (raw files from build/full_raw).
+Derived items there may name "dir" (lingshou/chars) and "op" (silence, ashes, order_robe, see below).
 """
 import argparse
 import json
@@ -25,6 +27,12 @@ RAW = os.path.join(ROOT, "build", "beta_raw")
 ASSETS = os.path.join(ROOT, "game", "assets")
 BG_COLORS = 64   # adaptive palette per background (gradients survive better than with the 32 master colors)
 BG_GRID = 2      # every background pixel is 2x2 screen pixels (320x180 -> 640x360)
+
+
+def raw_dir(batch_path):
+    """beta_assets.json -> build/beta_raw, full_assets.json -> build/full_raw (as in beta_generate.py)."""
+    name = os.path.basename(batch_path).split("_assets")[0]
+    return os.path.join(ROOT, "build", f"{name}_raw")
 
 
 def raw(section, item, seed=None):
@@ -93,6 +101,85 @@ def silence(src):
     return Image.fromarray(res, "RGBA"), int(eyes.sum())
 
 
+def ashes(src):
+    """fenghuang -> fenghuang_ashes: same silhouette as dim grey ash with an orange ember glow.
+    Dark/mid tones become ash greys; the brightest pixels and a speckle of interior pixels glow."""
+    a = np.array(src).astype(np.float32)
+    alpha = a[:, :, 3] > 0
+    rgb = a[:, :, :3]
+    lum = rgb @ np.array([0.299, 0.587, 0.114])
+    hexes = ("3a3046", "5e584c", "8c8577")  # ink violet .. stone: dim ash
+    greys = np.array([tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) for h in hexes], dtype=np.uint8)
+    lo, hi = lum[alpha].min(), lum[alpha].max()
+    t = np.clip((lum - lo) / max(1, hi - lo), 0, 1)
+    out = greys[np.clip((t * len(greys)).astype(int), 0, len(greys) - 1)]
+    cols = load_palette()
+    outline = alpha & (lum < 40)
+    out[outline] = np.array(cols[0], dtype=np.uint8)
+    ember = np.array((0xd8, 0x56, 0x2f), dtype=np.uint8)   # ember orange
+    glow = np.array((0xf0, 0x8a, 0x3a), dtype=np.uint8)    # lantern orange
+    core = np.array((0xf6, 0xc4, 0x53), dtype=np.uint8)    # imperial gold
+    body = alpha & ~outline
+    q = np.quantile(t[body], [0.80, 0.93])
+    out[body & (t >= q[0])] = ember
+    out[body & (t >= q[1])] = glow
+    # sparse glowing speckles (fixed pattern, reproducible)
+    h, w = alpha.shape
+    yy, xx = np.mgrid[0:h, 0:w]
+    speck = body & (((xx * 7 + yy * 13) % 23) == 0) & (t > 0.35)
+    out[speck] = core
+    res = np.dstack([out, (alpha * 255).astype(np.uint8)])
+    return Image.fromarray(res, "RGBA")
+
+
+def order_robe(src):
+    """yao -> yao_order: same figure, red jacket and black clothes become the grey robe of the
+    Order of Silence with a white sash. Head (hair, face) stays untouched."""
+    a = np.array(src)
+    alpha = a[:, :, 3] > 0
+    rgb = a[:, :, :3].astype(int)
+
+    def is_(hexcode):
+        c = [int(hexcode[i:i + 2], 16) for i in (0, 2, 4)]
+        return alpha & (rgb[:, :, 0] == c[0]) & (rgb[:, :, 1] == c[1]) & (rgb[:, :, 2] == c[2])
+
+    def col(hexcode):
+        return np.array([int(hexcode[i:i + 2], 16) for i in (0, 2, 4)], dtype=np.uint8)
+
+    jacket_rows = np.where(is_("a8382b").any(1))[0]
+    top, bottom = jacket_rows.min(), jacket_rows.max()
+    h, w = alpha.shape
+    rows = np.arange(h)[:, None] >= top - 1
+    inner = alpha.copy()  # pixels whose 4 neighbours are all opaque (not the outline)
+    inner[1:, :] &= alpha[:-1, :]
+    inner[:-1, :] &= alpha[1:, :]
+    inner[:, 1:] &= alpha[:, :-1]
+    inner[:, :-1] &= alpha[:, 1:]
+    out = a.copy()
+    for src_hex, dst_hex in (("a8382b", "bfb6a4"), ("6a2a22", "8c8577"), ("553520", "8c8577")):
+        out[is_(src_hex) & rows, :3] = col(dst_hex)
+    out[is_("1a1620") & rows & inner, :3] = col("8c8577")
+    out[is_("3a3046") & rows & inner, :3] = col("5e584c")
+    # robe skirt: close the gap between the legs from the hem down to 4 rows above the soles
+    ink = col("1a1620")
+    for y in range(bottom + 1, h - 4):
+        xs = np.where(alpha[y])[0]
+        if len(xs) < 2:
+            continue
+        x0, x1 = xs.min(), xs.max()
+        for x in range(x0 + 1, x1):
+            if not alpha[y, x] or (out[y, x, :3] == ink).all():
+                out[y, x] = (*col("5e584c"), 255)
+    # white sash two rows below the jacket hem, emblem = one dark pixel in the middle
+    for y in (bottom - 1, bottom):
+        line = inner[y] & (np.arange(w) > 0)
+        out[y, line, :3] = col("f2ede0")
+    xs = np.where(inner[bottom])[0]
+    if len(xs):
+        out[bottom - 1:bottom + 1, (xs.min() + xs.max()) // 2, :3] = col("5e584c")
+    return Image.fromarray(out, "RGBA")
+
+
 def glow_eyes(img):
     """Pale, low-saturation light pixels on a dark sprite (the moth's eyes) -> glowing mist white."""
     a = np.array(img)
@@ -115,11 +202,13 @@ def main():
     ap.add_argument("--only", default="")
     ap.add_argument("--batch", default=os.path.join(ROOT, "tools", "comfyui", "beta_assets.json"))
     args = ap.parse_args()
+    global RAW
+    RAW = raw_dir(args.batch)
     batch = json.load(open(args.batch))
     only = set(filter(None, args.only.split(",")))
     cols = load_palette()
     for sec in args.sections:
-        for item in batch[sec]:
+        for item in batch.get(sec, []):
             if only and item["id"] not in only:
                 continue
             if sec == "lingshou":
@@ -129,10 +218,17 @@ def main():
                     img = glow_eyes(img)
                 save(img, "sprites", "lingshou", item["id"] + ".png")
             elif sec == "derived":
-                src = Image.open(os.path.join(ASSETS, "sprites", "lingshou", item["from"] + ".png"))
-                img, n_eye = silence(src)
-                print("  eye pixels closed:", n_eye)
-                save(img, "sprites", "lingshou", item["id"] + ".png")
+                folder = item.get("dir", "lingshou")
+                src = Image.open(os.path.join(ASSETS, "sprites", folder, item["from"] + ".png"))
+                op = item.get("op", "silence")
+                if op == "silence":
+                    img, n_eye = silence(src)
+                    print("  eye pixels closed:", n_eye)
+                elif op == "ashes":
+                    img = ashes(src)
+                elif op == "order_robe":
+                    img = order_robe(src)
+                save(img, "sprites", folder, item["id"] + ".png")
             elif sec == "chars":
                 if item.get("size") == 32:
                     img = sprite(raw(sec, item), 32, cols)

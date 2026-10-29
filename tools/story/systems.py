@@ -217,3 +217,28 @@ for kind, de, en, zh in [
     ("fisher", "Angelhaken, Netznadeln und ein Bild von einem Kormoran.", "Fish hooks, netting needles and a picture of a cormorant.", "鱼钩、织网针，还有一张鸬鹚的画。"),
 ]:
     E["furn_shelf_" + kind] = [say("narrator", "EV_FURN_SHELF_" + kind.upper(), de, en, zh)]
+
+# --- residents of the houses -------------------------------------------------------------
+for nid, names, tone, style, octave, flag, silent_line, free_line in [
+    ("opa_hu", ("Opa Hu", "Grandpa Hu", "胡爷爷"), "gong", "gentle", -1, "tone_jue",
+     ("Meine Frau ist draußen und tratscht. Ich bleibe hier und lausche – auf nichts. Seltsam, oder?", "My wife is outside gossiping. I stay here and listen - to nothing. Strange, isn't it?", "我老伴在外面聊天。我待在这儿听——什么都听不见。怪吧？"),
+     ("Hörst du die Spatzen auf dem Dach? Ich habe sie noch nie so gern gehört.", "Do you hear the sparrows on the roof? I've never been so glad to hear them.", "听见屋顶上的麻雀了吗？我从没这么喜欢听它们叫。")),
+    ("herr_fang", ("Herr Fang", "Mr Fang", "方大叔"), "jue", "stubborn", -1, "tone_jue",
+     ("Meine Frau überlegt, zum Orden zu gehen. Ich backe ihr Mondkuchen, damit sie bleibt. Hilft bestimmt.", "My wife is thinking of joining the Order. I'm baking her mooncakes so she stays. That'll help, surely.", "我老婆想去入教团。我给她烤月饼，好让她留下。肯定有用。"),
+     ("Sie ist geblieben! Die Mondkuchen waren angebrannt, aber sie hat gelacht.", "She stayed! The mooncakes were burnt, but she laughed.", "她留下了！月饼烤糊了，可她笑了。")),
+    ("pflueckerin_mei", ("Pflückerin Mei", "Tea Picker Mei", "采茶女小梅"), "jue", "playful", 1, "tone_jue",
+     ("Wir singen beim Pflücken, sonst werden die Blätter bitter. Ohne Lied … schmeckt alles nach Staub.", "We sing while picking, or the leaves turn bitter. Without a song... everything tastes of dust.", "我们边唱边采，不然茶叶会苦。没有歌……什么都像灰尘的味道。"),
+     ("Probier! Der erste Tee seit dem Fest – wir haben beim Pflücken aus voller Kehle gesungen.", "Try it! The first tea since the festival - we sang at the top of our voices while picking.", "尝尝！节后的第一道茶——我们采茶时放声高歌。")),
+    ("opa_liu", ("Großvater Liu", "Grandpa Liu", "刘爷爷"), "gong", "gentle", -1, "tone_jue",
+     ("Ich habe drei Wiedergeburten des Phönix verpasst. Na ja, eine. Aber es fühlt sich wie drei an.", "I've missed three rebirths of the phoenix. Well, one. But it feels like three.", "我错过了三次凤凰重生。嗯，一次。可感觉像三次。"),
+     ("Wenn ich das Lied ganz höre, darf ich gehen. Vorher nicht. Sag das dem Phönix.", "When I hear the whole song, I may go. Not before. Tell the phoenix that.", "等我听完整首歌，我就可以走了。之前可不行。替我告诉凤凰。")),
+    ("hong_jun", ("Hong Jun", "Hong Jun", "洪军"), "zhi", "brave", 1, "tone_zhi",
+     ("Mama sagt, Feuer ist böse. Aber ohne Feuer gibt es keine Laternen. Und keine Nudeln.", "Mum says fire is evil. But without fire there are no lanterns. And no noodles.", "妈妈说火是坏的。可没有火就没有灯笼，也没有面条。"),
+     ("Heute gibt es Nudeln! Mit Feuer gekocht! Mama hat sogar mitgesungen.", "Noodles today! Cooked with fire! Mum even sang along.", "今天吃面条！用火煮的！妈妈还跟着唱了歌。")),
+    ("frau_zhou", ("Frau Zhou", "Mrs Zhou", "周大娘"), "yu", "gentle", 0, "tone_yu",
+     ("Mein Mann sitzt nur da und starrt aufs Wasser. Er hat Bai seit einem Jahr großgezogen, weißt du.", "My husband just sits there staring at the water. He raised Bai for a year, you know.", "我老伴就坐在那儿盯着水看。小白是他一手养大的，你知道吗。"),
+     ("Der Fluss trägt die Boote wieder. Heute Abend gibt es Fisch – für dich auch, Kind.", "The river carries the boats again. Fish tonight - for you too, child.", "河水又能载船了。今晚吃鱼——也给你留一份，孩子。")),
+]:
+    person(nid, *names, tone, style, octave)
+    E["res_" + nid.replace("pflueckerin_mei", "pflueckerin")] = [
+        {"if": flag, "then": [say(nid, f"EV_RES_{nid.upper()}_2", *free_line)], "else": [say(nid, f"EV_RES_{nid.upper()}_1", *silent_line)]}]

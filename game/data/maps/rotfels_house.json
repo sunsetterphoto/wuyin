@@ -86,7 +86,17 @@
    ]
   }
  ],
- "npcs": [],
+ "npcs": [
+  {
+   "id": "hong_jun",
+   "sprite": "villager_b",
+   "at": [
+    5,
+    5
+   ],
+   "event": "res_hong_jun"
+  }
+ ],
  "objects": [
   {
    "id": "rotfels_house_shelf_1",
