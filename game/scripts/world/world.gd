@@ -483,7 +483,7 @@ func _apply_ambience() -> void:
 	_env.fog_sky_affect = 0.0
 	if w in ["fog", "sandstorm", "snow"]:
 		_env.fog_mode = Environment.FOG_MODE_EXPONENTIAL
-		_env.fog_density = {"fog": 0.05, "sandstorm": 0.06, "snow": 0.025}[w]
+		_env.fog_density = {"fog": 0.028, "sandstorm": 0.04, "snow": 0.016}[w]
 	else:
 		# Depth haze: clear up to the player, fading towards the far edge of the view.
 		_env.fog_mode = Environment.FOG_MODE_DEPTH

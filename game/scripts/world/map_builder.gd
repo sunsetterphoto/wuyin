@@ -648,6 +648,9 @@ static func _meshes(c: Ctx, silent: bool) -> void:
 		if c.region == "temple" and kind in ["cloudstone", "plaza"]:
 			# The phoenix's courtyard: warm sandstone and a rose-red processional way.
 			mesh.material = Materials.surface(kind, Color("f0d2b4") if kind == "cloudstone" else Color("e0a888"))
+		elif c.region == "pillars" and kind == "cloudstone":
+			# Slightly warmer and darker than the clouds around it, so the platforms read against the sky.
+			mesh.material = Materials.surface(kind, Color("d8d2c6"))
 		if kind == "cloud":
 			var mat := Materials.surface("cloud").duplicate() as StandardMaterial3D
 			mat.emission_enabled = true
