@@ -129,6 +129,38 @@
     1.4
    ],
    "scale": 0.8
+  },
+  {
+   "prop": "barrel",
+   "at": [
+    11.6,
+    5.2
+   ],
+   "scale": 0.8
+  },
+  {
+   "prop": "jar",
+   "at": [
+    7.4,
+    6.6
+   ]
+  },
+  {
+   "prop": "lantern_red",
+   "at": [
+    5.5,
+    0.7
+   ],
+   "scale": 0.7,
+   "y": 1.5
+  },
+  {
+   "prop": "bush_flowering",
+   "at": [
+    1.0,
+    7.2
+   ],
+   "scale": 0.7
   }
  ],
  "npcs": [
