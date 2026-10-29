@@ -11,7 +11,7 @@ Stand 29.10.2026. Das ganze Spiel ist von Anfang bis Ende spielbar: Prolog, vier
 | Orte | 21 Außenkarten, 30 begehbare Innenräume (Gasthäuser, Läden, Teehäuser, Restaurants, Zuhause, Werkstatt, Wohnhäuser, Halle der Stille), Hof mit bis zu 16 Gehegen |
 | Lingshou | 36 Arten: 5 Himmelswächter, Phönix, Nian, Schattenmotte, Silberkranich, 5 Mischformen nur aus der Zucht |
 | Systeme | Zähmen, Befreien, Ruf (Freitext), Überreden (Logik, Mitgefühl, Beweis, Bestechung, Drohung), Spieluhr mit Tag und Nacht, Wetter pro Region, Schnellreise mit dem Windspiel, Restaurant-Gerichte, Hof mit Ausbau, Gehegen, Zufriedenheit, Zucht, Futtergarten, Wandlung, Farbvarianten, Hoftagebuch, Lexikon, Weltkarte, neue Attacken per Stufe, Fahrrad, Boot |
-| Grafik | HD-2D: chinesische Häuser mit geschwungenen Dächern, Terrassen und Treppen, Pflanzen im Wind, Wasser mit Uferschaum, Wolkenschatten, Glühwürmchen, Blätter, Blüten, Nebel, Glut; klassischer 2D-Modus in den Optionen |
+| Grafik | Alle 36 Lingshou, 23 Figuren und 15 Porträts als Pixel-Art, 13 Kampfhintergründe, 64 Requisiten. HD-2D: chinesische Häuser mit geschwungenen Dächern, Terrassen und Treppen, Pflanzen im Wind, Wasser mit Uferschaum, Wolkenschatten, Glühwürmchen, Blätter, Blüten, Nebel, Glut; klassischer 2D-Modus in den Optionen |
 | Klang | Musik pro Region (gedämpft, solange die Region verstummt ist), Geräuschkulisse aus Wind, Vögeln, Wasser und Grillen (in stillen Regionen: nichts), Brabbel-Stimmen |
 | Sprachmodell | Gemma 4 E2B auf dem Handy: Rufe, Stimmen der Lingshou, Jinlis Hinweise, Gerüchte, Zureden, Überreden, Hoftagebuch. Alles hat Vorlagen, das Spiel läuft auch ohne Modell |
 
@@ -35,9 +35,9 @@ Etwa 6 bis 10 Stunden Spielzeit, je nachdem, wie viel du zähmst, züchtest und 
 
 ## Automatische Prüfungen
 
-- `tools/check.sh`: 103 Unit-Tests (Kampf, Zucht, Spielstand, Karten, Ereignisse, Texte in drei Sprachen, Erreichbarkeit über Treppen).
+- `tools/check.sh`: 108 Unit-Tests (Kampf, Zucht, Spielstand, Karten, Ereignisse, Texte in drei Sprachen, Erreichbarkeit über Treppen).
 - `godot --headless --path game -s res://tests/tools/autoplay_full.gd` spielt das ganze Spiel durch (Ende Versöhnung); mit `-- --ending=victory` bzw. `-- --ending=bitter` die anderen Enden. Ergebnis: alle drei Enden erreichbar, rund 120 Kämpfe, Stufe am Ende etwa 35.
-- Bildschirmfotos: `tests/tools/capture_full.gd` und `capture_beta.gd`.
+- Bildschirmfotos: `tests/tools/capture_full.gd` (alles), `capture_spot.gd` (eine Karte an einer Stelle und Uhrzeit, mit Flags) und `capture_beta.gd`.
 - Daten neu erzeugen: `tools/build_data.sh` (Karten, Innenräume, Story, Inhalte, Übersetzungen).
 
 ## Bekannte Grenzen
