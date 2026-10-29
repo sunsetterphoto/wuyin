@@ -103,6 +103,20 @@ Die Zuordnung von Element und Ton folgt der klassischen chinesischen Lehre. Die 
 - **Bittere Stille:** Zu viele Verstummte wurden besiegt statt befreit. Der Phönix wird neu geboren, doch eine Region bleibt still und muss nach dem Abspann befreit werden.
 - Die genaue Liste der Entscheidungen und Enden wird vor der Story-Produktion festgelegt.
 
+**Umsetzung Version 1 (Stand 29.10.2026):**
+
+| Abschnitt | Orte | Inhalt |
+| --- | --- | --- |
+| Prolog | Weidendorf, Flussufer | Laternenfest, Stille, zwei Lingshou zähmen, Yao, Wusheng nimmt Meister Lu die Stimme |
+| Akt 1 | Bambuspfad, Teeufer, Reisterrassen, Drachenschrein | Azurdrache, Ton Jue |
+| Akt 2 | Kreuzweg; Nebelfluss (Karstufer, Nebelhafen, Schildkrötenbucht); Regenbogengrat (Danxia-Pfad, Rotfels, Feuergipfel) | in beliebiger Reihenfolge: Kormoran des Fischers, Boot, Xuanwu (Yu); Feuerschneise für Rotfels, Bifang (Zhi); Ordensmitglieder überreden oder bekämpfen |
+| Akt 3 | Weidendorf; Singende Dünen (Dünenweg, Mondquell, Singender Kamm); Wolkensäulen (Säulenpfad, Kiefernhang, Qilin-Plateau) | Meister Lu spricht wieder (3. Ton), Nian-Angriff mit Trommel, Feuerwerk, rotem Banner; Yao tritt dem Orden bei; Halle der Stille; Baihu (Shang) und Qilin (Gong) in beliebiger Reihenfolge |
+| Akt 4 | Phönixtempel | Yaos Entscheidung, Gespräch mit Wusheng (Antworten aus den Lehren der Reise), Kranich, letzter Kampf gegen den Nian, Wiedergeburt |
+
+**Entscheidungen, die zählen:** befreite gegenüber besiegten Verstummten, überredete gegenüber bekämpften Ordensmitgliedern, Hilfe für Rotfels, Yaos Rückkehr (Zweifel in der Halle der Stille), acht Lehren über Abschied und Erneuerung (Azurdrache, Fischer, Xuanwu, Förster, Bifang, Baihu, Qilin, Meister Lu) für das Gespräch mit Wusheng, die Kranichfeder aus der Schildkrötenbucht.
+
+**Enden:** Versöhnung = mindestens zwei weise Antworten und der Kranich singt wieder. Bittere Stille = mehr Verstummte besiegt als befreit (die Singenden Dünen bleiben still, nach dem Abspann befreibar). Sonst Sieg. Der Abschluss erzählt, was aus Yao, dem Orden, Rotfels, dem Hof und Meister Lu wurde.
+
 **Nach dem Abspann:** Der Nian ist geflohen und kehrt jedes Jahr zurück, als wiederkehrende Jagd zum Neujahrsfest.
 
 ## Lingshou: die Geisttiere
@@ -417,7 +431,7 @@ Das größte Risiko ist nicht die Technik, sondern dass der Ruf nach der ersten 
 - [ ] Welches lokale Modell liefert auf dem Testgerät die besten kurzen Dialoge in Deutsch, Englisch und Chinesisch?
 - [ ] Konkretes Testgerät und Android-Mindestversion festlegen
 - [ ] Preis 4,99 € nach dem geschlossenen Test noch einmal prüfen; Steam-Preis festlegen
-- [ ] Liste der Entscheidungen, die zu den Enden führen
+- [x] Liste der Entscheidungen, die zu den Enden führen (siehe „Umsetzung Version 1“ im Roten Faden)
 - [ ] Altersfreigabe: Ziel ab 6 oder ab 12?
 
 ## Lizenzen und Rechte

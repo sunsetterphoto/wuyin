@@ -60,6 +60,12 @@ func _run() -> void:
 		await world.enter_map(p[0], "", Vector2(-1, -1), false)
 		await _shot("full_map_%s" % p[0])
 	s.weather.clear()
+	world._rig.set_mode(CameraRig.CLASSIC, false)
+	s.minute = 11 * 60
+	for m in ["teeufer", "nebelhafen", "kreuzweg"]:
+		await world.enter_map(m, "", Vector2(-1, -1), false)
+		await _shot("full_classic_" + m)
+	world._rig.set_mode(CameraRig.HD2D, false)
 	for room in ["teeufer_inn", "weidendorf_home", "weidendorf_workshop", "nebelhafen_restaurant", "rotfels_teahouse", "teeufer_shop"]:
 		await world.enter_map(room, "door", Vector2(-1, -1), false)
 		await _shot("full_room_" + room)

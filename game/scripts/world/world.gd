@@ -68,6 +68,8 @@ var _ambience_t := 0.0
 var _weather_fx: WeatherFx
 var _ambient: AmbientFx
 var _cloud_shadows: Decal
+var _sounds: Ambience
+var _sound_key := ""
 var _bubble: Sprite3D
 var _emote_t := 4.0
 var _dust: CPUParticles3D
@@ -90,6 +92,8 @@ func _ready() -> void:
 	_build_ui()
 	events = EventRunner.new(self)
 	add_child(events)
+	_sounds = Ambience.new()
+	add_child(_sounds)
 	var start_map := state.map if state.map != "" and MapData.exists(state.map) else "weidendorf"
 	if state.map == "" or not MapData.exists(state.map):
 		await enter_map(start_map, "start", Vector2(-1, -1), false)
@@ -461,6 +465,19 @@ func _apply_ambience() -> void:
 	_env.fog_density = {"fog": 0.05, "sandstorm": 0.06, "snow": 0.025}.get(w, 0.0)
 	_weather_fx.set_kind(w)
 	set_silent(state.region_silent(region()) and map.def.get("silent", true))
+	if _sounds:
+		var night: bool = uses_clock() and state.is_night() or map.def.get("time", "") == "night"
+		var town: bool = map.def.get("town", false) or map.id in ["weidendorf", "teeufer", "kreuzweg"] or map.def.has("parent")
+		var water := false
+		for row in map.rows:
+			if "~" in row:
+				water = true
+				break
+		var mix := Ambience.mix(region(), town, map.def.get("indoor", false), night, _silent, water, w)
+		var key := str(mix)
+		if key != _sound_key:
+			_sound_key = key
+			_sounds.apply(mix)
 	if _ambient:
 		var h: float = state.minute / 60.0 if uses_clock() else {"night": 23.0, "dusk": 19.5}.get(map.def.get("time", "day"), 12.0)
 		_ambient.configure("indoor" if map.def.get("indoor", false) else region(), h >= 20.0 or h < 5.0, _silent, w)
