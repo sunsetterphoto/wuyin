@@ -42,6 +42,11 @@ func _player(bus: String) -> AudioStreamPlayer:
 	return p
 
 
+## Closest existing track while a region's own piece is missing.
+const FALLBACK := {"river": "route", "ridge": "route", "dunes": "route", "pillars": "route", "farm": "village",
+	"order": "silence", "nian": "boss", "finale": "boss", "ending": "tone_returns"}
+
+
 ## Crossfades to track `id` (file name without extension); "" fades to silence.
 func play(id: String) -> void:
 	if id == current:
@@ -49,6 +54,8 @@ func play(id: String) -> void:
 	current = id
 	var stream: AudioStream = null
 	var path := MUSIC_DIR + id + ".ogg"
+	if id != "" and not ResourceLoader.exists(path) and FALLBACK.has(id):
+		path = MUSIC_DIR + FALLBACK[id] + ".ogg"
 	if id != "" and ResourceLoader.exists(path):
 		stream = load(path)
 		if stream is AudioStreamOggVorbis:
