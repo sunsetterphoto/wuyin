@@ -48,6 +48,7 @@ var _wild: Array[Actor] = []
 var _player: Actor
 var _jinli: Actor
 var _follower: Actor
+var _follower2: Actor
 var _trail: Array[Vector3] = []
 var _facing := Vector2(0, 1)
 var _last_tile := Vector2i(-1, -1)
@@ -412,14 +413,20 @@ func _spawn_wild() -> void:
 
 
 func _update_follower() -> void:
-	if _follower:
-		_follower.queue_free()
-		_follower = null
+	for f in [_follower, _follower2]:
+		if f:
+			f.queue_free()
+	_follower = null
+	_follower2 = null
 	if state.party.is_empty() or not _player:
 		return
 	_follower = Actor.make(Sprites.lingshou_rec(state.party[0]), _player.position + Vector3(-1, 0, 0.5), "follower")
 	_follower.scale = Vector3.ONE * 0.7
 	_map_root.add_child(_follower)
+	if state.party.size() > 1 and not map.def.get("indoor", false):
+		_follower2 = Actor.make(Sprites.lingshou_rec(state.party[1]), _player.position + Vector3(-1.6, 0, 0.8), "follower2")
+		_follower2.scale = Vector3.ONE * 0.62
+		_map_root.add_child(_follower2)
 
 
 ## Uses the game clock once the journey has begun; before that (and on maps
@@ -566,7 +573,7 @@ func _settle_heights(delta: float) -> void:
 	if map.def.get("heights", []).is_empty():
 		return
 	var k := minf(1.0, delta * 14.0)
-	for a in [_player, _jinli, _follower]:
+	for a in [_player, _jinli, _follower, _follower2]:
 		if a:
 			a.position.y = lerpf(a.position.y, map.height_at(roundi(a.position.x), roundi(a.position.z)), k)
 	for id in _actors:
@@ -678,6 +685,11 @@ func _follow(delta: float) -> void:
 		var d := goal - _follower.position
 		_follower.position = _follower.position.lerp(goal, minf(1.0, delta * 8.0))
 		_follower.animate(delta, d.length() > 0.02, d.x, d.z)
+	if _follower2 and _trail.size() > 44:
+		var goal := _trail[_trail.size() - (44 if _jinli.visible else 30)]
+		var d := goal - _follower2.position
+		_follower2.position = _follower2.position.lerp(goal, minf(1.0, delta * 8.0))
+		_follower2.animate(delta, d.length() > 0.02, d.x, d.z)
 
 
 ## Jinli runs ahead towards the current goal, sits and rings her bell.
@@ -1339,6 +1351,8 @@ func teleport_player(tile: Vector2) -> void:
 		_jinli.position = _player.position + Vector3(-0.7, 0, 0.2)
 	if _follower:
 		_follower.position = _player.position + Vector3(-1.2, 0, 0.4)
+	if _follower2:
+		_follower2.position = _player.position + Vector3(-1.8, 0, 0.7)
 
 
 func refresh_party_follower() -> void:
